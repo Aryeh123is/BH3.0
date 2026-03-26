@@ -3,14 +3,15 @@ import { Word, UserProgress, Question, MasteryLevel } from './types';
 import { VOCABULARY } from './data/vocabulary';
 import { Dashboard } from './components/Dashboard';
 import { LearnCard } from './components/LearnCard';
+import { FlashcardMode } from './components/FlashcardMode';
 import { ProgressBar } from './components/ProgressBar';
 import { SessionSummary } from './components/SessionSummary';
-import { ChevronLeft, RotateCcw, ArrowRight } from 'lucide-react';
+import { ChevronLeft, RotateCcw, ArrowRight, RotateCw } from 'lucide-react';
 
 const PROGRESS_KEY = 'hebrew-gcse-progress';
 
 export default function App() {
-  const [view, setView] = useState<'dashboard' | 'learn' | 'summary'>('dashboard');
+  const [view, setView] = useState<'dashboard' | 'learn' | 'summary' | 'flashcards'>('dashboard');
   const [progress, setProgress] = useState<UserProgress[]>([]);
   const [sessionQuestions, setSessionQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -78,6 +79,36 @@ export default function App() {
     setView('learn');
   };
 
+  const updateWordProgress = (wordId: string, isCorrect: boolean) => {
+    setProgress(prev => {
+      const existingIndex = prev.findIndex(p => p.wordId === wordId);
+      const newProgress = [...prev];
+      const now = Date.now();
+
+      if (existingIndex >= 0) {
+        const p = { ...newProgress[existingIndex] };
+        if (isCorrect) {
+          p.correctCount += 1;
+          if (p.mastery === 'new') p.mastery = 'learning';
+        } else {
+          p.incorrectCount += 1;
+          p.mastery = 'new';
+        }
+        p.lastStudied = now;
+        newProgress[existingIndex] = p;
+      } else {
+        newProgress.push({
+          wordId,
+          mastery: isCorrect ? 'learning' : 'new',
+          correctCount: isCorrect ? 1 : 0,
+          incorrectCount: isCorrect ? 0 : 1,
+          lastStudied: now
+        });
+      }
+      return newProgress;
+    });
+  };
+
   const handleBack = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(prev => prev - 1);
@@ -137,9 +168,19 @@ export default function App() {
           vocabulary={VOCABULARY}
           progress={progress}
           onStartSession={startSession}
+          onStartFlashcards={() => setView('flashcards')}
           onResetProgress={() => setProgress([])}
         />
       )}
+
+        {view === 'flashcards' && (
+          <FlashcardMode
+            vocabulary={VOCABULARY}
+            onExit={() => setView('dashboard')}
+            onSwitchToLearn={startSession}
+            onWordProgress={updateWordProgress}
+          />
+        )}
 
       {view === 'learn' && (
         <div className="max-w-4xl mx-auto px-4 py-8">
@@ -151,6 +192,13 @@ export default function App() {
                 title="Back to Dashboard"
               >
                 <ChevronLeft className="w-6 h-6 text-gray-400 group-hover:text-gray-900" />
+              </button>
+              <button
+                onClick={() => setView('flashcards')}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-xl font-bold hover:bg-blue-100 transition-all"
+              >
+                <RotateCw className="w-4 h-4" />
+                Switch to Flashcards
               </button>
               {currentQuestionIndex > 0 && (
                 <button

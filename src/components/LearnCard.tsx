@@ -21,10 +21,42 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
     setIsCorrect(null);
   }, [question]);
 
+  const isPhoneticallySimilar = (input: string, target: string) => {
+    const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const s1 = normalize(input);
+    const s2 = normalize(target);
+
+    if (s1 === s2) return true;
+
+    // Simple Levenshtein-like check for small typos (max 1-2 chars depending on length)
+    if (Math.abs(s1.length - s2.length) > 2) return false;
+
+    let edits = 0;
+    let i = 0;
+    let j = 0;
+
+    while (i < s1.length && j < s2.length) {
+      if (s1[i] !== s2[j]) {
+        edits++;
+        if (s1.length > s2.length) i++;
+        else if (s2.length > s1.length) j++;
+        else { i++; j++; }
+      } else {
+        i++;
+        j++;
+      }
+    }
+    edits += (s1.length - i) + (s2.length - j);
+
+    // Allow 1 edit for short words, 2 for longer ones
+    const threshold = s2.length <= 4 ? 1 : 2;
+    return edits <= threshold;
+  };
+
   const handleSubmit = (answer: string) => {
     if (isSubmitted) return;
 
-    const correct = answer.trim().toLowerCase() === question.correctAnswer.toLowerCase();
+    const correct = isPhoneticallySimilar(answer, question.correctAnswer);
     setIsCorrect(correct);
     setIsSubmitted(true);
   };

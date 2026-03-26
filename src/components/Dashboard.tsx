@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { Word, UserProgress } from '../types';
-import { Play, Book, Trophy, Search } from 'lucide-react';
+import { Play, Book, Trophy, Search, RotateCw } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
 
 interface DashboardProps {
   vocabulary: Word[];
   progress: UserProgress[];
   onStartSession: () => void;
+  onStartFlashcards: () => void;
   onResetProgress: () => void;
 }
 
-export function Dashboard({ vocabulary, progress, onStartSession, onResetProgress }: DashboardProps) {
+export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashcards, onResetProgress }: DashboardProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const masteredCount = progress.filter(p => p.mastery === 'mastered').length;
   const learningCount = progress.filter(p => p.mastery === 'learning').length;
@@ -78,12 +79,20 @@ export function Dashboard({ vocabulary, progress, onStartSession, onResetProgres
             </div>
             <ProgressBar current={masteredCount} total={totalCount} color="bg-blue-500" />
           </div>
-          <button
-            onClick={onStartSession}
-            className="px-10 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all flex items-center gap-2 shadow-lg shadow-blue-900/20"
-          >
-            <Play className="w-5 h-5 fill-current" /> Start Learn Mode
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={onStartSession}
+              className="px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold hover:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-900/20"
+            >
+              <Play className="w-5 h-5 fill-current" /> Start Learn Mode
+            </button>
+            <button
+              onClick={onStartFlashcards}
+              className="px-8 py-4 bg-white/10 text-white border border-white/20 rounded-2xl font-bold hover:bg-white/20 transition-all flex items-center justify-center gap-2"
+            >
+              <RotateCw className="w-5 h-5" /> Start Flashcards
+            </button>
+          </div>
         </div>
         <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
       </div>
