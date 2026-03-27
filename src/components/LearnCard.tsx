@@ -75,20 +75,20 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-12"
+          className="bg-white rounded-[2.5rem] shadow-soft border border-slate-100 p-8 md:p-16"
         >
-          <div className="mb-8 text-center">
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-2 block">
+          <div className="mb-12 text-center">
+            <span className="text-xs font-bold text-primary uppercase tracking-widest mb-4 block">
               {question.type === 'multiple-choice' ? 'Choose the correct meaning' : 'Type the meaning'}
             </span>
-            <h2 className="text-6xl font-serif font-bold text-gray-900 mb-4" dir="rtl">
+            <h2 className="text-7xl font-bold text-slate-900 mb-6" dir="rtl">
               {question.word.hebrew}
             </h2>
             {isSubmitted && (
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-gray-400 font-mono text-sm italic"
+                className="text-slate-400 font-medium text-lg italic"
               >
                 {question.word.transliteration}
               </motion.p>
@@ -97,18 +97,18 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
 
           <div className="space-y-4">
             {question.type === 'multiple-choice' ? (
-              <div className="grid grid-cols-1 gap-3">
+              <div className="grid grid-cols-1 gap-4">
                 {question.options?.map((option, idx) => {
                   const isThisCorrect = option === question.correctAnswer;
                   const isThisSelected = selectedOption === option;
 
-                  let buttonClass = "w-full p-4 text-left rounded-xl border-2 transition-all duration-200 flex justify-between items-center ";
+                  let buttonClass = "w-full p-6 text-left rounded-2xl border-2 transition-all duration-200 flex justify-between items-center ";
                   if (!isSubmitted) {
-                    buttonClass += isThisSelected ? "border-blue-500 bg-blue-50" : "border-gray-100 hover:border-blue-200 hover:bg-gray-50";
+                    buttonClass += isThisSelected ? "border-primary bg-primary/5 text-primary" : "border-slate-100 hover:border-primary/20 hover:bg-slate-50";
                   } else {
                     if (isThisCorrect) buttonClass += "border-green-500 bg-green-50 text-green-700";
                     else if (isThisSelected) buttonClass += "border-red-500 bg-red-50 text-red-700";
-                    else buttonClass += "border-gray-100 opacity-50";
+                    else buttonClass += "border-slate-50 opacity-50";
                   }
 
                   return (
@@ -118,15 +118,15 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
                       disabled={isSubmitted}
                       className={buttonClass}
                     >
-                      <span className="font-medium">{option}</span>
-                      {isSubmitted && isThisCorrect && <Check className="w-5 h-5 text-green-600" />}
-                      {isSubmitted && isThisSelected && !isThisCorrect && <X className="w-5 h-5 text-red-600" />}
+                      <span className="font-bold text-lg">{option}</span>
+                      {isSubmitted && isThisCorrect && <Check className="w-6 h-6 text-green-600" />}
+                      {isSubmitted && isThisSelected && !isThisCorrect && <X className="w-6 h-6 text-red-600" />}
                     </button>
                   );
                 })}
               </div>
             ) : (
-              <div className="space-y-4">
+              <div className="space-y-6">
                 <input
                   type="text"
                   value={writtenAnswer}
@@ -134,40 +134,40 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
                   onKeyDown={(e) => e.key === 'Enter' && writtenAnswer && handleSubmit(writtenAnswer)}
                   placeholder="Type the English meaning..."
                   disabled={isSubmitted}
-                  className={`w-full p-4 text-lg rounded-xl border-2 outline-none transition-all ${
+                  className={`w-full p-6 text-xl font-bold rounded-2xl border-2 outline-none transition-all ${
                     isSubmitted
                       ? isCorrect
                         ? "border-green-500 bg-green-50 text-green-700"
                         : "border-red-500 bg-red-50 text-red-700"
-                      : "border-gray-200 focus:border-blue-500"
+                      : "border-slate-100 focus:border-primary focus:ring-8 focus:ring-primary/5"
                   }`}
                   autoFocus
                 />
                 {isSubmitted && !isCorrect && (
-                  <div className="p-4 bg-blue-50 rounded-xl border border-blue-100">
-                    <p className="text-xs text-blue-600 font-bold uppercase mb-1">Correct Answer:</p>
-                    <p className="text-lg font-medium text-blue-900">{question.correctAnswer}</p>
+                  <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
+                    <p className="text-xs text-primary font-bold uppercase mb-2 tracking-widest">Correct Answer:</p>
+                    <p className="text-xl font-bold text-slate-900">{question.correctAnswer}</p>
                   </div>
                 )}
               </div>
             )}
           </div>
 
-          <div className="mt-8 flex justify-end">
+          <div className="mt-12 flex justify-end">
             {!isSubmitted ? (
               <button
                 onClick={() => (question.type === 'multiple-choice' ? selectedOption && handleSubmit(selectedOption) : writtenAnswer && handleSubmit(writtenAnswer))}
                 disabled={question.type === 'multiple-choice' ? !selectedOption : !writtenAnswer}
-                className="px-8 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="px-10 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-black disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20"
               >
-                Submit
+                Submit Answer
               </button>
             ) : (
               <button
                 onClick={handleNext}
-                className="px-8 py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-black flex items-center gap-2 transition-colors"
+                className="px-10 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 flex items-center gap-2 transition-all shadow-lg shadow-slate-900/20"
               >
-                Continue <ArrowRight className="w-4 h-4" />
+                Continue <ArrowRight className="w-5 h-5" />
               </button>
             )}
           </div>

@@ -6,12 +6,16 @@ import { LearnCard } from './components/LearnCard';
 import { FlashcardMode } from './components/FlashcardMode';
 import { ProgressBar } from './components/ProgressBar';
 import { SessionSummary } from './components/SessionSummary';
+import { Navbar } from './components/Navbar';
+import { Hero } from './components/Hero';
+import { HowItWorks } from './components/HowItWorks';
 import { ChevronLeft, RotateCcw, ArrowRight, RotateCw } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
-const PROGRESS_KEY = 'hebrew-gcse-progress';
+const PROGRESS_KEY = 'bh-keywords-progress';
 
 export default function App() {
-  const [view, setView] = useState<'dashboard' | 'learn' | 'summary' | 'flashcards'>('dashboard');
+  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard'>('home');
   const [progress, setProgress] = useState<UserProgress[]>([]);
   const [sessionQuestions, setSessionQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -162,94 +166,137 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900 font-sans selection:bg-blue-100">
-      {view === 'dashboard' && (
-        <Dashboard
-          vocabulary={VOCABULARY}
-          progress={progress}
-          onStartSession={startSession}
-          onStartFlashcards={() => setView('flashcards')}
-          onResetProgress={() => setProgress([])}
-        />
-      )}
+    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-primary/10">
+      <Navbar onNavigate={(view) => setView(view)} />
+      
+      <main className="pt-16">
+        <AnimatePresence mode="wait">
+          {view === 'home' && (
+            <motion.div
+              key="home"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Hero 
+                onStartSession={startSession} 
+                onViewDashboard={() => setView('dashboard')} 
+                onStartFlashcards={() => setView('flashcards')}
+              />
+              <HowItWorks />
+            </motion.div>
+          )}
 
-        {view === 'flashcards' && (
-          <FlashcardMode
-            vocabulary={VOCABULARY}
-            onExit={() => setView('dashboard')}
-            onSwitchToLearn={startSession}
-            onWordProgress={updateWordProgress}
-          />
-        )}
-
-      {view === 'learn' && (
-        <div className="max-w-4xl mx-auto px-4 py-8">
-          <div className="flex items-center justify-between mb-12">
-            <div className="flex items-center gap-4">
-              <button
-                onClick={() => setView('dashboard')}
-                className="p-2 hover:bg-white rounded-full transition-colors group"
-                title="Back to Dashboard"
-              >
-                <ChevronLeft className="w-6 h-6 text-gray-400 group-hover:text-gray-900" />
-              </button>
-              <button
-                onClick={() => setView('flashcards')}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-xl font-bold hover:bg-blue-100 transition-all"
-              >
-                <RotateCw className="w-4 h-4" />
-                Switch to Flashcards
-              </button>
-              {currentQuestionIndex > 0 && (
-                <button
-                  onClick={handleBack}
-                  className="flex items-center gap-2 px-3 py-1.5 text-sm font-bold text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
+          {view === 'dashboard' && (
+            <motion.div
+              key="dashboard"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              <Dashboard
+                vocabulary={VOCABULARY}
+                progress={progress}
+                onStartSession={startSession}
+                onStartFlashcards={() => setView('flashcards')}
+                onResetProgress={() => setProgress([])}
+              />
+              <div className="text-center pb-20">
+                <button 
+                  onClick={() => setView('home')}
+                  className="text-slate-400 font-bold hover:text-primary transition-colors"
                 >
-                  <RotateCcw className="w-4 h-4" />
-                  <span>Previous Word</span>
+                  ← Back to Home
                 </button>
-              )}
-              {currentQuestionIndex < sessionQuestions.length - 1 && sessionAnswers[currentQuestionIndex] !== null && (
-                <button
-                  onClick={() => setCurrentQuestionIndex(prev => prev + 1)}
-                  className="flex items-center gap-2 px-3 py-1.5 text-sm font-bold text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
-                >
-                  <span>Next Word</span>
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              )}
-            </div>
-            <div className="flex-1 max-w-md mx-8">
-              <div className="flex justify-between text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">
-                <span>Question {currentQuestionIndex + 1} of {sessionQuestions.length}</span>
-                <span>{Math.round(((currentQuestionIndex + 1) / sessionQuestions.length) * 100)}%</span>
               </div>
-              <ProgressBar current={currentQuestionIndex + 1} total={sessionQuestions.length} color="bg-blue-600" />
-            </div>
-            <div className="w-10" /> {/* Spacer */}
-          </div>
+            </motion.div>
+          )}
 
-          <LearnCard
-            question={sessionQuestions[currentQuestionIndex]}
-            onAnswer={handleAnswer}
-          />
-        </div>
-      )}
+          {view === 'flashcards' && (
+            <motion.div
+              key="flashcards"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <FlashcardMode
+                vocabulary={VOCABULARY}
+                onExit={() => setView('home')}
+                onSwitchToLearn={startSession}
+                onWordProgress={updateWordProgress}
+              />
+            </motion.div>
+          )}
 
-      {view === 'summary' && (
-        <div className="py-20 px-4">
-          <SessionSummary
-            correct={sessionCorrectCount}
-            total={sessionQuestions.length}
-            onRestart={startSession}
-            onHome={() => setView('dashboard')}
-          />
-        </div>
-      )}
+          {view === 'learn' && (
+            <motion.div
+              key="learn"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="max-w-4xl mx-auto px-4 py-8"
+            >
+              <div className="flex items-center justify-between mb-12">
+                <div className="flex items-center gap-4">
+                  <button
+                    onClick={() => setView('home')}
+                    className="p-2 hover:bg-white rounded-full transition-colors group"
+                    title="Back to Home"
+                  >
+                    <ChevronLeft className="w-6 h-6 text-slate-400 group-hover:text-slate-900" />
+                  </button>
+                  <button
+                    onClick={() => setView('flashcards')}
+                    className="flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary rounded-xl font-bold hover:bg-primary/10 transition-all"
+                  >
+                    <RotateCw className="w-4 h-4" />
+                    Switch to Flashcards
+                  </button>
+                  {currentQuestionIndex > 0 && (
+                    <button
+                      onClick={handleBack}
+                      className="flex items-center gap-2 px-3 py-1.5 text-sm font-bold text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                      <span>Previous Word</span>
+                    </button>
+                  )}
+                </div>
+                <div className="flex-1 max-w-md mx-8">
+                  <div className="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
+                    <span>Question {currentQuestionIndex + 1} of {sessionQuestions.length}</span>
+                    <span>{Math.round(((currentQuestionIndex + 1) / sessionQuestions.length) * 100)}%</span>
+                  </div>
+                  <ProgressBar current={currentQuestionIndex + 1} total={sessionQuestions.length} color="bg-primary" />
+                </div>
+                <div className="w-10" />
+              </div>
 
-      <footer className="py-12 text-center text-gray-400 text-sm font-mono">
-        <p>© 2026 Hebrew GCSE Master • Edexcel Specification</p>
-      </footer>
+              <LearnCard
+                question={sessionQuestions[currentQuestionIndex]}
+                onAnswer={handleAnswer}
+              />
+            </motion.div>
+          )}
+
+          {view === 'summary' && (
+            <motion.div
+              key="summary"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-20 px-4"
+            >
+              <SessionSummary
+                correct={sessionCorrectCount}
+                total={sessionQuestions.length}
+                onRestart={startSession}
+                onHome={() => setView('home')}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </main>
     </div>
   );
 }

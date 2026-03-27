@@ -183,12 +183,12 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   const currentWord = sessionCards[currentIndex];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 min-h-[80vh] flex flex-col">
-      <div className="flex items-center justify-between mb-8">
+    <div className="max-w-[1100px] mx-auto px-6 py-8 min-h-[80vh] flex flex-col">
+      <div className="flex items-center justify-between mb-12">
         <div className="flex items-center gap-4">
           <button
             onClick={onExit}
-            className="flex items-center gap-2 px-4 py-2 text-gray-500 hover:text-gray-900 font-bold transition-colors"
+            className="flex items-center gap-2 px-4 py-2 text-slate-500 hover:text-slate-900 font-bold transition-colors"
           >
             <ChevronLeft className="w-5 h-5" />
             Back
@@ -196,7 +196,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
           {history.length > 0 && (
             <button
               onClick={handleBack}
-              className="flex items-center gap-2 px-4 py-2 text-blue-500 hover:text-blue-700 font-bold transition-colors"
+              className="flex items-center gap-2 px-4 py-2 text-primary hover:text-primary-hover font-bold transition-colors"
             >
               <RotateCcw className="w-4 h-4" />
               Undo
@@ -204,7 +204,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
           )}
           <button
             onClick={onSwitchToLearn}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-50 text-blue-600 rounded-xl font-bold hover:bg-blue-100 transition-all"
+            className="flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary rounded-xl font-bold hover:bg-primary/10 transition-all"
           >
             <Book className="w-4 h-4" />
             Switch to Learn
@@ -212,28 +212,28 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
         </div>
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-4 text-sm font-bold">
-            <span className="text-red-500 bg-red-50 px-3 py-1 rounded-full" title="Still Learning">{incorrectCount}</span>
-            <span className="text-green-500 bg-green-50 px-3 py-1 rounded-full" title="Known">{correctCount}</span>
-            <div className="flex items-center gap-1 text-gray-400 ml-2" title="Cards until next shuffle">
+            <span className="text-red-500 bg-red-50 px-3 py-1 rounded-lg" title="Still Learning">{incorrectCount}</span>
+            <span className="text-green-500 bg-green-50 px-3 py-1 rounded-lg" title="Known">{correctCount}</span>
+            <div className="flex items-center gap-1 text-slate-400 ml-2" title="Cards until next shuffle">
               <RotateCw className="w-3 h-3" />
               <span>{15 - batchCounter}</span>
             </div>
           </div>
           <button
             onClick={handleShuffle}
-            className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all"
+            className="p-2 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-xl transition-all"
             title="Shuffle Deck"
           >
             <Shuffle className="w-5 h-5" />
           </button>
-          <span className="text-sm font-bold text-gray-400 uppercase tracking-widest">
+          <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">
             {currentIndex + 1} / {sessionCards.length}
           </span>
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col items-center justify-center gap-12">
-        <div className="relative w-full max-w-lg aspect-[4/3]">
+      <div className="flex-1 flex flex-col items-center justify-center gap-16">
+        <div className="relative w-full max-w-xl aspect-[4/3]">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
@@ -251,17 +251,17 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
               >
                 {/* Front */}
                 <div 
-                  className="absolute inset-0 w-full h-full backface-hidden bg-white rounded-[2.5rem] shadow-2xl border border-gray-100 flex flex-col items-center justify-center p-12 text-center"
+                  className="absolute inset-0 w-full h-full backface-hidden bg-white rounded-[3rem] shadow-soft border border-slate-100 flex flex-col items-center justify-center p-12 text-center"
                   style={{ zIndex: isFlipped ? 0 : 1 }}
                 >
-                  <span className="absolute top-8 left-8 text-xs font-bold text-gray-300 uppercase tracking-widest">Hebrew</span>
-                  <h2 className="text-7xl font-serif font-bold text-gray-900 mb-4" dir="rtl">
+                  <span className="absolute top-10 left-10 text-[10px] font-bold text-slate-300 uppercase tracking-[0.2em]">Hebrew</span>
+                  <h2 className="text-8xl font-bold text-slate-900 mb-6" dir="rtl">
                     {currentWord.hebrew}
                   </h2>
-                  <p className="text-gray-400 font-medium text-lg italic">
+                  <p className="text-slate-400 font-medium text-xl italic">
                     {currentWord.transliteration}
                   </p>
-                  <div className="absolute bottom-8 right-8 text-gray-300 flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+                  <div className="absolute bottom-10 right-10 text-slate-300 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
                     <span>Click to flip</span>
                     <RotateCw className="w-4 h-4" />
                   </div>
@@ -269,20 +269,20 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
 
                 {/* Back */}
                 <div 
-                  className="absolute inset-0 w-full h-full backface-hidden bg-blue-600 rounded-[2.5rem] shadow-2xl flex flex-col items-center justify-center p-12 text-center text-white"
+                  className="absolute inset-0 w-full h-full backface-hidden bg-blue-600 rounded-[3rem] shadow-2xl flex flex-col items-center justify-center p-12 text-center text-white"
                   style={{ 
                     transform: 'rotateY(180deg)',
                     zIndex: isFlipped ? 1 : 0
                   }}
                 >
-                  <span className="absolute top-8 left-8 text-xs font-bold text-blue-200 uppercase tracking-widest">English</span>
-                  <h2 className="text-5xl font-bold mb-4">
+                  <span className="absolute top-10 left-10 text-[10px] font-bold text-blue-100 uppercase tracking-[0.2em]">English</span>
+                  <h2 className="text-6xl font-black mb-6 drop-shadow-sm">
                     {currentWord.english}
                   </h2>
-                  <p className="text-blue-200 font-bold uppercase tracking-widest text-sm">
+                  <p className="text-blue-100 font-bold uppercase tracking-[0.2em] text-xs">
                     {currentWord.category}
                   </p>
-                  <div className="absolute bottom-8 right-8 text-blue-200 flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+                  <div className="absolute bottom-10 right-10 text-blue-100 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
                     <span>Click to flip</span>
                     <RotateCw className="w-4 h-4" />
                   </div>
@@ -292,38 +292,38 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
           </AnimatePresence>
         </div>
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-12">
           <button
             onClick={handleMarkIncorrect}
-            className="group flex flex-col items-center gap-2"
+            className="group flex flex-col items-center gap-3"
           >
-            <div className="w-16 h-16 flex items-center justify-center bg-white rounded-2xl shadow-lg border border-gray-100 text-red-400 group-hover:bg-red-500 group-hover:text-white group-hover:border-red-500 transition-all">
-              <ChevronLeft className="w-8 h-8" />
+            <div className="w-20 h-20 flex items-center justify-center bg-white rounded-3xl shadow-soft border border-slate-100 text-red-400 group-hover:bg-red-500 group-hover:text-white group-hover:border-red-500 transition-all">
+              <ChevronLeft className="w-10 h-10" />
             </div>
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest group-hover:text-red-500">Still Learning</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest group-hover:text-red-500">Still Learning</span>
           </button>
 
           <button
             onClick={() => setIsFlipped(!isFlipped)}
-            className="px-12 py-4 bg-gray-900 text-white rounded-2xl font-bold hover:bg-black transition-all shadow-xl active:scale-95"
+            className="px-16 py-5 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl active:scale-95"
           >
             Flip Card
           </button>
 
           <button
             onClick={handleMarkCorrect}
-            className="group flex flex-col items-center gap-2"
+            className="group flex flex-col items-center gap-3"
           >
-            <div className="w-16 h-16 flex items-center justify-center bg-white rounded-2xl shadow-lg border border-gray-100 text-green-400 group-hover:bg-green-500 group-hover:text-white group-hover:border-green-500 transition-all">
-              <ChevronRight className="w-8 h-8" />
+            <div className="w-20 h-20 flex items-center justify-center bg-white rounded-3xl shadow-soft border border-slate-100 text-green-400 group-hover:bg-green-500 group-hover:text-white group-hover:border-green-500 transition-all">
+              <ChevronRight className="w-10 h-10" />
             </div>
-            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest group-hover:text-green-500">Know it</span>
+            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest group-hover:text-green-500">Know it</span>
           </button>
         </div>
       </div>
 
-      <div className="mt-12 text-center text-gray-400 text-sm font-medium">
-        <p>Tip: <span className="font-bold text-gray-600">Space</span> to flip • <span className="font-bold text-gray-600">←</span> Still Learning • <span className="font-bold text-gray-600">→</span> Know it</p>
+      <div className="mt-16 text-center text-slate-400 text-sm font-medium">
+        <p>Tip: <span className="font-bold text-slate-600">Space</span> to flip • <span className="font-bold text-slate-600">←</span> Still Learning • <span className="font-bold text-slate-600">→</span> Know it</p>
       </div>
     </div>
   );
