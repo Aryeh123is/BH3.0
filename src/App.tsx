@@ -15,11 +15,37 @@ import { motion, AnimatePresence } from 'motion/react';
 const PROGRESS_KEY = 'bh-keywords-progress';
 
 export default function App() {
-  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard'>('home');
+  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard'>(() => {
+    const saved = localStorage.getItem('bh-session-state');
+    if (saved) return JSON.parse(saved).view;
+    return 'home';
+  });
   const [progress, setProgress] = useState<UserProgress[]>([]);
-  const [sessionQuestions, setSessionQuestions] = useState<Question[]>([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [sessionAnswers, setSessionAnswers] = useState<(boolean | null)[]>([]);
+  const [sessionQuestions, setSessionQuestions] = useState<Question[]>(() => {
+    const saved = localStorage.getItem('bh-session-state');
+    if (saved) return JSON.parse(saved).sessionQuestions;
+    return [];
+  });
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(() => {
+    const saved = localStorage.getItem('bh-session-state');
+    if (saved) return JSON.parse(saved).currentQuestionIndex;
+    return 0;
+  });
+  const [sessionAnswers, setSessionAnswers] = useState<(boolean | null)[]>(() => {
+    const saved = localStorage.getItem('bh-session-state');
+    if (saved) return JSON.parse(saved).sessionAnswers;
+    return [];
+  });
+
+  useEffect(() => {
+    const state = {
+      view,
+      sessionQuestions,
+      currentQuestionIndex,
+      sessionAnswers
+    };
+    localStorage.setItem('bh-session-state', JSON.stringify(state));
+  }, [view, sessionQuestions, currentQuestionIndex, sessionAnswers]);
 
   const sessionCorrectCount = useMemo(() => 
     sessionAnswers.filter(a => a === true).length,

@@ -11,13 +11,42 @@ interface FlashcardModeProps {
 }
 
 export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgress }: FlashcardModeProps) {
-  const [sessionCards, setSessionCards] = useState([...vocabulary].sort(() => Math.random() - 0.5));
-  const [stillLearningPile, setStillLearningPile] = useState<Word[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [sessionCards, setSessionCards] = useState<Word[]>(() => {
+    const saved = localStorage.getItem('bh-flashcard-session');
+    if (saved) return JSON.parse(saved).sessionCards;
+    return [...vocabulary].sort(() => Math.random() - 0.5);
+  });
+  const [initialTotal] = useState(() => {
+    const saved = localStorage.getItem('bh-flashcard-session');
+    if (saved) return JSON.parse(saved).initialTotal;
+    return vocabulary.length;
+  });
+  const [stillLearningPile, setStillLearningPile] = useState<Word[]>(() => {
+    const saved = localStorage.getItem('bh-flashcard-session');
+    if (saved) return JSON.parse(saved).stillLearningPile;
+    return [];
+  });
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    const saved = localStorage.getItem('bh-flashcard-session');
+    if (saved) return JSON.parse(saved).currentIndex;
+    return 0;
+  });
   const [isFlipped, setIsFlipped] = useState(false);
-  const [correctCount, setCorrectCount] = useState(0);
-  const [incorrectCount, setIncorrectCount] = useState(0);
-  const [batchCounter, setBatchCounter] = useState(0);
+  const [correctCount, setCorrectCount] = useState(() => {
+    const saved = localStorage.getItem('bh-flashcard-session');
+    if (saved) return JSON.parse(saved).correctCount;
+    return 0;
+  });
+  const [incorrectCount, setIncorrectCount] = useState(() => {
+    const saved = localStorage.getItem('bh-flashcard-session');
+    if (saved) return JSON.parse(saved).incorrectCount;
+    return 0;
+  });
+  const [batchCounter, setBatchCounter] = useState(() => {
+    const saved = localStorage.getItem('bh-flashcard-session');
+    if (saved) return JSON.parse(saved).batchCounter;
+    return 0;
+  });
   const [direction, setDirection] = useState(0); // -1 for left, 1 for right
   const [isFinished, setIsFinished] = useState(false);
   const [history, setHistory] = useState<{
@@ -27,7 +56,29 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     correctCount: number;
     incorrectCount: number;
     batchCounter: number;
-  }[]>([]);
+  }[]>(() => {
+    const saved = localStorage.getItem('bh-flashcard-session');
+    if (saved) return JSON.parse(saved).history || [];
+    return [];
+  });
+
+  useEffect(() => {
+    if (isFinished) {
+      localStorage.removeItem('bh-flashcard-session');
+      return;
+    }
+    const state = {
+      sessionCards,
+      initialTotal,
+      stillLearningPile,
+      currentIndex,
+      correctCount,
+      incorrectCount,
+      batchCounter,
+      history
+    };
+    localStorage.setItem('bh-flashcard-session', JSON.stringify(state));
+  }, [sessionCards, initialTotal, stillLearningPile, currentIndex, correctCount, incorrectCount, batchCounter, history, isFinished]);
 
   useEffect(() => {
     if (isFinished) return;
@@ -227,7 +278,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
             <Shuffle className="w-5 h-5" />
           </button>
           <span className="text-sm font-bold text-slate-400 uppercase tracking-widest">
-            {currentIndex + 1} / {sessionCards.length}
+            {initialTotal - sessionCards.length + 1} / {initialTotal}
           </span>
         </div>
       </div>
