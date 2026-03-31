@@ -5,9 +5,11 @@ interface HeroProps {
   onStartSession: () => void;
   onViewDashboard: () => void;
   onStartFlashcards: () => void;
+  language: 'biblical' | 'modern';
+  onLanguageChange: (lang: 'biblical' | 'modern') => void;
 }
 
-export function Hero({ onStartSession, onViewDashboard, onStartFlashcards }: HeroProps) {
+export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, language, onLanguageChange }: HeroProps) {
   return (
     <section className="pt-32 pb-20 px-6">
       <div className="max-w-[1100px] mx-auto text-center">
@@ -16,11 +18,36 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards }: Her
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
+          <div className="inline-flex p-1 bg-slate-100 rounded-2xl mb-8">
+            <button
+              onClick={() => onLanguageChange('biblical')}
+              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
+                language === 'biblical' 
+                  ? 'bg-white text-indigo-600 shadow-sm' 
+                  : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              Biblical Hebrew
+            </button>
+            <button
+              onClick={() => onLanguageChange('modern')}
+              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all relative ${
+                language === 'modern' 
+                  ? 'bg-white text-indigo-600 shadow-sm' 
+                  : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              Modern Hebrew
+              <span className="absolute -top-2 -right-2 px-1.5 py-0.5 bg-yellow-400 text-slate-900 text-[8px] font-black rounded-md uppercase tracking-tighter shadow-sm">
+                WIP
+              </span>
+            </button>
+          </div>
           <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 mb-6 tracking-tight leading-[1.1]">
             Find the Best <span className="text-primary">Keywords</span> <br /> for Your Essays
           </h1>
           <p className="text-lg md:text-xl text-slate-500 mb-12 max-w-2xl mx-auto font-medium">
-            Master Hebrew GCSE vocabulary with our intelligent learning tools. 
+            Master {language === 'biblical' ? 'Biblical' : 'Modern'} Hebrew vocabulary with our intelligent learning tools. 
             Perfect for students looking to elevate their writing and achieve top grades.
           </p>
         </motion.div>

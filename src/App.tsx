@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Word, UserProgress, Question, MasteryLevel } from './types';
-import { VOCABULARY } from './data/vocabulary';
+import { VOCABULARY as BIBLICAL_HEBREW_VOCABULARY } from './data/vocabulary';
+import { MODERN_HEBREW_VOCABULARY } from './data/modern_hebrew';
 import { Dashboard } from './components/Dashboard';
 import { LearnCard } from './components/LearnCard';
 import { FlashcardMode } from './components/FlashcardMode';
@@ -14,12 +15,12 @@ import { motion, AnimatePresence } from 'motion/react';
 
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
-const CURRENT_VERSION = '1.3.0';
+const CURRENT_VERSION = '1.4.0';
 
 const LATEST_CHANGES = [
-  { title: 'Blank Screen Fix', description: 'Resolved the persistent issue where the screen would go blank during batch transitions.' },
-  { title: 'Keyboard Improvements', description: 'Keyboard shortcuts now reliably prevent page scrolling for a smoother study session.' },
-  { title: 'Session Cleanup', description: 'Resetting your progress now correctly clears all active flashcard session data.' }
+  { title: 'Modern Hebrew Support (Beta)', description: 'You can now switch between Biblical and Modern Hebrew vocabulary! Note: This feature is currently in early beta (WIP).' },
+  { title: 'Blank Screen Fix', description: 'Refactored state management to resolve the persistent "blank screen" bug during transitions.' },
+  { title: 'Keyboard Improvements', description: 'Keyboard shortcuts now reliably prevent page scrolling for a smoother study session.' }
 ];
 
 const ARCHIVED_CHANGES = [
@@ -39,8 +40,20 @@ const ARCHIVED_CHANGES = [
 ];
 
 export default function App() {
+  const [language, setLanguage] = useState<'biblical' | 'modern'>(() => {
+    const saved = localStorage.getItem('bh-language');
+    return (saved as 'biblical' | 'modern') || 'biblical';
+  });
+
+  const activeVocabulary = useMemo(() => 
+    language === 'biblical' ? BIBLICAL_HEBREW_VOCABULARY : MODERN_HEBREW_VOCABULARY,
+  [language]);
+
+  const PROGRESS_KEY = `bh-keywords-progress-${language}`;
+  const SESSION_STATE_KEY = `bh-session-state-${language}`;
+
   const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard'>(() => {
-    const saved = localStorage.getItem('bh-session-state');
+    const saved = localStorage.getItem(SESSION_STATE_KEY);
     if (saved) return JSON.parse(saved).view;
     return 'home';
   });
@@ -62,6 +75,14 @@ export default function App() {
   });
   const [showChangelog, setShowChangelog] = useState(false);
   const [viewingArchive, setViewingArchive] = useState(false);
+  const [showWipPopup, setShowWipPopup] = useState(false);
+
+  const handleLanguageChange = (newLang: 'biblical' | 'modern') => {
+    setLanguage(newLang);
+    if (newLang === 'modern') {
+      setShowWipPopup(true);
+    }
+  };
 
   useEffect(() => {
     const savedVersion = localStorage.getItem(VERSION_KEY);
@@ -77,14 +98,18 @@ export default function App() {
   };
 
   useEffect(() => {
+    localStorage.setItem('bh-language', language);
+  }, [language]);
+
+  useEffect(() => {
     const state = {
       view,
       sessionQuestions,
       currentQuestionIndex,
       sessionAnswers
     };
-    localStorage.setItem('bh-session-state', JSON.stringify(state));
-  }, [view, sessionQuestions, currentQuestionIndex, sessionAnswers]);
+    localStorage.setItem(SESSION_STATE_KEY, JSON.stringify(state));
+  }, [view, sessionQuestions, currentQuestionIndex, sessionAnswers, SESSION_STATE_KEY]);
 
   const sessionCorrectCount = useMemo(() => 
     sessionAnswers.filter(a => a === true).length,
@@ -95,17 +120,21 @@ export default function App() {
     const savedProgress = localStorage.getItem(PROGRESS_KEY);
     if (savedProgress) {
       setProgress(JSON.parse(savedProgress));
+    } else {
+      setProgress([]);
     }
-  }, []);
+  }, [PROGRESS_KEY]);
 
   // Save progress to localStorage
   useEffect(() => {
-    localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
-  }, [progress]);
+    if (progress.length > 0 || localStorage.getItem(PROGRESS_KEY)) {
+      localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+    }
+  }, [progress, PROGRESS_KEY]);
 
   const startSession = () => {
     // Group words by mastery level
-    const grouped = VOCABULARY.reduce((acc, word) => {
+    const grouped = activeVocabulary.reduce((acc, word) => {
       const prog = progress.find(p => p.wordId === word.id)?.mastery || 'new';
       if (!acc[prog]) acc[prog] = [];
       acc[prog].push(word);
@@ -113,14 +142,14 @@ export default function App() {
     }, {} as Record<MasteryLevel, Word[]>);
 
     // Shuffle each group
-    const shuffle = <T,>(array: T[]) => [...array].sort(() => Math.random() - 0.5);
+    const shuffle = <T,>(array: T[]): T[] => [...array].sort(() => Math.random() - 0.5);
     
-    const newWords = shuffle(grouped['new'] || []);
-    const learningWords = shuffle(grouped['learning'] || []);
-    const masteredWords = shuffle(grouped['mastered'] || []);
+    const newWords: Word[] = shuffle(grouped['new'] || []);
+    const learningWords: Word[] = shuffle(grouped['learning'] || []);
+    const masteredWords: Word[] = shuffle(grouped['mastered'] || []);
 
     // Pick 10 words, prioritizing learning, then new, then mastered
-    const sessionWords = [...learningWords, ...newWords, ...masteredWords].slice(0, 10);
+    const sessionWords: Word[] = [...learningWords, ...newWords, ...masteredWords].slice(0, 10);
     
     // Generate questions
     const questions: Question[] = sessionWords.map(word => {
@@ -129,7 +158,7 @@ export default function App() {
       
       let options: string[] | undefined;
       if (type === 'multiple-choice') {
-        const otherWords = VOCABULARY.filter(w => w.id !== word.id);
+        const otherWords = activeVocabulary.filter(w => w.id !== word.id);
         const distractors = [...otherWords].sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.english);
         options = [word.english, ...distractors].sort(() => Math.random() - 0.5);
       }
@@ -233,9 +262,35 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-primary/10">
-      <Navbar onNavigate={(view) => setView(view)} />
+      <Navbar onNavigate={(view) => setView(view)} language={language} />
 
       <AnimatePresence>
+        {showWipPopup && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="bg-white rounded-[2.5rem] p-10 max-w-lg w-full shadow-2xl border border-slate-100 text-center relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400" />
+              <div className="w-20 h-20 bg-yellow-50 text-yellow-600 rounded-3xl flex items-center justify-center mx-auto mb-8">
+                <span className="text-4xl font-black">!</span>
+              </div>
+              <h2 className="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Work in Progress</h2>
+              <p className="text-slate-600 mb-8 font-medium leading-relaxed">
+                Modern Hebrew support is currently in early beta. You might encounter bugs or incomplete vocabulary lists. We're working hard to polish this experience!
+              </p>
+              <button
+                onClick={() => setShowWipPopup(false)}
+                className="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all shadow-xl active:scale-95"
+              >
+                I Understand
+              </button>
+            </motion.div>
+          </div>
+        )}
+
         {showChangelog && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
             <motion.div
@@ -323,6 +378,8 @@ export default function App() {
                 onStartSession={startSession} 
                 onViewDashboard={() => setView('dashboard')} 
                 onStartFlashcards={() => setView('flashcards')}
+                language={language}
+                onLanguageChange={handleLanguageChange}
               />
               <HowItWorks />
             </motion.div>
@@ -336,13 +393,13 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
             >
               <Dashboard
-                vocabulary={VOCABULARY}
+                vocabulary={activeVocabulary}
                 progress={progress}
                 onStartSession={startSession}
                 onStartFlashcards={() => setView('flashcards')}
                 onResetProgress={() => {
                   setProgress([]);
-                  localStorage.removeItem('bh-flashcard-session');
+                  localStorage.removeItem(`bh-flashcard-session-${language}`);
                 }}
               />
               <div className="text-center pb-20">
@@ -358,16 +415,17 @@ export default function App() {
 
           {view === 'flashcards' && (
             <motion.div
-              key="flashcards"
+              key={`flashcards-${language}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
               <FlashcardMode
-                vocabulary={VOCABULARY}
+                vocabulary={activeVocabulary}
                 onExit={() => setView('home')}
                 onSwitchToLearn={startSession}
                 onWordProgress={updateWordProgress}
+                language={language}
               />
             </motion.div>
           )}
