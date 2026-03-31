@@ -10,20 +10,21 @@ import { SessionSummary } from './components/SessionSummary';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
-import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History } from 'lucide-react';
+import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
-const CURRENT_VERSION = '1.4.0';
+const CURRENT_VERSION = '1.4.1';
 
 const LATEST_CHANGES = [
-  { title: 'Modern Hebrew Beta', description: 'Modern Hebrew is now in Beta with 150+ essential words and phrases. Switch languages from the home screen!' },
+  { title: 'Version Tracking', description: 'Added a version indicator in the footer to ensure you\'re always using the latest features and fixes.' },
+  { title: 'Modern Hebrew Support (Beta)', description: 'You can now switch between Biblical and Modern Hebrew vocabulary! Note: This feature is currently in early beta (WIP).' },
   { title: 'Blank Screen Fix', description: 'Refactored state management to resolve the persistent "blank screen" bug during transitions.' },
-  { title: 'Keyboard Improvements', description: 'Keyboard shortcuts now reliably prevent page scrolling for a smoother study session.' }
 ];
 
 const ARCHIVED_CHANGES = [
+  { title: 'Keyboard Improvements', description: 'Keyboard shortcuts now reliably prevent page scrolling for a smoother study session.' },
   { title: 'Request a Feature', description: 'Have an idea for the app? You can now submit feature requests directly via the new button in the footer.' },
   { title: 'Keyboard Shortcut Toggle', description: 'Study with total control. Disable keyboard shortcuts if they interfere with your experience.' },
   { title: 'Stability Fixes', description: 'Fixed the "blank screen" bug with robust state management and memoized handlers.' },
@@ -76,6 +77,25 @@ export default function App() {
   const [showChangelog, setShowChangelog] = useState(false);
   const [viewingArchive, setViewingArchive] = useState(false);
   const [showWipPopup, setShowWipPopup] = useState(false);
+  const [isLatestVersion, setIsLatestVersion] = useState<boolean | null>(null);
+
+  const checkVersion = async () => {
+    try {
+      const response = await fetch('/version.json?t=' + Date.now());
+      if (response.ok) {
+        const data = await response.json();
+        setIsLatestVersion(data.version === CURRENT_VERSION);
+      }
+    } catch (error) {
+      console.error('Failed to check version:', error);
+    }
+  };
+
+  useEffect(() => {
+    checkVersion();
+    const interval = setInterval(checkVersion, 1000 * 60 * 5); // Check every 5 minutes
+    return () => clearInterval(interval);
+  }, []);
 
   const handleLanguageChange = (newLang: 'biblical' | 'modern') => {
     setLanguage(newLang);
@@ -279,7 +299,7 @@ export default function App() {
               </div>
               <h2 className="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Work in Progress</h2>
               <p className="text-slate-600 mb-8 font-medium leading-relaxed">
-                Modern Hebrew support is now in Beta with 150+ words. You might still encounter minor bugs as we polish this experience!
+                Modern Hebrew support is currently in early beta. You might encounter bugs or incomplete vocabulary lists. We're working hard to polish this experience!
               </p>
               <button
                 onClick={() => setShowWipPopup(false)}
@@ -513,9 +533,36 @@ export default function App() {
               Request a Feature
             </a>
           </div>
-          <p className="text-slate-400 text-sm font-medium tracking-wide">
-            Created by <span className="text-slate-900 font-bold">Aryeh Isaac-Saul</span>
-          </p>
+          
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-slate-400 text-sm font-medium tracking-wide">
+              Created by <span className="text-slate-900 font-bold">Aryeh Isaac-Saul</span>
+            </p>
+            
+            <div className="flex items-center justify-center gap-3 mt-2">
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-slate-100 rounded-full border border-slate-200">
+                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">v{CURRENT_VERSION}</span>
+              </div>
+              
+              {isLatestVersion === true && (
+                <div className="flex items-center gap-1.5 text-green-500 text-[10px] font-bold uppercase tracking-widest">
+                  <CheckCircle2 className="w-3 h-3" />
+                  Latest Version
+                </div>
+              )}
+              
+              {isLatestVersion === false && (
+                <button 
+                  onClick={() => window.location.reload()}
+                  className="flex items-center gap-1.5 text-amber-500 hover:text-amber-600 text-[10px] font-bold uppercase tracking-widest transition-colors animate-pulse"
+                >
+                  <AlertCircle className="w-3 h-3" />
+                  Update Available (Reload)
+                  <RefreshCw className="w-3 h-3 ml-1" />
+                </button>
+              )}
+            </div>
+          </div>
         </div>
       </footer>
     </div>
