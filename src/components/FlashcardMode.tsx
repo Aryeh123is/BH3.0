@@ -53,6 +53,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   const [isFinished, setIsFinished] = useState(false);
   const [showBatchSummary, setShowBatchSummary] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [enableKeyboard, setEnableKeyboard] = useState(true);
   const [history, setHistory] = useState<{
     sessionCards: Word[];
     stillLearningPile: Word[];
@@ -84,7 +85,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     localStorage.setItem('bh-flashcard-session', JSON.stringify(state));
   }, [sessionCards, initialTotal, stillLearningPile, currentIndex, correctCount, incorrectCount, batchCounter, history, isFinished]);
 
-  const saveToHistory = () => {
+  const saveToHistory = useCallback(() => {
     setHistory(prev => [...prev, {
       sessionCards: [...sessionCards],
       stillLearningPile: [...stillLearningPile],
@@ -93,9 +94,9 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
       incorrectCount,
       batchCounter
     }]);
-  };
+  }, [sessionCards, stillLearningPile, currentIndex, correctCount, incorrectCount, batchCounter]);
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     if (history.length === 0 || isTransitioning) return;
     
     const prevState = history[history.length - 1];
@@ -111,9 +112,9 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     setDirection(0);
     setIsFinished(false);
     setShowBatchSummary(false);
-  };
+  }, [history, isTransitioning]);
 
-  const recycleStillLearning = (currentSession: Word[], currentStillLearning: Word[]) => {
+  const recycleStillLearning = useCallback((currentSession: Word[], currentStillLearning: Word[]) => {
     saveToHistory();
     const combined = [...currentSession, ...currentStillLearning].sort(() => Math.random() - 0.5);
     setSessionCards(combined);
@@ -122,9 +123,9 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     setCurrentIndex(0);
     setIsFlipped(false);
     setDirection(0);
-  };
+  }, [saveToHistory]);
 
-  const handleMarkCorrect = () => {
+  const handleMarkCorrect = useCallback(() => {
     if (isTransitioning || showBatchSummary || isFinished) return;
     const currentWord = sessionCards[currentIndex];
     if (!currentWord) return;
@@ -147,33 +148,38 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     const nextCards = sessionCards.filter((_, i) => i !== currentIndex);
     
     setTimeout(() => {
-      const isSessionEnd = nextCards.length === 0 && stillLearningPile.length === 0;
-      const isBatchEnd = nextBatchCount >= 25;
+      // Use functional updates to ensure we have the latest state
+      setStillLearningPile(currentStillLearning => {
+        const isSessionEnd = nextCards.length === 0 && currentStillLearning.length === 0;
+        const isBatchEnd = nextBatchCount >= 25;
 
-      if (isSessionEnd) {
-        setIsFinished(true);
-      } else if (isBatchEnd) {
-        setSessionCards(nextCards);
-        setBatchCounter(nextBatchCount);
-        setShowBatchSummary(true);
-      } else if (nextCards.length === 0) {
-        // Recycle
-        const combined = [...stillLearningPile].sort(() => Math.random() - 0.5);
-        setSessionCards(combined);
-        setStillLearningPile([]);
-        setBatchCounter(nextBatchCount);
-        setCurrentIndex(0);
-      } else {
-        setSessionCards(nextCards);
-        setBatchCounter(nextBatchCount);
-        setCurrentIndex(prev => (prev >= nextCards.length ? 0 : prev));
-      }
+        if (isSessionEnd) {
+          setIsFinished(true);
+        } else if (isBatchEnd) {
+          setSessionCards(nextCards);
+          setBatchCounter(nextBatchCount);
+          setShowBatchSummary(true);
+        } else if (nextCards.length === 0) {
+          // Recycle
+          const combined = [...currentStillLearning].sort(() => Math.random() - 0.5);
+          setSessionCards(combined);
+          setBatchCounter(nextBatchCount);
+          setCurrentIndex(0);
+          return []; // Clear still learning pile
+        } else {
+          setSessionCards(nextCards);
+          setBatchCounter(nextBatchCount);
+          setCurrentIndex(prevIdx => (prevIdx >= nextCards.length ? 0 : prevIdx));
+        }
+        return currentStillLearning;
+      });
+      
       setDirection(0);
       setIsTransitioning(false);
     }, 250);
-  };
+  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, batchCounter, onWordProgress, saveToHistory]);
 
-  const handleMarkIncorrect = () => {
+  const handleMarkIncorrect = useCallback(() => {
     if (isTransitioning || showBatchSummary || isFinished) return;
     const currentWord = sessionCards[currentIndex];
     if (!currentWord) return;
@@ -193,47 +199,46 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     setBatchIncorrectCount(prev => prev + 1);
     
     const nextBatchCount = batchCounter + 1;
-    const nextStillLearning = [...stillLearningPile, currentWord];
     const nextCards = sessionCards.filter((_, i) => i !== currentIndex);
     
     setTimeout(() => {
-      const isSessionEnd = nextCards.length === 0 && nextStillLearning.length === 0;
-      const isBatchEnd = nextBatchCount >= 25;
+      setStillLearningPile(currentStillLearning => {
+        const nextStillLearning = [...currentStillLearning, currentWord];
+        const isBatchEnd = nextBatchCount >= 25;
 
-      if (isSessionEnd) {
-        setIsFinished(true);
-      } else if (isBatchEnd) {
-        setSessionCards(nextCards);
-        setStillLearningPile(nextStillLearning);
-        setBatchCounter(nextBatchCount);
-        setShowBatchSummary(true);
-      } else if (nextCards.length === 0) {
-        // Recycle
-        const combined = [...nextStillLearning].sort(() => Math.random() - 0.5);
-        setSessionCards(combined);
-        setStillLearningPile([]);
-        setBatchCounter(nextBatchCount);
-        setCurrentIndex(0);
-      } else {
-        setSessionCards(nextCards);
-        setStillLearningPile(nextStillLearning);
-        setBatchCounter(nextBatchCount);
-        setCurrentIndex(prev => (prev >= nextCards.length ? 0 : prev));
-      }
+        if (isBatchEnd) {
+          setSessionCards(nextCards);
+          setBatchCounter(nextBatchCount);
+          setShowBatchSummary(true);
+          return nextStillLearning;
+        } else if (nextCards.length === 0) {
+          // Recycle
+          const combined = [...nextStillLearning].sort(() => Math.random() - 0.5);
+          setSessionCards(combined);
+          setBatchCounter(nextBatchCount);
+          setCurrentIndex(0);
+          return [];
+        } else {
+          setSessionCards(nextCards);
+          setBatchCounter(nextBatchCount);
+          setCurrentIndex(prevIdx => (prevIdx >= nextCards.length ? 0 : prevIdx));
+          return nextStillLearning;
+        }
+      });
+      
       setDirection(0);
       setIsTransitioning(false);
     }, 250);
-  };
+  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, batchCounter, onWordProgress, saveToHistory]);
 
   useEffect(() => {
-    if (isFinished || showBatchSummary) return;
+    if (isFinished || showBatchSummary || !enableKeyboard) return;
     
     const handleKeyDown = (e: KeyboardEvent) => {
       // Prevent scrolling for these keys
-      if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key) || ['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) {
-        if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
-           e.preventDefault();
-        }
+      const keysToPrevent = ['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '];
+      if (keysToPrevent.includes(e.key) || keysToPrevent.includes(e.code)) {
+         e.preventDefault();
       }
 
       if (e.code === 'Space' || e.key === ' ') {
@@ -243,24 +248,23 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
       } else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {
         handleMarkIncorrect();
       } else if (e.code === 'Backspace' || e.key === 'Backspace' || (e.metaKey && (e.code === 'ArrowLeft' || e.key === 'ArrowLeft'))) {
-        e.preventDefault();
         handleBack();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isFinished, showBatchSummary, handleMarkCorrect, handleMarkIncorrect, handleBack]);
+  }, [isFinished, showBatchSummary, enableKeyboard, handleMarkCorrect, handleMarkIncorrect, handleBack]);
 
-  const handleContinueNextBatch = () => {
+  const handleContinueNextBatch = useCallback(() => {
     recycleStillLearning(sessionCards, stillLearningPile);
     setBatchCorrectCount(0);
     setBatchIncorrectCount(0);
     setShowBatchSummary(false);
     setDirection(0);
-  };
+  }, [recycleStillLearning, sessionCards, stillLearningPile]);
 
-  const handleShuffle = () => {
+  const handleShuffle = useCallback(() => {
     setHistory([]);
     setSessionCards([...vocabulary].sort(() => Math.random() - 0.5));
     setStillLearningPile([]);
@@ -270,7 +274,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     setCorrectCount(0);
     setIncorrectCount(0);
     setIsFinished(false);
-  };
+  }, [vocabulary]);
 
   if (showBatchSummary) {
     return (
@@ -506,8 +510,21 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
         </div>
       </div>
 
-      <div className="mt-16 text-center text-slate-400 text-sm font-medium">
-        <p>Tip: <span className="font-bold text-slate-600">Space</span> to flip • <span className="font-bold text-slate-600">←</span> Still Learning • <span className="font-bold text-slate-600">→</span> Know it</p>
+      <div className="mt-16 text-center text-slate-400 text-sm font-medium space-y-4">
+        {enableKeyboard ? (
+          <p>Tip: <span className="font-bold text-slate-600">Space</span> to flip • <span className="font-bold text-slate-600">←</span> Still Learning • <span className="font-bold text-slate-600">→</span> Know it</p>
+        ) : (
+          <p className="text-red-400 font-bold">Keyboard shortcuts disabled</p>
+        )}
+        <div className="flex flex-col items-center gap-4">
+          <button
+            onClick={() => setEnableKeyboard(!enableKeyboard)}
+            className="text-[10px] uppercase tracking-widest text-slate-300 hover:text-slate-600 transition-colors"
+          >
+            {enableKeyboard ? "Disable Keyboard Shortcuts" : "Enable Keyboard Shortcuts"}
+          </button>
+          <p className="text-[10px] uppercase tracking-[0.2em] opacity-50">Created by Aryeh Isaac-Saul</p>
+        </div>
       </div>
     </div>
   );

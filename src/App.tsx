@@ -9,19 +9,30 @@ import { SessionSummary } from './components/SessionSummary';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
-import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2 } from 'lucide-react';
+import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
-const CURRENT_VERSION = '1.1.0';
+const CURRENT_VERSION = '1.2.1';
 
-const CHANGELOG = [
+const LATEST_CHANGES = [
+  { title: 'Request a Feature', description: 'Have an idea for the app? You can now submit feature requests directly via the new button in the footer.' },
+  { title: 'Keyboard Shortcut Toggle', description: 'Study with total control. Disable keyboard shortcuts if they interfere with your experience.' },
+  { title: 'Stability Fixes', description: 'Fixed the "blank screen" bug with robust state management and memoized handlers.' }
+];
+
+const ARCHIVED_CHANGES = [
   { title: 'Flashcard Batches', description: 'Study in focused sets of 25 cards with a summary after each batch.' },
-  { title: 'Space Bar Flip', description: 'Use the space bar to flip flashcards quickly.' },
-  { title: 'Stability Fixes', description: 'Fixed the "blank screen" bug when marking cards as correct/incorrect.' },
   { title: 'Undo Action', description: 'Made a mistake? Use the new Undo button in Flashcard mode.' },
-  { title: 'Keyboard Shortcuts', description: 'Use Arrow Keys (Left/Right) to grade cards and Backspace to undo.' }
+  { title: 'Creator Signature', description: 'Added a subtle signature to celebrate the app\'s creator, Aryeh Isaac-Saul.' },
+  { title: 'Space Bar Flip', description: 'Use the space bar to flip flashcards quickly.' },
+  { title: 'Keyboard Shortcuts', description: 'Use Arrow Keys (Left/Right) to grade cards and Backspace to undo.' },
+  { title: 'Progress Tracking', description: 'Track your mastery of each word with a visual progress bar.' },
+  { title: 'Dashboard Overview', description: 'See your overall learning statistics and deck completion at a glance.' },
+  { title: 'Interactive Learning', description: 'A new way to learn keywords with multiple-choice questions and instant feedback.' },
+  { title: 'Hebrew Vocabulary', description: 'Initial release with 100+ essential Hebrew keywords and phrases.' },
+  { title: 'Mobile Optimization', description: 'Fully responsive design for studying on the go.' }
 ];
 
 export default function App() {
@@ -47,6 +58,7 @@ export default function App() {
     return [];
   });
   const [showChangelog, setShowChangelog] = useState(false);
+  const [viewingArchive, setViewingArchive] = useState(false);
 
   useEffect(() => {
     const savedVersion = localStorage.getItem(VERSION_KEY);
@@ -58,6 +70,7 @@ export default function App() {
   const handleCloseChangelog = () => {
     localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
     setShowChangelog(false);
+    setViewingArchive(false);
   };
 
   useEffect(() => {
@@ -232,11 +245,15 @@ export default function App() {
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600">
-                      <Sparkles className="w-6 h-6" />
+                      {viewingArchive ? <History className="w-6 h-6" /> : <Sparkles className="w-6 h-6" />}
                     </div>
                     <div>
-                      <h2 className="text-2xl font-extrabold text-slate-900">What's New</h2>
-                      <p className="text-xs font-bold text-indigo-600 uppercase tracking-widest">Version {CURRENT_VERSION}</p>
+                      <h2 className="text-2xl font-extrabold text-slate-900">
+                        {viewingArchive ? "Update Archives" : "What's New"}
+                      </h2>
+                      <p className="text-xs font-bold text-indigo-600 uppercase tracking-widest">
+                        {viewingArchive ? "Previous Updates" : `Version ${CURRENT_VERSION}`}
+                      </p>
                     </div>
                   </div>
                   <button 
@@ -247,8 +264,8 @@ export default function App() {
                   </button>
                 </div>
 
-                <div className="space-y-6 mb-10">
-                  {CHANGELOG.map((item, index) => (
+                <div className="space-y-6 mb-10 max-h-[350px] overflow-y-auto pr-2 custom-scrollbar">
+                  {(viewingArchive ? ARCHIVED_CHANGES : LATEST_CHANGES).map((item, index) => (
                     <div key={index} className="flex gap-4">
                       <div className="mt-1">
                         <CheckCircle2 className="w-5 h-5 text-green-500" />
@@ -261,13 +278,29 @@ export default function App() {
                   ))}
                 </div>
 
-                <button
-                  onClick={handleCloseChangelog}
-                  className="w-full py-5 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"
-                >
-                  Got it, let's study!
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                <div className="space-y-4">
+                  <button
+                    onClick={handleCloseChangelog}
+                    className="w-full py-5 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"
+                  >
+                    Got it, let's study!
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                  
+                  <button
+                    onClick={() => setViewingArchive(!viewingArchive)}
+                    className="w-full py-3 text-slate-400 font-bold hover:text-slate-600 transition-colors text-xs flex items-center justify-center gap-2 uppercase tracking-widest"
+                  >
+                    {viewingArchive ? (
+                      <>← Back to What's New</>
+                    ) : (
+                      <>
+                        <History className="w-4 h-4" />
+                        View Update Archives
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -304,7 +337,10 @@ export default function App() {
                 progress={progress}
                 onStartSession={startSession}
                 onStartFlashcards={() => setView('flashcards')}
-                onResetProgress={() => setProgress([])}
+                onResetProgress={() => {
+                  setProgress([]);
+                  localStorage.removeItem('bh-flashcard-session');
+                }}
               />
               <div className="text-center pb-20">
                 <button 
@@ -402,6 +438,25 @@ export default function App() {
           )}
         </AnimatePresence>
       </main>
+
+      <footer className="py-12 border-t border-slate-100 bg-white/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto px-6 text-center space-y-6">
+          <div className="flex flex-col items-center gap-4">
+            <a 
+              href="https://forms.gle/NjUpvWAZCjTF4aPB6" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl transition-all active:scale-95 text-sm"
+            >
+              <Sparkles className="w-4 h-4 text-primary" />
+              Request a Feature
+            </a>
+          </div>
+          <p className="text-slate-400 text-sm font-medium tracking-wide">
+            Created by <span className="text-slate-900 font-bold">Aryeh Isaac-Saul</span>
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
