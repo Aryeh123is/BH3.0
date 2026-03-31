@@ -37,11 +37,11 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
         correctCount: parsed.correctCount || 0,
         incorrectCount: parsed.incorrectCount || 0,
         batchCounter: parsed.batchCounter || 0,
-        batchCorrectCount: 0,
-        batchIncorrectCount: 0,
+        batchCorrectCount: parsed.batchCorrectCount || 0,
+        batchIncorrectCount: parsed.batchIncorrectCount || 0,
         initialTotal: parsed.initialTotal || vocabulary.length,
-        isFinished: false,
-        showBatchSummary: false
+        isFinished: parsed.isFinished || false,
+        showBatchSummary: parsed.showBatchSummary || false
       };
     }
     return {
@@ -88,10 +88,6 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   });
 
   useEffect(() => {
-    if (isFinished) {
-      localStorage.removeItem(SESSION_KEY);
-      return;
-    }
     try {
       const stateToSave = {
         ...sessionState,
@@ -101,7 +97,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     } catch (e) {
       console.error("Error saving state to localStorage", e);
     }
-  }, [sessionState, history, isFinished, SESSION_KEY]);
+  }, [sessionState, history, SESSION_KEY]);
 
   const saveToHistory = useCallback(() => {
     setHistory(prev => [...prev, { ...sessionState }]);
@@ -279,6 +275,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   }, [recycleStillLearning]);
 
   const handleShuffle = useCallback(() => {
+    localStorage.removeItem(SESSION_KEY);
     setHistory([]);
     setSessionState({
       sessionCards: [...vocabulary].sort(() => Math.random() - 0.5),

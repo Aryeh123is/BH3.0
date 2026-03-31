@@ -59,17 +59,17 @@ export default function App() {
   });
   const [progress, setProgress] = useState<UserProgress[]>([]);
   const [sessionQuestions, setSessionQuestions] = useState<Question[]>(() => {
-    const saved = localStorage.getItem('bh-session-state');
+    const saved = localStorage.getItem(SESSION_STATE_KEY);
     if (saved) return JSON.parse(saved).sessionQuestions;
     return [];
   });
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(() => {
-    const saved = localStorage.getItem('bh-session-state');
+    const saved = localStorage.getItem(SESSION_STATE_KEY);
     if (saved) return JSON.parse(saved).currentQuestionIndex;
     return 0;
   });
   const [sessionAnswers, setSessionAnswers] = useState<(boolean | null)[]>(() => {
-    const saved = localStorage.getItem('bh-session-state');
+    const saved = localStorage.getItem(SESSION_STATE_KEY);
     if (saved) return JSON.parse(saved).sessionAnswers;
     return [];
   });
