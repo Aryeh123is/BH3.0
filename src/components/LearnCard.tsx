@@ -84,7 +84,7 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
             <h2 className="text-7xl font-bold text-slate-900 mb-6" dir="rtl">
               {question.word.hebrew}
             </h2>
-            {isSubmitted && (
+            {isSubmitted && question.word.transliteration && (
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

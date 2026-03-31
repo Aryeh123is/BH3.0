@@ -171,18 +171,18 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
       } 
       
       if (nextCards.length === 0) {
-        // Recycle
-        const combined = [...nextStillLearning].sort(() => Math.random() - 0.5);
+        // Deck is empty, show finished screen instead of auto-recycling
         return {
           ...prev,
-          sessionCards: combined,
-          stillLearningPile: [],
+          sessionCards: [],
+          stillLearningPile: nextStillLearning,
           currentIndex: 0,
           correctCount: isCorrect ? prev.correctCount + 1 : prev.correctCount,
           incorrectCount: isCorrect ? prev.incorrectCount : prev.incorrectCount + 1,
           batchCorrectCount: isCorrect ? prev.batchCorrectCount + 1 : prev.batchCorrectCount,
           batchIncorrectCount: isCorrect ? prev.batchIncorrectCount : prev.batchIncorrectCount + 1,
-          batchCounter: nextBatchCount
+          isFinished: true,
+          showBatchSummary: false
         };
       } 
 
@@ -271,8 +271,17 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   }, [isFinished, showBatchSummary, enableKeyboard, handleMarkCorrect, handleMarkIncorrect, handleBack]);
 
   const handleContinueNextBatch = useCallback(() => {
-    recycleStillLearning();
-  }, [recycleStillLearning]);
+    saveToHistory();
+    setSessionState(prev => ({
+      ...prev,
+      batchCounter: 0,
+      batchCorrectCount: 0,
+      batchIncorrectCount: 0,
+      showBatchSummary: false
+    }));
+    setIsFlipped(false);
+    setDirection(0);
+  }, [saveToHistory]);
 
   const handleShuffle = useCallback(() => {
     localStorage.removeItem(SESSION_KEY);
@@ -323,7 +332,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
               </div>
               <h2 className="text-3xl font-extrabold text-slate-900 mb-4">Batch Complete!</h2>
               <p className="text-slate-500 mb-8">
-                You've completed 25 cards. The {stillLearningPile.length} cards you're still learning will be shuffled back into the pile.
+                You've completed this batch of 25 cards. Keep going to finish the entire deck!
               </p>
               
               <div className="grid grid-cols-2 gap-4 mb-8">
@@ -356,14 +365,43 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
             <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
               <Trophy className="w-12 h-12 text-green-600" />
             </div>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Deck Mastered!</h2>
-            <p className="text-gray-500 mb-12 text-lg">You've successfully reviewed all {vocabulary.length} words.</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              {stillLearningPile.length > 0 ? "End of Deck!" : "Deck Mastered!"}
+            </h2>
+            <p className="text-gray-500 mb-12 text-lg">
+              {stillLearningPile.length > 0 
+                ? `You've seen all words. You have ${stillLearningPile.length} words left to master.`
+                : `Congratulations! You've successfully reviewed all ${vocabulary.length} words.`}
+            </p>
             <div className="flex justify-center gap-4">
+              {stillLearningPile.length > 0 && (
+                <button
+                  onClick={() => {
+                    saveToHistory();
+                    setSessionState(prev => {
+                      const combined = [...prev.stillLearningPile].sort(() => Math.random() - 0.5);
+                      return {
+                        ...prev,
+                        sessionCards: combined,
+                        stillLearningPile: [],
+                        currentIndex: 0,
+                        isFinished: false,
+                        batchCounter: 0,
+                        batchCorrectCount: 0,
+                        batchIncorrectCount: 0
+                      };
+                    });
+                  }}
+                  className="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold hover:bg-indigo-700 transition-all shadow-xl"
+                >
+                  Review {stillLearningPile.length} Missed Cards
+                </button>
+              )}
               <button
                 onClick={handleShuffle}
                 className="px-8 py-4 bg-gray-900 text-white rounded-2xl font-bold hover:bg-black transition-all shadow-xl"
               >
-                Restart Deck
+                Restart Entire Deck
               </button>
               <button
                 onClick={onExit}

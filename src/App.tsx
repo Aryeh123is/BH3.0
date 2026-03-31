@@ -18,7 +18,7 @@ const VERSION_KEY = 'bh-app-version';
 const CURRENT_VERSION = '1.4.0';
 
 const LATEST_CHANGES = [
-  { title: 'Modern Hebrew Support (Beta)', description: 'You can now switch between Biblical and Modern Hebrew vocabulary! Note: This feature is currently in early beta (WIP).' },
+  { title: 'Modern Hebrew Beta', description: 'Modern Hebrew is now in Beta with 150+ essential words and phrases. Switch languages from the home screen!' },
   { title: 'Blank Screen Fix', description: 'Refactored state management to resolve the persistent "blank screen" bug during transitions.' },
   { title: 'Keyboard Improvements', description: 'Keyboard shortcuts now reliably prevent page scrolling for a smoother study session.' }
 ];
@@ -279,7 +279,7 @@ export default function App() {
               </div>
               <h2 className="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Work in Progress</h2>
               <p className="text-slate-600 mb-8 font-medium leading-relaxed">
-                Modern Hebrew support is currently in early beta. You might encounter bugs or incomplete vocabulary lists. We're working hard to polish this experience!
+                Modern Hebrew support is now in Beta with 150+ words. You might still encounter minor bugs as we polish this experience!
               </p>
               <button
                 onClick={() => setShowWipPopup(false)}
