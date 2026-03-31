@@ -14,15 +14,18 @@ import { motion, AnimatePresence } from 'motion/react';
 
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
-const CURRENT_VERSION = '1.2.1';
+const CURRENT_VERSION = '1.3.0';
 
 const LATEST_CHANGES = [
-  { title: 'Request a Feature', description: 'Have an idea for the app? You can now submit feature requests directly via the new button in the footer.' },
-  { title: 'Keyboard Shortcut Toggle', description: 'Study with total control. Disable keyboard shortcuts if they interfere with your experience.' },
-  { title: 'Stability Fixes', description: 'Fixed the "blank screen" bug with robust state management and memoized handlers.' }
+  { title: 'Blank Screen Fix', description: 'Resolved the persistent issue where the screen would go blank during batch transitions.' },
+  { title: 'Keyboard Improvements', description: 'Keyboard shortcuts now reliably prevent page scrolling for a smoother study session.' },
+  { title: 'Session Cleanup', description: 'Resetting your progress now correctly clears all active flashcard session data.' }
 ];
 
 const ARCHIVED_CHANGES = [
+  { title: 'Request a Feature', description: 'Have an idea for the app? You can now submit feature requests directly via the new button in the footer.' },
+  { title: 'Keyboard Shortcut Toggle', description: 'Study with total control. Disable keyboard shortcuts if they interfere with your experience.' },
+  { title: 'Stability Fixes', description: 'Fixed the "blank screen" bug with robust state management and memoized handlers.' },
   { title: 'Flashcard Batches', description: 'Study in focused sets of 25 cards with a summary after each batch.' },
   { title: 'Undo Action', description: 'Made a mistake? Use the new Undo button in Flashcard mode.' },
   { title: 'Creator Signature', description: 'Added a subtle signature to celebrate the app\'s creator, Aryeh Isaac-Saul.' },

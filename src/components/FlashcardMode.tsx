@@ -62,8 +62,12 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     incorrectCount: number;
     batchCounter: number;
   }[]>(() => {
-    const saved = localStorage.getItem('bh-flashcard-session');
-    if (saved) return JSON.parse(saved).history || [];
+    try {
+      const saved = localStorage.getItem('bh-flashcard-session');
+      if (saved) return JSON.parse(saved).history || [];
+    } catch (e) {
+      console.error("Error parsing history from localStorage", e);
+    }
     return [];
   });
 
@@ -72,17 +76,21 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
       localStorage.removeItem('bh-flashcard-session');
       return;
     }
-    const state = {
-      sessionCards,
-      initialTotal,
-      stillLearningPile,
-      currentIndex,
-      correctCount,
-      incorrectCount,
-      batchCounter,
-      history
-    };
-    localStorage.setItem('bh-flashcard-session', JSON.stringify(state));
+    try {
+      const state = {
+        sessionCards,
+        initialTotal,
+        stillLearningPile,
+        currentIndex,
+        correctCount,
+        incorrectCount,
+        batchCounter,
+        history
+      };
+      localStorage.setItem('bh-flashcard-session', JSON.stringify(state));
+    } catch (e) {
+      console.error("Error saving state to localStorage", e);
+    }
   }, [sessionCards, initialTotal, stillLearningPile, currentIndex, correctCount, incorrectCount, batchCounter, history, isFinished]);
 
   const saveToHistory = useCallback(() => {
@@ -125,6 +133,69 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     setDirection(0);
   }, [saveToHistory]);
 
+  const processCardTransition = useCallback((isCorrect: boolean, word: Word) => {
+    // 1. Update counts immediately for UI feedback
+    if (isCorrect) {
+      setCorrectCount(prev => prev + 1);
+      setBatchCorrectCount(prev => prev + 1);
+    } else {
+      setIncorrectCount(prev => prev + 1);
+      setBatchIncorrectCount(prev => prev + 1);
+    }
+
+    // 2. Schedule the state transition after animation
+    setTimeout(() => {
+      // We'll use a single functional update to coordinate all related state changes
+      // This prevents intermediate states where currentWord might be null but summary is not yet shown
+      setBatchCounter(prevBatch => {
+        const nextBatchCount = prevBatch + 1;
+        const isBatchEnd = nextBatchCount >= 25;
+
+        setStillLearningPile(currentStillLearning => {
+          const nextStillLearning = isCorrect ? currentStillLearning : [...currentStillLearning, word];
+          
+          setSessionCards(currentCards => {
+            const nextCards = currentCards.filter(c => c.id !== word.id);
+            const isSessionEnd = nextCards.length === 0 && nextStillLearning.length === 0;
+
+            if (isSessionEnd) {
+              setIsFinished(true);
+              setIsTransitioning(false);
+              return [];
+            } 
+            
+            if (isBatchEnd) {
+              setShowBatchSummary(true);
+              setIsTransitioning(false);
+              return nextCards;
+            } 
+            
+            if (nextCards.length === 0) {
+              // Recycle if session cards are empty but still learning pile is not
+              const combined = [...nextStillLearning].sort(() => Math.random() - 0.5);
+              setCurrentIndex(0);
+              // Clear still learning pile in next tick to avoid nested setter issues
+              setTimeout(() => setStillLearningPile([]), 0); 
+              setIsTransitioning(false);
+              return combined;
+            } 
+
+            // Normal progression
+            setCurrentIndex(prevIdx => (prevIdx >= nextCards.length ? 0 : prevIdx));
+            setIsTransitioning(false);
+            return nextCards;
+          });
+
+          return nextStillLearning;
+        });
+
+        return nextBatchCount;
+      });
+
+      setDirection(0);
+    }, 250);
+  }, [onWordProgress, saveToHistory]);
+
   const handleMarkCorrect = useCallback(() => {
     if (isTransitioning || showBatchSummary || isFinished) return;
     const currentWord = sessionCards[currentIndex];
@@ -141,43 +212,8 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     }
     
     saveToHistory();
-    setCorrectCount(prev => prev + 1);
-    setBatchCorrectCount(prev => prev + 1);
-    
-    const nextBatchCount = batchCounter + 1;
-    const nextCards = sessionCards.filter((_, i) => i !== currentIndex);
-    
-    setTimeout(() => {
-      // Use functional updates to ensure we have the latest state
-      setStillLearningPile(currentStillLearning => {
-        const isSessionEnd = nextCards.length === 0 && currentStillLearning.length === 0;
-        const isBatchEnd = nextBatchCount >= 25;
-
-        if (isSessionEnd) {
-          setIsFinished(true);
-        } else if (isBatchEnd) {
-          setSessionCards(nextCards);
-          setBatchCounter(nextBatchCount);
-          setShowBatchSummary(true);
-        } else if (nextCards.length === 0) {
-          // Recycle
-          const combined = [...currentStillLearning].sort(() => Math.random() - 0.5);
-          setSessionCards(combined);
-          setBatchCounter(nextBatchCount);
-          setCurrentIndex(0);
-          return []; // Clear still learning pile
-        } else {
-          setSessionCards(nextCards);
-          setBatchCounter(nextBatchCount);
-          setCurrentIndex(prevIdx => (prevIdx >= nextCards.length ? 0 : prevIdx));
-        }
-        return currentStillLearning;
-      });
-      
-      setDirection(0);
-      setIsTransitioning(false);
-    }, 250);
-  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, batchCounter, onWordProgress, saveToHistory]);
+    processCardTransition(true, currentWord);
+  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, onWordProgress, saveToHistory, processCardTransition]);
 
   const handleMarkIncorrect = useCallback(() => {
     if (isTransitioning || showBatchSummary || isFinished) return;
@@ -195,41 +231,8 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     }
     
     saveToHistory();
-    setIncorrectCount(prev => prev + 1);
-    setBatchIncorrectCount(prev => prev + 1);
-    
-    const nextBatchCount = batchCounter + 1;
-    const nextCards = sessionCards.filter((_, i) => i !== currentIndex);
-    
-    setTimeout(() => {
-      setStillLearningPile(currentStillLearning => {
-        const nextStillLearning = [...currentStillLearning, currentWord];
-        const isBatchEnd = nextBatchCount >= 25;
-
-        if (isBatchEnd) {
-          setSessionCards(nextCards);
-          setBatchCounter(nextBatchCount);
-          setShowBatchSummary(true);
-          return nextStillLearning;
-        } else if (nextCards.length === 0) {
-          // Recycle
-          const combined = [...nextStillLearning].sort(() => Math.random() - 0.5);
-          setSessionCards(combined);
-          setBatchCounter(nextBatchCount);
-          setCurrentIndex(0);
-          return [];
-        } else {
-          setSessionCards(nextCards);
-          setBatchCounter(nextBatchCount);
-          setCurrentIndex(prevIdx => (prevIdx >= nextCards.length ? 0 : prevIdx));
-          return nextStillLearning;
-        }
-      });
-      
-      setDirection(0);
-      setIsTransitioning(false);
-    }, 250);
-  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, batchCounter, onWordProgress, saveToHistory]);
+    processCardTransition(false, currentWord);
+  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, onWordProgress, saveToHistory, processCardTransition]);
 
   useEffect(() => {
     if (isFinished || showBatchSummary || !enableKeyboard) return;
@@ -238,6 +241,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
       // Prevent scrolling for these keys
       const keysToPrevent = ['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '];
       if (keysToPrevent.includes(e.key) || keysToPrevent.includes(e.code)) {
+         // Only prevent default if we are not in an input field (though there aren't any here)
          e.preventDefault();
       }
 
@@ -252,7 +256,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleKeyDown, { passive: false });
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isFinished, showBatchSummary, enableKeyboard, handleMarkCorrect, handleMarkIncorrect, handleBack]);
 
@@ -274,6 +278,8 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     setCorrectCount(0);
     setIncorrectCount(0);
     setIsFinished(false);
+    setShowBatchSummary(false);
+    setIsTransitioning(false);
   }, [vocabulary]);
 
   if (showBatchSummary) {
@@ -342,16 +348,31 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
 
   const currentWord = useMemo(() => sessionCards[currentIndex], [sessionCards, currentIndex]);
 
-  if (!currentWord && !isFinished && !isTransitioning && !showBatchSummary) {
+  if (!currentWord && !isFinished && !showBatchSummary) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-20 text-center">
-        <p className="text-slate-400 mb-8 font-medium">No cards available in this session.</p>
-        <button
-          onClick={onExit}
-          className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-black transition-all"
-        >
-          Back to Dashboard
-        </button>
+        <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-6">
+          <RotateCcw className={`w-8 h-8 text-slate-400 ${isTransitioning ? 'animate-spin' : ''}`} />
+        </div>
+        <p className="text-slate-400 mb-8 font-medium">
+          {isTransitioning ? "Loading next card..." : "No cards available in this session."}
+        </p>
+        {!isTransitioning && (
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={handleShuffle}
+              className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-black transition-all shadow-lg"
+            >
+              Reset Deck
+            </button>
+            <button
+              onClick={onExit}
+              className="px-8 py-4 bg-white text-slate-600 border border-slate-200 rounded-2xl font-bold hover:bg-slate-50 transition-all"
+            >
+              Back to Dashboard
+            </button>
+          </div>
+        )}
       </div>
     );
   }
