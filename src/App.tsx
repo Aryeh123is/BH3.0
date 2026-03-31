@@ -161,7 +161,7 @@ export default function App() {
       const newProgress = [...prev];
 
       if (existingIndex >= 0) {
-        const p = newProgress[existingIndex];
+        const p = { ...newProgress[existingIndex] };
         if (isCorrect) {
           p.correctCount += 1;
           if (currentQuestion.type === 'written') p.mastery = 'mastered';
@@ -171,6 +171,7 @@ export default function App() {
           p.mastery = 'new'; // Reset on error
         }
         p.lastStudied = Date.now();
+        newProgress[existingIndex] = p;
       } else {
         newProgress.push({
           wordId: currentQuestion.word.id,
@@ -254,7 +255,7 @@ export default function App() {
             </motion.div>
           )}
 
-          {view === 'learn' && (
+          {view === 'learn' && sessionQuestions.length > 0 && sessionQuestions[currentQuestionIndex] && (
             <motion.div
               key="learn"
               initial={{ opacity: 0 }}

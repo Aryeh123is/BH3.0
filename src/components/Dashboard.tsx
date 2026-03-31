@@ -15,6 +15,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
 
   const masteredCount = progress.filter(p => p.mastery === 'mastered').length;
   const learningCount = progress.filter(p => p.mastery === 'learning').length;
@@ -45,16 +46,35 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
             Track your mastery of the Hebrew GCSE vocabulary.
           </p>
         </div>
-        <button
-          onClick={() => {
-            if (confirm('Are you sure you want to reset all your progress?')) {
-              onResetProgress();
-            }
-          }}
-          className="text-xs font-bold text-slate-300 hover:text-red-500 transition-colors uppercase tracking-widest"
-        >
-          Reset All Progress
-        </button>
+        <div className="relative">
+          {showResetConfirm ? (
+            <div className="flex items-center gap-3 bg-red-50 p-2 rounded-xl border border-red-100">
+              <span className="text-[10px] font-bold text-red-600 uppercase tracking-tight">Are you sure?</span>
+              <button
+                onClick={() => {
+                  onResetProgress();
+                  setShowResetConfirm(false);
+                }}
+                className="px-3 py-1 bg-red-500 text-white text-[10px] font-bold rounded-lg hover:bg-red-600 transition-colors uppercase"
+              >
+                Yes, Reset
+              </button>
+              <button
+                onClick={() => setShowResetConfirm(false)}
+                className="px-3 py-1 bg-white text-slate-400 text-[10px] font-bold rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors uppercase"
+              >
+                Cancel
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => setShowResetConfirm(true)}
+              className="text-xs font-bold text-slate-300 hover:text-red-500 transition-colors uppercase tracking-widest"
+            >
+              Reset All Progress
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

@@ -83,14 +83,14 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   useEffect(() => {
     if (isFinished) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === 'Space') {
+      if (e.code === 'Space' || e.key === ' ') {
         e.preventDefault();
         setIsFlipped(prev => !prev);
-      } else if (e.code === 'ArrowRight') {
+      } else if (e.code === 'ArrowRight' || e.key === 'ArrowRight') {
         handleMarkCorrect();
-      } else if (e.code === 'ArrowLeft') {
+      } else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {
         handleMarkIncorrect();
-      } else if (e.code === 'Backspace' || (e.metaKey && e.code === 'ArrowLeft')) {
+      } else if (e.code === 'Backspace' || e.key === 'Backspace' || (e.metaKey && (e.code === 'ArrowLeft' || e.key === 'ArrowLeft'))) {
         handleBack();
       }
     };
@@ -139,6 +139,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
 
   const handleMarkCorrect = () => {
     const currentWord = sessionCards[currentIndex];
+    if (!currentWord) return;
     onWordProgress(currentWord.id, true);
     
     saveToHistory();
@@ -167,6 +168,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
 
   const handleMarkIncorrect = () => {
     const currentWord = sessionCards[currentIndex];
+    if (!currentWord) return;
     onWordProgress(currentWord.id, false);
     
     saveToHistory();
@@ -232,6 +234,20 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   }
 
   const currentWord = sessionCards[currentIndex];
+
+  if (!currentWord && !isFinished) {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center p-20 text-center">
+        <p className="text-slate-400 mb-8 font-medium">No cards available in this session.</p>
+        <button
+          onClick={onExit}
+          className="px-8 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-black transition-all"
+        >
+          Back to Dashboard
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-[1100px] mx-auto px-6 py-8 min-h-[80vh] flex flex-col">
