@@ -12,15 +12,16 @@ import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
 import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { safeLocalStorage } from './lib/storage';
 
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
-const CURRENT_VERSION = '1.4.1';
+const CURRENT_VERSION = '1.4.3';
 
 const LATEST_CHANGES = [
-  { title: 'Version Tracking', description: 'Added a version indicator in the footer to ensure you\'re always using the latest features and fixes.' },
-  { title: 'Modern Hebrew Support (Beta)', description: 'You can now switch between Biblical and Modern Hebrew vocabulary! Note: This feature is currently in early beta (WIP).' },
-  { title: 'Blank Screen Fix', description: 'Refactored state management to resolve the persistent "blank screen" bug during transitions.' },
+  { title: 'Flashcard Session Fix', description: 'Permanently resolved the issue where the session would incorrectly revert to an earlier card (e.g., the 25th or 50th card) after batch transitions.' },
+  { title: 'Version Indicator', description: 'Added a version indicator to the flashcard study mode for easier troubleshooting.' },
+  { title: 'Stability Improvements', description: 'Refactored state management in Flashcard mode to ensure progress tracking remains accurate throughout the entire deck.' },
 ];
 
 const ARCHIVED_CHANGES = [
@@ -42,7 +43,7 @@ const ARCHIVED_CHANGES = [
 
 export default function App() {
   const [language, setLanguage] = useState<'biblical' | 'modern'>(() => {
-    const saved = localStorage.getItem('bh-language');
+    const saved = safeLocalStorage.getItem('bh-language');
     return (saved as 'biblical' | 'modern') || 'biblical';
   });
 
@@ -54,24 +55,48 @@ export default function App() {
   const SESSION_STATE_KEY = `bh-session-state-${language}`;
 
   const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard'>(() => {
-    const saved = localStorage.getItem(SESSION_STATE_KEY);
-    if (saved) return JSON.parse(saved).view;
+    const saved = safeLocalStorage.getItem(SESSION_STATE_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved).view;
+      } catch (e) {
+        console.error("Error parsing session view", e);
+      }
+    }
     return 'home';
   });
   const [progress, setProgress] = useState<UserProgress[]>([]);
   const [sessionQuestions, setSessionQuestions] = useState<Question[]>(() => {
-    const saved = localStorage.getItem(SESSION_STATE_KEY);
-    if (saved) return JSON.parse(saved).sessionQuestions;
+    const saved = safeLocalStorage.getItem(SESSION_STATE_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved).sessionQuestions;
+      } catch (e) {
+        console.error("Error parsing session questions", e);
+      }
+    }
     return [];
   });
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(() => {
-    const saved = localStorage.getItem(SESSION_STATE_KEY);
-    if (saved) return JSON.parse(saved).currentQuestionIndex;
+    const saved = safeLocalStorage.getItem(SESSION_STATE_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved).currentQuestionIndex;
+      } catch (e) {
+        console.error("Error parsing question index", e);
+      }
+    }
     return 0;
   });
   const [sessionAnswers, setSessionAnswers] = useState<(boolean | null)[]>(() => {
-    const saved = localStorage.getItem(SESSION_STATE_KEY);
-    if (saved) return JSON.parse(saved).sessionAnswers;
+    const saved = safeLocalStorage.getItem(SESSION_STATE_KEY);
+    if (saved) {
+      try {
+        return JSON.parse(saved).sessionAnswers;
+      } catch (e) {
+        console.error("Error parsing session answers", e);
+      }
+    }
     return [];
   });
   const [showChangelog, setShowChangelog] = useState(false);
@@ -105,20 +130,20 @@ export default function App() {
   };
 
   useEffect(() => {
-    const savedVersion = localStorage.getItem(VERSION_KEY);
+    const savedVersion = safeLocalStorage.getItem(VERSION_KEY);
     if (savedVersion !== CURRENT_VERSION) {
       setShowChangelog(true);
     }
   }, []);
 
   const handleCloseChangelog = () => {
-    localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+    safeLocalStorage.setItem(VERSION_KEY, CURRENT_VERSION);
     setShowChangelog(false);
     setViewingArchive(false);
   };
 
   useEffect(() => {
-    localStorage.setItem('bh-language', language);
+    safeLocalStorage.setItem('bh-language', language);
   }, [language]);
 
   useEffect(() => {
@@ -128,7 +153,7 @@ export default function App() {
       currentQuestionIndex,
       sessionAnswers
     };
-    localStorage.setItem(SESSION_STATE_KEY, JSON.stringify(state));
+    safeLocalStorage.setItem(SESSION_STATE_KEY, JSON.stringify(state));
   }, [view, sessionQuestions, currentQuestionIndex, sessionAnswers, SESSION_STATE_KEY]);
 
   const sessionCorrectCount = useMemo(() => 
@@ -137,9 +162,14 @@ export default function App() {
 
   // Load progress from localStorage
   useEffect(() => {
-    const savedProgress = localStorage.getItem(PROGRESS_KEY);
+    const savedProgress = safeLocalStorage.getItem(PROGRESS_KEY);
     if (savedProgress) {
-      setProgress(JSON.parse(savedProgress));
+      try {
+        setProgress(JSON.parse(savedProgress));
+      } catch (e) {
+        console.error("Error parsing progress data", e);
+        setProgress([]);
+      }
     } else {
       setProgress([]);
     }
@@ -147,8 +177,8 @@ export default function App() {
 
   // Save progress to localStorage
   useEffect(() => {
-    if (progress.length > 0 || localStorage.getItem(PROGRESS_KEY)) {
-      localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+    if (progress.length > 0 || safeLocalStorage.getItem(PROGRESS_KEY)) {
+      safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
     }
   }, [progress, PROGRESS_KEY]);
 
@@ -419,7 +449,7 @@ export default function App() {
                 onStartFlashcards={() => setView('flashcards')}
                 onResetProgress={() => {
                   setProgress([]);
-                  localStorage.removeItem(`bh-flashcard-session-${language}`);
+                  safeLocalStorage.removeItem(`bh-flashcard-session-${language}`);
                 }}
               />
               <div className="text-center pb-20">
