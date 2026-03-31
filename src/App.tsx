@@ -9,10 +9,20 @@ import { SessionSummary } from './components/SessionSummary';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
-import { ChevronLeft, RotateCcw, ArrowRight, RotateCw } from 'lucide-react';
+import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const PROGRESS_KEY = 'bh-keywords-progress';
+const VERSION_KEY = 'bh-app-version';
+const CURRENT_VERSION = '1.1.0';
+
+const CHANGELOG = [
+  { title: 'Flashcard Batches', description: 'Study in focused sets of 25 cards with a summary after each batch.' },
+  { title: 'Space Bar Flip', description: 'Use the space bar to flip flashcards quickly.' },
+  { title: 'Stability Fixes', description: 'Fixed the "blank screen" bug when marking cards as correct/incorrect.' },
+  { title: 'Undo Action', description: 'Made a mistake? Use the new Undo button in Flashcard mode.' },
+  { title: 'Keyboard Shortcuts', description: 'Use Arrow Keys (Left/Right) to grade cards and Backspace to undo.' }
+];
 
 export default function App() {
   const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard'>(() => {
@@ -36,6 +46,19 @@ export default function App() {
     if (saved) return JSON.parse(saved).sessionAnswers;
     return [];
   });
+  const [showChangelog, setShowChangelog] = useState(false);
+
+  useEffect(() => {
+    const savedVersion = localStorage.getItem(VERSION_KEY);
+    if (savedVersion !== CURRENT_VERSION) {
+      setShowChangelog(true);
+    }
+  }, []);
+
+  const handleCloseChangelog = () => {
+    localStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+    setShowChangelog(false);
+  };
 
   useEffect(() => {
     const state = {
@@ -195,6 +218,61 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-primary/10">
       <Navbar onNavigate={(view) => setView(view)} />
+
+      <AnimatePresence>
+        {showChangelog && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 max-w-lg w-full overflow-hidden"
+            >
+              <div className="p-8 md:p-10">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600">
+                      <Sparkles className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-extrabold text-slate-900">What's New</h2>
+                      <p className="text-xs font-bold text-indigo-600 uppercase tracking-widest">Version {CURRENT_VERSION}</p>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={handleCloseChangelog}
+                    className="p-2 hover:bg-slate-50 rounded-xl text-slate-400 transition-colors"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                <div className="space-y-6 mb-10">
+                  {CHANGELOG.map((item, index) => (
+                    <div key={index} className="flex gap-4">
+                      <div className="mt-1">
+                        <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-slate-900 text-sm">{item.title}</h3>
+                        <p className="text-slate-500 text-sm leading-relaxed">{item.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  onClick={handleCloseChangelog}
+                  className="w-full py-5 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"
+                >
+                  Got it, let's study!
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
       
       <main className="pt-16">
         <AnimatePresence mode="wait">

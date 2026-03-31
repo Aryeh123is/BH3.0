@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Word } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, RotateCw, Shuffle, Volume2, Book, Trophy, RotateCcw, Layers } from 'lucide-react';
@@ -42,6 +42,8 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     if (saved) return JSON.parse(saved).incorrectCount;
     return 0;
   });
+  const [batchCorrectCount, setBatchCorrectCount] = useState(0);
+  const [batchIncorrectCount, setBatchIncorrectCount] = useState(0);
   const [batchCounter, setBatchCounter] = useState(() => {
     const saved = localStorage.getItem('bh-flashcard-session');
     if (saved) return JSON.parse(saved).batchCounter;
@@ -82,25 +84,6 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     localStorage.setItem('bh-flashcard-session', JSON.stringify(state));
   }, [sessionCards, initialTotal, stillLearningPile, currentIndex, correctCount, incorrectCount, batchCounter, history, isFinished]);
 
-  useEffect(() => {
-    if (isFinished) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code === 'Space' || e.key === ' ') {
-        e.preventDefault();
-        setIsFlipped(prev => !prev);
-      } else if (e.code === 'ArrowRight' || e.key === 'ArrowRight') {
-        handleMarkCorrect();
-      } else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {
-        handleMarkIncorrect();
-      } else if (e.code === 'Backspace' || e.key === 'Backspace' || (e.metaKey && (e.code === 'ArrowLeft' || e.key === 'ArrowLeft'))) {
-        handleBack();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex, sessionCards, isFinished, stillLearningPile, batchCounter, history]);
-
   const saveToHistory = () => {
     setHistory(prev => [...prev, {
       sessionCards: [...sessionCards],
@@ -113,7 +96,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   };
 
   const handleBack = () => {
-    if (history.length === 0) return;
+    if (history.length === 0 || isTransitioning) return;
     
     const prevState = history[history.length - 1];
     setHistory(prev => prev.slice(0, -1));
@@ -126,6 +109,8 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     setBatchCounter(prevState.batchCounter);
     setIsFlipped(false);
     setDirection(0);
+    setIsFinished(false);
+    setShowBatchSummary(false);
   };
 
   const recycleStillLearning = (currentSession: Word[], currentStillLearning: Word[]) => {
@@ -140,11 +125,14 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   };
 
   const handleMarkCorrect = () => {
-    if (isTransitioning || showBatchSummary) return;
+    if (isTransitioning || showBatchSummary || isFinished) return;
     const currentWord = sessionCards[currentIndex];
     if (!currentWord) return;
     
     setIsTransitioning(true);
+    setDirection(1);
+    setIsFlipped(false);
+    
     try {
       onWordProgress(currentWord.id, true);
     } catch (err) {
@@ -152,9 +140,8 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     }
     
     saveToHistory();
-    setIsFlipped(false); // Reset flip immediately
-    setDirection(1);
     setCorrectCount(prev => prev + 1);
+    setBatchCorrectCount(prev => prev + 1);
     
     const nextBatchCount = batchCounter + 1;
     const nextCards = sessionCards.filter((_, i) => i !== currentIndex);
@@ -166,29 +153,35 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
       if (isSessionEnd) {
         setIsFinished(true);
       } else if (isBatchEnd) {
-        // Update state but don't recycle yet, show summary
         setSessionCards(nextCards);
         setBatchCounter(nextBatchCount);
         setShowBatchSummary(true);
       } else if (nextCards.length === 0) {
-        // Ran out of cards in main pile before 25, recycle automatically
-        recycleStillLearning(nextCards, stillLearningPile);
+        // Recycle
+        const combined = [...stillLearningPile].sort(() => Math.random() - 0.5);
+        setSessionCards(combined);
+        setStillLearningPile([]);
+        setBatchCounter(nextBatchCount);
+        setCurrentIndex(0);
       } else {
         setSessionCards(nextCards);
         setBatchCounter(nextBatchCount);
-        setCurrentIndex(prev => prev >= nextCards.length ? 0 : prev);
-        setDirection(0);
+        setCurrentIndex(prev => (prev >= nextCards.length ? 0 : prev));
       }
+      setDirection(0);
       setIsTransitioning(false);
-    }, 200);
+    }, 250);
   };
 
   const handleMarkIncorrect = () => {
-    if (isTransitioning || showBatchSummary) return;
+    if (isTransitioning || showBatchSummary || isFinished) return;
     const currentWord = sessionCards[currentIndex];
     if (!currentWord) return;
     
     setIsTransitioning(true);
+    setDirection(-1);
+    setIsFlipped(false);
+    
     try {
       onWordProgress(currentWord.id, false);
     } catch (err) {
@@ -196,9 +189,8 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     }
     
     saveToHistory();
-    setIsFlipped(false); // Reset flip immediately
-    setDirection(-1);
     setIncorrectCount(prev => prev + 1);
+    setBatchIncorrectCount(prev => prev + 1);
     
     const nextBatchCount = batchCounter + 1;
     const nextStillLearning = [...stillLearningPile, currentWord];
@@ -216,20 +208,54 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
         setBatchCounter(nextBatchCount);
         setShowBatchSummary(true);
       } else if (nextCards.length === 0) {
-        recycleStillLearning(nextCards, nextStillLearning);
+        // Recycle
+        const combined = [...nextStillLearning].sort(() => Math.random() - 0.5);
+        setSessionCards(combined);
+        setStillLearningPile([]);
+        setBatchCounter(nextBatchCount);
+        setCurrentIndex(0);
       } else {
         setSessionCards(nextCards);
         setStillLearningPile(nextStillLearning);
         setBatchCounter(nextBatchCount);
-        setCurrentIndex(prev => prev >= nextCards.length ? 0 : prev);
-        setDirection(0);
+        setCurrentIndex(prev => (prev >= nextCards.length ? 0 : prev));
       }
+      setDirection(0);
       setIsTransitioning(false);
-    }, 200);
+    }, 250);
   };
+
+  useEffect(() => {
+    if (isFinished || showBatchSummary) return;
+    
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Prevent scrolling for these keys
+      if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key) || ['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) {
+        if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '].includes(e.key)) {
+           e.preventDefault();
+        }
+      }
+
+      if (e.code === 'Space' || e.key === ' ') {
+        setIsFlipped(prev => !prev);
+      } else if (e.code === 'ArrowRight' || e.key === 'ArrowRight') {
+        handleMarkCorrect();
+      } else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {
+        handleMarkIncorrect();
+      } else if (e.code === 'Backspace' || e.key === 'Backspace' || (e.metaKey && (e.code === 'ArrowLeft' || e.key === 'ArrowLeft'))) {
+        e.preventDefault();
+        handleBack();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFinished, showBatchSummary, handleMarkCorrect, handleMarkIncorrect, handleBack]);
 
   const handleContinueNextBatch = () => {
     recycleStillLearning(sessionCards, stillLearningPile);
+    setBatchCorrectCount(0);
+    setBatchIncorrectCount(0);
     setShowBatchSummary(false);
     setDirection(0);
   };
@@ -264,12 +290,12 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
           
           <div className="grid grid-cols-2 gap-4 mb-8">
             <div className="bg-green-50 p-4 rounded-2xl">
-              <div className="text-2xl font-bold text-green-600">{correctCount}</div>
-              <div className="text-[10px] font-bold text-green-600/60 uppercase tracking-wider">Mastered</div>
+              <div className="text-2xl font-bold text-green-600">{batchCorrectCount}</div>
+              <div className="text-[10px] font-bold text-green-600/60 uppercase tracking-wider">Correct</div>
             </div>
             <div className="bg-red-50 p-4 rounded-2xl">
-              <div className="text-2xl font-bold text-red-600">{stillLearningPile.length}</div>
-              <div className="text-[10px] font-bold text-red-600/60 uppercase tracking-wider">Still Learning</div>
+              <div className="text-2xl font-bold text-red-600">{batchIncorrectCount}</div>
+              <div className="text-[10px] font-bold text-red-600/60 uppercase tracking-wider">Incorrect</div>
             </div>
           </div>
 
@@ -310,9 +336,9 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     );
   }
 
-  const currentWord = sessionCards[currentIndex];
+  const currentWord = useMemo(() => sessionCards[currentIndex], [sessionCards, currentIndex]);
 
-  if (!currentWord && !isFinished) {
+  if (!currentWord && !isFinished && !isTransitioning && !showBatchSummary) {
     return (
       <div className="flex-1 flex flex-col items-center justify-center p-20 text-center">
         <p className="text-slate-400 mb-8 font-medium">No cards available in this session.</p>
@@ -356,8 +382,11 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
         </div>
         <div className="flex items-center gap-6">
           <div className="flex items-center gap-4 text-sm font-bold">
-            <span className="text-red-500 bg-red-50 px-3 py-1 rounded-lg" title="Still Learning">{incorrectCount}</span>
-            <span className="text-green-500 bg-green-50 px-3 py-1 rounded-lg" title="Known">{correctCount}</span>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-slate-400 uppercase tracking-tighter">Total</span>
+              <span className="text-red-500 bg-red-50 px-3 py-1 rounded-lg" title="Total Still Learning">{incorrectCount}</span>
+              <span className="text-green-500 bg-green-50 px-3 py-1 rounded-lg" title="Total Known">{correctCount}</span>
+            </div>
             <div className="flex items-center gap-1 text-slate-400 ml-2" title="Cards until next shuffle">
               <RotateCw className="w-3 h-3" />
               <span>{25 - batchCounter}</span>
@@ -378,15 +407,16 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
 
       <div className="flex-1 flex flex-col items-center justify-center gap-16">
         <div className="relative w-full max-w-xl aspect-[4/3]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentWord?.id || currentIndex}
-              initial={{ x: direction * 100, opacity: 0, scale: 0.9 }}
-              animate={{ x: 0, opacity: 1, scale: 1 }}
-              exit={{ x: -direction * 100, opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="w-full h-full perspective-1000"
-            >
+          <AnimatePresence mode="popLayout">
+            {currentWord && (
+              <motion.div
+                key={currentWord.id}
+                initial={{ x: direction * 100, opacity: 0, scale: 0.9 }}
+                animate={{ x: 0, opacity: 1, scale: 1 }}
+                exit={{ x: -direction * 100, opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="w-full h-full perspective-1000"
+              >
               <motion.div
                 className="w-full h-full relative preserve-3d cursor-pointer"
                 onClick={() => setIsFlipped(!isFlipped)}
@@ -433,7 +463,8 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
                 </div>
               </motion.div>
             </motion.div>
-          </AnimatePresence>
+          )}
+        </AnimatePresence>
         </div>
 
         <div className="flex items-center gap-12">
@@ -442,8 +473,11 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
             disabled={isTransitioning}
             className="group flex flex-col items-center gap-3 disabled:opacity-50"
           >
-            <div className="w-20 h-20 flex items-center justify-center bg-white rounded-3xl shadow-soft border border-slate-100 text-red-400 group-hover:bg-red-500 group-hover:text-white group-hover:border-red-500 transition-all">
+            <div className="w-20 h-20 flex items-center justify-center bg-white rounded-3xl shadow-soft border border-slate-100 text-red-400 group-hover:bg-red-500 group-hover:text-white group-hover:border-red-500 transition-all relative">
               <ChevronLeft className="w-10 h-10" />
+              <div className="absolute -top-2 -left-2 w-7 h-7 bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center border-2 border-white shadow-sm">
+                {batchIncorrectCount}
+              </div>
             </div>
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest group-hover:text-red-500">Still Learning</span>
           </button>
@@ -461,8 +495,11 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
             disabled={isTransitioning}
             className="group flex flex-col items-center gap-3 disabled:opacity-50"
           >
-            <div className="w-20 h-20 flex items-center justify-center bg-white rounded-3xl shadow-soft border border-slate-100 text-green-400 group-hover:bg-green-500 group-hover:text-white group-hover:border-green-500 transition-all">
+            <div className="w-20 h-20 flex items-center justify-center bg-white rounded-3xl shadow-soft border border-slate-100 text-green-400 group-hover:bg-green-500 group-hover:text-white group-hover:border-green-500 transition-all relative">
               <ChevronRight className="w-10 h-10" />
+              <div className="absolute -top-2 -right-2 w-7 h-7 bg-green-500 text-white text-[10px] rounded-full flex items-center justify-center border-2 border-white shadow-sm">
+                {batchCorrectCount}
+              </div>
             </div>
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest group-hover:text-green-500">Know it</span>
           </button>
