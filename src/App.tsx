@@ -20,14 +20,16 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.5.1';
+const CURRENT_VERSION = '1.5.3';
 
 const LATEST_CHANGES = [
-  { title: 'iPad Sign-In Fix', description: 'Resolved an issue where Apple devices (iPad/iPhone/Safari) would block the sign-in popup. The app now automatically falls back to a redirect sign-in method.' },
-  { title: 'Developer Mode', description: 'Added a toggle in the footer to easily switch Developer Mode on and off, hiding work-in-progress languages from public view.' },
+  { title: 'Sign-In Preview Fix', description: 'Added detection for when the app is running in a preview window on Apple devices, prompting users to open the app in a new tab to complete sign-in.' },
 ];
 
 const ARCHIVED_CHANGES = [
+  { title: 'Update Indicator Fix', description: 'Fixed an issue where the version indicator in the footer would incorrectly show that an update was needed.' },
+  { title: 'iPad Sign-In Fix', description: 'Resolved an issue where Apple devices (iPad/iPhone/Safari) would block the sign-in popup. The app now automatically falls back to a redirect sign-in method.' },
+  { title: 'Developer Mode', description: 'Added a toggle in the footer to easily switch Developer Mode on and off, hiding work-in-progress languages from public view.' },
   { title: 'Flashcard Session Fix', description: 'Permanently resolved the issue where the session would incorrectly revert to an earlier card (e.g., the 25th or 50th card) after batch transitions.' },
   { title: 'Version Indicator', description: 'Added a version indicator to the flashcard study mode for easier troubleshooting.' },
   { title: 'Stability Improvements', description: 'Refactored state management in Flashcard mode to ensure progress tracking remains accurate throughout the entire deck.' },
@@ -176,6 +178,13 @@ export default function App() {
         /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) // Fallback for Apple devices if popup fails
       ) {
         console.warn("Popup sign-in failed or blocked. Falling back to redirect sign-in...", error);
+        
+        // Check if we are running inside an iframe (like the AI Studio preview)
+        if (window !== window.top) {
+          alert("Apple devices block sign-in inside previews. Please click the 'Open in New Tab' button (the square with an arrow at the top right of the preview) to sign in!");
+          return;
+        }
+
         try {
           await signInWithRedirect(auth, googleProvider);
         } catch (redirectError) {
