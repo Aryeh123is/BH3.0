@@ -15,6 +15,8 @@ export interface UserProgress {
   correctCount: number;
   incorrectCount: number;
   lastStudied: number;
+  interval: number; // in days
+  nextReview: number; // timestamp
 }
 
 export type QuestionType = 'multiple-choice' | 'written';

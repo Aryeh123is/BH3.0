@@ -1,7 +1,8 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Word, UserProgress, Question, MasteryLevel } from './types';
 import { VOCABULARY as BIBLICAL_HEBREW_VOCABULARY } from './data/vocabulary';
 import { MODERN_HEBREW_VOCABULARY } from './data/modern_hebrew';
+import { SPANISH_EDEXCEL_VOCABULARY } from './data/spanish_edexcel';
 import { Dashboard } from './components/Dashboard';
 import { LearnCard } from './components/LearnCard';
 import { FlashcardMode } from './components/FlashcardMode';
@@ -10,13 +11,16 @@ import { SessionSummary } from './components/SessionSummary';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
-import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw } from 'lucide-react';
+import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { safeLocalStorage } from './lib/storage';
+import { auth, db, googleProvider, signInWithPopup, signOut, doc, setDoc, getDoc, collection, onSnapshot, writeBatch } from './firebase';
+import { onAuthStateChanged, User } from 'firebase/auth';
 
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
-const CURRENT_VERSION = '1.4.3';
+const THEME_KEY = 'bh-app-theme';
+const CURRENT_VERSION = '1.5.0';
 
 const LATEST_CHANGES = [
   { title: 'Flashcard Session Fix', description: 'Permanently resolved the issue where the session would incorrectly revert to an earlier card (e.g., the 25th or 50th card) after batch transitions.' },
@@ -42,14 +46,27 @@ const ARCHIVED_CHANGES = [
 ];
 
 export default function App() {
-  const [language, setLanguage] = useState<'biblical' | 'modern'>(() => {
+  const [devMode, setDevMode] = useState(() => safeLocalStorage.getItem('bh-dev-mode') === 'true');
+  const [language, setLanguage] = useState<'biblical' | 'modern' | 'spanish'>(() => {
     const saved = safeLocalStorage.getItem('bh-language');
-    return (saved as 'biblical' | 'modern') || 'biblical';
+    const parsed = (saved as 'biblical' | 'modern' | 'spanish') || 'biblical';
+    if (safeLocalStorage.getItem('bh-dev-mode') !== 'true' && (parsed === 'modern' || parsed === 'spanish')) {
+      return 'biblical';
+    }
+    return parsed;
   });
 
-  const activeVocabulary = useMemo(() => 
-    language === 'biblical' ? BIBLICAL_HEBREW_VOCABULARY : MODERN_HEBREW_VOCABULARY,
-  [language]);
+  useEffect(() => {
+    if (!devMode && (language === 'modern' || language === 'spanish')) {
+      setLanguage('biblical');
+    }
+  }, [devMode, language]);
+
+  const activeVocabulary = useMemo(() => {
+    if (language === 'biblical') return BIBLICAL_HEBREW_VOCABULARY;
+    if (language === 'modern') return MODERN_HEBREW_VOCABULARY;
+    return SPANISH_EDEXCEL_VOCABULARY;
+  }, [language]);
 
   const PROGRESS_KEY = `bh-keywords-progress-${language}`;
   const SESSION_STATE_KEY = `bh-session-state-${language}`;
@@ -103,6 +120,65 @@ export default function App() {
   const [viewingArchive, setViewingArchive] = useState(false);
   const [showWipPopup, setShowWipPopup] = useState(false);
   const [isLatestVersion, setIsLatestVersion] = useState<boolean | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [isAuthReady, setIsAuthReady] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    const saved = safeLocalStorage.getItem(THEME_KEY);
+    return (saved as 'light' | 'dark') || 'light';
+  });
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    safeLocalStorage.setItem(THEME_KEY, theme);
+  }, [theme]);
+
+  const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
+
+  const toggleDevMode = () => {
+    setDevMode(prevDev => {
+      const nextDev = !prevDev;
+      safeLocalStorage.setItem('bh-dev-mode', nextDev.toString());
+      return nextDev;
+    });
+  };
+
+  // Auth listener
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setIsAuthReady(true);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignIn = async () => {
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (error: any) {
+      // Don't log expected user actions as errors
+      if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
+        console.log("Sign in cancelled by user.");
+        return;
+      }
+      if (error.code === 'auth/popup-blocked') {
+        console.warn("The sign-in popup was blocked by your browser. Please allow popups for this site to sign in.");
+        return;
+      }
+      console.error("Sign in failed:", error);
+    }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("Sign out failed:", error);
+    }
+  };
 
   const checkVersion = async () => {
     try {
@@ -122,9 +198,9 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleLanguageChange = (newLang: 'biblical' | 'modern') => {
+  const handleLanguageChange = (newLang: 'biblical' | 'modern' | 'spanish') => {
     setLanguage(newLang);
-    if (newLang === 'modern') {
+    if (newLang === 'modern' || newLang === 'spanish') {
       setShowWipPopup(true);
     }
   };
@@ -160,51 +236,123 @@ export default function App() {
     sessionAnswers.filter(a => a === true).length,
   [sessionAnswers]);
 
-  // Load progress from localStorage
+  // Load progress from localStorage or Firestore
   useEffect(() => {
-    const savedProgress = safeLocalStorage.getItem(PROGRESS_KEY);
-    if (savedProgress) {
-      try {
-        setProgress(JSON.parse(savedProgress));
-      } catch (e) {
-        console.error("Error parsing progress data", e);
+    if (!isAuthReady) return;
+
+    if (user) {
+      // Listen to Firestore progress
+      const progressRef = collection(db, 'users', user.uid, 'progress');
+      const unsubscribe = onSnapshot(progressRef, (snapshot) => {
+        const firestoreProgress: UserProgress[] = [];
+        snapshot.forEach((doc) => {
+          firestoreProgress.push(doc.data() as UserProgress);
+        });
+        
+        if (firestoreProgress.length > 0) {
+          setProgress(firestoreProgress);
+        } else {
+          // If Firestore is empty but local has progress, sync local to Firestore
+          const localProgress = safeLocalStorage.getItem(PROGRESS_KEY);
+          if (localProgress) {
+            const parsed = JSON.parse(localProgress);
+            if (parsed.length > 0) {
+              const batch = writeBatch(db);
+              parsed.forEach((p: UserProgress) => {
+                const docRef = doc(db, 'users', user.uid, 'progress', p.wordId);
+                batch.set(docRef, p);
+              });
+              batch.commit().catch(err => console.error("Initial sync failed:", err));
+              setProgress(parsed);
+            }
+          }
+        }
+      }, (error) => {
+        console.error("Firestore progress listener error:", error);
+      });
+      return () => unsubscribe();
+    } else {
+      // Load from local storage
+      const savedProgress = safeLocalStorage.getItem(PROGRESS_KEY);
+      if (savedProgress) {
+        try {
+          setProgress(JSON.parse(savedProgress));
+        } catch (e) {
+          console.error("Error parsing progress data", e);
+          setProgress([]);
+        }
+      } else {
         setProgress([]);
       }
-    } else {
-      setProgress([]);
     }
-  }, [PROGRESS_KEY]);
+  }, [PROGRESS_KEY, user, isAuthReady]);
 
-  // Save progress to localStorage
+  // Save progress to localStorage and Firestore
   useEffect(() => {
     if (progress.length > 0 || safeLocalStorage.getItem(PROGRESS_KEY)) {
       safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
     }
   }, [progress, PROGRESS_KEY]);
 
-  const startSession = () => {
-    // Group words by mastery level
-    const grouped = activeVocabulary.reduce((acc, word) => {
-      const prog = progress.find(p => p.wordId === word.id)?.mastery || 'new';
-      if (!acc[prog]) acc[prog] = [];
-      acc[prog].push(word);
-      return acc;
-    }, {} as Record<MasteryLevel, Word[]>);
+  const updateFirestoreWordProgress = async (p: UserProgress) => {
+    if (!user) return;
+    try {
+      const docRef = doc(db, 'users', user.uid, 'progress', p.wordId);
+      await setDoc(docRef, p);
+      
+      // Also update user profile lastActive
+      const userRef = doc(db, 'users', user.uid);
+      await setDoc(userRef, { 
+        lastActive: Date.now(),
+        language: language 
+      }, { merge: true });
+    } catch (err) {
+      console.error("Error updating Firestore progress:", err);
+    }
+  };
 
-    // Shuffle each group
+  const startSession = () => {
+    const now = Date.now();
+    
+    // Group words by mastery level and review status
+    const initialGrouped: Record<MasteryLevel, { due: Word[], notDue: Word[] }> = {
+      'new': { due: [], notDue: [] },
+      'learning': { due: [], notDue: [] },
+      'mastered': { due: [], notDue: [] }
+    };
+
+    const grouped = activeVocabulary.reduce((acc, word) => {
+      const prog = progress.find(p => p.wordId === word.id);
+      const mastery = prog?.mastery || 'new';
+      const isDue = prog ? prog.nextReview <= now : true;
+      
+      if (isDue) acc[mastery].due.push(word);
+      else acc[mastery].notDue.push(word);
+      
+      return acc;
+    }, initialGrouped);
+
+    // Shuffle helper
     const shuffle = <T,>(array: T[]): T[] => [...array].sort(() => Math.random() - 0.5);
     
-    const newWords: Word[] = shuffle(grouped['new'] || []);
-    const learningWords: Word[] = shuffle(grouped['learning'] || []);
-    const masteredWords: Word[] = shuffle(grouped['mastered'] || []);
-
-    // Pick 10 words, prioritizing learning, then new, then mastered
-    const sessionWords: Word[] = [...learningWords, ...newWords, ...masteredWords].slice(0, 10);
+    // Priority: 
+    // 1. Learning words that are due
+    // 2. New words
+    // 3. Mastered words that are due
+    // 4. Learning words not yet due (if space)
+    
+    const sessionWords: Word[] = shuffle<Word>(grouped['learning'].due)
+      .concat(shuffle<Word>(grouped['new'].due))
+      .concat(shuffle<Word>(grouped['mastered'].due))
+      .concat(shuffle<Word>(grouped['learning'].notDue))
+      .slice(0, 10);
     
     // Generate questions
     const questions: Question[] = sessionWords.map(word => {
       const wordProgress = progress.find(p => p.wordId === word.id);
-      const type = (wordProgress?.mastery === 'learning') ? 'written' : 'multiple-choice';
+      const type = (wordProgress?.mastery === 'learning' || wordProgress?.mastery === 'mastered') 
+        ? 'written' 
+        : 'multiple-choice';
       
       let options: string[] | undefined;
       if (type === 'multiple-choice') {
@@ -227,14 +375,37 @@ export default function App() {
     setView('learn');
   };
 
+  const calculateNextReview = (isCorrect: boolean, currentInterval: number): { interval: number, nextReview: number } => {
+    const now = Date.now();
+    const dayInMs = 24 * 60 * 60 * 1000;
+    
+    if (!isCorrect) {
+      return { interval: 0, nextReview: now }; // Review immediately
+    }
+    
+    // Simple Leitner-style progression: 0 -> 1 -> 3 -> 7 -> 14 -> 30 -> 60 -> 90
+    const intervals = [0, 1, 3, 7, 14, 30, 60, 90, 180];
+    const currentIndex = intervals.indexOf(currentInterval);
+    const nextIndex = Math.min(currentIndex + 1, intervals.length - 1);
+    const nextInterval = intervals[nextIndex];
+    
+    return {
+      interval: nextInterval,
+      nextReview: now + (nextInterval * dayInMs)
+    };
+  };
+
   const updateWordProgress = (wordId: string, isCorrect: boolean) => {
     setProgress(prev => {
       const existingIndex = prev.findIndex(p => p.wordId === wordId);
       const newProgress = [...prev];
       const now = Date.now();
+      let updatedEntry: UserProgress;
 
       if (existingIndex >= 0) {
         const p = { ...newProgress[existingIndex] };
+        const srs = calculateNextReview(isCorrect, p.interval);
+        
         if (isCorrect) {
           p.correctCount += 1;
           if (p.mastery === 'new') p.mastery = 'learning';
@@ -242,17 +413,30 @@ export default function App() {
           p.incorrectCount += 1;
           p.mastery = 'new';
         }
+        
+        p.interval = srs.interval;
+        p.nextReview = srs.nextReview;
         p.lastStudied = now;
         newProgress[existingIndex] = p;
+        updatedEntry = p;
       } else {
-        newProgress.push({
+        const srs = calculateNextReview(isCorrect, 0);
+        updatedEntry = {
           wordId,
           mastery: isCorrect ? 'learning' : 'new',
           correctCount: isCorrect ? 1 : 0,
           incorrectCount: isCorrect ? 0 : 1,
-          lastStudied: now
-        });
+          lastStudied: now,
+          interval: srs.interval,
+          nextReview: srs.nextReview
+        };
+        newProgress.push(updatedEntry);
       }
+      
+      if (user) {
+        updateFirestoreWordProgress(updatedEntry);
+      }
+      
       return newProgress;
     });
   };
@@ -277,9 +461,12 @@ export default function App() {
     setProgress(prev => {
       const existingIndex = prev.findIndex(p => p.wordId === currentQuestion.word.id);
       const newProgress = [...prev];
+      let updatedEntry: UserProgress;
 
       if (existingIndex >= 0) {
         const p = { ...newProgress[existingIndex] };
+        const srs = calculateNextReview(isCorrect, p.interval);
+        
         if (isCorrect) {
           p.correctCount += 1;
           if (currentQuestion.type === 'written') p.mastery = 'mastered';
@@ -288,17 +475,30 @@ export default function App() {
           p.incorrectCount += 1;
           p.mastery = 'new'; // Reset on error
         }
+        
+        p.interval = srs.interval;
+        p.nextReview = srs.nextReview;
         p.lastStudied = Date.now();
         newProgress[existingIndex] = p;
+        updatedEntry = p;
       } else {
-        newProgress.push({
+        const srs = calculateNextReview(isCorrect, 0);
+        updatedEntry = {
           wordId: currentQuestion.word.id,
           mastery: isCorrect ? (currentQuestion.type === 'written' ? 'mastered' : 'learning') : 'new',
           correctCount: isCorrect ? 1 : 0,
           incorrectCount: isCorrect ? 0 : 1,
-          lastStudied: Date.now()
-        });
+          lastStudied: Date.now(),
+          interval: srs.interval,
+          nextReview: srs.nextReview
+        };
+        newProgress.push(updatedEntry);
       }
+
+      if (user) {
+        updateFirestoreWordProgress(updatedEntry);
+      }
+
       return newProgress;
     });
 
@@ -311,8 +511,16 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans selection:bg-primary/10">
-      <Navbar onNavigate={(view) => setView(view)} language={language} />
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/10 transition-colors duration-300">
+      <Navbar 
+        onNavigate={(view) => setView(view)} 
+        language={language} 
+        user={user}
+        onSignIn={handleSignIn}
+        onSignOut={handleSignOut}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+      />
 
       <AnimatePresence>
         {showWipPopup && (
@@ -321,19 +529,19 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="bg-white rounded-[2.5rem] p-10 max-w-lg w-full shadow-2xl border border-slate-100 text-center relative overflow-hidden"
+              className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 max-w-lg w-full shadow-2xl border border-slate-100 dark:border-slate-800 text-center relative overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400" />
-              <div className="w-20 h-20 bg-yellow-50 text-yellow-600 rounded-3xl flex items-center justify-center mx-auto mb-8">
+              <div className="w-20 h-20 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400 rounded-3xl flex items-center justify-center mx-auto mb-8">
                 <span className="text-4xl font-black">!</span>
               </div>
-              <h2 className="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">Work in Progress</h2>
-              <p className="text-slate-600 mb-8 font-medium leading-relaxed">
-                Modern Hebrew support is currently in early beta. You might encounter bugs or incomplete vocabulary lists. We're working hard to polish this experience!
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight">Work in Progress</h2>
+              <p className="text-slate-600 dark:text-slate-400 mb-8 font-medium leading-relaxed">
+                {language === 'modern' ? 'Modern Hebrew' : 'Spanish'} support is currently in early beta. You might encounter bugs or incomplete vocabulary lists. We're working hard to polish this experience!
               </p>
               <button
                 onClick={() => setShowWipPopup(false)}
-                className="w-full py-4 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all shadow-xl active:scale-95"
+                className="w-full py-4 bg-slate-900 dark:bg-slate-700 text-white font-bold rounded-2xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-xl active:scale-95"
               >
                 I Understand
               </button>
@@ -347,26 +555,26 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 max-w-lg w-full overflow-hidden"
+              className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-slate-800 max-w-lg w-full overflow-hidden"
             >
               <div className="p-8 md:p-10">
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-indigo-50 rounded-2xl flex items-center justify-center text-indigo-600">
+                    <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl flex items-center justify-center text-indigo-600 dark:text-indigo-400">
                       {viewingArchive ? <History className="w-6 h-6" /> : <Sparkles className="w-6 h-6" />}
                     </div>
                     <div>
-                      <h2 className="text-2xl font-extrabold text-slate-900">
+                      <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
                         {viewingArchive ? "Update Archives" : "What's New"}
                       </h2>
-                      <p className="text-xs font-bold text-indigo-600 uppercase tracking-widest">
+                      <p className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
                         {viewingArchive ? "Previous Updates" : `Version ${CURRENT_VERSION}`}
                       </p>
                     </div>
                   </div>
                   <button 
                     onClick={handleCloseChangelog}
-                    className="p-2 hover:bg-slate-50 rounded-xl text-slate-400 transition-colors"
+                    className="p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl text-slate-400 transition-colors"
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -379,8 +587,8 @@ export default function App() {
                         <CheckCircle2 className="w-5 h-5 text-green-500" />
                       </div>
                       <div>
-                        <h3 className="font-bold text-slate-900 text-sm">{item.title}</h3>
-                        <p className="text-slate-500 text-sm leading-relaxed">{item.description}</p>
+                        <h3 className="font-bold text-slate-900 dark:text-white text-sm">{item.title}</h3>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{item.description}</p>
                       </div>
                     </div>
                   ))}
@@ -389,7 +597,7 @@ export default function App() {
                 <div className="space-y-4">
                   <button
                     onClick={handleCloseChangelog}
-                    className="w-full py-5 bg-slate-900 text-white font-bold rounded-2xl hover:bg-slate-800 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"
+                    className="w-full py-5 bg-slate-900 dark:bg-slate-700 text-white font-bold rounded-2xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"
                   >
                     Got it, let's study!
                     <ArrowRight className="w-5 h-5" />
@@ -397,7 +605,7 @@ export default function App() {
                   
                   <button
                     onClick={() => setViewingArchive(!viewingArchive)}
-                    className="w-full py-3 text-slate-400 font-bold hover:text-slate-600 transition-colors text-xs flex items-center justify-center gap-2 uppercase tracking-widest"
+                    className="w-full py-3 text-slate-400 dark:text-slate-500 font-bold hover:text-slate-600 dark:hover:text-slate-300 transition-colors text-xs flex items-center justify-center gap-2 uppercase tracking-widest"
                   >
                     {viewingArchive ? (
                       <>← Back to What's New</>
@@ -430,6 +638,9 @@ export default function App() {
                 onStartFlashcards={() => setView('flashcards')}
                 language={language}
                 onLanguageChange={handleLanguageChange}
+                user={user}
+                onSignIn={handleSignIn}
+                devMode={devMode}
               />
               <HowItWorks />
             </motion.div>
@@ -451,6 +662,8 @@ export default function App() {
                   setProgress([]);
                   safeLocalStorage.removeItem(`bh-flashcard-session-${language}`);
                 }}
+                user={user}
+                language={language}
               />
               <div className="text-center pb-20">
                 <button 
@@ -527,6 +740,7 @@ export default function App() {
               <LearnCard
                 question={sessionQuestions[currentQuestionIndex]}
                 onAnswer={handleAnswer}
+                language={language}
               />
             </motion.div>
           )}
@@ -550,14 +764,14 @@ export default function App() {
         </AnimatePresence>
       </main>
 
-      <footer className="py-12 border-t border-slate-100 bg-white/50 backdrop-blur-sm">
+      <footer className="py-12 border-t border-slate-100 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 text-center space-y-6">
           <div className="flex flex-col items-center gap-4">
             <a 
               href="https://forms.gle/NjUpvWAZCjTF4aPB6" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl transition-all active:scale-95 text-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm"
             >
               <Sparkles className="w-4 h-4 text-primary" />
               Request a Feature
@@ -565,13 +779,19 @@ export default function App() {
           </div>
           
           <div className="flex flex-col items-center gap-2">
-            <p className="text-slate-400 text-sm font-medium tracking-wide">
-              Created by <span className="text-slate-900 font-bold">Aryeh Isaac-Saul</span>
+            <p className="text-slate-400 dark:text-slate-500 text-sm font-medium tracking-wide">
+              Created by <span className="text-slate-900 dark:text-white font-bold">Aryeh Isaac-Saul</span>
             </p>
             
             <div className="flex items-center justify-center gap-3 mt-2">
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-slate-100 rounded-full border border-slate-200">
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">v{CURRENT_VERSION}</span>
+              <button 
+                onClick={toggleDevMode}
+                className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border transition-colors ${devMode ? 'bg-indigo-100 text-indigo-600 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-400 dark:border-indigo-800' : 'bg-slate-100 text-slate-500 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'}`}
+              >
+                Dev Mode: {devMode ? 'ON' : 'OFF'}
+              </button>
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
+                <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">v{CURRENT_VERSION}</span>
               </div>
               
               {isLatestVersion === true && (

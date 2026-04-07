@@ -6,9 +6,10 @@ import { Check, X, ArrowRight } from 'lucide-react';
 interface LearnCardProps {
   question: Question;
   onAnswer: (isCorrect: boolean) => void;
+  language?: 'biblical' | 'modern' | 'spanish';
 }
 
-export function LearnCard({ question, onAnswer }: LearnCardProps) {
+export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCardProps) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [writtenAnswer, setWrittenAnswer] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -75,20 +76,20 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
-          className="bg-white rounded-[2.5rem] shadow-soft border border-slate-100 p-8 md:p-16"
+          className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 p-8 md:p-16"
         >
           <div className="mb-12 text-center">
             <span className="text-xs font-bold text-primary uppercase tracking-widest mb-4 block">
               {question.type === 'multiple-choice' ? 'Choose the correct meaning' : 'Type the meaning'}
             </span>
-            <h2 className="text-7xl font-bold text-slate-900 mb-6" dir="rtl">
+            <h2 className="text-7xl font-bold text-slate-900 dark:text-white mb-6" dir={language === 'spanish' ? 'ltr' : 'rtl'}>
               {question.word.hebrew}
             </h2>
             {isSubmitted && question.word.transliteration && (
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-slate-400 font-medium text-lg italic"
+                className="text-slate-400 dark:text-slate-500 font-medium text-lg italic"
               >
                 {question.word.transliteration}
               </motion.p>
@@ -104,11 +105,13 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
 
                   let buttonClass = "w-full p-6 text-left rounded-2xl border-2 transition-all duration-200 flex justify-between items-center ";
                   if (!isSubmitted) {
-                    buttonClass += isThisSelected ? "border-primary bg-primary/5 text-primary" : "border-slate-100 hover:border-primary/20 hover:bg-slate-50";
+                    buttonClass += isThisSelected 
+                      ? "border-primary bg-primary/5 text-primary" 
+                      : "border-slate-100 dark:border-slate-800 hover:border-primary/20 hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-900 dark:text-white";
                   } else {
-                    if (isThisCorrect) buttonClass += "border-green-500 bg-green-50 text-green-700";
-                    else if (isThisSelected) buttonClass += "border-red-500 bg-red-50 text-red-700";
-                    else buttonClass += "border-slate-50 opacity-50";
+                    if (isThisCorrect) buttonClass += "border-green-500 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400";
+                    else if (isThisSelected) buttonClass += "border-red-500 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400";
+                    else buttonClass += "border-slate-50 dark:border-slate-800 opacity-50 text-slate-900 dark:text-white";
                   }
 
                   return (
@@ -119,8 +122,8 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
                       className={buttonClass}
                     >
                       <span className="font-bold text-lg">{option}</span>
-                      {isSubmitted && isThisCorrect && <Check className="w-6 h-6 text-green-600" />}
-                      {isSubmitted && isThisSelected && !isThisCorrect && <X className="w-6 h-6 text-red-600" />}
+                      {isSubmitted && isThisCorrect && <Check className="w-6 h-6 text-green-600 dark:text-green-400" />}
+                      {isSubmitted && isThisSelected && !isThisCorrect && <X className="w-6 h-6 text-red-600 dark:text-red-400" />}
                     </button>
                   );
                 })}
@@ -137,16 +140,16 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
                   className={`w-full p-6 text-xl font-bold rounded-2xl border-2 outline-none transition-all ${
                     isSubmitted
                       ? isCorrect
-                        ? "border-green-500 bg-green-50 text-green-700"
-                        : "border-red-500 bg-red-50 text-red-700"
-                      : "border-slate-100 focus:border-primary focus:ring-8 focus:ring-primary/5"
+                        ? "border-green-500 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-400"
+                        : "border-red-500 bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400"
+                      : "border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:border-primary focus:ring-8 focus:ring-primary/5"
                   }`}
                   autoFocus
                 />
                 {isSubmitted && !isCorrect && (
-                  <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
+                  <div className="p-6 bg-primary/5 dark:bg-primary/10 rounded-2xl border border-primary/10">
                     <p className="text-xs text-primary font-bold uppercase mb-2 tracking-widest">Correct Answer:</p>
-                    <p className="text-xl font-bold text-slate-900">{question.correctAnswer}</p>
+                    <p className="text-xl font-bold text-slate-900 dark:text-white">{question.correctAnswer}</p>
                   </div>
                 )}
               </div>
@@ -158,14 +161,14 @@ export function LearnCard({ question, onAnswer }: LearnCardProps) {
               <button
                 onClick={() => (question.type === 'multiple-choice' ? selectedOption && handleSubmit(selectedOption) : writtenAnswer && handleSubmit(writtenAnswer))}
                 disabled={question.type === 'multiple-choice' ? !selectedOption : !writtenAnswer}
-                className="px-10 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-black disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20"
+                className="px-10 py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl font-bold hover:bg-black dark:hover:bg-slate-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 dark:shadow-none"
               >
                 Submit Answer
               </button>
             ) : (
               <button
                 onClick={handleNext}
-                className="px-10 py-4 bg-slate-900 text-white rounded-2xl font-bold hover:bg-slate-800 flex items-center gap-2 transition-all shadow-lg shadow-slate-900/20"
+                className="px-10 py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl font-bold hover:bg-slate-800 dark:hover:bg-slate-600 flex items-center gap-2 transition-all shadow-lg shadow-slate-900/20 dark:shadow-none"
               >
                 Continue <ArrowRight className="w-5 h-5" />
               </button>

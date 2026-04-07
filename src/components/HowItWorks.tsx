@@ -21,11 +21,11 @@ export function HowItWorks() {
   ];
 
   return (
-    <section className="py-24 bg-slate-50 border-y border-slate-100">
+    <section className="py-24 bg-slate-50 dark:bg-slate-950 border-y border-slate-100 dark:border-slate-900 transition-colors duration-300">
       <div className="max-w-[1100px] mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-extrabold text-slate-900 mb-4 tracking-tight">How It Works</h2>
-          <p className="text-slate-500 max-w-xl mx-auto font-medium">
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight">How It Works</h2>
+          <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto font-medium">
             Designed for students who want to excel in their Hebrew exams. 
             Simple, fast, and effective.
           </p>
@@ -41,11 +41,11 @@ export function HowItWorks() {
               transition={{ delay: idx * 0.1 }}
               className="text-center group"
             >
-              <div className="w-16 h-16 bg-white rounded-3xl shadow-soft flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 bg-white dark:bg-slate-900 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 {step.icon}
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">{step.title}</h3>
-              <p className="text-slate-500 leading-relaxed font-medium">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{step.title}</h3>
+              <p className="text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
                 {step.description}
               </p>
             </motion.div>

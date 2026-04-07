@@ -1,0 +1,38 @@
+{
+  "entities": {
+    "UserProgress": {
+      "title": "UserProgress",
+      "description": "Tracks a user's mastery of a specific word.",
+      "type": "object",
+      "properties": {
+        "wordId": { "type": "string", "description": "The ID of the word." },
+        "mastery": { "type": "string", "enum": ["new", "learning", "mastered"], "description": "The current mastery level." },
+        "correctCount": { "type": "integer", "description": "Number of times the word was answered correctly." },
+        "incorrectCount": { "type": "integer", "description": "Number of times the word was answered incorrectly." },
+        "lastStudied": { "type": "integer", "description": "Timestamp of the last study session." },
+        "interval": { "type": "integer", "description": "The current review interval in days." },
+        "nextReview": { "type": "integer", "description": "Timestamp of the next scheduled review." }
+      },
+      "required": ["wordId", "mastery", "correctCount", "incorrectCount", "lastStudied", "interval", "nextReview"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Stores user preferences and metadata.",
+      "type": "object",
+      "properties": {
+        "language": { "type": "string", "enum": ["biblical", "modern"], "description": "The preferred language." },
+        "lastActive": { "type": "integer", "description": "Timestamp of the last activity." }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile and settings."
+    },
+    "/users/{userId}/progress/{wordId}": {
+      "schema": "UserProgress",
+      "description": "User's progress for a specific word."
+    }
+  }
+}

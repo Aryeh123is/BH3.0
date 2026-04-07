@@ -7,8 +7,17 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 body {
-  @apply antialiased;
+  @apply antialiased bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-500;
+}
+
+/* Smooth theme transition for main UI elements */
+body, nav, div, section, footer, button, h1, h2, h3, h4, p, span, input, table, tr, td, th {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
 }
 
 @utility perspective-1000 {
