@@ -168,7 +168,7 @@ export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCa
             ) : (
               <button
                 onClick={handleNext}
-                className="px-10 py-4 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl font-bold hover:bg-slate-800 dark:hover:bg-slate-600 flex items-center gap-2 transition-all shadow-lg shadow-slate-900/20 dark:shadow-none"
+                className="px-10 py-4 bg-primary text-white rounded-2xl font-bold hover:bg-primary-hover flex items-center gap-2 transition-all shadow-lg shadow-primary/20"
               >
                 Continue <ArrowRight className="w-5 h-5" />
               </button>

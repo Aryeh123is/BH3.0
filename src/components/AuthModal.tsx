@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { X, Mail, Lock, AlertCircle, Chrome } from 'lucide-react';
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from '../firebase';
+import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut } from '../firebase';
 
 interface AuthModalProps {
   onClose: () => void;
@@ -14,6 +14,7 @@ export function AuthModal({ onClose, onGoogleSignIn }: AuthModalProps) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [verificationSent, setVerificationSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,11 +23,20 @@ export function AuthModal({ onClose, onGoogleSignIn }: AuthModalProps) {
 
     try {
       if (isLogin) {
-        await signInWithEmailAndPassword(auth, email, password);
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        if (!userCredential.user.emailVerified) {
+          await signOut(auth);
+          setError('Please verify your email before signing in. Check your inbox for the verification link!');
+          setLoading(false);
+          return;
+        }
+        onClose();
       } else {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        await sendEmailVerification(userCredential.user);
+        await signOut(auth); // Sign them out so they have to verify first
+        setVerificationSent(true);
       }
-      onClose();
     } catch (err: any) {
       console.error("Auth error:", err);
       // Make error messages more user friendly
@@ -45,6 +55,33 @@ export function AuthModal({ onClose, onGoogleSignIn }: AuthModalProps) {
       setLoading(false);
     }
   };
+
+  if (verificationSent) {
+    return (
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          className="bg-white dark:bg-slate-900 rounded-2xl p-6 md:p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden text-center"
+        >
+          <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Mail className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Check your email</h2>
+          <p className="text-slate-500 dark:text-slate-400 mb-6">
+            We've sent a verification link to <strong>{email}</strong>. Please click the link to activate your account before signing in.
+          </p>
+          <button
+            onClick={onClose}
+            className="w-full py-2.5 px-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-colors"
+          >
+            Got it
+          </button>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">

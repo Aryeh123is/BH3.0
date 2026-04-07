@@ -8,6 +8,7 @@ import { LearnCard } from './components/LearnCard';
 import { FlashcardMode } from './components/FlashcardMode';
 import { ProgressBar } from './components/ProgressBar';
 import { SessionSummary } from './components/SessionSummary';
+import { TestMode } from './components/TestMode';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
@@ -21,13 +22,17 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.5.4';
+const CURRENT_VERSION = '1.6.0';
 
 const LATEST_CHANGES = [
-  { title: 'Email & Password Sign In', description: 'Added the ability to create an account and sign in using an email and password, bypassing the need for Google Sign-In entirely.' },
+  { title: 'New Test Mode', description: 'Test your knowledge with customizable tests! Choose question counts and types including Matching, Written, and True/False.' },
+  { title: 'Full Spanish Vocabulary Implementation', description: 'Successfully implemented all 1243+ Spanish keywords into the system.' },
 ];
 
 const ARCHIVED_CHANGES = [
+  { title: 'Spanish Vocabulary Update', description: 'Implemented a massive update to the Spanish vocabulary list with over 1200 new words and phrases.' },
+  { title: 'Spanish Vocabulary Reset', description: 'Removed all existing Spanish keywords to prepare for a new, updated vocabulary list.' },
+  { title: 'Email & Password Sign In', description: 'Added the ability to create an account and sign in using an email and password, bypassing the need for Google Sign-In entirely.' },
   { title: 'Sign-In Preview Fix', description: 'Added detection for when the app is running in a preview window on Apple devices, prompting users to open the app in a new tab to complete sign-in.' },
   { title: 'Update Indicator Fix', description: 'Fixed an issue where the version indicator in the footer would incorrectly show that an update was needed.' },
   { title: 'iPad Sign-In Fix', description: 'Resolved an issue where Apple devices (iPad/iPhone/Safari) would block the sign-in popup. The app now automatically falls back to a redirect sign-in method.' },
@@ -56,14 +61,14 @@ export default function App() {
   const [language, setLanguage] = useState<'biblical' | 'modern' | 'spanish'>(() => {
     const saved = safeLocalStorage.getItem('bh-language');
     const parsed = (saved as 'biblical' | 'modern' | 'spanish') || 'biblical';
-    if (safeLocalStorage.getItem('bh-dev-mode') !== 'true' && (parsed === 'modern' || parsed === 'spanish')) {
+    if (safeLocalStorage.getItem('bh-dev-mode') !== 'true' && parsed === 'modern') {
       return 'biblical';
     }
     return parsed;
   });
 
   useEffect(() => {
-    if (!devMode && (language === 'modern' || language === 'spanish')) {
+    if (!devMode && language === 'modern') {
       setLanguage('biblical');
     }
   }, [devMode, language]);
@@ -77,7 +82,7 @@ export default function App() {
   const PROGRESS_KEY = `bh-keywords-progress-${language}`;
   const SESSION_STATE_KEY = `bh-session-state-${language}`;
 
-  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard'>(() => {
+  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard' | 'test'>(() => {
     const saved = safeLocalStorage.getItem(SESSION_STATE_KEY);
     if (saved) {
       try {
@@ -233,10 +238,12 @@ export default function App() {
   }, []);
 
   const handleLanguageChange = (newLang: 'biblical' | 'modern' | 'spanish') => {
-    setLanguage(newLang);
-    if (newLang === 'modern' || newLang === 'spanish') {
+    if (newLang === 'modern' && !devMode) {
       setShowWipPopup(true);
+      return;
     }
+    
+    setLanguage(newLang);
   };
 
   useEffect(() => {
@@ -676,6 +683,7 @@ export default function App() {
                 onStartSession={startSession} 
                 onViewDashboard={() => setView('dashboard')} 
                 onStartFlashcards={() => setView('flashcards')}
+                onStartTest={() => setView('test')}
                 language={language}
                 onLanguageChange={handleLanguageChange}
                 user={user}
@@ -698,6 +706,7 @@ export default function App() {
                 progress={progress}
                 onStartSession={startSession}
                 onStartFlashcards={() => setView('flashcards')}
+                onStartTest={() => setView('test')}
                 onResetProgress={() => {
                   setProgress([]);
                   safeLocalStorage.removeItem(`bh-flashcard-session-${language}`);
@@ -728,6 +737,21 @@ export default function App() {
                 onExit={() => setView('home')}
                 onSwitchToLearn={startSession}
                 onWordProgress={updateWordProgress}
+                language={language}
+              />
+            </motion.div>
+          )}
+
+          {view === 'test' && (
+            <motion.div
+              key={`test-${language}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <TestMode
+                vocabulary={activeVocabulary}
+                onExit={() => setView('home')}
                 language={language}
               />
             </motion.div>

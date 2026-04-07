@@ -19,7 +19,7 @@ export interface UserProgress {
   nextReview: number; // timestamp
 }
 
-export type QuestionType = 'multiple-choice' | 'written';
+export type QuestionType = 'multiple-choice' | 'written' | 'matching' | 'true-false';
 
 export interface Question {
   word: Word;

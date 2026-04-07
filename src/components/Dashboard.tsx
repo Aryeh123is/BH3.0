@@ -10,12 +10,13 @@ interface DashboardProps {
   progress: UserProgress[];
   onStartSession: () => void;
   onStartFlashcards: () => void;
+  onStartTest: () => void;
   onResetProgress: () => void;
   user: User | null;
   language?: 'biblical' | 'modern' | 'spanish';
 }
 
-export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashcards, onResetProgress, user, language = 'biblical' }: DashboardProps) {
+export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashcards, onStartTest, onResetProgress, user, language = 'biblical' }: DashboardProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
@@ -128,45 +129,66 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-        <div className="bg-slate-900 dark:bg-slate-900 rounded-[2rem] p-10 text-white shadow-2xl relative overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 shadow-soft border border-slate-100 dark:border-slate-800 relative overflow-hidden group">
           <div className="relative z-10">
-            <div className="max-w-md">
-              <h2 className="text-3xl font-extrabold mb-4">Mastery Overview</h2>
-              <p className="text-slate-400 mb-8 font-medium">
-                You've mastered {Math.round((masteredCount / totalCount) * 100)}% of the vocabulary. 
-                Keep going to reach 100%!
-              </p>
-              <div className="mb-10">
-                <div className="flex justify-between text-sm font-bold mb-3">
-                  <span className="text-slate-400 uppercase tracking-widest">Progress</span>
-                  <span>{Math.round((masteredCount / totalCount) * 100)}%</span>
-                </div>
-                <ProgressBar current={masteredCount} total={totalCount} color="bg-primary" />
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-10">
+              <div>
+                <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">Mastery Overview</h2>
+                <p className="text-slate-500 dark:text-slate-400 font-medium">
+                  You've mastered {Math.round((masteredCount / totalCount) * 100)}% of the vocabulary. 
+                  Keep going to reach 100%!
+                </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={onStartSession}
-                  className="px-8 py-4 bg-primary text-white rounded-2xl font-bold hover:bg-primary-hover transition-all flex items-center justify-center gap-2 shadow-lg shadow-primary/20"
-                >
-                  <Play className="w-5 h-5 fill-current" /> Continue Learning
-                </button>
-                <button
-                  onClick={onStartFlashcards}
-                  className="px-8 py-4 bg-white/10 text-white border border-white/20 rounded-2xl font-bold hover:bg-white/20 transition-all flex items-center justify-center gap-2"
-                >
-                  <RotateCw className="w-5 h-5" /> Flashcards
-                </button>
+              <div className="flex flex-col items-center justify-center p-6 bg-primary/5 dark:bg-primary/10 rounded-[2rem] min-w-[140px]">
+                <div className="text-4xl font-black text-primary">{Math.round((masteredCount / totalCount) * 100)}%</div>
+                <div className="text-[10px] font-black text-primary/60 uppercase tracking-widest mt-1">Overall</div>
               </div>
             </div>
+
+            <div className="mb-12">
+              <div className="flex justify-between text-xs font-black text-slate-400 uppercase tracking-widest mb-4">
+                <span>Learning Progress</span>
+                <span>{masteredCount} / {totalCount} Words</span>
+              </div>
+              <div className="h-4 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-1 shadow-inner">
+                <div 
+                  className="h-full bg-gradient-to-r from-primary to-indigo-500 rounded-full transition-all duration-1000 ease-out shadow-lg shadow-primary/20"
+                  style={{ width: `${(masteredCount / totalCount) * 100}%` }}
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <button
+                onClick={onStartSession}
+                className="px-6 py-5 bg-primary text-white rounded-2xl font-black hover:bg-primary-hover transition-all flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:-translate-y-1 active:scale-95"
+              >
+                <Play className="w-5 h-5 fill-current" /> Learn
+              </button>
+              <button
+                onClick={onStartFlashcards}
+                className="px-6 py-5 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-100 dark:border-slate-700 rounded-2xl font-black hover:bg-slate-100 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95"
+              >
+                <RotateCw className="w-5 h-5" /> Flashcards
+              </button>
+              <button
+                onClick={onStartTest}
+                className="px-6 py-5 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/30 rounded-2xl font-black hover:bg-indigo-100 dark:hover:bg-indigo-900/40 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95"
+              >
+                <Trophy className="w-5 h-5" /> Test Mode
+              </button>
+            </div>
           </div>
-          <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/20 rounded-full blur-[100px]" />
+          <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none group-hover:bg-primary/10 transition-colors duration-700" />
         </div>
 
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-[2rem] shadow-soft border border-slate-100 dark:border-slate-800 flex flex-col">
-          <h3 className="text-xl font-extrabold text-slate-900 dark:text-white mb-2">Weekly Activity</h3>
-          <p className="text-slate-400 dark:text-slate-500 text-sm font-medium mb-4">Your learning consistency over the last 7 days.</p>
-          <div className="flex-1 min-h-[400px]">
+        <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 flex flex-col">
+          <div className="mb-6">
+            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-1">Weekly Activity</h3>
+            <p className="text-slate-400 dark:text-slate-500 text-xs font-medium">Your learning consistency.</p>
+          </div>
+          <div className="flex-1 min-h-[300px]">
             <ProgressChart progress={progress} />
           </div>
         </div>

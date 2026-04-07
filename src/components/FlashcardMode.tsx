@@ -113,9 +113,9 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   const saveToHistory = useCallback(() => {
     setHistory(prev => {
       const next = [...prev, { ...sessionState }];
-      // Limit history to 10 entries to prevent localStorage quota issues
-      if (next.length > 10) {
-        return next.slice(next.length - 10);
+      // Limit history to 5 entries to save memory
+      if (next.length > 5) {
+        return next.slice(next.length - 5);
       }
       return next;
     });
@@ -314,7 +314,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col relative overflow-hidden transition-colors duration-300">
       {/* WIP Indicator */}
-      {(language === 'modern' || language === 'spanish') && (
+      {(language === 'modern') && (
         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
           <div className="px-4 py-1.5 bg-yellow-400 text-slate-900 text-[10px] font-black rounded-full uppercase tracking-[0.2em] shadow-lg border-2 border-white flex items-center gap-2">
             <span className="animate-pulse">⚠️</span>

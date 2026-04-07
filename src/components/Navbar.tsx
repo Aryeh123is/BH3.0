@@ -3,7 +3,7 @@ import { LogIn, LogOut, User as UserIcon, Moon, Sun } from 'lucide-react';
 import { User } from 'firebase/auth';
 
 interface NavbarProps {
-  onNavigate: (view: 'home' | 'dashboard') => void;
+  onNavigate: (view: 'home' | 'dashboard' | 'test') => void;
   language: 'biblical' | 'modern' | 'spanish';
   user: User | null;
   onSignIn: () => void;
@@ -48,6 +48,13 @@ export function Navbar({ onNavigate, language, user, onSignIn, onSignOut, theme,
             className="hidden md:block text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
           >
             Home
+          </button>
+
+          <button 
+            onClick={() => onNavigate('test')}
+            className="hidden md:block text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
+          >
+            Test Mode
           </button>
           
           {user ? (
