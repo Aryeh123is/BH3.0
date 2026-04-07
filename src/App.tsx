@@ -11,6 +11,7 @@ import { SessionSummary } from './components/SessionSummary';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
+import { AuthModal } from './components/AuthModal';
 import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { safeLocalStorage } from './lib/storage';
@@ -20,13 +21,14 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.5.3';
+const CURRENT_VERSION = '1.5.4';
 
 const LATEST_CHANGES = [
-  { title: 'Sign-In Preview Fix', description: 'Added detection for when the app is running in a preview window on Apple devices, prompting users to open the app in a new tab to complete sign-in.' },
+  { title: 'Email & Password Sign In', description: 'Added the ability to create an account and sign in using an email and password, bypassing the need for Google Sign-In entirely.' },
 ];
 
 const ARCHIVED_CHANGES = [
+  { title: 'Sign-In Preview Fix', description: 'Added detection for when the app is running in a preview window on Apple devices, prompting users to open the app in a new tab to complete sign-in.' },
   { title: 'Update Indicator Fix', description: 'Fixed an issue where the version indicator in the footer would incorrectly show that an update was needed.' },
   { title: 'iPad Sign-In Fix', description: 'Resolved an issue where Apple devices (iPad/iPhone/Safari) would block the sign-in popup. The app now automatically falls back to a redirect sign-in method.' },
   { title: 'Developer Mode', description: 'Added a toggle in the footer to easily switch Developer Mode on and off, hiding work-in-progress languages from public view.' },
@@ -126,6 +128,7 @@ export default function App() {
   const [isLatestVersion, setIsLatestVersion] = useState<boolean | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [isAuthReady, setIsAuthReady] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const saved = safeLocalStorage.getItem(THEME_KEY);
     return (saved as 'light' | 'dark') || 'light';
@@ -159,7 +162,7 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  const handleSignIn = async () => {
+  const handleGoogleSignIn = async () => {
     try {
       // First try popup, which is preferred in this environment
       await signInWithPopup(auth, googleProvider);
@@ -181,7 +184,7 @@ export default function App() {
         
         // Check if we are running inside an iframe (like the AI Studio preview)
         if (window !== window.top) {
-          alert("Apple devices block sign-in inside previews. Please click the 'Open in New Tab' button (the square with an arrow at the top right of the preview) to sign in!");
+          alert("Apple devices block Google sign-in inside previews. Please click the 'Open in New Tab' button (the square with an arrow at the top right of the preview) to sign in with Google, or use Email/Password instead!");
           return;
         }
 
@@ -197,6 +200,10 @@ export default function App() {
       console.error("Sign in failed:", error);
       alert("Sign in failed. Please try again.");
     }
+  };
+
+  const handleSignIn = () => {
+    setShowAuthModal(true);
   };
 
   const handleSignOut = async () => {
@@ -550,6 +557,12 @@ export default function App() {
       />
 
       <AnimatePresence>
+        {showAuthModal && (
+          <AuthModal 
+            onClose={() => setShowAuthModal(false)} 
+            onGoogleSignIn={handleGoogleSignIn} 
+          />
+        )}
         {showWipPopup && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/60 backdrop-blur-sm">
             <motion.div
