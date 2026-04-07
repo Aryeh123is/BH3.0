@@ -14,21 +14,23 @@ import { HowItWorks } from './components/HowItWorks';
 import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { safeLocalStorage } from './lib/storage';
-import { auth, db, googleProvider, signInWithPopup, signOut, doc, setDoc, getDoc, collection, onSnapshot, writeBatch } from './firebase';
+import { auth, db, googleProvider, signInWithPopup, signInWithRedirect, signOut, doc, setDoc, getDoc, collection, onSnapshot, writeBatch } from './firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.5.0';
+const CURRENT_VERSION = '1.5.1';
 
 const LATEST_CHANGES = [
-  { title: 'Flashcard Session Fix', description: 'Permanently resolved the issue where the session would incorrectly revert to an earlier card (e.g., the 25th or 50th card) after batch transitions.' },
-  { title: 'Version Indicator', description: 'Added a version indicator to the flashcard study mode for easier troubleshooting.' },
-  { title: 'Stability Improvements', description: 'Refactored state management in Flashcard mode to ensure progress tracking remains accurate throughout the entire deck.' },
+  { title: 'iPad Sign-In Fix', description: 'Resolved an issue where Apple devices (iPad/iPhone/Safari) would block the sign-in popup. The app now automatically falls back to a redirect sign-in method.' },
+  { title: 'Developer Mode', description: 'Added a toggle in the footer to easily switch Developer Mode on and off, hiding work-in-progress languages from public view.' },
 ];
 
 const ARCHIVED_CHANGES = [
+  { title: 'Flashcard Session Fix', description: 'Permanently resolved the issue where the session would incorrectly revert to an earlier card (e.g., the 25th or 50th card) after batch transitions.' },
+  { title: 'Version Indicator', description: 'Added a version indicator to the flashcard study mode for easier troubleshooting.' },
+  { title: 'Stability Improvements', description: 'Refactored state management in Flashcard mode to ensure progress tracking remains accurate throughout the entire deck.' },
   { title: 'Keyboard Improvements', description: 'Keyboard shortcuts now reliably prevent page scrolling for a smoother study session.' },
   { title: 'Request a Feature', description: 'Have an idea for the app? You can now submit feature requests directly via the new button in the footer.' },
   { title: 'Keyboard Shortcut Toggle', description: 'Study with total control. Disable keyboard shortcuts if they interfere with your experience.' },
@@ -157,6 +159,7 @@ export default function App() {
 
   const handleSignIn = async () => {
     try {
+      // First try popup, which is preferred in this environment
       await signInWithPopup(auth, googleProvider);
     } catch (error: any) {
       // Don't log expected user actions as errors
@@ -164,11 +167,26 @@ export default function App() {
         console.log("Sign in cancelled by user.");
         return;
       }
-      if (error.code === 'auth/popup-blocked') {
-        console.warn("The sign-in popup was blocked by your browser. Please allow popups for this site to sign in.");
+      
+      // If popup is blocked or fails due to cross-origin/third-party cookie issues (common on iPad/Safari)
+      if (
+        error.code === 'auth/popup-blocked' || 
+        error.code === 'auth/web-storage-unsupported' ||
+        error.message?.toLowerCase().includes('cross-origin') ||
+        /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) // Fallback for Apple devices if popup fails
+      ) {
+        console.warn("Popup sign-in failed or blocked. Falling back to redirect sign-in...", error);
+        try {
+          await signInWithRedirect(auth, googleProvider);
+        } catch (redirectError) {
+          console.error("Redirect sign-in also failed:", redirectError);
+          alert("Sign in failed. If you are on an iPad/iPhone, please ensure 'Prevent Cross-Site Tracking' is disabled in Safari settings, or try another browser.");
+        }
         return;
       }
+      
       console.error("Sign in failed:", error);
+      alert("Sign in failed. Please try again.");
     }
   };
 
