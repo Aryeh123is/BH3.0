@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { X, Mail, Lock, AlertCircle, Chrome } from 'lucide-react';
+import { X, Mail, Lock, AlertCircle, Chrome, User as UserIcon } from 'lucide-react';
 import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut } from '../firebase';
+import { updateProfile } from 'firebase/auth';
 
 interface AuthModalProps {
   onClose: () => void;
@@ -10,6 +11,7 @@ interface AuthModalProps {
 
 export function AuthModal({ onClose, onGoogleSignIn }: AuthModalProps) {
   const [isLogin, setIsLogin] = useState(true);
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
@@ -33,6 +35,7 @@ export function AuthModal({ onClose, onGoogleSignIn }: AuthModalProps) {
         onClose();
       } else {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(userCredential.user, { displayName: name });
         await sendEmailVerification(userCredential.user);
         await signOut(auth); // Sign them out so they have to verify first
         setVerificationSent(true);
@@ -115,6 +118,25 @@ export function AuthModal({ onClose, onGoogleSignIn }: AuthModalProps) {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4 mb-6">
+          {!isLogin && (
+            <div>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
+                Full Name
+              </label>
+              <div className="relative">
+                <UserIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required={!isLogin}
+                  className="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all dark:text-white"
+                  placeholder="John Doe"
+                />
+              </div>
+            </div>
+          )}
+
           <div>
             <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1.5">
               Email Address

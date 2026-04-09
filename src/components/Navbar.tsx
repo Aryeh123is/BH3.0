@@ -68,7 +68,9 @@ export function Navbar({ onNavigate, language, user, onSignIn, onSignOut, theme,
                 ) : (
                   <UserIcon className="w-4 h-4 text-slate-400" />
                 )}
-                <span className="text-xs font-bold text-slate-600 dark:text-slate-300 hidden sm:inline">{user.displayName?.split(' ')[0]}</span>
+                <span className="text-xs font-bold text-slate-600 dark:text-slate-300 hidden sm:inline">
+                  Welcome {user.displayName ? user.displayName.split(' ')[0] : 'User'}
+                </span>
               </div>
               <button 
                 onClick={onSignOut}
