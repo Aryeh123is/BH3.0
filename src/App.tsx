@@ -23,9 +23,10 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.6.0';
+const CURRENT_VERSION = '1.6.1';
 
 const LATEST_CHANGES = [
+  { title: 'Dynamic Language Support', description: 'Updated the landing page to dynamically reflect the selected language.' },
   { title: 'New Test Mode', description: 'Test your knowledge with customizable tests! Choose question counts and types including Matching, Written, and True/False.' },
   { title: 'Full Spanish Vocabulary Implementation', description: 'Successfully implemented all 1243+ Spanish keywords into the system.' },
 ];
@@ -60,6 +61,9 @@ const ARCHIVED_CHANGES = [
 export default function App() {
   const [devMode, setDevMode] = useState(() => safeLocalStorage.getItem('bh-dev-mode') === 'true');
   const [showDevModePasswordModal, setShowDevModePasswordModal] = useState(false);
+  const [showProModal, setShowProModal] = useState(false);
+  const [proEmail, setProEmail] = useState('');
+  const [proSubmitted, setProSubmitted] = useState(false);
   const [language, setLanguage] = useState<'biblical' | 'modern' | 'spanish'>(() => {
     const saved = safeLocalStorage.getItem('bh-language');
     const parsed = (saved as 'biblical' | 'modern' | 'spanish') || 'biblical';
@@ -134,6 +138,7 @@ export default function App() {
   const [showWipPopup, setShowWipPopup] = useState(false);
   const [isLatestVersion, setIsLatestVersion] = useState<boolean | null>(null);
   const [user, setUser] = useState<User | null>(null);
+  const [userProfile, setUserProfile] = useState<any>(null);
   const [isAuthReady, setIsAuthReady] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
@@ -297,9 +302,19 @@ export default function App() {
     if (!isAuthReady) return;
 
     if (user) {
+      // Listen to User Profile
+      const userRef = doc(db, 'users', user.uid);
+      const unsubscribeProfile = onSnapshot(userRef, (docSnap) => {
+        if (docSnap.exists()) {
+          setUserProfile(docSnap.data());
+        } else {
+          setUserProfile({});
+        }
+      });
+
       // Listen to Firestore progress
       const progressRef = collection(db, 'users', user.uid, 'progress');
-      const unsubscribe = onSnapshot(progressRef, (snapshot) => {
+      const unsubscribeProgress = onSnapshot(progressRef, (snapshot) => {
         const firestoreProgress: UserProgress[] = [];
         snapshot.forEach((doc) => {
           firestoreProgress.push(doc.data() as UserProgress);
@@ -326,7 +341,10 @@ export default function App() {
       }, (error) => {
         console.error("Firestore progress listener error:", error);
       });
-      return () => unsubscribe();
+      return () => {
+        unsubscribeProfile();
+        unsubscribeProgress();
+      };
     } else {
       // Load from local storage
       const savedProgress = safeLocalStorage.getItem(PROGRESS_KEY);
@@ -349,6 +367,55 @@ export default function App() {
       safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
     }
   }, [progress, PROGRESS_KEY]);
+
+  // Update Streak
+  useEffect(() => {
+    if (user && userProfile) {
+      const now = new Date();
+      const lastUpdate = userProfile.lastStreakUpdate ? new Date(userProfile.lastStreakUpdate) : null;
+      
+      let newStreak = userProfile.streak || 0;
+      let newFreezes = userProfile.streakFreezes || 0;
+      let shouldUpdate = false;
+
+      if (!lastUpdate) {
+        newStreak = 1;
+        shouldUpdate = true;
+      } else {
+        const diffTime = Math.abs(now.getTime() - lastUpdate.getTime());
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        
+        // If it's a new day (in local time)
+        if (now.getDate() !== lastUpdate.getDate() || now.getMonth() !== lastUpdate.getMonth() || now.getFullYear() !== lastUpdate.getFullYear()) {
+          if (diffDays <= 1) {
+            newStreak += 1;
+          } else if (diffDays === 2 && newFreezes > 0) {
+            // Use a streak freeze
+            newStreak += 1;
+            newFreezes -= 1;
+          } else {
+            newStreak = 1; // Streak broken
+          }
+          
+          // Earn a streak freeze every 5 days of streak
+          if (newStreak > 1 && newStreak % 5 === 0 && diffDays <= 2) {
+            newFreezes += 1;
+          }
+
+          shouldUpdate = true;
+        }
+      }
+
+      if (shouldUpdate) {
+        const userRef = doc(db, 'users', user.uid);
+        setDoc(userRef, {
+          streak: newStreak,
+          streakFreezes: newFreezes,
+          lastStreakUpdate: now.getTime()
+        }, { merge: true });
+      }
+    }
+  }, [user, userProfile?.lastStreakUpdate]);
 
   const updateFirestoreWordProgress = async (p: UserProgress) => {
     if (!user) return;
@@ -572,8 +639,10 @@ export default function App() {
         onNavigate={(view) => setView(view)} 
         language={language} 
         user={user}
+        userProfile={userProfile}
         onSignIn={handleSignIn}
         onSignOut={handleSignOut}
+        onShowPro={() => setShowProModal(true)}
         theme={theme}
         onToggleTheme={toggleTheme}
         devMode={devMode}
@@ -710,9 +779,10 @@ export default function App() {
                 onLanguageChange={handleLanguageChange}
                 user={user}
                 onSignIn={handleSignIn}
+                onShowPro={() => setShowProModal(true)}
                 devMode={devMode}
               />
-              <HowItWorks />
+              <HowItWorks language={language} />
             </motion.div>
           )}
 
@@ -734,7 +804,9 @@ export default function App() {
                   safeLocalStorage.removeItem(`bh-flashcard-session-${language}`);
                 }}
                 user={user}
+                userProfile={userProfile}
                 language={language}
+                onShowPro={() => setShowProModal(true)}
               />
               <div className="text-center pb-20">
                 <button 
@@ -849,6 +921,72 @@ export default function App() {
           )}
         </AnimatePresence>
       </main>
+
+      {showProModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+            <button
+              onClick={() => setShowProModal(false)}
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+            
+            {!proSubmitted ? (
+              <>
+                <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+                  <Sparkles className="w-8 h-8" />
+                </div>
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Pro is launching soon!</h2>
+                <p className="text-slate-500 dark:text-slate-400 mb-6">
+                  It will include Unlimited Flashcards, Streak Freezes, Advanced Analytics, Custom Decks, Spaced Repetition Algorithms, Offline Mode, AI Pronunciation, and more! Enter your email to get 50% off when it launches.
+                </p>
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  try {
+                    await setDoc(doc(collection(db, 'pro_waitlist')), {
+                      email: proEmail,
+                      userId: user?.uid || null,
+                      timestamp: Date.now()
+                    });
+                  } catch (err) {
+                    console.error("Failed to save email", err);
+                  }
+                  setProSubmitted(true);
+                }}>
+                  <input
+                    type="email"
+                    required
+                    placeholder="Enter your email"
+                    value={proEmail}
+                    onChange={(e) => setProEmail(e.target.value)}
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl mb-4 text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                  <button type="submit" className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors">
+                    Get 50% Off
+                  </button>
+                </form>
+              </>
+            ) : (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                </div>
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">You're on the list!</h2>
+                <p className="text-slate-500 dark:text-slate-400">
+                  We'll email you with your 50% discount as soon as Pro launches.
+                </p>
+                <button 
+                  onClick={() => setShowProModal(false)}
+                  className="mt-8 px-6 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <footer className="py-12 border-t border-slate-100 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 text-center space-y-6">

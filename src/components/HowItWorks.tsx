@@ -1,12 +1,18 @@
 import { motion } from 'motion/react';
 import { BookOpen, Zap, Trophy } from 'lucide-react';
 
-export function HowItWorks() {
+interface HowItWorksProps {
+  language: 'biblical' | 'modern' | 'spanish';
+}
+
+export function HowItWorks({ language }: HowItWorksProps) {
+  const languageName = language === 'spanish' ? 'Spanish' : 'Hebrew';
+
   const steps = [
     {
       icon: <Zap className="w-6 h-6 text-yellow-500" />,
       title: "Fast Generation",
-      description: "Instantly find the most relevant Hebrew keywords for any GCSE topic."
+      description: `Instantly find the most relevant ${languageName} keywords for any GCSE topic.`
     },
     {
       icon: <BookOpen className="w-6 h-6 text-blue-500" />,
@@ -26,7 +32,7 @@ export function HowItWorks() {
         <div className="text-center mb-16">
           <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight">How It Works</h2>
           <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto font-medium">
-            Designed for students who want to excel in their Hebrew exams. 
+            Designed for students who want to excel in their {languageName} exams. 
             Simple, fast, and effective.
           </p>
         </div>

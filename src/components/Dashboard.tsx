@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Word, UserProgress } from '../types';
 import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
 import { ProgressChart } from './ProgressChart';
 import { User } from 'firebase/auth';
+import { db } from '../firebase';
+import { collection, addDoc } from 'firebase/firestore';
 
 interface DashboardProps {
   vocabulary: Word[];
@@ -13,37 +15,50 @@ interface DashboardProps {
   onStartTest: () => void;
   onResetProgress: () => void;
   user: User | null;
+  userProfile?: any;
   language?: 'biblical' | 'modern' | 'spanish';
+  onShowPro: () => void;
 }
 
-export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashcards, onStartTest, onResetProgress, user, language = 'biblical' }: DashboardProps) {
+export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashcards, onStartTest, onResetProgress, user, userProfile, language = 'biblical', onShowPro }: DashboardProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [showResetConfirm, setShowResetConfirm] = useState(false);
 
-  const masteredCount = progress.filter(p => p.mastery === 'mastered').length;
-  const learningCount = progress.filter(p => p.mastery === 'learning').length;
-  const totalCount = vocabulary.length;
-  
-  const now = Date.now();
-  const dueCount = progress.filter(p => p.nextReview <= now).length + (vocabulary.length - progress.length);
-
-  const categories = Array.from(new Set(vocabulary.map(w => w.category))).sort();
-
-  const filteredVocabulary = vocabulary.filter(word => {
-    const wordProgress = progress.find(p => p.wordId === word.id);
-    const status = wordProgress?.mastery || 'new';
-
-    const matchesSearch = word.english.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      word.hebrew.includes(searchQuery) ||
-      word.category.toLowerCase().includes(searchQuery.toLowerCase());
+  const { masteredCount, learningCount, totalCount, dueCount, categories, filteredVocabulary } = useMemo(() => {
+    const mastered = progress.filter(p => p.mastery === 'mastered').length;
+    const learning = progress.filter(p => p.mastery === 'learning').length;
+    const total = vocabulary.length;
     
-    const matchesStatus = statusFilter === 'all' || status === statusFilter;
-    const matchesCategory = categoryFilter === 'all' || word.category === categoryFilter;
+    const now = Date.now();
+    const due = progress.filter(p => p.nextReview <= now).length + (vocabulary.length - progress.length);
 
-    return matchesSearch && matchesStatus && matchesCategory;
-  });
+    const cats = Array.from(new Set(vocabulary.map(w => w.category))).sort();
+
+    const filtered = vocabulary.filter(word => {
+      const wordProgress = progress.find(p => p.wordId === word.id);
+      const status = wordProgress?.mastery || 'new';
+
+      const matchesSearch = word.english.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        word.hebrew.includes(searchQuery) ||
+        word.category.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      const matchesStatus = statusFilter === 'all' || status === statusFilter;
+      const matchesCategory = categoryFilter === 'all' || word.category === categoryFilter;
+
+      return matchesSearch && matchesStatus && matchesCategory;
+    });
+
+    return {
+      masteredCount: mastered,
+      learningCount: learning,
+      totalCount: total,
+      dueCount: due,
+      categories: cats,
+      filteredVocabulary: filtered
+    };
+  }, [vocabulary, progress, searchQuery, statusFilter, categoryFilter]);
 
   return (
     <div className="max-w-[1100px] mx-auto px-6 py-12">
@@ -162,7 +177,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <button
                 onClick={onStartSession}
-                className="px-6 py-5 bg-primary text-white rounded-2xl font-black hover:bg-primary-hover transition-all flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:-translate-y-1 active:scale-95"
+                className="px-6 py-5 bg-indigo-600 text-white rounded-2xl font-black hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 shadow-xl shadow-indigo-600/20 hover:-translate-y-1 active:scale-95"
               >
                 <Play className="w-5 h-5 fill-current" /> Learn
               </button>
@@ -183,13 +198,34 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
           <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none group-hover:bg-primary/10 transition-colors duration-700" />
         </div>
 
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 flex flex-col">
-          <div className="mb-6">
-            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-1">Weekly Activity</h3>
-            <p className="text-slate-400 dark:text-slate-500 text-xs font-medium">Your learning consistency.</p>
+        <div className="flex flex-col gap-8">
+          <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 flex flex-col">
+            <div className="mb-6">
+              <h3 className="text-xl font-black text-slate-900 dark:text-white mb-1">Weekly Activity</h3>
+              <p className="text-slate-400 dark:text-slate-500 text-xs font-medium">Your learning consistency.</p>
+            </div>
+            <div className="flex-1 min-h-[200px]">
+              <ProgressChart progress={progress} />
+            </div>
           </div>
-          <div className="flex-1 min-h-[300px]">
-            <ProgressChart progress={progress} />
+
+          <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-8 rounded-[2.5rem] shadow-lg shadow-indigo-500/20 text-white relative overflow-hidden group">
+            <div className="relative z-10">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="px-2 py-1 bg-white/20 rounded text-[10px] font-bold uppercase tracking-widest">Coming Soon</span>
+              </div>
+              <h3 className="text-2xl font-black mb-2">Upgrade to Pro</h3>
+              <p className="text-indigo-100 text-sm mb-6">
+                Get unlimited flashcards, streak freezes, advanced analytics, custom decks, spaced repetition algorithms, offline mode, AI pronunciation, and more!
+              </p>
+              <button 
+                onClick={onShowPro}
+                className="w-full py-3 bg-white text-indigo-600 font-black rounded-xl hover:bg-indigo-50 transition-colors"
+              >
+                Get 50% Off Early Access
+              </button>
+            </div>
+            <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
           </div>
         </div>
       </div>

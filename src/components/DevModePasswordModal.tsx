@@ -12,7 +12,7 @@ export function DevModePasswordModal({ onClose, onSubmit }: DevModePasswordModal
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'admin') {
+    if (password === 'aryehisadmin') {
       onSubmit(password);
     } else {
       setError(true);

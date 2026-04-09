@@ -1,19 +1,21 @@
 import { motion } from 'motion/react';
-import { LogIn, LogOut, User as UserIcon, Moon, Sun } from 'lucide-react';
+import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles } from 'lucide-react';
 import { User } from 'firebase/auth';
 
 interface NavbarProps {
   onNavigate: (view: 'home' | 'dashboard' | 'test') => void;
   language: 'biblical' | 'modern' | 'spanish';
   user: User | null;
+  userProfile?: any;
   onSignIn: () => void;
   onSignOut: () => void;
+  onShowPro: () => void;
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
   devMode?: boolean;
 }
 
-export function Navbar({ onNavigate, language, user, onSignIn, onSignOut, theme, onToggleTheme, devMode = false }: NavbarProps) {
+export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSignOut, onShowPro, theme, onToggleTheme, devMode = false }: NavbarProps) {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
       <div className="max-w-[1100px] mx-auto px-6 h-16 flex items-center justify-between">
@@ -36,17 +38,32 @@ export function Navbar({ onNavigate, language, user, onSignIn, onSignOut, theme,
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-4 md:gap-6"
         >
+          {userProfile?.streak > 0 && (
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full font-bold text-sm" title={`${userProfile.streak} Day Streak!`}>
+              <span>🔥</span>
+              <span>{userProfile.streak}</span>
+            </div>
+          )}
+
           <button 
             onClick={onToggleTheme}
-            className="p-2 text-slate-400 hover:text-primary dark:hover:text-primary transition-colors"
+            className="p-2 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
             title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
           >
             {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
           </button>
 
           <button 
+            onClick={onShowPro}
+            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-xs font-bold rounded-lg hover:from-indigo-600 hover:to-purple-700 transition-all shadow-md shadow-indigo-500/20"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Pro</span>
+          </button>
+
+          <button 
             onClick={() => onNavigate('home')}
-            className="hidden md:block text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
+            className="hidden md:block text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors"
           >
             Home
           </button>

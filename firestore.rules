@@ -38,9 +38,11 @@ service cloud.firestore {
     }
 
     function isValidUser(data) {
-      return data.keys().hasOnly(['language', 'lastActive', 'role']) &&
-             (data.language == 'biblical' || data.language == 'modern') &&
-             data.lastActive is number;
+      return data.keys().hasOnly(['language', 'lastActive', 'role', 'streak', 'lastStreakUpdate']) &&
+             (data.language == 'biblical' || data.language == 'modern' || data.language == 'spanish') &&
+             data.lastActive is number &&
+             (!('streak' in data) || data.streak is number) &&
+             (!('lastStreakUpdate' in data) || data.lastStreakUpdate is number);
     }
 
     function isValidProgress(data) {
@@ -57,6 +59,13 @@ service cloud.firestore {
     // ===============================================================
     // Rules
     // ===============================================================
+
+    match /pro_waitlist/{docId} {
+      allow create: if request.resource.data.keys().hasOnly(['email', 'userId', 'timestamp']) &&
+                    request.resource.data.email is string &&
+                    request.resource.data.timestamp is number;
+      allow read: if isAdmin();
+    }
 
     match /users/{userId} {
       allow read: if isOwner(userId) || isAdmin();
