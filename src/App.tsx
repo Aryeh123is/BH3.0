@@ -13,6 +13,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
 import { AuthModal } from './components/AuthModal';
+import { DevModePasswordModal } from './components/DevModePasswordModal';
 import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { safeLocalStorage } from './lib/storage';
@@ -58,6 +59,7 @@ const ARCHIVED_CHANGES = [
 
 export default function App() {
   const [devMode, setDevMode] = useState(() => safeLocalStorage.getItem('bh-dev-mode') === 'true');
+  const [showDevModePasswordModal, setShowDevModePasswordModal] = useState(false);
   const [language, setLanguage] = useState<'biblical' | 'modern' | 'spanish'>(() => {
     const saved = safeLocalStorage.getItem('bh-language');
     const parsed = (saved as 'biblical' | 'modern' | 'spanish') || 'biblical';
@@ -151,11 +153,18 @@ export default function App() {
   const toggleTheme = () => setTheme(prev => prev === 'light' ? 'dark' : 'light');
 
   const toggleDevMode = () => {
-    setDevMode(prevDev => {
-      const nextDev = !prevDev;
-      safeLocalStorage.setItem('bh-dev-mode', nextDev.toString());
-      return nextDev;
-    });
+    if (!devMode) {
+      setShowDevModePasswordModal(true);
+    } else {
+      setDevMode(false);
+      safeLocalStorage.setItem('bh-dev-mode', 'false');
+    }
+  };
+
+  const handleDevModePasswordSubmit = (password: string) => {
+    setDevMode(true);
+    safeLocalStorage.setItem('bh-dev-mode', 'true');
+    setShowDevModePasswordModal(false);
   };
 
   // Auth listener
@@ -166,6 +175,12 @@ export default function App() {
     });
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (isAuthReady && !user && !devMode && view !== 'home') {
+      setView('home');
+    }
+  }, [user, isAuthReady, view, devMode]);
 
   const handleGoogleSignIn = async () => {
     try {
@@ -561,9 +576,16 @@ export default function App() {
         onSignOut={handleSignOut}
         theme={theme}
         onToggleTheme={toggleTheme}
+        devMode={devMode}
       />
 
       <AnimatePresence>
+        {showDevModePasswordModal && (
+          <DevModePasswordModal
+            onClose={() => setShowDevModePasswordModal(false)}
+            onSubmit={handleDevModePasswordSubmit}
+          />
+        )}
         {showAuthModal && (
           <AuthModal 
             onClose={() => setShowAuthModal(false)} 

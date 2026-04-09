@@ -80,78 +80,89 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/5 rounded-full -ml-32 -mb-32 blur-3xl pointer-events-none" />
             
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">Ready to start studying?</h2>
-              <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-xl mx-auto font-medium">
-                Choose your preferred learning method and master your vocabulary today.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <button 
-                  onClick={onStartSession}
-                  className="group p-6 bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-[2rem] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-indigo-200 dark:shadow-indigo-900/20 flex flex-col items-center text-center gap-4"
-                >
-                  <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                    <Sparkles className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="font-black text-lg">Learn Mode</div>
-                    <div className="text-xs text-white/70 font-medium mt-1">Spaced repetition learning</div>
-                  </div>
-                </button>
+              {user || devMode ? (
+                <>
+                  <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">Ready to start studying?</h2>
+                  <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-xl mx-auto font-medium">
+                    Choose your preferred learning method and master your vocabulary today.
+                  </p>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <button 
+                      onClick={onStartSession}
+                      className="group p-6 bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-[2rem] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-indigo-200 dark:shadow-indigo-900/20 flex flex-col items-center text-center gap-4"
+                    >
+                      <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
+                        <Sparkles className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <div className="font-black text-lg">Learn Mode</div>
+                        <div className="text-xs text-white/70 font-medium mt-1">Spaced repetition learning</div>
+                      </div>
+                    </button>
 
-                <button 
-                  onClick={onStartFlashcards}
-                  className="group p-6 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-100 dark:border-slate-700 rounded-[2rem] hover:bg-slate-50 dark:hover:bg-slate-700 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center text-center gap-4 shadow-sm"
-                >
-                  <div className="w-12 h-12 bg-slate-100 dark:bg-slate-900 rounded-2xl flex items-center justify-center group-hover:-rotate-12 transition-transform">
-                    <Layers className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-                  </div>
-                  <div>
-                    <div className="font-black text-lg">Flashcards</div>
-                    <div className="text-xs text-slate-400 dark:text-slate-500 font-medium mt-1">Quick review session</div>
-                  </div>
-                </button>
+                    <button 
+                      onClick={onStartFlashcards}
+                      className="group p-6 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-100 dark:border-slate-700 rounded-[2rem] hover:bg-slate-50 dark:hover:bg-slate-700 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center text-center gap-4 shadow-sm"
+                    >
+                      <div className="w-12 h-12 bg-slate-100 dark:bg-slate-900 rounded-2xl flex items-center justify-center group-hover:-rotate-12 transition-transform">
+                        <Layers className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
+                      </div>
+                      <div>
+                        <div className="font-black text-lg">Flashcards</div>
+                        <div className="text-xs text-slate-400 dark:text-slate-500 font-medium mt-1">Quick review session</div>
+                      </div>
+                    </button>
 
-                <button 
-                  onClick={onStartTest}
-                  className="group p-6 bg-primary/10 text-primary border-2 border-primary/20 rounded-[2rem] hover:bg-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center text-center gap-4"
-                >
-                  <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Trophy className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <div className="font-black text-lg">Test Mode</div>
-                    <div className="text-xs text-primary/60 font-medium mt-1">Challenge your knowledge</div>
-                  </div>
-                </button>
+                    <button 
+                      onClick={onStartTest}
+                      className="group p-6 bg-primary/10 text-primary border-2 border-primary/20 rounded-[2rem] hover:bg-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center text-center gap-4"
+                    >
+                      <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Trophy className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <div className="font-black text-lg">Test Mode</div>
+                        <div className="text-xs text-primary/60 font-medium mt-1">Challenge your knowledge</div>
+                      </div>
+                    </button>
 
-                <button 
-                  onClick={onViewDashboard}
-                  className="group p-6 bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 rounded-[2rem] hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center text-center gap-4"
-                >
-                  <div className="w-12 h-12 bg-white dark:bg-slate-900 rounded-2xl flex items-center justify-center group-hover:translate-y-1 transition-transform">
-                    <Layers className="w-6 h-6" />
+                    <button 
+                      onClick={onViewDashboard}
+                      className="group p-6 bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 rounded-[2rem] hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center text-center gap-4"
+                    >
+                      <div className="w-12 h-12 bg-white dark:bg-slate-900 rounded-2xl flex items-center justify-center group-hover:translate-y-1 transition-transform">
+                        <Layers className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <div className="font-black text-lg">Dashboard</div>
+                        <div className="text-xs text-slate-400 font-medium mt-1">Track your progress</div>
+                      </div>
+                    </button>
                   </div>
-                  <div>
-                    <div className="font-black text-lg">Dashboard</div>
-                    <div className="text-xs text-slate-400 font-medium mt-1">Track your progress</div>
+                </>
+              ) : (
+                <div className="py-8">
+                  <div className="w-20 h-20 bg-indigo-50 dark:bg-indigo-900/20 rounded-3xl flex items-center justify-center mx-auto mb-8">
+                    <LogIn className="w-10 h-10 text-indigo-600 dark:text-indigo-400" />
                   </div>
-                </button>
-              </div>
+                  <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">Create an account to start</h2>
+                  <p className="text-slate-500 dark:text-slate-400 mb-10 max-w-xl mx-auto font-medium">
+                    Sign in to access your personalized dashboard, flashcards, and test modes. Your progress will be securely saved and synced across all your devices.
+                  </p>
+                  <button 
+                    onClick={onSignIn}
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-indigo-600 text-white font-black rounded-2xl hover:bg-indigo-700 transition-all active:scale-95 shadow-xl shadow-indigo-600/20 text-lg"
+                  >
+                    <LogIn className="w-6 h-6" />
+                    Sign in with Google
+                  </button>
+                </div>
+              )}
             </div>
+
             
-            {!user && (
-              <div className="mt-10 pt-10 border-t border-slate-50 dark:border-slate-800">
-                <p className="text-slate-400 dark:text-slate-500 text-sm font-medium mb-4">Want to sync your progress across devices?</p>
-                <button 
-                  onClick={onSignIn}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 font-bold rounded-xl hover:bg-indigo-100 dark:hover:bg-indigo-900/40 transition-all active:scale-95 text-sm"
-                >
-                  <LogIn className="w-4 h-4" />
-                  Sign in with Google
-                </button>
-              </div>
-            )}
+
           </div>
         </motion.div>
       </div>
