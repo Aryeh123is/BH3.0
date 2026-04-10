@@ -38,10 +38,10 @@ export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSi
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-4 md:gap-6"
         >
-          {userProfile?.streak > 0 && (
-            <div className="flex items-center gap-1.5 px-3 py-1 bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full font-bold text-sm" title={`${userProfile.streak} Day Streak!`}>
+          {user && userProfile && (
+            <div className="flex items-center gap-1.5 px-3 py-1 bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full font-bold text-sm" title={`${userProfile.streak || 1} Day Streak!`}>
               <span>🔥</span>
-              <span>{userProfile.streak}</span>
+              <span>{userProfile.streak || 1}</span>
             </div>
           )}
 
