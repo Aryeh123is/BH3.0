@@ -1,11 +1,13 @@
 import { useState, useMemo } from 'react';
-import { Word, UserProgress } from '../types';
-import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar } from 'lucide-react';
+import { Word, UserProgress, CustomDeck } from '../types';
+import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2 } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
 import { ProgressChart } from './ProgressChart';
 import { User } from 'firebase/auth';
 import { db } from '../firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, doc } from 'firebase/firestore';
+import { CreateDeckModal } from './CreateDeckModal';
+import { QuizletImportModal } from './QuizletImportModal';
 
 interface DashboardProps {
   vocabulary: Word[];
@@ -16,15 +18,37 @@ interface DashboardProps {
   onResetProgress: () => void;
   user: User | null;
   userProfile?: any;
-  language?: 'biblical' | 'modern' | 'spanish';
+  language?: string;
+  onLanguageChange: (lang: string) => void;
   onShowPro: () => void;
+  devMode?: boolean;
+  isPremium?: boolean;
+  customDecks: CustomDeck[];
 }
 
-export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashcards, onStartTest, onResetProgress, user, userProfile, language = 'biblical', onShowPro }: DashboardProps) {
+export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashcards, onStartTest, onResetProgress, user, userProfile, language = 'biblical', onLanguageChange, onShowPro, devMode = false, isPremium = false, customDecks }: DashboardProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [activeTab, setActiveTab] = useState<'overview' | 'analytics' | 'decks' | 'srs'>('overview');
+  const [showCreateDeck, setShowCreateDeck] = useState(false);
+  const [showImportDeck, setShowImportDeck] = useState(false);
+
+  const handleDeleteDeck = async (deckId: string) => {
+    if (!user) return;
+    if (confirm('Are you sure you want to delete this deck? This action cannot be undone.')) {
+      try {
+        await deleteDoc(doc(db, 'users', user.uid, 'decks', deckId));
+        if (language === deckId) {
+          onLanguageChange('biblical'); // Fallback if deleting active deck
+        }
+      } catch (error) {
+        console.error("Error deleting deck:", error);
+        alert("Failed to delete deck. Please try again.");
+      }
+    }
+  };
 
   const { masteredCount, learningCount, totalCount, dueCount, categories, filteredVocabulary } = useMemo(() => {
     const mastered = progress.filter(p => p.mastery === 'mastered').length;
@@ -144,9 +168,38 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-        <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 shadow-soft border border-slate-100 dark:border-slate-800 relative overflow-hidden group">
-          <div className="relative z-10">
+      <div className="mb-8 flex overflow-x-auto custom-scrollbar pb-2 gap-2">
+        <button 
+          onClick={() => setActiveTab('overview')}
+          className={`px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all ${activeTab === 'overview' ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md' : 'bg-white dark:bg-slate-900 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'}`}
+        >
+          Overview
+        </button>
+        <button 
+          onClick={() => setActiveTab('analytics')}
+          className={`px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 ${activeTab === 'analytics' ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md' : 'bg-white dark:bg-slate-900 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'}`}
+        >
+          Analytics {isPremium && <span className="px-1.5 py-0.5 bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 rounded text-[10px] uppercase tracking-wider">Pro</span>}
+        </button>
+        <button 
+          onClick={() => setActiveTab('decks')}
+          className={`px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 ${activeTab === 'decks' ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md' : 'bg-white dark:bg-slate-900 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'}`}
+        >
+          Custom Decks {isPremium && <span className="px-1.5 py-0.5 bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 rounded text-[10px] uppercase tracking-wider">Pro</span>}
+        </button>
+        <button 
+          onClick={() => setActiveTab('srs')}
+          className={`px-6 py-3 rounded-xl font-bold text-sm whitespace-nowrap transition-all flex items-center gap-2 ${activeTab === 'srs' ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-md' : 'bg-white dark:bg-slate-900 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'}`}
+        >
+          SRS Settings {isPremium && <span className="px-1.5 py-0.5 bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 rounded text-[10px] uppercase tracking-wider">Pro</span>}
+        </button>
+      </div>
+
+      {activeTab === 'overview' && (
+        <>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 shadow-soft border border-slate-100 dark:border-slate-800 relative overflow-hidden group">
+              <div className="relative z-10">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-10">
               <div>
                 <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">Mastery Overview</h2>
@@ -209,24 +262,44 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-8 rounded-[2.5rem] shadow-lg shadow-indigo-500/20 text-white relative overflow-hidden group">
-            <div className="relative z-10">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-2 py-1 bg-white/20 rounded text-[10px] font-bold uppercase tracking-widest">Coming Soon</span>
+          {isPremium ? (
+            <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-8 rounded-[2.5rem] shadow-lg shadow-amber-500/20 text-white relative overflow-hidden group">
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 bg-white/20 rounded text-[10px] font-bold uppercase tracking-widest">Premium Access</span>
+                </div>
+                <h3 className="text-2xl font-black mb-2">Welcome to Pro</h3>
+                <p className="text-amber-100 text-sm mb-6">
+                  You have early access to all premium features. We are currently building advanced analytics and custom decks. Stay tuned!
+                </p>
+                <button 
+                  className="w-full py-3 bg-white text-amber-600 font-black rounded-xl hover:bg-amber-50 transition-colors opacity-50 cursor-not-allowed"
+                >
+                  Features in Development
+                </button>
               </div>
-              <h3 className="text-2xl font-black mb-2">Upgrade to Pro</h3>
-              <p className="text-indigo-100 text-sm mb-6">
-                Get unlimited flashcards, streak freezes, advanced analytics, custom decks, spaced repetition algorithms, offline mode, AI pronunciation, and more!
-              </p>
-              <button 
-                onClick={onShowPro}
-                className="w-full py-3 bg-white text-indigo-600 font-black rounded-xl hover:bg-indigo-50 transition-colors"
-              >
-                Get 50% Off Early Access
-              </button>
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
             </div>
-            <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
-          </div>
+          ) : (
+            <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-8 rounded-[2.5rem] shadow-lg shadow-indigo-500/20 text-white relative overflow-hidden group">
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="px-2 py-1 bg-white/20 rounded text-[10px] font-bold uppercase tracking-widest">Coming Soon</span>
+                </div>
+                <h3 className="text-2xl font-black mb-2">Upgrade to Pro</h3>
+                <p className="text-indigo-100 text-sm mb-6">
+                  Get unlimited flashcards, streak freezes, advanced analytics, custom decks, spaced repetition algorithms, offline mode, AI pronunciation, and more!
+                </p>
+                <button 
+                  onClick={onShowPro}
+                  className="w-full py-3 bg-white text-indigo-600 font-black rounded-xl hover:bg-indigo-50 transition-colors"
+                >
+                  Get 50% Off Early Access (Just £2.50!)
+                </button>
+              </div>
+              <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
+            </div>
+          )}
         </div>
       </div>
 
@@ -322,6 +395,142 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
           </table>
         </div>
       </div>
+      </>
+      )}
+
+      {activeTab === 'analytics' && (
+        <div className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 text-center">
+          <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <Calendar className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-4">Advanced Analytics</h2>
+          <p className="text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-8">
+            Track your study habits with a GitHub-style activity heatmap, view your most difficult words, and analyze your retention rate over time.
+          </p>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-full font-bold text-sm">
+            <span className="animate-pulse">🚧</span> Currently in Development
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'decks' && (
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <h2 className="text-2xl font-black text-slate-900 dark:text-white">Your Custom Decks</h2>
+              <p className="text-slate-500 dark:text-slate-400">Create or import your own vocabulary lists.</p>
+            </div>
+            <div className="flex items-center gap-3 w-full sm:w-auto">
+              <button
+                onClick={() => setShowImportDeck(true)}
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+              >
+                <Upload className="w-4 h-4" />
+                Import Quizlet
+              </button>
+              <button
+                onClick={() => setShowCreateDeck(true)}
+                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-2 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                New Deck
+              </button>
+            </div>
+          </div>
+
+          {customDecks.length === 0 ? (
+            <div className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 text-center">
+              <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Book className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">No custom decks yet</h3>
+              <p className="text-slate-500 dark:text-slate-400 max-w-sm mx-auto mb-6">
+                Create a new deck from scratch or import your existing flashcards from Quizlet.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {customDecks.map((deck) => (
+                <div 
+                  key={deck.id}
+                  className={`bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-soft border transition-all ${language === deck.id ? 'border-primary ring-2 ring-primary/20' : 'border-slate-100 dark:border-slate-800 hover:border-primary/30'}`}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div 
+                      className="flex-1 cursor-pointer"
+                      onClick={() => onLanguageChange(deck.id)}
+                    >
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1 line-clamp-1">{deck.title}</h3>
+                      {deck.description && (
+                        <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">{deck.description}</p>
+                      )}
+                    </div>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteDeck(deck.id);
+                      }}
+                      className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors shrink-0 ml-4"
+                      title="Delete deck"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                  
+                  <div 
+                    className="flex items-center justify-between mt-6 pt-6 border-t border-slate-100 dark:border-slate-800 cursor-pointer"
+                    onClick={() => onLanguageChange(deck.id)}
+                  >
+                    <div className="flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-slate-400">
+                      <Book className="w-4 h-4" />
+                      {deck.words.length} cards
+                    </div>
+                    {language === deck.id ? (
+                      <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">
+                        Active
+                      </span>
+                    ) : (
+                      <span className="text-sm font-bold text-primary hover:text-primary/80 transition-colors">
+                        Select Deck →
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {activeTab === 'srs' && (
+        <div className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 text-center">
+          <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <RotateCw className="w-8 h-8" />
+          </div>
+          <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-4">Spaced Repetition Settings</h2>
+          <p className="text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-8">
+            Fine-tune the algorithm. Adjust how frequently words reappear based on your mastery level to optimize your memory retention.
+          </p>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-full font-bold text-sm">
+            <span className="animate-pulse">🚧</span> Currently in Development
+          </div>
+        </div>
+      )}
+
+      {showCreateDeck && user && (
+        <CreateDeckModal
+          onClose={() => setShowCreateDeck(false)}
+          user={user}
+        />
+      )}
+
+      {showImportDeck && user && (
+        <QuizletImportModal
+          onClose={() => setShowImportDeck(false)}
+          user={user}
+        />
+      )}
+
     </div>
   );
 }

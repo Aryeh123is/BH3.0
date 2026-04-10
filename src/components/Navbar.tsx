@@ -4,7 +4,7 @@ import { User } from 'firebase/auth';
 
 interface NavbarProps {
   onNavigate: (view: 'home' | 'dashboard' | 'test') => void;
-  language: 'biblical' | 'modern' | 'spanish';
+  language: string;
   user: User | null;
   userProfile?: any;
   onSignIn: () => void;
@@ -13,9 +13,10 @@ interface NavbarProps {
   theme: 'light' | 'dark';
   onToggleTheme: () => void;
   devMode?: boolean;
+  isPremium?: boolean;
 }
 
-export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSignOut, onShowPro, theme, onToggleTheme, devMode = false }: NavbarProps) {
+export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSignOut, onShowPro, theme, onToggleTheme, devMode = false, isPremium = false }: NavbarProps) {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
       <div className="max-w-[1100px] mx-auto px-6 h-16 flex items-center justify-between">
@@ -26,10 +27,10 @@ export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSi
           onClick={() => onNavigate('home')}
         >
           <span className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            {language === 'biblical' ? 'BH' : language === 'modern' ? 'MH' : 'ES'} <span className="text-primary">Keywords</span>
+            {language === 'biblical' ? 'BH' : language === 'modern' ? 'MH' : language === 'spanish' ? 'ES' : 'Custom'} <span className="text-primary">Keywords</span>
           </span>
           <span className="px-2 py-0.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold rounded-md uppercase tracking-widest">
-            {language === 'biblical' ? 'Biblical' : language === 'modern' ? 'Modern' : 'Spanish'}
+            {language === 'biblical' ? 'Biblical' : language === 'modern' ? 'Modern' : language === 'spanish' ? 'Spanish' : 'Custom Deck'}
           </span>
         </motion.div>
         
@@ -53,13 +54,22 @@ export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSi
             {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
           </button>
 
-          <button 
-            onClick={onShowPro}
-            className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-xs font-bold rounded-lg hover:from-indigo-600 hover:to-purple-700 transition-all shadow-md shadow-indigo-500/20"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Pro</span>
-          </button>
+          {!isPremium && (
+            <button 
+              onClick={onShowPro}
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-xs font-bold rounded-lg hover:from-indigo-600 hover:to-purple-700 transition-all shadow-md shadow-indigo-500/20"
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Pro</span>
+            </button>
+          )}
+
+          {isPremium && (
+            <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-600 text-white text-xs font-bold rounded-lg shadow-md shadow-amber-500/20">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Pro</span>
+            </div>
+          )}
 
           <button 
             onClick={() => onNavigate('home')}

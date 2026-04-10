@@ -27,3 +27,12 @@ export interface Question {
   options?: string[];
   correctAnswer: string;
 }
+
+export interface CustomDeck {
+  id: string;
+  title: string;
+  description?: string;
+  words: Word[];
+  createdAt: number;
+  updatedAt: number;
+}

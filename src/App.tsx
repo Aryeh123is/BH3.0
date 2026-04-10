@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Word, UserProgress, Question, MasteryLevel } from './types';
+import { Word, UserProgress, Question, MasteryLevel, CustomDeck } from './types';
 import { VOCABULARY as BIBLICAL_HEBREW_VOCABULARY } from './data/vocabulary';
 import { MODERN_HEBREW_VOCABULARY } from './data/modern_hebrew';
 import { SPANISH_EDEXCEL_VOCABULARY } from './data/spanish_edexcel';
@@ -64,9 +64,10 @@ export default function App() {
   const [showProModal, setShowProModal] = useState(false);
   const [proEmail, setProEmail] = useState('');
   const [proSubmitted, setProSubmitted] = useState(false);
-  const [language, setLanguage] = useState<'biblical' | 'modern' | 'spanish'>(() => {
+  const [customDecks, setCustomDecks] = useState<CustomDeck[]>([]);
+  const [language, setLanguage] = useState<string>(() => {
     const saved = safeLocalStorage.getItem('bh-language');
-    const parsed = (saved as 'biblical' | 'modern' | 'spanish') || 'biblical';
+    const parsed = saved || 'biblical';
     if (safeLocalStorage.getItem('bh-dev-mode') !== 'true' && parsed === 'modern') {
       return 'biblical';
     }
@@ -82,8 +83,13 @@ export default function App() {
   const activeVocabulary = useMemo(() => {
     if (language === 'biblical') return BIBLICAL_HEBREW_VOCABULARY;
     if (language === 'modern') return MODERN_HEBREW_VOCABULARY;
-    return SPANISH_EDEXCEL_VOCABULARY;
-  }, [language]);
+    if (language === 'spanish') return SPANISH_EDEXCEL_VOCABULARY;
+    
+    const customDeck = customDecks.find(d => d.id === language);
+    if (customDeck) return customDeck.words;
+    
+    return BIBLICAL_HEBREW_VOCABULARY; // fallback
+  }, [language, customDecks]);
 
   const PROGRESS_KEY = `bh-keywords-progress-${language}`;
   const SESSION_STATE_KEY = `bh-session-state-${language}`;
@@ -257,13 +263,14 @@ export default function App() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleLanguageChange = (newLang: 'biblical' | 'modern' | 'spanish') => {
+  const handleLanguageChange = (newLang: string) => {
     if (newLang === 'modern' && !devMode) {
       setShowWipPopup(true);
       return;
     }
     
     setLanguage(newLang);
+    safeLocalStorage.setItem('bh-language', newLang);
   };
 
   useEffect(() => {
@@ -341,9 +348,22 @@ export default function App() {
       }, (error) => {
         console.error("Firestore progress listener error:", error);
       });
+      // Listen to Custom Decks
+      const decksRef = collection(db, 'users', user.uid, 'decks');
+      const unsubscribeDecks = onSnapshot(decksRef, (snapshot) => {
+        const decks: CustomDeck[] = [];
+        snapshot.forEach((doc) => {
+          decks.push({ id: doc.id, ...doc.data() } as CustomDeck);
+        });
+        setCustomDecks(decks);
+      }, (error) => {
+        console.error("Firestore decks listener error:", error);
+      });
+
       return () => {
         unsubscribeProfile();
         unsubscribeProgress();
+        unsubscribeDecks();
       };
     } else {
       // Load from local storage
@@ -633,6 +653,8 @@ export default function App() {
     }
   };
 
+  const isPremium = user?.email === 'aisaacsaul@gmail.com' || devMode;
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/10 transition-colors duration-300">
       <Navbar 
@@ -646,6 +668,7 @@ export default function App() {
         theme={theme}
         onToggleTheme={toggleTheme}
         devMode={devMode}
+        isPremium={isPremium}
       />
 
       <AnimatePresence>
@@ -781,6 +804,7 @@ export default function App() {
                 onSignIn={handleSignIn}
                 onShowPro={() => setShowProModal(true)}
                 devMode={devMode}
+                isPremium={isPremium}
               />
               <HowItWorks language={language} />
             </motion.div>
@@ -806,7 +830,11 @@ export default function App() {
                 user={user}
                 userProfile={userProfile}
                 language={language}
+                onLanguageChange={handleLanguageChange}
                 onShowPro={() => setShowProModal(true)}
+                devMode={devMode}
+                isPremium={isPremium}
+                customDecks={customDecks}
               />
               <div className="text-center pb-20">
                 <button 
@@ -939,7 +967,7 @@ export default function App() {
                 </div>
                 <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Pro is launching soon!</h2>
                 <p className="text-slate-500 dark:text-slate-400 mb-6">
-                  It will include Unlimited Flashcards, Streak Freezes, Advanced Analytics, Custom Decks, Spaced Repetition Algorithms, Offline Mode, AI Pronunciation, and more! Enter your email to get 50% off when it launches.
+                  It will include Unlimited Flashcards, Streak Freezes, Advanced Analytics, Custom Decks, Spaced Repetition Algorithms, Offline Mode, AI Pronunciation, and more! Enter your email to get 50% off when it launches (making it just £2.50!).
                 </p>
                 <form onSubmit={async (e) => {
                   e.preventDefault();
