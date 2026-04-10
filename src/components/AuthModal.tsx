@@ -25,20 +25,12 @@ export function AuthModal({ onClose, onGoogleSignIn }: AuthModalProps) {
 
     try {
       if (isLogin) {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        if (!userCredential.user.emailVerified) {
-          await signOut(auth);
-          setError('Please verify your email before signing in. Check your inbox for the verification link!');
-          setLoading(false);
-          return;
-        }
+        await signInWithEmailAndPassword(auth, email, password);
         onClose();
       } else {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(userCredential.user, { displayName: name });
-        await sendEmailVerification(userCredential.user);
-        await signOut(auth); // Sign them out so they have to verify first
-        setVerificationSent(true);
+        onClose();
       }
     } catch (err: any) {
       console.error("Auth error:", err);

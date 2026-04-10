@@ -178,7 +178,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-indigo-600 text-white font-black rounded-2xl hover:bg-indigo-700 transition-all active:scale-95 shadow-xl shadow-indigo-600/20 text-lg"
                     >
                       <LogIn className="w-6 h-6" />
-                      Sign in with Google
+                      Sign in
                     </button>
                     <button 
                       onClick={onShowPro}

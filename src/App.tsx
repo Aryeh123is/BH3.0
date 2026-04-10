@@ -972,7 +972,7 @@ export default function App() {
                 <div className="w-16 h-16 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
                   <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
                 </div>
-                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">You're on the list!</h2>
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Submitted! You're on the list!</h2>
                 <p className="text-slate-500 dark:text-slate-400">
                   We'll email you with your 50% discount as soon as Pro launches.
                 </p>
