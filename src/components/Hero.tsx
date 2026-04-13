@@ -164,7 +164,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
                     <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-full mb-8">
                       <Sparkles className="w-4 h-4 text-purple-500" />
                       <span className="text-sm font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                        Early Access: Get 50% off Premium
+                        Sign up today for 1 Week Free Premium!
                       </span>
                     </div>
                   )}
@@ -173,9 +173,9 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
                     Supercharge your learning.
                   </h2>
                   <p className="text-lg text-slate-500 dark:text-slate-400 mb-10 max-w-xl mx-auto font-medium leading-relaxed">
-                    Sign in to access your personalized dashboard, smart flashcards, and custom test modes. 
+                    Create a free account to access your personalized dashboard, smart flashcards, and custom test modes. 
                     {!isPremium && (
-                      <> Join today to lock in a <span className="text-indigo-600 dark:text-indigo-400 font-bold">50% lifetime discount (just £2.50!)</span> on all upcoming Pro features.</>
+                      <> Plus, get <span className="text-indigo-600 dark:text-indigo-400 font-bold">1 week of Premium for free</span> and exclusive behind-the-scenes updates!</>
                     )}
                   </p>
                   
@@ -185,16 +185,15 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-indigo-600 text-white font-black rounded-2xl hover:bg-indigo-700 transition-all active:scale-95 shadow-xl shadow-indigo-600/20 text-lg"
                     >
                       <LogIn className="w-6 h-6" />
-                      Sign in
+                      Sign up for free
                     </button>
-                    {!isPremium && (
-                      <button 
-                        onClick={onShowPro}
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-black rounded-2xl border-2 border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all active:scale-95 text-lg"
-                      >
-                        View Pro Features
-                      </button>
-                    )}
+                    <button 
+                      onClick={onStartFlashcards}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-black rounded-2xl border-2 border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all active:scale-95 text-lg"
+                    >
+                      <Layers className="w-6 h-6" />
+                      Try Flashcards
+                    </button>
                   </div>
                 </div>
               )}

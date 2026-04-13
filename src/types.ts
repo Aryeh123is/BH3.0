@@ -36,3 +36,11 @@ export interface CustomDeck {
   createdAt: number;
   updatedAt: number;
 }
+
+export interface SRSSettings {
+  algorithm: 'leitner' | 'sm2' | 'custom';
+  newInterval: number; // in hours
+  learningInterval: number; // in hours
+  masteredInterval: number; // in hours
+  dailyGoal?: number;
+}

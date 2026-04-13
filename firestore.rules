@@ -56,9 +56,32 @@ service cloud.firestore {
              data.nextReview is number;
     }
 
+    function isValidCustomDeck(data) {
+      return data.keys().hasAll(['title', 'words', 'createdAt', 'updatedAt']) &&
+             data.title is string &&
+             (!('description' in data) || data.description is string) &&
+             data.words is list &&
+             data.createdAt is number &&
+             data.updatedAt is number;
+    }
+
+    function isValidSharedDeck(data) {
+      return data.keys().hasAll(['title', 'words', 'createdAt', 'authorId']) &&
+             data.title is string &&
+             (!('description' in data) || data.description is string) &&
+             data.words is list &&
+             data.createdAt is number &&
+             data.authorId is string;
+    }
+
     // ===============================================================
     // Rules
     // ===============================================================
+
+    match /sharedDecks/{deckId} {
+      allow read: if true; // Anyone can read a shared deck
+      allow create: if isAuthenticated() && isValidSharedDeck(request.resource.data) && request.resource.data.authorId == request.auth.uid;
+    }
 
     match /pro_waitlist/{docId} {
       allow create: if request.resource.data.keys().hasOnly(['email', 'userId', 'timestamp']) &&
@@ -75,6 +98,12 @@ service cloud.firestore {
       match /progress/{wordId} {
         allow read: if isOwner(userId) || isAdmin();
         allow create, update: if isOwner(userId) && isValidProgress(request.resource.data);
+        allow delete: if isOwner(userId) || isAdmin();
+      }
+
+      match /decks/{deckId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create, update: if isOwner(userId) && isValidCustomDeck(request.resource.data);
         allow delete: if isOwner(userId) || isAdmin();
       }
     }

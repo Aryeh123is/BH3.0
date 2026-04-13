@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles } from 'lucide-react';
+import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles, Flame, Snowflake } from 'lucide-react';
 import { User } from 'firebase/auth';
 
 interface NavbarProps {
@@ -89,6 +89,16 @@ export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSi
           
           {user ? (
             <div className="flex items-center gap-3 md:gap-4">
+              <div className="flex items-center gap-3 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700">
+                <div className="flex items-center gap-1.5 text-orange-500 font-bold text-xs" title="Current Streak">
+                  <Flame className="w-4 h-4" />
+                  <span>{userProfile?.streak || 0}</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-blue-500 font-bold text-xs border-l border-slate-200 dark:border-slate-700 pl-3" title="Available Freezes">
+                  <Snowflake className="w-4 h-4" />
+                  <span>{userProfile?.streakFreezes || 0}</span>
+                </div>
+              </div>
               <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700">
                 {user.photoURL ? (
                   <img src={user.photoURL} alt={user.displayName || ''} className="w-5 h-5 rounded-full" referrerPolicy="no-referrer" />

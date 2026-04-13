@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Word, UserProgress, Question, MasteryLevel, CustomDeck } from './types';
+import { Word, UserProgress, Question, MasteryLevel, CustomDeck, SRSSettings } from './types';
 import { VOCABULARY as BIBLICAL_HEBREW_VOCABULARY } from './data/vocabulary';
 import { MODERN_HEBREW_VOCABULARY } from './data/modern_hebrew';
 import { SPANISH_EDEXCEL_VOCABULARY } from './data/spanish_edexcel';
@@ -23,9 +23,12 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.6.1';
+const CURRENT_VERSION = '1.6.2';
 
 const LATEST_CHANGES = [
+  { title: 'Flashcard UI Update', description: 'Removed the version number from the flashcard mode header.' },
+  { title: 'Daily Goal Customization', description: 'You can now change your daily review goal in the SRS Settings tab.' },
+  { title: 'Streak System Overhaul', description: 'Streaks are now tied to completing your daily goal, and freezes are used automatically if you miss a day.' },
   { title: 'Dynamic Language Support', description: 'Updated the landing page to dynamically reflect the selected language.' },
   { title: 'New Test Mode', description: 'Test your knowledge with customizable tests! Choose question counts and types including Matching, Written, and True/False.' },
   { title: 'Full Spanish Vocabulary Implementation', description: 'Successfully implemented all 1243+ Spanish keywords into the system.' },
@@ -65,6 +68,15 @@ export default function App() {
   const [proEmail, setProEmail] = useState('');
   const [proSubmitted, setProSubmitted] = useState(false);
   const [customDecks, setCustomDecks] = useState<CustomDeck[]>([]);
+  const [srsSettings, setSrsSettings] = useState<SRSSettings>(() => {
+    const saved = safeLocalStorage.getItem('bh-srs-settings');
+    return saved ? JSON.parse(saved) : {
+      algorithm: 'leitner',
+      newInterval: 24,
+      learningInterval: 72,
+      masteredInterval: 168
+    };
+  });
   const [language, setLanguage] = useState<string>(() => {
     const saved = safeLocalStorage.getItem('bh-language');
     const parsed = saved || 'biblical';
@@ -106,6 +118,18 @@ export default function App() {
     return 'home';
   });
   const [progress, setProgress] = useState<UserProgress[]>([]);
+
+  const todayReviews = useMemo(() => {
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    return progress.filter(p => {
+      if (!p.lastStudied) return false;
+      const studyDate = new Date(p.lastStudied);
+      studyDate.setHours(0, 0, 0, 0);
+      return studyDate.getTime() === now.getTime();
+    }).length;
+  }, [progress]);
+
   const [sessionQuestions, setSessionQuestions] = useState<Question[]>(() => {
     const saved = safeLocalStorage.getItem(SESSION_STATE_KEY);
     if (saved) {
@@ -146,6 +170,54 @@ export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<any>(null);
   const [isAuthReady, setIsAuthReady] = useState(false);
+  const [sharedDeckToImport, setSharedDeckToImport] = useState<any>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const deckId = params.get('deck');
+    if (deckId) {
+      // Fetch the shared deck
+      import('firebase/firestore').then(({ doc, getDoc }) => {
+        getDoc(doc(db, 'sharedDecks', deckId)).then((snapshot) => {
+          if (snapshot.exists()) {
+            setSharedDeckToImport({ id: snapshot.id, ...snapshot.data() });
+          } else {
+            alert('Shared deck not found or has been deleted.');
+          }
+          // Remove the query param so it doesn't trigger again on refresh
+          window.history.replaceState({}, document.title, window.location.pathname);
+        }).catch(err => {
+          console.error("Error fetching shared deck:", err);
+          alert('Failed to load shared deck.');
+        });
+      });
+    }
+  }, []);
+
+  const handleImportSharedDeck = async () => {
+    if (!user) {
+      alert('Please sign in to import this deck.');
+      return;
+    }
+    if (!sharedDeckToImport) return;
+
+    try {
+      const { addDoc, collection } = await import('firebase/firestore');
+      await addDoc(collection(db, 'users', user.uid, 'decks'), {
+        title: sharedDeckToImport.title,
+        description: sharedDeckToImport.description || '',
+        words: sharedDeckToImport.words,
+        createdAt: Date.now(),
+        updatedAt: Date.now()
+      });
+      alert('Deck imported successfully! You can now find it in your Dashboard.');
+      setSharedDeckToImport(null);
+      setView('dashboard');
+    } catch (error) {
+      console.error("Error importing deck:", error);
+      alert('Failed to import deck. Please try again.');
+    }
+  };
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const saved = safeLocalStorage.getItem(THEME_KEY);
@@ -388,54 +460,84 @@ export default function App() {
     }
   }, [progress, PROGRESS_KEY]);
 
-  // Update Streak
+  // Handle missed days and consume freezes
   useEffect(() => {
-    if (user && userProfile) {
-      const now = new Date();
-      const lastUpdate = userProfile.lastStreakUpdate ? new Date(userProfile.lastStreakUpdate) : null;
-      
-      let newStreak = userProfile.streak || 0;
+    if (!user || !userProfile) return;
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const lastUpdate = userProfile.lastStreakUpdate ? new Date(userProfile.lastStreakUpdate) : null;
+    if (lastUpdate) {
+      lastUpdate.setHours(0, 0, 0, 0);
+    }
+
+    let missedDays = 0;
+    if (lastUpdate) {
+      const diffTime = today.getTime() - lastUpdate.getTime();
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      if (diffDays > 1) {
+        missedDays = diffDays - 1;
+      }
+    }
+
+    if (missedDays > 0) {
       let newFreezes = userProfile.streakFreezes || 0;
-      let shouldUpdate = false;
+      let newStreak = userProfile.streak || 0;
+      let newLastUpdate = userProfile.lastStreakUpdate;
 
-      if (!lastUpdate) {
-        newStreak = 1;
-        shouldUpdate = true;
+      if (newFreezes >= missedDays) {
+        newFreezes -= missedDays;
+        // Set last update to yesterday so they can continue the streak today
+        const yesterday = new Date(today);
+        yesterday.setDate(yesterday.getDate() - 1);
+        newLastUpdate = yesterday.getTime();
       } else {
-        const diffTime = Math.abs(now.getTime() - lastUpdate.getTime());
-        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-        
-        // If it's a new day (in local time)
-        if (now.getDate() !== lastUpdate.getDate() || now.getMonth() !== lastUpdate.getMonth() || now.getFullYear() !== lastUpdate.getFullYear()) {
-          if (diffDays <= 1) {
-            newStreak += 1;
-          } else if (diffDays === 2 && newFreezes > 0) {
-            // Use a streak freeze
-            newStreak += 1;
-            newFreezes -= 1;
-          } else {
-            newStreak = 1; // Streak broken
-          }
-          
-          // Earn a streak freeze every 5 days of streak
-          if (newStreak > 1 && newStreak % 5 === 0 && diffDays <= 2) {
-            newFreezes += 1;
-          }
-
-          shouldUpdate = true;
-        }
+        newStreak = 0;
+        newFreezes = 0;
       }
 
-      if (shouldUpdate) {
-        const userRef = doc(db, 'users', user.uid);
-        setDoc(userRef, {
+      setDoc(doc(db, 'users', user.uid), {
+        streak: newStreak,
+        streakFreezes: newFreezes,
+        lastStreakUpdate: newLastUpdate
+      }, { merge: true });
+    }
+  }, [user, userProfile?.lastStreakUpdate]);
+
+  // Handle daily goal completion and streak increment
+  useEffect(() => {
+    if (!user || !userProfile) return;
+
+    const dailyGoal = srsSettings.dailyGoal || 20;
+    if (todayReviews >= dailyGoal) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      const lastUpdate = userProfile.lastStreakUpdate ? new Date(userProfile.lastStreakUpdate) : null;
+      if (lastUpdate) lastUpdate.setHours(0, 0, 0, 0);
+
+      if (!lastUpdate || lastUpdate.getTime() < today.getTime()) {
+        // Goal met today for the first time!
+        const newStreak = (userProfile.streak || 0) + 1;
+        let newFreezes = userProfile.streakFreezes || 0;
+
+        const isPremium = user.email === 'aisaacsaul@gmail.com' || devMode;
+        const freezeInterval = isPremium ? 3 : 5;
+        const maxFreezes = isPremium ? 5 : 3;
+
+        if (newStreak % freezeInterval === 0) {
+          newFreezes = Math.min(newFreezes + 1, maxFreezes);
+        }
+
+        setDoc(doc(db, 'users', user.uid), {
           streak: newStreak,
           streakFreezes: newFreezes,
-          lastStreakUpdate: now.getTime()
+          lastStreakUpdate: Date.now()
         }, { merge: true });
       }
     }
-  }, [user, userProfile?.lastStreakUpdate]);
+  }, [todayReviews, user, userProfile, srsSettings.dailyGoal, devMode]);
 
   const updateFirestoreWordProgress = async (p: UserProgress) => {
     if (!user) return;
@@ -518,19 +620,85 @@ export default function App() {
     setView('learn');
   };
 
-  const calculateNextReview = (isCorrect: boolean, currentInterval: number): { interval: number, nextReview: number } => {
+  const startIncorrectSession = () => {
+    // Filter words that have an incorrect count > 0
+    const incorrectWords = activeVocabulary.filter(word => {
+      const prog = progress.find(p => p.wordId === word.id);
+      return prog && prog.incorrectCount > 0;
+    });
+
+    if (incorrectWords.length === 0) {
+      alert("Great job! You don't have any incorrect flashcards to review right now.");
+      return;
+    }
+
+    // Shuffle helper
+    const shuffle = <T,>(array: T[]): T[] => [...array].sort(() => Math.random() - 0.5);
+    
+    // Take up to 10 incorrect words
+    const sessionWords: Word[] = shuffle<Word>(incorrectWords).slice(0, 10);
+    
+    // Generate questions
+    const questions: Question[] = sessionWords.map(word => {
+      const wordProgress = progress.find(p => p.wordId === word.id);
+      const type = (wordProgress?.mastery === 'learning' || wordProgress?.mastery === 'mastered') 
+        ? 'written' 
+        : 'multiple-choice';
+      
+      let options: string[] | undefined;
+      if (type === 'multiple-choice') {
+        const otherWords = activeVocabulary.filter(w => w.id !== word.id);
+        const distractors = [...otherWords].sort(() => Math.random() - 0.5).slice(0, 3).map(w => w.english);
+        options = [word.english, ...distractors].sort(() => Math.random() - 0.5);
+      }
+
+      return {
+        word,
+        type,
+        options,
+        correctAnswer: word.english
+      };
+    });
+
+    setSessionQuestions(questions);
+    setSessionAnswers(new Array(questions.length).fill(null));
+    setCurrentQuestionIndex(0);
+    setView('learn');
+  };
+
+  const calculateNextReview = (isCorrect: boolean, currentInterval: number, currentMastery: MasteryLevel): { interval: number, nextReview: number } => {
     const now = Date.now();
-    const dayInMs = 24 * 60 * 60 * 1000;
+    const hourInMs = 60 * 60 * 1000;
+    const dayInMs = 24 * hourInMs;
     
     if (!isCorrect) {
       return { interval: 0, nextReview: now }; // Review immediately
+    }
+    
+    if (srsSettings.algorithm === 'custom') {
+      let nextIntervalHours = srsSettings.newInterval;
+      if (currentMastery === 'new') {
+        nextIntervalHours = srsSettings.learningInterval;
+      } else if (currentMastery === 'learning') {
+        nextIntervalHours = srsSettings.masteredInterval;
+      } else if (currentMastery === 'mastered') {
+        // Double the current interval (converted to hours) or use masteredInterval
+        const currentHours = currentInterval * 24;
+        nextIntervalHours = Math.max(srsSettings.masteredInterval, currentHours * 2);
+      }
+      
+      const nextIntervalDays = nextIntervalHours / 24;
+      return {
+        interval: nextIntervalDays,
+        nextReview: now + (nextIntervalHours * hourInMs)
+      };
     }
     
     // Simple Leitner-style progression: 0 -> 1 -> 3 -> 7 -> 14 -> 30 -> 60 -> 90
     const intervals = [0, 1, 3, 7, 14, 30, 60, 90, 180];
     const currentIndex = intervals.indexOf(currentInterval);
     const nextIndex = Math.min(currentIndex + 1, intervals.length - 1);
-    const nextInterval = intervals[nextIndex];
+    const nextInterval = intervals[nextIndex] !== undefined ? intervals[nextIndex] : currentInterval * 2;
     
     return {
       interval: nextInterval,
@@ -547,11 +715,12 @@ export default function App() {
 
       if (existingIndex >= 0) {
         const p = { ...newProgress[existingIndex] };
-        const srs = calculateNextReview(isCorrect, p.interval);
+        const srs = calculateNextReview(isCorrect, p.interval, p.mastery);
         
         if (isCorrect) {
           p.correctCount += 1;
           if (p.mastery === 'new') p.mastery = 'learning';
+          else if (p.mastery === 'learning') p.mastery = 'mastered';
         } else {
           p.incorrectCount += 1;
           p.mastery = 'new';
@@ -563,7 +732,7 @@ export default function App() {
         newProgress[existingIndex] = p;
         updatedEntry = p;
       } else {
-        const srs = calculateNextReview(isCorrect, 0);
+        const srs = calculateNextReview(isCorrect, 0, 'new');
         updatedEntry = {
           wordId,
           mastery: isCorrect ? 'learning' : 'new',
@@ -684,6 +853,39 @@ export default function App() {
             onGoogleSignIn={handleGoogleSignIn} 
           />
         )}
+        
+        {sharedDeckToImport && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden"
+            >
+              <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+                <Book className="w-8 h-8" />
+              </div>
+              <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Import Shared Deck</h2>
+              <p className="text-slate-500 dark:text-slate-400 mb-6">
+                Someone shared <strong>"{sharedDeckToImport.title}"</strong> with you. It contains {sharedDeckToImport.words?.length || 0} words.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setSharedDeckToImport(null)}
+                  className="flex-1 px-4 py-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleImportSharedDeck}
+                  className="flex-1 px-4 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-600/20"
+                >
+                  {user ? 'Import Deck' : 'Sign in to Import'}
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+
         {showWipPopup && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/60 backdrop-blur-sm">
             <motion.div
@@ -821,6 +1023,7 @@ export default function App() {
                 vocabulary={activeVocabulary}
                 progress={progress}
                 onStartSession={startSession}
+                onStartIncorrectSession={startIncorrectSession}
                 onStartFlashcards={() => setView('flashcards')}
                 onStartTest={() => setView('test')}
                 onResetProgress={() => {
@@ -835,6 +1038,11 @@ export default function App() {
                 devMode={devMode}
                 isPremium={isPremium}
                 customDecks={customDecks}
+                srsSettings={srsSettings}
+                onUpdateSrsSettings={(newSettings) => {
+                  setSrsSettings(newSettings);
+                  safeLocalStorage.setItem('bh-srs-settings', JSON.stringify(newSettings));
+                }}
               />
               <div className="text-center pb-20">
                 <button 

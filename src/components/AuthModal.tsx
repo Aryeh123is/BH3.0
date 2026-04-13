@@ -98,7 +98,9 @@ export function AuthModal({ onClose, onGoogleSignIn }: AuthModalProps) {
             {isLogin ? 'Welcome back' : 'Create an account'}
           </h2>
           <p className="text-slate-500 dark:text-slate-400 text-sm">
-            {isLogin ? 'Enter your details to sign in.' : 'Sign up to save your progress.'}
+            {isLogin 
+              ? 'Enter your details to sign in.' 
+              : 'Sign up to get 1 week of Premium for free and behind-the-scenes updates!'}
           </p>
         </div>
 

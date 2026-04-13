@@ -262,7 +262,7 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
          e.preventDefault();
       }
 
-      if (e.code === 'Space' || e.key === ' ') {
+      if (e.code === 'Space' || e.key === ' ' || e.code === 'ArrowUp' || e.key === 'ArrowUp') {
         setIsFlipped(prev => !prev);
       } else if (e.code === 'ArrowRight' || e.key === 'ArrowRight') {
         handleMarkCorrect();
@@ -682,7 +682,6 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
                 </button>
                 <div className="flex items-center gap-2">
                   <p className="text-[10px] uppercase tracking-[0.2em] opacity-50">Created by Aryeh Isaac-Saul</p>
-                  <span className="text-[10px] px-2 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-slate-400 dark:text-slate-500 font-bold">v1.4.3</span>
                 </div>
               </div>
             </div>

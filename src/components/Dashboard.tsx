@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
-import { Word, UserProgress, CustomDeck } from '../types';
-import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2 } from 'lucide-react';
+import { Word, UserProgress, CustomDeck, SRSSettings } from '../types';
+import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2, Settings2, Save, Snowflake, Share2 } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
 import { ProgressChart } from './ProgressChart';
 import { User } from 'firebase/auth';
@@ -13,6 +13,7 @@ interface DashboardProps {
   vocabulary: Word[];
   progress: UserProgress[];
   onStartSession: () => void;
+  onStartIncorrectSession: () => void;
   onStartFlashcards: () => void;
   onStartTest: () => void;
   onResetProgress: () => void;
@@ -24,9 +25,11 @@ interface DashboardProps {
   devMode?: boolean;
   isPremium?: boolean;
   customDecks: CustomDeck[];
+  srsSettings: SRSSettings;
+  onUpdateSrsSettings: (settings: SRSSettings) => void;
 }
 
-export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashcards, onStartTest, onResetProgress, user, userProfile, language = 'biblical', onLanguageChange, onShowPro, devMode = false, isPremium = false, customDecks }: DashboardProps) {
+export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorrectSession, onStartFlashcards, onStartTest, onResetProgress, user, userProfile, language = 'biblical', onLanguageChange, onShowPro, devMode = false, isPremium = false, customDecks, srsSettings, onUpdateSrsSettings }: DashboardProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
@@ -34,6 +37,30 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
   const [activeTab, setActiveTab] = useState<'overview' | 'analytics' | 'decks' | 'srs'>('overview');
   const [showCreateDeck, setShowCreateDeck] = useState(false);
   const [showImportDeck, setShowImportDeck] = useState(false);
+  const [sharingDeckId, setSharingDeckId] = useState<string | null>(null);
+
+  const handleShareDeck = async (deck: CustomDeck) => {
+    if (!user) return;
+    setSharingDeckId(deck.id);
+    try {
+      const sharedDeckRef = await addDoc(collection(db, 'sharedDecks'), {
+        title: deck.title,
+        description: deck.description || '',
+        words: deck.words,
+        createdAt: Date.now(),
+        authorId: user.uid
+      });
+      
+      const shareUrl = `${window.location.origin}?deck=${sharedDeckRef.id}`;
+      await navigator.clipboard.writeText(shareUrl);
+      alert('Share link copied to clipboard! Anyone with this link can view and import your deck.');
+    } catch (error) {
+      console.error("Error sharing deck:", error);
+      alert("Failed to generate share link. Please try again.");
+    } finally {
+      setSharingDeckId(null);
+    }
+  };
 
   const handleDeleteDeck = async (deckId: string) => {
     if (!user) return;
@@ -50,13 +77,13 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
     }
   };
 
-  const { masteredCount, learningCount, totalCount, dueCount, categories, filteredVocabulary } = useMemo(() => {
+  const { masteredCount, learningCount, totalCount, dueCount, categories, filteredVocabulary, todayReviews } = useMemo(() => {
     const mastered = progress.filter(p => p.mastery === 'mastered').length;
     const learning = progress.filter(p => p.mastery === 'learning').length;
     const total = vocabulary.length;
     
-    const now = Date.now();
-    const due = progress.filter(p => p.nextReview <= now).length + (vocabulary.length - progress.length);
+    const nowTime = Date.now();
+    const due = progress.filter(p => p.nextReview <= nowTime).length + (vocabulary.length - progress.length);
 
     const cats = Array.from(new Set(vocabulary.map(w => w.category))).sort();
 
@@ -74,15 +101,69 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
       return matchesSearch && matchesStatus && matchesCategory;
     });
 
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    const todayRev = progress.filter(p => {
+      if (!p.lastStudied) return false;
+      const studyDate = new Date(p.lastStudied);
+      studyDate.setHours(0, 0, 0, 0);
+      return studyDate.getTime() === now.getTime();
+    }).length;
+
     return {
       masteredCount: mastered,
       learningCount: learning,
       totalCount: total,
       dueCount: due,
       categories: cats,
-      filteredVocabulary: filtered
+      filteredVocabulary: filtered,
+      todayReviews: todayRev
     };
   }, [vocabulary, progress, searchQuery, statusFilter, categoryFilter]);
+
+  const analytics = useMemo(() => {
+    let totalCorrect = 0;
+    let totalIncorrect = 0;
+    
+    const difficultWords = [...progress]
+      .filter(p => p.incorrectCount > 0)
+      .sort((a, b) => b.incorrectCount - a.incorrectCount)
+      .slice(0, 5)
+      .map(p => {
+        const word = vocabulary.find(w => w.id === p.wordId);
+        return { ...p, word };
+      })
+      .filter(p => p.word);
+
+    progress.forEach(p => {
+      totalCorrect += p.correctCount || 0;
+      totalIncorrect += p.incorrectCount || 0;
+    });
+
+    const retentionRate = totalCorrect + totalIncorrect > 0 
+      ? Math.round((totalCorrect / (totalCorrect + totalIncorrect)) * 100) 
+      : 0;
+
+    // Generate heatmap data (last 12 weeks = 84 days)
+    const days = 84;
+    const heatmapData = new Array(days).fill(0);
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
+    
+    progress.forEach(p => {
+      if (!p.lastStudied) return;
+      const studyDate = new Date(p.lastStudied);
+      studyDate.setHours(0, 0, 0, 0);
+      const diffTime = now.getTime() - studyDate.getTime();
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      
+      if (diffDays >= 0 && diffDays < days) {
+        heatmapData[days - 1 - diffDays] += 1;
+      }
+    });
+
+    return { retentionRate, difficultWords, totalReviews: totalCorrect + totalIncorrect, heatmapData };
+  }, [progress, vocabulary]);
 
   return (
     <div className="max-w-[1100px] mx-auto px-6 py-12">
@@ -227,7 +308,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <button
                 onClick={onStartSession}
                 className="px-6 py-5 bg-indigo-600 text-white rounded-2xl font-black hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 shadow-xl shadow-indigo-600/20 hover:-translate-y-1 active:scale-95"
@@ -235,10 +316,16 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
                 <Play className="w-5 h-5 fill-current" /> Learn
               </button>
               <button
+                onClick={onStartIncorrectSession}
+                className="px-6 py-5 bg-amber-500 text-white rounded-2xl font-black hover:bg-amber-600 transition-all flex items-center justify-center gap-3 shadow-xl shadow-amber-500/20 hover:-translate-y-1 active:scale-95"
+              >
+                <RotateCw className="w-5 h-5" /> Review Incorrect
+              </button>
+              <button
                 onClick={onStartFlashcards}
                 className="px-6 py-5 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-100 dark:border-slate-700 rounded-2xl font-black hover:bg-slate-100 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95"
               >
-                <RotateCw className="w-5 h-5" /> Flashcards
+                <Book className="w-5 h-5" /> Flashcards
               </button>
               <button
                 onClick={onStartTest}
@@ -252,6 +339,37 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
         </div>
 
         <div className="flex flex-col gap-8">
+          <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 flex flex-col">
+            <div className="mb-6 flex justify-between items-end">
+              <div>
+                <h3 className="text-xl font-black text-slate-900 dark:text-white mb-1">Daily Goal</h3>
+                <p className="text-slate-400 dark:text-slate-500 text-xs font-medium mb-2">Review {srsSettings.dailyGoal || 20} words today to build your streak.</p>
+                <div className="flex items-center gap-2 text-[10px] font-bold text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-lg w-fit">
+                  <Snowflake className="w-3 h-3 text-blue-400" />
+                  {isPremium ? (
+                    <span>Premium: Earn 1 freeze every 3 days (Max 5)</span>
+                  ) : (
+                    <span>Free: Earn 1 freeze every 5 days (Max 3)</span>
+                  )}
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="text-2xl font-black text-indigo-600 dark:text-indigo-400">{todayReviews} <span className="text-sm text-slate-400">/ {srsSettings.dailyGoal || 20}</span></div>
+              </div>
+            </div>
+            <div className="h-4 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-1 shadow-inner">
+              <div 
+                className="h-full bg-gradient-to-r from-indigo-400 to-indigo-600 rounded-full transition-all duration-1000 ease-out shadow-lg shadow-indigo-500/20"
+                style={{ width: `${Math.min((todayReviews / (srsSettings.dailyGoal || 20)) * 100, 100)}%` }}
+              />
+            </div>
+            {todayReviews >= (srsSettings.dailyGoal || 20) && (
+              <div className="mt-4 inline-flex items-center gap-2 px-3 py-2 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-xl text-xs font-bold w-fit">
+                <Trophy className="w-4 h-4" /> Daily Goal Reached!
+              </div>
+            )}
+          </div>
+
           <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 flex flex-col">
             <div className="mb-6">
               <h3 className="text-xl font-black text-slate-900 dark:text-white mb-1">Weekly Activity</h3>
@@ -399,16 +517,76 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
       )}
 
       {activeTab === 'analytics' && (
-        <div className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 text-center">
-          <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <Calendar className="w-8 h-8" />
+        <div className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800">
+              <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-2">Retention Rate</div>
+              <div className="text-5xl font-black text-slate-900 dark:text-white mb-2">{analytics.retentionRate}%</div>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Based on {analytics.totalReviews} total reviews</p>
+            </div>
+            
+            <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 md:col-span-2">
+              <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Study Activity (Last 12 Weeks)</div>
+              <div className="flex gap-1 overflow-x-auto pb-2">
+                <div className="grid grid-rows-7 grid-flow-col gap-1.5 min-w-max">
+                  {analytics.heatmapData.map((count, i) => (
+                    <div 
+                      key={i} 
+                      className={`w-4 h-4 rounded-sm transition-colors ${
+                        count === 0 ? 'bg-slate-100 dark:bg-slate-800' : 
+                        count < 5 ? 'bg-indigo-200 dark:bg-indigo-900/40' : 
+                        count < 15 ? 'bg-indigo-400 dark:bg-indigo-600' : 
+                        'bg-indigo-600 dark:bg-indigo-400'
+                      }`} 
+                      title={`${count} words studied`}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div className="flex items-center justify-end gap-2 mt-4 text-xs text-slate-500 dark:text-slate-400 font-medium">
+                <span>Less</span>
+                <div className="flex gap-1">
+                  <div className="w-3 h-3 rounded-sm bg-slate-100 dark:bg-slate-800" />
+                  <div className="w-3 h-3 rounded-sm bg-indigo-200 dark:bg-indigo-900/40" />
+                  <div className="w-3 h-3 rounded-sm bg-indigo-400 dark:bg-indigo-600" />
+                  <div className="w-3 h-3 rounded-sm bg-indigo-600 dark:bg-indigo-400" />
+                </div>
+                <span>More</span>
+              </div>
+            </div>
           </div>
-          <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-4">Advanced Analytics</h2>
-          <p className="text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-8">
-            Track your study habits with a GitHub-style activity heatmap, view your most difficult words, and analyze your retention rate over time.
-          </p>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-full font-bold text-sm">
-            <span className="animate-pulse">🚧</span> Currently in Development
+
+          <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800">
+            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-6">Most Difficult Words</h3>
+            {analytics.difficultWords.length > 0 ? (
+              <div className="space-y-4">
+                {analytics.difficultWords.map((item, i) => (
+                  <div key={item.wordId} className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700">
+                    <div className="flex items-center gap-4">
+                      <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full flex items-center justify-center font-bold text-sm">
+                        {i + 1}
+                      </div>
+                      <div>
+                        <div className="font-bold text-slate-900 dark:text-white text-lg">{item.word?.hebrew}</div>
+                        <div className="text-sm text-slate-500 dark:text-slate-400">{item.word?.english}</div>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <div className="font-bold text-slate-900 dark:text-white">{item.incorrectCount}</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold">Mistakes</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <Trophy className="w-8 h-8" />
+                </div>
+                <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-2">You're doing great!</h4>
+                <p className="text-slate-500 dark:text-slate-400">You don't have any difficult words yet. Keep studying!</p>
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -465,16 +643,33 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
                         <p className="text-sm text-slate-500 dark:text-slate-400 line-clamp-2">{deck.description}</p>
                       )}
                     </div>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleDeleteDeck(deck.id);
-                      }}
-                      className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors shrink-0 ml-4"
-                      title="Delete deck"
-                    >
-                      <Trash2 className="w-4 h-4" />
-                    </button>
+                    <div className="flex items-center ml-4 shrink-0">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleShareDeck(deck);
+                        }}
+                        disabled={sharingDeckId === deck.id}
+                        className="p-2 text-slate-400 hover:text-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 rounded-xl transition-colors disabled:opacity-50"
+                        title="Share deck"
+                      >
+                        {sharingDeckId === deck.id ? (
+                          <div className="w-4 h-4 border-2 border-indigo-500/30 border-t-indigo-500 rounded-full animate-spin" />
+                        ) : (
+                          <Share2 className="w-4 h-4" />
+                        )}
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteDeck(deck.id);
+                        }}
+                        className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl transition-colors"
+                        title="Delete deck"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
                   
                   <div 
@@ -503,16 +698,109 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartFlashca
       )}
 
       {activeTab === 'srs' && (
-        <div className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 text-center">
-          <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <RotateCw className="w-8 h-8" />
+        <div className="bg-white dark:bg-slate-900 p-8 sm:p-10 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center shrink-0">
+              <Settings2 className="w-6 h-6" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-black text-slate-900 dark:text-white">Spaced Repetition Settings</h2>
+              <p className="text-slate-500 dark:text-slate-400 text-sm">Fine-tune the algorithm to optimize your memory retention.</p>
+            </div>
           </div>
-          <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-4">Spaced Repetition Settings</h2>
-          <p className="text-slate-500 dark:text-slate-400 max-w-md mx-auto mb-8">
-            Fine-tune the algorithm. Adjust how frequently words reappear based on your mastery level to optimize your memory retention.
-          </p>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400 rounded-full font-bold text-sm">
-            <span className="animate-pulse">🚧</span> Currently in Development
+
+          <div className="space-y-8 max-w-2xl">
+            <div className="space-y-4">
+              <label className="block text-sm font-bold text-slate-700 dark:text-slate-300">
+                Daily Goal
+              </label>
+              <div className="flex items-center gap-4">
+                <input
+                  type="number"
+                  min="1"
+                  max="500"
+                  value={srsSettings.dailyGoal || 20}
+                  onChange={(e) => onUpdateSrsSettings({ ...srsSettings, dailyGoal: parseInt(e.target.value) || 20 })}
+                  className="w-24 px-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white font-bold focus:outline-none focus:ring-2 focus:ring-primary/50"
+                />
+                <span className="text-sm text-slate-500 dark:text-slate-400">words per day</span>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <label className="block text-sm font-bold text-slate-700 dark:text-slate-300">
+                Algorithm
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <button
+                  onClick={() => onUpdateSrsSettings({ ...srsSettings, algorithm: 'leitner' })}
+                  className={`p-4 rounded-2xl border text-left transition-all ${srsSettings.algorithm === 'leitner' ? 'border-primary ring-2 ring-primary/20 bg-primary/5' : 'border-slate-200 dark:border-slate-700 hover:border-primary/30'}`}
+                >
+                  <div className="font-bold text-slate-900 dark:text-white mb-1">Standard (Leitner)</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">Fixed intervals (1d, 3d, 7d, 14d...). Best for most users.</div>
+                </button>
+                <button
+                  onClick={() => onUpdateSrsSettings({ ...srsSettings, algorithm: 'custom' })}
+                  className={`p-4 rounded-2xl border text-left transition-all ${srsSettings.algorithm === 'custom' ? 'border-primary ring-2 ring-primary/20 bg-primary/5' : 'border-slate-200 dark:border-slate-700 hover:border-primary/30'}`}
+                >
+                  <div className="font-bold text-slate-900 dark:text-white mb-1">Custom Intervals</div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400">Define your own intervals for each mastery level.</div>
+                </button>
+              </div>
+            </div>
+
+            {srsSettings.algorithm === 'custom' && (
+              <div className="space-y-6 p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
+                <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                  <RotateCw className="w-4 h-4 text-primary" />
+                  Custom Intervals (in hours)
+                </h3>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">
+                      New Words
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      value={srsSettings.newInterval}
+                      onChange={(e) => onUpdateSrsSettings({ ...srsSettings, newInterval: parseInt(e.target.value) || 24 })}
+                      className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-slate-900 dark:text-white font-mono"
+                    />
+                    <p className="text-[10px] text-slate-400 mt-1.5">Default: 24h (1 day)</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">
+                      Learning Words
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      value={srsSettings.learningInterval}
+                      onChange={(e) => onUpdateSrsSettings({ ...srsSettings, learningInterval: parseInt(e.target.value) || 72 })}
+                      className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-slate-900 dark:text-white font-mono"
+                    />
+                    <p className="text-[10px] text-slate-400 mt-1.5">Default: 72h (3 days)</p>
+                  </div>
+                  
+                  <div>
+                    <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-2 uppercase tracking-wider">
+                      Mastered Words
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      value={srsSettings.masteredInterval}
+                      onChange={(e) => onUpdateSrsSettings({ ...srsSettings, masteredInterval: parseInt(e.target.value) || 168 })}
+                      className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all text-slate-900 dark:text-white font-mono"
+                    />
+                    <p className="text-[10px] text-slate-400 mt-1.5">Default: 168h (7 days)</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
