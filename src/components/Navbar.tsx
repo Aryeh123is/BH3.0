@@ -37,7 +37,7 @@ export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSi
         <motion.div 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-3 md:gap-5"
+          className="flex items-center gap-3 md:gap-4"
         >
           <button 
             onClick={onToggleTheme}
@@ -58,70 +58,66 @@ export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSi
           )}
 
           {isPremium && (
-            <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-600 text-white text-xs font-bold rounded-lg shadow-md shadow-amber-500/20">
+            <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-600 text-white text-xs font-bold rounded-lg shadow-md shadow-amber-500/20" title="Premium Active">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Pro</span>
             </div>
           )}
-
-          <button 
-            onClick={() => onNavigate('home')}
-            className="hidden md:block text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-600 transition-colors"
-          >
-            Home
-          </button>
 
           {user || devMode ? (
             <button 
               onClick={() => onNavigate('test')}
               className="hidden md:block text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
             >
-              Test
+              Test Mode
             </button>
           ) : null}
           
           {user ? (
             <div className="flex items-center gap-2 md:gap-3">
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700 min-w-[80px] justify-center">
+              <div className="flex items-center gap-3 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700 min-w-[80px] justify-center transition-all duration-300">
                 {userProfile === null ? (
-                  <div className="flex items-center gap-2 w-full animate-pulse">
-                    <div className="h-4 w-6 bg-slate-200 dark:bg-slate-700 rounded"></div>
-                    <div className="h-4 w-6 bg-slate-200 dark:bg-slate-700 rounded border-l border-slate-300 dark:border-slate-600 pl-2"></div>
-                  </div>
+                  <>
+                    <div className="flex items-center gap-1.5 text-orange-500/50 font-bold text-xs">
+                      <Flame className="w-4 h-4" />
+                      <span>-</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-blue-500/50 font-bold text-xs border-l border-slate-200 dark:border-slate-700 pl-3">
+                      <Snowflake className="w-4 h-4" />
+                      <span>-</span>
+                    </div>
+                  </>
                 ) : (
                   <>
-                    <div className="flex items-center gap-1 text-orange-500 font-bold text-xs" title="Current Streak">
-                      <Flame className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-1.5 text-orange-500 font-bold text-xs" title="Current Streak">
+                      <Flame className="w-4 h-4" />
                       <span>{userProfile.streak || 0}</span>
                     </div>
-                    <div className="flex items-center gap-1 text-blue-500 font-bold text-xs border-l border-slate-200 dark:border-slate-700 pl-2" title="Available Freezes">
-                      <Snowflake className="w-3.5 h-3.5" />
+                    <div className="flex items-center gap-1.5 text-blue-500 font-bold text-xs border-l border-slate-200 dark:border-slate-700 pl-3" title="Available Freezes">
+                      <Snowflake className="w-4 h-4" />
                       <span>{userProfile.streakFreezes || 0}</span>
                     </div>
                   </>
                 )}
               </div>
               
-              <div className="hidden sm:flex items-center gap-2 px-2 py-1 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700">
-                {user.photoURL ? (
-                  <img src={user.photoURL} alt={user.displayName || ''} className="w-6 h-6 rounded-full" referrerPolicy="no-referrer" />
-                ) : (
-                  <div className="w-6 h-6 bg-indigo-100 dark:bg-indigo-900/50 rounded-full flex items-center justify-center">
-                    <UserIcon className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-                  </div>
-                )}
-              </div>
-
               <button 
                 onClick={() => onNavigate('dashboard')}
-                className="hidden sm:block px-3 py-1.5 bg-slate-900 dark:bg-white dark:text-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition-all"
+                className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
+                title="Dashboard"
               >
-                Dashboard
+                {user.photoURL ? (
+                  <img src={user.photoURL} alt={user.displayName || ''} className="w-5 h-5 rounded-full" referrerPolicy="no-referrer" />
+                ) : (
+                  <UserIcon className="w-4 h-4 text-slate-400" />
+                )}
+                <span className="text-xs font-bold text-slate-600 dark:text-slate-300 hidden sm:inline">
+                  Dashboard
+                </span>
               </button>
-
+              
               <button 
                 onClick={onSignOut}
-                className="p-1.5 text-slate-400 hover:text-red-500 transition-colors rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20"
+                className="p-2 text-slate-400 hover:text-red-500 transition-colors"
                 title="Sign Out"
               >
                 <LogOut className="w-4 h-4" />

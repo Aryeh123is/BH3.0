@@ -26,9 +26,6 @@ export async function onRequestPost(context: any) {
       mode: 'payment',
       client_reference_id: userId,
       customer_email: email,
-      metadata: {
-        firebaseUid: userId
-      },
       line_items: [
         {
           price_data: {
@@ -46,7 +43,7 @@ export async function onRequestPost(context: any) {
       cancel_url: `${domainURL}/?premium=cancelled`,
     });
 
-    return new Response(JSON.stringify({ id: session.id, url: session.url }), {
+    return new Response(JSON.stringify({ url: session.url }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });

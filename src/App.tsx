@@ -13,7 +13,6 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
 import { AuthModal } from './components/AuthModal';
-import { ProModal } from './components/ProModal';
 import { DevModePasswordModal } from './components/DevModePasswordModal';
 import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -167,7 +166,7 @@ export default function App() {
   const [showChangelog, setShowChangelog] = useState(false);
   const [viewingArchive, setViewingArchive] = useState(false);
   const [showWipPopup, setShowWipPopup] = useState(false);
-  const [isLatestVersion, setIsLatestVersion] = useState<boolean | null>(null);
+  const [showGuestLimitModal, setShowGuestLimitModal] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<any>(null);
   const [isAuthReady, setIsAuthReady] = useState(false);
@@ -256,7 +255,6 @@ export default function App() {
     }
   };
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [showGuestLimitModal, setShowGuestLimitModal] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const saved = safeLocalStorage.getItem(THEME_KEY);
     return (saved as 'light' | 'dark') || 'light';
@@ -354,24 +352,6 @@ export default function App() {
       console.error("Sign out failed:", error);
     }
   };
-
-  const checkVersion = async () => {
-    try {
-      const response = await fetch('/version.json?t=' + Date.now());
-      if (response.ok) {
-        const data = await response.json();
-        setIsLatestVersion(data.version === CURRENT_VERSION);
-      }
-    } catch (error) {
-      console.error('Failed to check version:', error);
-    }
-  };
-
-  useEffect(() => {
-    checkVersion();
-    const interval = setInterval(checkVersion, 1000 * 60 * 5); // Check every 5 minutes
-    return () => clearInterval(interval);
-  }, []);
 
   const handleLanguageChange = (newLang: string) => {
     if (newLang === 'modern' && !devMode) {
@@ -882,43 +862,6 @@ export default function App() {
             onSubmit={handleDevModePasswordSubmit}
           />
         )}
-        {showGuestLimitModal && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden text-center"
-            >
-              <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Sparkles className="w-8 h-8" />
-              </div>
-              <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-4">Great job!</h2>
-              <p className="text-slate-500 dark:text-slate-400 mb-8 text-lg">
-                You've completed your 50-card preview. Sign up now to save your progress, unlock more cards, and continue learning!
-              </p>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => {
-                    setShowGuestLimitModal(false);
-                    setView('home');
-                  }}
-                  className="flex-1 px-4 py-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-                >
-                  Maybe Later
-                </button>
-                <button
-                  onClick={() => {
-                    setShowGuestLimitModal(false);
-                    setShowAuthModal(true);
-                  }}
-                  className="flex-1 px-4 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-600/20"
-                >
-                  Sign Up Free
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
         {showAuthModal && (
           <AuthModal 
             onClose={() => setShowAuthModal(false)} 
@@ -1143,6 +1086,7 @@ export default function App() {
                 user={user}
                 onRequireAuth={() => {
                   setShowGuestLimitModal(true);
+                  setView('home');
                 }}
               />
             </motion.div>
@@ -1235,15 +1179,145 @@ export default function App() {
       </main>
 
       {showProModal && (
-        <ProModal
-          onClose={() => setShowProModal(false)}
-          user={user}
-          trialInfo={trialInfo}
-          onRequireAuth={() => {
-            setShowProModal(false);
-            setShowAuthModal(true);
-          }}
-        />
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
+            <button
+              onClick={() => setShowProModal(false)}
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
+              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+            
+            {!proSubmitted ? (
+              <>
+                <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+                  <Sparkles className="w-8 h-8" />
+                </div>
+                {trialInfo.isTrialActive ? (
+                  <>
+                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">You're on Premium!</h2>
+                    <p className="text-slate-500 dark:text-slate-400 mb-6">
+                      You currently have <strong>{trialInfo.daysLeft} days left</strong> on your free trial. Enjoy Unlimited Flashcards, Streak Freezes, Advanced Analytics, Custom Decks, and more!
+                    </p>
+                    <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mb-6">
+                      Want to keep it forever? Lock in lifetime access now for just £2.50.
+                    </p>
+                  </>
+                ) : trialInfo.isExpired ? (
+                  <>
+                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Trial Expired</h2>
+                    <p className="text-slate-500 dark:text-slate-400 mb-6">
+                      Your 7-day free trial has ended. To keep using Unlimited Flashcards, Streak Freezes, Advanced Analytics, and Custom Decks, upgrade to Premium for a one-time payment of just £2.50.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Upgrade to Premium</h2>
+                    <p className="text-slate-500 dark:text-slate-400 mb-6">
+                      Get Unlimited Flashcards, Streak Freezes, Advanced Analytics, Custom Decks, Spaced Repetition Algorithms, Offline Mode, AI Pronunciation, and more for just £2.50!
+                    </p>
+                  </>
+                )}
+                
+                <form onSubmit={async (e) => {
+                  e.preventDefault();
+                  
+                  if (!user) {
+                    alert('Please sign in to upgrade to Premium.');
+                    setShowProModal(false);
+                    setShowAuthModal(true);
+                    return;
+                  }
+
+                  try {
+                    const response = await fetch('/api/create-checkout-session', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        userId: user.uid,
+                        email: proEmail || user.email,
+                      }),
+                    });
+
+                    const data = await response.json();
+
+                    if (data.url) {
+                      window.location.href = data.url;
+                    } else {
+                      throw new Error(data.error || 'Failed to create checkout session');
+                    }
+                  } catch (err: any) {
+                    console.error("Checkout error:", err);
+                    alert(`Error: ${err.message}. Please check if Stripe is configured correctly.`);
+                  }
+                }}>
+                  <input
+                    type="email"
+                    required
+                    placeholder="Enter your email"
+                    value={proEmail}
+                    onChange={(e) => setProEmail(e.target.value)}
+                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl mb-4 text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500"
+                  />
+                  <button type="submit" className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20">
+                    Get Premium for £2.50
+                  </button>
+                </form>
+              </>
+            ) : (
+              <div className="text-center py-8">
+                <div className="w-16 h-16 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                </div>
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Request Received!</h2>
+                <p className="text-slate-500 dark:text-slate-400">
+                  We'll email you a secure checkout link to upgrade your account for £2.50 shortly.
+                </p>
+                <button 
+                  onClick={() => setShowProModal(false)}
+                  className="mt-8 px-6 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {showGuestLimitModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative">
+            <button 
+              onClick={() => setShowGuestLimitModal(false)}
+              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Sparkles className="w-8 h-8" />
+              </div>
+              <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Great Job!</h2>
+              <p className="text-slate-500 dark:text-slate-400">
+                You've reviewed 50 cards! Your progress is saved locally, but sign up now to sync it across devices and unlock more features.
+              </p>
+            </div>
+            
+            <button 
+              onClick={() => {
+                setShowGuestLimitModal(false);
+                setShowAuthModal(true);
+              }}
+              className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
+            >
+              Sign Up / Log In
+            </button>
+          </div>
+        </div>
       )}
 
       <footer className="py-12 border-t border-slate-100 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm transition-colors duration-300">
@@ -1272,27 +1346,6 @@ export default function App() {
               >
                 Dev Mode: {devMode ? 'ON' : 'OFF'}
               </button>
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-slate-100 dark:bg-slate-800 rounded-full border border-slate-200 dark:border-slate-700">
-                <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">v{CURRENT_VERSION}</span>
-              </div>
-              
-              {isLatestVersion === true && (
-                <div className="flex items-center gap-1.5 text-green-500 text-[10px] font-bold uppercase tracking-widest">
-                  <CheckCircle2 className="w-3 h-3" />
-                  Latest Version
-                </div>
-              )}
-              
-              {isLatestVersion === false && (
-                <button 
-                  onClick={() => window.location.reload()}
-                  className="flex items-center gap-1.5 text-amber-500 hover:text-amber-600 text-[10px] font-bold uppercase tracking-widest transition-colors animate-pulse"
-                >
-                  <AlertCircle className="w-3 h-3" />
-                  Update Available (Reload)
-                  <RefreshCw className="w-3 h-3 ml-1" />
-                </button>
-              )}
             </div>
           </div>
         </div>

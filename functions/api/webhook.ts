@@ -41,7 +41,7 @@ export async function onRequestPost(context: any) {
 
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object as Stripe.Checkout.Session;
-      const userId = session.metadata?.firebaseUid || session.client_reference_id;
+      const userId = session.client_reference_id;
 
       if (userId) {
         initializeFirebase(env);
@@ -54,10 +54,7 @@ export async function onRequestPost(context: any) {
           console.log(`Successfully upgraded user ${userId} to Premium`);
         } else {
           console.warn('Firebase Admin not initialized, cannot update user');
-          return new Response('Firebase Admin not initialized', { status: 500 });
         }
-      } else {
-        console.warn('No user ID found in session metadata');
       }
     }
 
