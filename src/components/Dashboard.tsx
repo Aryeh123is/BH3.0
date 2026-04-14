@@ -407,13 +407,13 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                 </div>
                 <h3 className="text-2xl font-black mb-2">Upgrade to Pro</h3>
                 <p className="text-indigo-100 text-sm mb-6">
-                  Your 7-day free trial has ended. Upgrade to keep unlimited flashcards, streak freezes, advanced analytics, and custom decks!
+                  Your 7-day free trial has ended. Upgrade for lifetime support and updates, plus unlimited flashcards, streak freezes, and more!
                 </p>
                 <button 
                   onClick={onShowPro}
                   className="w-full py-3 bg-white text-indigo-600 font-black rounded-xl hover:bg-indigo-50 transition-colors"
                 >
-                  Get Premium for £2.50
+                  Get Premium for £10
                 </button>
               </div>
               <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />

@@ -61,13 +61,17 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
             >
               Spanish
             </button>
+            <div className="flex items-center gap-1.5 px-4 py-2.5 text-slate-400 dark:text-slate-500 text-[10px] font-black uppercase tracking-widest italic">
+              <span>More coming soon...</span>
+            </div>
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight leading-[1.1]">
             Find the Best <span className="text-primary">Keywords</span> <br /> for Your Essays
           </h1>
           <p className="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto font-medium">
             Master {language === 'biblical' ? 'Biblical Hebrew (Edexcel)' : language === 'modern' ? 'Modern Hebrew (AQA)' : 'Spanish (Edexcel)'} vocabulary with our intelligent learning tools. 
-            Perfect for students looking to elevate their writing and achieve top grades.
+            <br />
+            <span className="text-indigo-600 dark:text-indigo-400 font-bold">New languages and AI features arriving soon!</span>
           </p>
         </motion.div>
 

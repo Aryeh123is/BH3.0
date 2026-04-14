@@ -23,15 +23,14 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.6.2';
+const CURRENT_VERSION = '1.6.4';
 
 const LATEST_CHANGES = [
+  { title: 'Pricing Update', description: 'Updated Premium pricing to £10 with lifetime support and updates. Early bird registration now offers a 50% discount (£5).' },
+  { title: 'Early Access Program', description: 'New users now get 7 days of free early access to all Premium features during our development phase.' },
+  { title: 'Cloudflare Compatibility', description: 'Refactored the entire project to be fully compatible with Cloudflare Pages deployment.' },
+  { title: 'Premium in Development', description: 'Updated the Premium system to reflect its development status and added a pre-launch discount registration.' },
   { title: 'Flashcard UI Update', description: 'Removed the version number from the flashcard mode header.' },
-  { title: 'Daily Goal Customization', description: 'You can now change your daily review goal in the SRS Settings tab.' },
-  { title: 'Streak System Overhaul', description: 'Streaks are now tied to completing your daily goal, and freezes are used automatically if you miss a day.' },
-  { title: 'Dynamic Language Support', description: 'Updated the landing page to dynamically reflect the selected language.' },
-  { title: 'New Test Mode', description: 'Test your knowledge with customizable tests! Choose question counts and types including Matching, Written, and True/False.' },
-  { title: 'Full Spanish Vocabulary Implementation', description: 'Successfully implemented all 1243+ Spanish keywords into the system.' },
 ];
 
 const ARCHIVED_CHANGES = [
@@ -1198,13 +1197,31 @@ export default function App() {
                   <>
                     <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Ended</h2>
                     <p className="text-slate-500 dark:text-slate-400 mb-6">
-                      Your 7-day early access period has ended. Premium is still in development, but stay tuned for the full launch!
+                      Your 7-day early access period has ended. Premium is still in development, but we're launching soon!
                     </p>
+                    <div className="p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/50 mb-6">
+                      <h3 className="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+                        <Sparkles className="w-5 h-5" />
+                        Get 50% Off at Launch!
+                      </h3>
+                      <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                        Register your interest now to lock in a <strong>50% discount</strong> when we officially launch. Get lifetime access, support, and updates for just <strong>£5</strong> (instead of £10).
+                      </p>
+                      <button 
+                        onClick={() => {
+                          window.open('https://forms.gle/NjUpvWAZCjTF4aPB6', '_blank');
+                          setShowProModal(false);
+                        }}
+                        className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
+                      >
+                        Register Interest
+                      </button>
+                    </div>
                     <button 
                       onClick={() => setShowProModal(false)}
-                      className="w-full py-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                      className="w-full py-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 font-bold transition-colors"
                     >
-                      Close
+                      Maybe Later
                     </button>
                   </>
                 ) : (
@@ -1234,7 +1251,7 @@ export default function App() {
                 </div>
                 <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Request Received!</h2>
                 <p className="text-slate-500 dark:text-slate-400">
-                  We'll email you a secure checkout link to upgrade your account for £2.50 shortly.
+                  We'll email you a secure checkout link to upgrade your account for £5 shortly.
                 </p>
                 <button 
                   onClick={() => setShowProModal(false)}
