@@ -14,7 +14,7 @@ import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
 import { AuthModal } from './components/AuthModal';
 import { DevModePasswordModal } from './components/DevModePasswordModal';
-import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun } from 'lucide-react';
+import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun, Book } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { safeLocalStorage } from './lib/storage';
 import { auth, db, googleProvider, signInWithPopup, signInWithRedirect, signOut, doc, setDoc, getDoc, collection, onSnapshot, writeBatch } from './firebase';
@@ -198,18 +198,6 @@ export default function App() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const deckId = params.get('deck');
-    const premiumStatus = params.get('premium');
-
-    if (premiumStatus === 'success') {
-      alert('Payment successful! Welcome to Premium! Your account will be upgraded shortly.');
-      params.delete('premium');
-      params.delete('session_id');
-      window.history.replaceState({}, document.title, window.location.pathname + (params.toString() ? '?' + params.toString() : ''));
-    } else if (premiumStatus === 'cancelled') {
-      alert('Payment cancelled.');
-      params.delete('premium');
-      window.history.replaceState({}, document.title, window.location.pathname + (params.toString() ? '?' + params.toString() : ''));
-    }
 
     if (deckId) {
       // Fetch the shared deck
@@ -794,7 +782,7 @@ export default function App() {
 
       if (existingIndex >= 0) {
         const p = { ...newProgress[existingIndex] };
-        const srs = calculateNextReview(isCorrect, p.interval);
+        const srs = calculateNextReview(isCorrect, p.interval, p.mastery);
         
         if (isCorrect) {
           p.correctCount += 1;
@@ -811,7 +799,7 @@ export default function App() {
         newProgress[existingIndex] = p;
         updatedEntry = p;
       } else {
-        const srs = calculateNextReview(isCorrect, 0);
+        const srs = calculateNextReview(isCorrect, 0, 'new');
         updatedEntry = {
           wordId: currentQuestion.word.id,
           mastery: isCorrect ? (currentQuestion.type === 'written' ? 'mastered' : 'learning') : 'new',
@@ -1195,76 +1183,49 @@ export default function App() {
                 </div>
                 {trialInfo.isTrialActive ? (
                   <>
-                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">You're on Premium!</h2>
+                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Active!</h2>
                     <p className="text-slate-500 dark:text-slate-400 mb-6">
-                      You currently have <strong>{trialInfo.daysLeft} days left</strong> on your free trial. Enjoy Unlimited Flashcards, Streak Freezes, Advanced Analytics, Custom Decks, and more!
+                      Premium is currently in development. As a new user, you have <strong>{trialInfo.daysLeft} days of early access</strong> to all latest features, including Unlimited Flashcards, Streak Freezes, and Advanced Analytics!
                     </p>
-                    <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mb-6">
-                      Want to keep it forever? Lock in lifetime access now for just £2.50.
-                    </p>
+                    <button 
+                      onClick={() => setShowProModal(false)}
+                      className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
+                    >
+                      Continue Learning
+                    </button>
                   </>
                 ) : trialInfo.isExpired ? (
                   <>
-                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Trial Expired</h2>
+                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Ended</h2>
                     <p className="text-slate-500 dark:text-slate-400 mb-6">
-                      Your 7-day free trial has ended. To keep using Unlimited Flashcards, Streak Freezes, Advanced Analytics, and Custom Decks, upgrade to Premium for a one-time payment of just £2.50.
+                      Your 7-day early access period has ended. Premium is still in development, but stay tuned for the full launch!
                     </p>
+                    <button 
+                      onClick={() => setShowProModal(false)}
+                      className="w-full py-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                    >
+                      Close
+                    </button>
                   </>
                 ) : (
                   <>
-                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Upgrade to Premium</h2>
+                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Premium in Development</h2>
                     <p className="text-slate-500 dark:text-slate-400 mb-6">
-                      Get Unlimited Flashcards, Streak Freezes, Advanced Analytics, Custom Decks, Spaced Repetition Algorithms, Offline Mode, AI Pronunciation, and more for just £2.50!
+                      We're building something great! Sign up now to get <strong>7 days of free early access</strong> to all upcoming features like Spaced Repetition, AI Pronunciation, and Custom Decks.
                     </p>
+                    {!user && (
+                      <button 
+                        onClick={() => {
+                          setShowProModal(false);
+                          setShowAuthModal(true);
+                        }}
+                        className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
+                      >
+                        Sign Up for Early Access
+                      </button>
+                    )}
                   </>
                 )}
-                
-                <form onSubmit={async (e) => {
-                  e.preventDefault();
-                  
-                  if (!user) {
-                    alert('Please sign in to upgrade to Premium.');
-                    setShowProModal(false);
-                    setShowAuthModal(true);
-                    return;
-                  }
-
-                  try {
-                    const response = await fetch('/api/create-checkout-session', {
-                      method: 'POST',
-                      headers: {
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({
-                        userId: user.uid,
-                        email: proEmail || user.email,
-                      }),
-                    });
-
-                    const data = await response.json();
-
-                    if (data.url) {
-                      window.location.href = data.url;
-                    } else {
-                      throw new Error(data.error || 'Failed to create checkout session');
-                    }
-                  } catch (err: any) {
-                    console.error("Checkout error:", err);
-                    alert(`Error: ${err.message}. Please check if Stripe is configured correctly.`);
-                  }
-                }}>
-                  <input
-                    type="email"
-                    required
-                    placeholder="Enter your email"
-                    value={proEmail}
-                    onChange={(e) => setProEmail(e.target.value)}
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl mb-4 text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500"
-                  />
-                  <button type="submit" className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20">
-                    Get Premium for £2.50
-                  </button>
-                </form>
               </>
             ) : (
               <div className="text-center py-8">

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { X, Upload, AlertCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { db } from '../firebase';
