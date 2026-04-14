@@ -37,15 +37,8 @@ export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSi
         <motion.div 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-4 md:gap-6"
+          className="flex items-center gap-3 md:gap-5"
         >
-          {user && userProfile && (
-            <div className="flex items-center gap-1.5 px-3 py-1 bg-orange-50 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full font-bold text-sm" title={`${userProfile.streak || 1} Day Streak!`}>
-              <span>🔥</span>
-              <span>{userProfile.streak || 1}</span>
-            </div>
-          )}
-
           <button 
             onClick={onToggleTheme}
             className="p-2 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
@@ -83,44 +76,55 @@ export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSi
               onClick={() => onNavigate('test')}
               className="hidden md:block text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
             >
-              Test Mode
+              Test
             </button>
           ) : null}
           
           {user ? (
-            <div className="flex items-center gap-3 md:gap-4">
-              <div className="flex items-center gap-3 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700">
-                <div className="flex items-center gap-1.5 text-orange-500 font-bold text-xs" title="Current Streak">
-                  <Flame className="w-4 h-4" />
-                  <span>{userProfile?.streak || 0}</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-blue-500 font-bold text-xs border-l border-slate-200 dark:border-slate-700 pl-3" title="Available Freezes">
-                  <Snowflake className="w-4 h-4" />
-                  <span>{userProfile?.streakFreezes || 0}</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700">
-                {user.photoURL ? (
-                  <img src={user.photoURL} alt={user.displayName || ''} className="w-5 h-5 rounded-full" referrerPolicy="no-referrer" />
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700 min-w-[80px] justify-center">
+                {userProfile === null ? (
+                  <div className="flex items-center gap-2 w-full animate-pulse">
+                    <div className="h-4 w-6 bg-slate-200 dark:bg-slate-700 rounded"></div>
+                    <div className="h-4 w-6 bg-slate-200 dark:bg-slate-700 rounded border-l border-slate-300 dark:border-slate-600 pl-2"></div>
+                  </div>
                 ) : (
-                  <UserIcon className="w-4 h-4 text-slate-400" />
+                  <>
+                    <div className="flex items-center gap-1 text-orange-500 font-bold text-xs" title="Current Streak">
+                      <Flame className="w-3.5 h-3.5" />
+                      <span>{userProfile.streak || 0}</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-blue-500 font-bold text-xs border-l border-slate-200 dark:border-slate-700 pl-2" title="Available Freezes">
+                      <Snowflake className="w-3.5 h-3.5" />
+                      <span>{userProfile.streakFreezes || 0}</span>
+                    </div>
+                  </>
                 )}
-                <span className="text-xs font-bold text-slate-600 dark:text-slate-300 hidden sm:inline">
-                  Welcome {user.displayName ? user.displayName.split(' ')[0] : 'User'}
-                </span>
               </div>
+              
+              <div className="hidden sm:flex items-center gap-2 px-2 py-1 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700">
+                {user.photoURL ? (
+                  <img src={user.photoURL} alt={user.displayName || ''} className="w-6 h-6 rounded-full" referrerPolicy="no-referrer" />
+                ) : (
+                  <div className="w-6 h-6 bg-indigo-100 dark:bg-indigo-900/50 rounded-full flex items-center justify-center">
+                    <UserIcon className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+                  </div>
+                )}
+              </div>
+
+              <button 
+                onClick={() => onNavigate('dashboard')}
+                className="hidden sm:block px-3 py-1.5 bg-slate-900 dark:bg-white dark:text-slate-900 text-white text-xs font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition-all"
+              >
+                Dashboard
+              </button>
+
               <button 
                 onClick={onSignOut}
-                className="p-2 text-slate-400 hover:text-red-500 transition-colors"
+                className="p-1.5 text-slate-400 hover:text-red-500 transition-colors rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20"
                 title="Sign Out"
               >
                 <LogOut className="w-4 h-4" />
-              </button>
-              <button 
-                onClick={() => onNavigate('dashboard')}
-                className="px-4 py-2 bg-slate-900 dark:bg-white dark:text-slate-900 text-white text-sm font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition-all"
-              >
-                Dashboard
               </button>
             </div>
           ) : (

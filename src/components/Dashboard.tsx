@@ -388,12 +388,13 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                 </div>
                 <h3 className="text-2xl font-black mb-2">Welcome to Pro</h3>
                 <p className="text-amber-100 text-sm mb-6">
-                  You have early access to all premium features. We are currently building advanced analytics and custom decks. Stay tuned!
+                  You have access to all premium features, including Custom Decks, Advanced Analytics, and faster Streak Freezes!
                 </p>
                 <button 
-                  className="w-full py-3 bg-white text-amber-600 font-black rounded-xl hover:bg-amber-50 transition-colors opacity-50 cursor-not-allowed"
+                  onClick={onShowPro}
+                  className="w-full py-3 bg-white text-amber-600 font-black rounded-xl hover:bg-amber-50 transition-colors"
                 >
-                  Features in Development
+                  View Pro Status
                 </button>
               </div>
               <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
@@ -402,17 +403,17 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
             <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-8 rounded-[2.5rem] shadow-lg shadow-indigo-500/20 text-white relative overflow-hidden group">
               <div className="relative z-10">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 bg-white/20 rounded text-[10px] font-bold uppercase tracking-widest">Coming Soon</span>
+                  <span className="px-2 py-1 bg-white/20 rounded text-[10px] font-bold uppercase tracking-widest">Trial Expired</span>
                 </div>
                 <h3 className="text-2xl font-black mb-2">Upgrade to Pro</h3>
                 <p className="text-indigo-100 text-sm mb-6">
-                  Get unlimited flashcards, streak freezes, advanced analytics, custom decks, spaced repetition algorithms, offline mode, AI pronunciation, and more!
+                  Your 7-day free trial has ended. Upgrade to keep unlimited flashcards, streak freezes, advanced analytics, and custom decks!
                 </p>
                 <button 
                   onClick={onShowPro}
                   className="w-full py-3 bg-white text-indigo-600 font-black rounded-xl hover:bg-indigo-50 transition-colors"
                 >
-                  Get 50% Off Early Access (Just £2.50!)
+                  Get Premium for £2.50
                 </button>
               </div>
               <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />

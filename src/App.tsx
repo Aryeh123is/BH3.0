@@ -13,6 +13,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
 import { AuthModal } from './components/AuthModal';
+import { ProModal } from './components/ProModal';
 import { DevModePasswordModal } from './components/DevModePasswordModal';
 import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -172,9 +173,45 @@ export default function App() {
   const [isAuthReady, setIsAuthReady] = useState(false);
   const [sharedDeckToImport, setSharedDeckToImport] = useState<any>(null);
 
+  const trialInfo = useMemo(() => {
+    if (!user) return { isTrialActive: false, daysLeft: 0, isExpired: false };
+    if (userProfile?.isPremium) return { isTrialActive: false, daysLeft: 0, isExpired: false };
+    
+    const creationTime = user.metadata.creationTime ? new Date(user.metadata.creationTime).getTime() : Date.now();
+    const trialDuration = 7 * 24 * 60 * 60 * 1000; // 7 days in ms
+    const timeElapsed = Date.now() - creationTime;
+    
+    if (timeElapsed < trialDuration) {
+      const daysLeft = Math.ceil((trialDuration - timeElapsed) / (1000 * 60 * 60 * 24));
+      return { isTrialActive: true, daysLeft, isExpired: false };
+    }
+    
+    return { isTrialActive: false, daysLeft: 0, isExpired: true };
+  }, [user, userProfile]);
+
+  const isPremium = useMemo(() => {
+    if (devMode || user?.email === 'aisaacsaul@gmail.com') return true;
+    if (!user) return false;
+    if (userProfile?.isPremium) return true;
+    return trialInfo.isTrialActive;
+  }, [user, userProfile, devMode, trialInfo.isTrialActive]);
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const deckId = params.get('deck');
+    const premiumStatus = params.get('premium');
+
+    if (premiumStatus === 'success') {
+      alert('Payment successful! Welcome to Premium! Your account will be upgraded shortly.');
+      params.delete('premium');
+      params.delete('session_id');
+      window.history.replaceState({}, document.title, window.location.pathname + (params.toString() ? '?' + params.toString() : ''));
+    } else if (premiumStatus === 'cancelled') {
+      alert('Payment cancelled.');
+      params.delete('premium');
+      window.history.replaceState({}, document.title, window.location.pathname + (params.toString() ? '?' + params.toString() : ''));
+    }
+
     if (deckId) {
       // Fetch the shared deck
       import('firebase/firestore').then(({ doc, getDoc }) => {
@@ -219,6 +256,7 @@ export default function App() {
     }
   };
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showGuestLimitModal, setShowGuestLimitModal] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const saved = safeLocalStorage.getItem(THEME_KEY);
     return (saved as 'light' | 'dark') || 'light';
@@ -260,7 +298,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (isAuthReady && !user && !devMode && view !== 'home') {
+    if (isAuthReady && !user && !devMode && view !== 'home' && view !== 'flashcards') {
       setView('home');
     }
   }, [user, isAuthReady, view, devMode]);
@@ -522,7 +560,6 @@ export default function App() {
         const newStreak = (userProfile.streak || 0) + 1;
         let newFreezes = userProfile.streakFreezes || 0;
 
-        const isPremium = user.email === 'aisaacsaul@gmail.com' || devMode;
         const freezeInterval = isPremium ? 3 : 5;
         const maxFreezes = isPremium ? 5 : 3;
 
@@ -537,7 +574,7 @@ export default function App() {
         }, { merge: true });
       }
     }
-  }, [todayReviews, user, userProfile, srsSettings.dailyGoal, devMode]);
+  }, [todayReviews, user, userProfile, srsSettings.dailyGoal, devMode, isPremium]);
 
   const updateFirestoreWordProgress = async (p: UserProgress) => {
     if (!user) return;
@@ -822,8 +859,6 @@ export default function App() {
     }
   };
 
-  const isPremium = user?.email === 'aisaacsaul@gmail.com' || devMode;
-
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/10 transition-colors duration-300">
       <Navbar 
@@ -846,6 +881,43 @@ export default function App() {
             onClose={() => setShowDevModePasswordModal(false)}
             onSubmit={handleDevModePasswordSubmit}
           />
+        )}
+        {showGuestLimitModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden text-center"
+            >
+              <div className="w-16 h-16 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <Sparkles className="w-8 h-8" />
+              </div>
+              <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-4">Great job!</h2>
+              <p className="text-slate-500 dark:text-slate-400 mb-8 text-lg">
+                You've completed your 50-card preview. Sign up now to save your progress, unlock more cards, and continue learning!
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    setShowGuestLimitModal(false);
+                    setView('home');
+                  }}
+                  className="flex-1 px-4 py-3 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                >
+                  Maybe Later
+                </button>
+                <button
+                  onClick={() => {
+                    setShowGuestLimitModal(false);
+                    setShowAuthModal(true);
+                  }}
+                  className="flex-1 px-4 py-3 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-600/20"
+                >
+                  Sign Up Free
+                </button>
+              </div>
+            </motion.div>
+          </div>
         )}
         {showAuthModal && (
           <AuthModal 
@@ -1068,6 +1140,10 @@ export default function App() {
                 onSwitchToLearn={startSession}
                 onWordProgress={updateWordProgress}
                 language={language}
+                user={user}
+                onRequireAuth={() => {
+                  setShowGuestLimitModal(true);
+                }}
               />
             </motion.div>
           )}
@@ -1159,69 +1235,15 @@ export default function App() {
       </main>
 
       {showProModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
-            <button
-              onClick={() => setShowProModal(false)}
-              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            </button>
-            
-            {!proSubmitted ? (
-              <>
-                <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-                  <Sparkles className="w-8 h-8" />
-                </div>
-                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Pro is launching soon!</h2>
-                <p className="text-slate-500 dark:text-slate-400 mb-6">
-                  It will include Unlimited Flashcards, Streak Freezes, Advanced Analytics, Custom Decks, Spaced Repetition Algorithms, Offline Mode, AI Pronunciation, and more! Enter your email to get 50% off when it launches (making it just £2.50!).
-                </p>
-                <form onSubmit={async (e) => {
-                  e.preventDefault();
-                  try {
-                    await setDoc(doc(collection(db, 'pro_waitlist')), {
-                      email: proEmail,
-                      userId: user?.uid || null,
-                      timestamp: Date.now()
-                    });
-                  } catch (err) {
-                    console.error("Failed to save email", err);
-                  }
-                  setProSubmitted(true);
-                }}>
-                  <input
-                    type="email"
-                    required
-                    placeholder="Enter your email"
-                    value={proEmail}
-                    onChange={(e) => setProEmail(e.target.value)}
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl mb-4 text-slate-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-500"
-                  />
-                  <button type="submit" className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors">
-                    Get 50% Off
-                  </button>
-                </form>
-              </>
-            ) : (
-              <div className="text-center py-8">
-                <div className="w-16 h-16 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                </div>
-                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Submitted! You're on the list!</h2>
-                <p className="text-slate-500 dark:text-slate-400">
-                  We'll email you with your 50% discount as soon as Pro launches.
-                </p>
-                <button 
-                  onClick={() => setShowProModal(false)}
-                  className="mt-8 px-6 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
-                >
-                  Close
-                </button>
-              </div>
-            )}
-          </div>
-        </div>
+        <ProModal
+          onClose={() => setShowProModal(false)}
+          user={user}
+          trialInfo={trialInfo}
+          onRequireAuth={() => {
+            setShowProModal(false);
+            setShowAuthModal(true);
+          }}
+        />
       )}
 
       <footer className="py-12 border-t border-slate-100 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm transition-colors duration-300">

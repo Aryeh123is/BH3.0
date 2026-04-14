@@ -4,15 +4,19 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, RotateCw, Shuffle, Volume2, Book, Trophy, RotateCcw, Layers, Settings, X } from 'lucide-react';
 import { safeLocalStorage } from '../lib/storage';
 
+import { User } from 'firebase/auth';
+
 interface FlashcardModeProps {
   vocabulary: Word[];
   onExit: () => void;
   onSwitchToLearn: () => void;
   onWordProgress: (wordId: string, isCorrect: boolean) => void;
   language: 'biblical' | 'modern' | 'spanish';
+  user?: User | null;
+  onRequireAuth?: () => void;
 }
 
-export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgress, language }: FlashcardModeProps) {
+export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgress, language, user, onRequireAuth }: FlashcardModeProps) {
   const SESSION_KEY = `bh-flashcard-session-${language}`;
 
   const [sessionState, setSessionState] = useState<{
@@ -217,6 +221,10 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
 
   const handleMarkCorrect = useCallback(() => {
     if (isTransitioning || showBatchSummary || isFinished) return;
+    if (!user && (correctCount + incorrectCount) >= 50) {
+      onRequireAuth?.();
+      return;
+    }
     const currentWord = sessionCards[currentIndex];
     if (!currentWord) return;
     
@@ -225,17 +233,21 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     setIsFlipped(false);
     
     try {
-      onWordProgress(currentWord.id, true);
+      if (user) onWordProgress(currentWord.id, true);
     } catch (err) {
       console.error("Error updating word progress:", err);
     }
     
     saveToHistory();
     processCardTransition(true, currentWord);
-  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, onWordProgress, saveToHistory, processCardTransition]);
+  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, onWordProgress, saveToHistory, processCardTransition, user, correctCount, incorrectCount, onRequireAuth]);
 
   const handleMarkIncorrect = useCallback(() => {
     if (isTransitioning || showBatchSummary || isFinished) return;
+    if (!user && (correctCount + incorrectCount) >= 50) {
+      onRequireAuth?.();
+      return;
+    }
     const currentWord = sessionCards[currentIndex];
     if (!currentWord) return;
     
@@ -244,14 +256,14 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     setIsFlipped(false);
     
     try {
-      onWordProgress(currentWord.id, false);
+      if (user) onWordProgress(currentWord.id, false);
     } catch (err) {
       console.error("Error updating word progress:", err);
     }
     
     saveToHistory();
     processCardTransition(false, currentWord);
-  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, onWordProgress, saveToHistory, processCardTransition]);
+  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, onWordProgress, saveToHistory, processCardTransition, user, correctCount, incorrectCount, onRequireAuth]);
 
   useEffect(() => {
     if (isFinished || showBatchSummary || !enableKeyboard) return;
