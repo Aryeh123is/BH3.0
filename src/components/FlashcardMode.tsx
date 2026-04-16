@@ -11,12 +11,26 @@ interface FlashcardModeProps {
   onExit: () => void;
   onSwitchToLearn: () => void;
   onWordProgress: (wordId: string, isCorrect: boolean) => void;
-  language: 'biblical' | 'modern' | 'spanish';
+  language: 'biblical' | 'modern' | 'spanish' | 'french';
   user?: User | null;
   onRequireAuth?: () => void;
+  isPremium?: boolean;
+  onShowPro?: () => void;
+  selectedTopic?: string | null;
 }
 
-export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgress, language, user, onRequireAuth }: FlashcardModeProps) {
+export function FlashcardMode({ 
+  vocabulary, 
+  onExit, 
+  onSwitchToLearn, 
+  onWordProgress, 
+  language, 
+  user, 
+  onRequireAuth,
+  isPremium,
+  onShowPro,
+  selectedTopic
+}: FlashcardModeProps) {
   const SESSION_KEY = `bh-flashcard-session-${language}`;
 
   const [sessionState, setSessionState] = useState<{
@@ -323,6 +337,32 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
     setDirection(0);
   }, [vocabulary, SESSION_KEY]);
 
+  const handlePronounce = (text: string) => {
+    if (!text) return;
+    if (!isPremium && (language === 'spanish' || language === 'french')) {
+      onShowPro?.();
+      return;
+    }
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    
+    // Improved voice selection
+    const voices = window.speechSynthesis.getVoices();
+    if (language === 'spanish') {
+      utterance.lang = 'es-ES';
+      const esVoice = voices.find(v => v.lang.startsWith('es-') && (v.name.includes('Spain') || v.name.includes('Monica') || v.name.includes('Jorge')));
+      if (esVoice) utterance.voice = esVoice;
+    } else if (language === 'french') {
+      utterance.lang = 'fr-FR';
+      const frVoice = voices.find(v => v.lang.startsWith('fr-') && (v.name.includes('France') || v.name.includes('Thomas') || v.name.includes('Amelie')));
+      if (frVoice) utterance.voice = frVoice;
+    }
+    
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col relative overflow-hidden transition-colors duration-300">
       {/* WIP Indicator */}
@@ -432,9 +472,9 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
               <div className="w-20 h-20 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-3xl flex items-center justify-center mx-auto mb-8">
                 <Layers className="w-10 h-10" />
               </div>
-              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4">Batch Complete!</h2>
+              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4">You're learning fast 🚀</h2>
               <p className="text-slate-500 dark:text-slate-400 mb-8">
-                You've completed this batch of 25 cards. Keep going to finish the entire deck!
+                You've completed a batch of 25 cards. Keep up the momentum!
               </p>
               
               <div className="grid grid-cols-2 gap-4 mb-8">
@@ -596,11 +636,23 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
                           style={{ zIndex: isFlipped ? 0 : 1 }}
                         >
                           <span className="absolute top-10 left-10 text-[10px] font-bold text-slate-300 dark:text-slate-600 uppercase tracking-[0.2em]">
-                            {frontSide === 'hebrew' ? (language === 'spanish' ? 'Spanish' : 'Hebrew') : 'English'}
+                            {frontSide === 'hebrew' ? (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew') : 'English'}
                           </span>
-                          <h2 className={`font-bold text-slate-900 dark:text-white mb-6 ${frontSide === 'hebrew' ? 'text-8xl' : 'text-6xl'}`} dir={frontSide === 'hebrew' && language !== 'spanish' ? 'rtl' : 'ltr'}>
+                          <h2 className={`font-bold text-slate-900 dark:text-white mb-6 ${frontSide === 'hebrew' ? 'text-8xl' : 'text-6xl'}`} dir={frontSide === 'hebrew' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
                             {frontSide === 'hebrew' ? sessionCards[currentIndex].hebrew : sessionCards[currentIndex].english}
                           </h2>
+                          {(language === 'spanish' || language === 'french') && frontSide === 'hebrew' && (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handlePronounce(sessionCards[currentIndex].hebrew);
+                              }}
+                              className="p-3 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors mb-4"
+                              title="Listen to pronunciation"
+                            >
+                              <Volume2 className="w-6 h-6" />
+                            </button>
+                          )}
                           {frontSide === 'hebrew' && sessionCards[currentIndex].transliteration && (
                             <p className="text-slate-400 dark:text-slate-500 font-medium text-xl italic">
                               {sessionCards[currentIndex].transliteration}
@@ -621,11 +673,23 @@ export function FlashcardMode({ vocabulary, onExit, onSwitchToLearn, onWordProgr
                           }}
                         >
                           <span className="absolute top-10 left-10 text-[10px] font-bold text-blue-100 uppercase tracking-[0.2em]">
-                            {frontSide === 'hebrew' ? 'English' : (language === 'spanish' ? 'Spanish' : 'Hebrew')}
+                            {frontSide === 'hebrew' ? 'English' : (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew')}
                           </span>
-                          <h2 className={`font-black mb-6 drop-shadow-sm ${frontSide === 'hebrew' ? 'text-6xl' : 'text-8xl'}`} dir={frontSide === 'english' && language !== 'spanish' ? 'rtl' : 'ltr'}>
+                          <h2 className={`font-black mb-6 drop-shadow-sm ${frontSide === 'hebrew' ? 'text-6xl' : 'text-8xl'}`} dir={frontSide === 'english' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
                             {frontSide === 'hebrew' ? sessionCards[currentIndex].english : sessionCards[currentIndex].hebrew}
                           </h2>
+                          {(language === 'spanish' || language === 'french') && frontSide === 'english' && (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handlePronounce(sessionCards[currentIndex].hebrew);
+                              }}
+                              className="p-3 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors mb-4"
+                              title="Listen to pronunciation"
+                            >
+                              <Volume2 className="w-6 h-6" />
+                            </button>
+                          )}
                           <p className="text-blue-100 font-bold uppercase tracking-[0.2em] text-xs">
                             {sessionCards[currentIndex].category}
                           </p>

@@ -120,7 +120,7 @@ export const MODERN_HEBREW_VOCABULARY: Word[] = [
   { id: 'mh117', hebrew: 'מלון', english: 'hotel', transliteration: 'malon', category: 'Nouns' },
   { id: 'mh118', hebrew: 'ים', english: 'sea', transliteration: 'yam', category: 'Nouns' },
   { id: 'mh119', hebrew: 'שמיים', english: 'sky', transliteration: 'shamayim', category: 'Nouns' },
-  { id: 'mh20', hebrew: 'שמש', english: 'sun', transliteration: 'shemesh', category: 'Nouns' },
+  { id: 'mh120', hebrew: 'שמש', english: 'sun', transliteration: 'shemesh', category: 'Nouns' },
   { id: 'mh121', hebrew: 'ירח', english: 'moon', transliteration: 'yareach', category: 'Nouns' },
   { id: 'mh122', hebrew: 'מזג אוויר', english: 'weather', transliteration: 'mezeg avir', category: 'Nouns' },
   { id: 'mh123', hebrew: 'גשם', english: 'rain', transliteration: 'geshem', category: 'Nouns' },

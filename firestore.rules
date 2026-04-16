@@ -38,11 +38,12 @@ service cloud.firestore {
     }
 
     function isValidUser(data) {
-      return data.keys().hasOnly(['language', 'lastActive', 'role', 'streak', 'lastStreakUpdate']) &&
-             (data.language == 'biblical' || data.language == 'modern' || data.language == 'spanish') &&
+      return data.keys().hasOnly(['language', 'lastActive', 'role', 'streak', 'lastStreakUpdate', 'streakFreezes']) &&
+             (data.language == 'biblical' || data.language == 'modern' || data.language == 'spanish' || data.language == 'french') &&
              data.lastActive is number &&
              (!('streak' in data) || data.streak is number) &&
-             (!('lastStreakUpdate' in data) || data.lastStreakUpdate is number);
+             (!('lastStreakUpdate' in data) || data.lastStreakUpdate is number) &&
+             (!('streakFreezes' in data) || data.streakFreezes is number);
     }
 
     function isValidProgress(data) {

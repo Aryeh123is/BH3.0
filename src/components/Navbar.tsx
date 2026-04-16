@@ -1,10 +1,12 @@
-import { motion } from 'motion/react';
-import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles, Flame, Snowflake } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles, Flame, Snowflake, ChevronDown, Check } from 'lucide-react';
 import { User } from 'firebase/auth';
 
 interface NavbarProps {
   onNavigate: (view: 'home' | 'dashboard' | 'test') => void;
   language: string;
+  onLanguageChange: (lang: string) => void;
   user: User | null;
   userProfile?: any;
   onSignIn: () => void;
@@ -16,22 +18,93 @@ interface NavbarProps {
   isPremium?: boolean;
 }
 
-export function Navbar({ onNavigate, language, user, userProfile, onSignIn, onSignOut, onShowPro, theme, onToggleTheme, devMode = false, isPremium = false }: NavbarProps) {
+export function Navbar({ onNavigate, language, onLanguageChange, user, userProfile, onSignIn, onSignOut, onShowPro, theme, onToggleTheme, devMode = false, isPremium = false }: NavbarProps) {
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const langMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+        setIsLangMenuOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const languages = [
+    { id: 'french', label: 'French (Edexcel)', icon: <img src="https://flagcdn.com/w40/fr.png" alt="FR" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
+    { id: 'spanish', label: 'Spanish (Edexcel)', icon: <img src="https://flagcdn.com/w40/es.png" alt="ES" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
+    { id: 'biblical', label: 'Biblical Hebrew', icon: '📜' },
+    ...(devMode ? [{ id: 'modern', label: 'Modern Hebrew', icon: <img src="https://flagcdn.com/w40/il.png" alt="IL" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> }] : []),
+  ];
+
+  if (language !== 'spanish' && language !== 'biblical' && language !== 'modern' && language !== 'french') {
+    languages.push({ id: language, label: 'Custom Deck', icon: '📁' });
+  }
+
+  const currentLang = languages.find(l => l.id === language) || languages[0];
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
       <div className="max-w-[1100px] mx-auto px-6 h-16 flex items-center justify-between">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-3 cursor-pointer"
-          onClick={() => onNavigate('home')}
+          className="flex items-center gap-4"
         >
-          <span className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            {language === 'biblical' ? 'BH' : language === 'modern' ? 'MH' : language === 'spanish' ? 'ES' : 'Custom'} <span className="text-primary">Keywords</span>
+          <span 
+            className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight cursor-pointer"
+            onClick={() => onNavigate('home')}
+          >
+            {language === 'biblical' ? 'BH' : language === 'modern' ? 'MH' : language === 'spanish' ? 'ES' : language === 'french' ? 'FR' : 'Custom'} <span className="text-primary">Keywords</span>
           </span>
-          <span className="px-2 py-0.5 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-[10px] font-bold rounded-md uppercase tracking-widest">
-            {language === 'biblical' ? 'Biblical' : language === 'modern' ? 'Modern' : language === 'spanish' ? 'Spanish' : 'Custom Deck'}
-          </span>
+          
+          <div className="relative" ref={langMenuRef}>
+            <button
+              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+              className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl transition-colors text-sm font-bold"
+            >
+              <span>{currentLang.icon}</span>
+              <span className="hidden sm:inline">{currentLang.label}</span>
+              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isLangMenuOpen ? 'rotate-180' : ''}`} />
+            </button>
+
+            <AnimatePresence>
+              {isLangMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
+                  className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden z-50"
+                >
+                  <div className="p-2 space-y-1">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.id}
+                        onClick={() => {
+                          onLanguageChange(lang.id);
+                          setIsLangMenuOpen(false);
+                        }}
+                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-bold transition-colors ${
+                          language === lang.id 
+                            ? 'bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400' 
+                            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          <span>{lang.icon}</span>
+                          <span>{lang.label}</span>
+                        </div>
+                        {language === lang.id && <Check className="w-4 h-4" />}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </motion.div>
         
         <motion.div 

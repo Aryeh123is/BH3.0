@@ -6,7 +6,7 @@ import { Check, X, ArrowRight } from 'lucide-react';
 interface LearnCardProps {
   question: Question;
   onAnswer: (isCorrect: boolean) => void;
-  language?: 'biblical' | 'modern' | 'spanish';
+  language?: 'biblical' | 'modern' | 'spanish' | 'french';
 }
 
 export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCardProps) {

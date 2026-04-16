@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Word, UserProgress, CustomDeck, SRSSettings } from '../types';
-import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2, Settings2, Save, Snowflake, Share2 } from 'lucide-react';
+import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2, Settings2, Save, Snowflake, Share2, Flame } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
 import { ProgressChart } from './ProgressChart';
 import { User } from 'firebase/auth';
@@ -14,7 +14,7 @@ interface DashboardProps {
   progress: UserProgress[];
   onStartSession: () => void;
   onStartIncorrectSession: () => void;
-  onStartFlashcards: () => void;
+  onStartFlashcards: (topic?: string) => void;
   onStartTest: () => void;
   onResetProgress: () => void;
   user: User | null;
@@ -186,6 +186,12 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
           <p className="text-slate-500 dark:text-slate-400 font-medium">
             {user ? `Signed in as ${user.displayName || user.email}` : 'Sign in to sync your progress across devices.'}
           </p>
+          {userProfile?.streak > 0 && (
+            <p className="mt-2 text-orange-500 font-bold flex items-center gap-2">
+              <Flame className="w-4 h-4" />
+              You're on a {userProfile.streak}-day streak! Keep it up! 🔥
+            </p>
+          )}
         </div>
         <div className="relative">
           {showResetConfirm ? (

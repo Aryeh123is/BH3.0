@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Layers, LogIn, Trophy } from 'lucide-react';
+import { Sparkles, Layers, LogIn, Trophy, Zap, Brain, TrendingUp, CheckCircle2, PlayCircle, Volume2, Target, BarChart3, Snowflake, Book } from 'lucide-react';
 import { User } from 'firebase/auth';
 
 interface HeroProps {
   onStartSession: () => void;
   onViewDashboard: () => void;
-  onStartFlashcards: () => void;
+  onStartFlashcards: (topic?: string) => void;
   onStartTest: () => void;
   language: string;
   onLanguageChange: (lang: string) => void;
@@ -17,197 +18,237 @@ interface HeroProps {
 }
 
 export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onStartTest, language, onLanguageChange, user, onSignIn, onShowPro, devMode = false, isPremium = false }: HeroProps) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const previewCards: Record<string, { front: string, back: string, label: string }> = {
+    french: { front: 'le moyen orient', back: 'the Middle East', label: 'French' },
+    spanish: { front: 'el medio ambiente', back: 'the environment', label: 'Spanish' },
+    biblical: { front: 'מֶלֶךְ', back: 'king', label: 'Biblical Hebrew' },
+    modern: { front: 'שָׁלוֹם', back: 'peace / hello', label: 'Modern Hebrew' },
+    default: { front: 'Example', back: 'Translation', label: 'Custom' }
+  };
+
+  const currentPreview = previewCards[language] || previewCards.default;
+
   return (
-    <section className="pt-32 pb-20 px-6 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
-      <div className="max-w-[1100px] mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="inline-flex p-1 bg-slate-100 dark:bg-slate-900 rounded-2xl mb-8 border border-slate-200 dark:border-slate-800 flex-wrap justify-center">
-            <button
-              onClick={() => onLanguageChange('biblical')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
-                language === 'biblical' 
-                  ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm' 
-                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
-              }`}
-            >
-              Biblical Hebrew
-            </button>
-            {devMode && (
-              <button
-                onClick={() => onLanguageChange('modern')}
-                className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all relative ${
-                  language === 'modern' 
-                    ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm' 
-                    : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
-                }`}
-              >
-                Modern Hebrew
-                <span className="absolute -top-2 -right-2 px-1.5 py-0.5 bg-yellow-400 text-slate-900 text-[8px] font-black rounded-md uppercase tracking-tighter shadow-sm">
-                  WIP
-                </span>
-              </button>
+    <div className="bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+      {/* HERO SECTION */}
+      <section className="pt-32 pb-20 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center"
+          >
+            {(language === 'spanish' || language === 'french') && (
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-bold mb-8 border border-indigo-100 dark:border-indigo-800/50">
+                <Sparkles className="w-4 h-4" />
+                <span>New: {language === 'spanish' ? 'Spanish' : 'French'} GCSE Vocabulary Added!</span>
+              </div>
             )}
-            <button
-              onClick={() => onLanguageChange('spanish')}
-              className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${
-                language === 'spanish' 
-                  ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm' 
-                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200'
-              }`}
-            >
-              Spanish
-            </button>
-            <div className="flex items-center gap-1.5 px-4 py-2.5 text-slate-400 dark:text-slate-500 text-[10px] font-black uppercase tracking-widest italic">
-              <span>More coming soon...</span>
-            </div>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight leading-[1.1]">
-            Find the Best <span className="text-primary">Keywords</span> <br /> for Your Essays
-          </h1>
-          <p className="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-2xl mx-auto font-medium">
-            Master {language === 'biblical' ? 'Biblical Hebrew (Edexcel)' : language === 'modern' ? 'Modern Hebrew (AQA)' : 'Spanish (Edexcel)'} vocabulary with our intelligent learning tools. 
-            <br />
-            <span className="text-indigo-600 dark:text-indigo-400 font-bold">New languages and AI features arriving soon!</span>
-          </p>
-        </motion.div>
-
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="max-w-4xl mx-auto"
-        >
-          <div className="bg-white dark:bg-slate-900 p-10 md:p-16 rounded-[4rem] shadow-soft border border-slate-100 dark:border-slate-800 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32 blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/5 rounded-full -ml-32 -mb-32 blur-3xl pointer-events-none" />
             
-            <div className="relative z-10">
-              {user || devMode ? (
-                <>
-                  <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">Ready to start studying?</h2>
-                  <p className="text-slate-500 dark:text-slate-400 mb-12 max-w-xl mx-auto font-medium">
-                    Choose your preferred learning method and master your vocabulary today.
-                  </p>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <button 
-                      onClick={onStartSession}
-                      className="group p-6 bg-gradient-to-br from-indigo-600 to-blue-600 text-white rounded-[2rem] hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-indigo-200 dark:shadow-indigo-900/20 flex flex-col items-center text-center gap-4"
-                    >
-                      <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-                        <Sparkles className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <div className="font-black text-lg">Learn Mode</div>
-                        <div className="text-xs text-white/70 font-medium mt-1">Spaced repetition learning</div>
-                      </div>
-                    </button>
-
-                    <button 
-                      onClick={onStartFlashcards}
-                      className="group p-6 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-100 dark:border-slate-700 rounded-[2rem] hover:bg-slate-50 dark:hover:bg-slate-700 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center text-center gap-4 shadow-sm"
-                    >
-                      <div className="w-12 h-12 bg-slate-100 dark:bg-slate-900 rounded-2xl flex items-center justify-center group-hover:-rotate-12 transition-transform">
-                        <Layers className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-                      </div>
-                      <div>
-                        <div className="font-black text-lg">Flashcards</div>
-                        <div className="text-xs text-slate-400 dark:text-slate-500 font-medium mt-1">Quick review session</div>
-                      </div>
-                    </button>
-
-                    <button 
-                      onClick={onStartTest}
-                      className="group p-6 bg-primary/10 text-primary border-2 border-primary/20 rounded-[2rem] hover:bg-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center text-center gap-4"
-                    >
-                      <div className="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Trophy className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <div className="font-black text-lg">Test Mode</div>
-                        <div className="text-xs text-primary/60 font-medium mt-1">Challenge your knowledge</div>
-                      </div>
-                    </button>
-
-                    <button 
-                      onClick={onViewDashboard}
-                      className="group p-6 bg-slate-50 dark:bg-slate-800/50 text-slate-600 dark:text-slate-400 rounded-[2rem] hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-[1.02] active:scale-[0.98] transition-all flex flex-col items-center text-center gap-4"
-                    >
-                      <div className="w-12 h-12 bg-white dark:bg-slate-900 rounded-2xl flex items-center justify-center group-hover:translate-y-1 transition-transform">
-                        <Layers className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <div className="font-black text-lg">Dashboard</div>
-                        <div className="text-xs text-slate-400 font-medium mt-1">Track your progress</div>
-                      </div>
-                    </button>
-                  </div>
-                  
-                  {!isPremium && (
-                    <div className="mt-10 pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm font-medium text-slate-500 dark:text-slate-400">
-                      <div className="flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-purple-500" />
-                        <span>Want to learn even faster?</span>
-                      </div>
-                      <button 
-                        onClick={onShowPro} 
-                        className="px-4 py-2 bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 font-bold rounded-xl hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors"
-                      >
-                        Check out Pro Features
-                      </button>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div className="py-8">
-                  {!isPremium && (
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-full mb-8">
-                      <Sparkles className="w-4 h-4 text-purple-500" />
-                      <span className="text-sm font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                        Sign up today for 1 Week Free Premium!
-                      </span>
-                    </div>
-                  )}
-                  
-                  <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 tracking-tight">
-                    Supercharge your learning.
-                  </h2>
-                  <p className="text-lg text-slate-500 dark:text-slate-400 mb-10 max-w-xl mx-auto font-medium leading-relaxed">
-                    Create a free account to access your personalized dashboard, smart flashcards, and custom test modes. 
-                    {!isPremium && (
-                      <> Plus, get <span className="text-indigo-600 dark:text-indigo-400 font-bold">1 week of Premium for free</span> and exclusive behind-the-scenes updates!</>
-                    )}
-                  </p>
-                  
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <button 
-                      onClick={onSignIn}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-indigo-600 text-white font-black rounded-2xl hover:bg-indigo-700 transition-all active:scale-95 shadow-xl shadow-indigo-600/20 text-lg"
-                    >
-                      <LogIn className="w-6 h-6" />
-                      Sign up for free
-                    </button>
-                    <button 
-                      onClick={onStartFlashcards}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-black rounded-2xl border-2 border-slate-100 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all active:scale-95 text-lg"
-                    >
-                      <Layers className="w-6 h-6" />
-                      Try Flashcards
-                    </button>
-                  </div>
-                </div>
+            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight leading-[1.1] max-w-4xl">
+              Master {(language === 'spanish' || language === 'french') ? 'GCSE' : currentPreview.label} Vocabulary <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Fast</span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-10 max-w-2xl mx-auto font-medium">
+              The fastest way to memorise vocabulary for {(language === 'spanish' || language === 'french') ? 'GCSEs' : 'exams'} and real life. No sign-up required to start learning.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-16">
+              <button 
+                onClick={onStartFlashcards}
+                className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all active:scale-95 shadow-xl shadow-indigo-600/20 text-lg flex items-center justify-center gap-2"
+              >
+                <Zap className="w-5 h-5" />
+                Start Learning Free
+              </button>
+              {(language === 'spanish' || language === 'french') && (
+                <button 
+                  onClick={() => {
+                    document.getElementById('topics-section')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-black rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-600 dark:hover:border-indigo-500 transition-all active:scale-95 text-lg flex items-center justify-center gap-2"
+                >
+                  <Layers className="w-5 h-5" />
+                  Browse Topics
+                </button>
               )}
             </div>
 
-            
+            {/* INTERACTIVE FLASHCARD PREVIEW */}
+            <div className="w-full max-w-md mx-auto perspective-1000 cursor-pointer group" onClick={() => setIsFlipped(!isFlipped)}>
+              <div className="text-sm font-bold text-slate-400 dark:text-slate-500 mb-4 uppercase tracking-widest flex items-center justify-center gap-2">
+                <PlayCircle className="w-4 h-4" />
+                Tap to flip
+              </div>
+              <motion.div 
+                className="relative w-full aspect-[4/3] preserve-3d transition-transform duration-500 ease-out shadow-2xl rounded-[2.5rem]"
+                animate={{ rotateY: isFlipped ? 180 : 0 }}
+              >
+                {/* Front */}
+                <div className="absolute inset-0 backface-hidden bg-white dark:bg-slate-800 rounded-[2.5rem] border-2 border-slate-100 dark:border-slate-700 flex flex-col items-center justify-center p-8">
+                  <span className="text-sm font-bold text-indigo-500 mb-4 uppercase tracking-widest">{currentPreview.label}</span>
+                  <h3 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white text-center">{currentPreview.front}</h3>
+                </div>
+                {/* Back */}
+                <div className="absolute inset-0 backface-hidden bg-indigo-600 rounded-[2.5rem] flex flex-col items-center justify-center p-8 text-white" style={{ transform: 'rotateY(180deg)' }}>
+                  <span className="text-sm font-bold text-indigo-200 mb-4 uppercase tracking-widest">English</span>
+                  <h3 className="text-4xl md:text-5xl font-black text-center">{currentPreview.back}</h3>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
+      {/* TOPICS SECTION (Only for Spanish & French) */}
+      {(language === 'spanish' || language === 'french') && (
+        <section id="topics-section" className="py-20 px-6 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">Choose a Topic</h2>
+              <p className="text-slate-500 dark:text-slate-400 text-lg">Start learning instantly. No account needed.</p>
+            </div>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { title: 'Family & Friends', icon: '👨‍👩‍👧‍👦', color: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400' },
+                { title: 'School & Study', icon: '🏫', color: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400' },
+                { title: 'Food & Drink', icon: '🥘', color: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
+                { title: 'Holidays & Travel', icon: '✈️', color: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-600 dark:text-purple-400' },
+              ].map((topic, i) => (
+                <button 
+                  key={i}
+                  onClick={() => onStartFlashcards(topic.title)}
+                  className="group p-6 bg-slate-50 dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-lg hover:-translate-y-1 text-left flex flex-col gap-4"
+                >
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${topic.color}`}>
+                    {topic.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{topic.title}</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Start learning →</p>
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
-        </motion.div>
-      </div>
-    </section>
+        </section>
+      )}
+
+      {/* CREDIBILITY & HOW IT WORKS */}
+      <section className="py-20 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-8">Built for GCSE Success</h2>
+            <div className="space-y-6">
+              {[
+                { icon: <Book className="w-6 h-6" />, title: 'Based on official specifications', desc: 'Vocabulary lists perfectly aligned with AQA and Edexcel.' },
+                { icon: <Brain className="w-6 h-6" />, title: 'Learn faster with repetition', desc: 'Our smart algorithm ensures you remember words long-term.' },
+                { icon: <Target className="w-6 h-6" />, title: 'Designed for exam prep', desc: 'Focus on the high-frequency words that actually appear in exams.' },
+              ].map((item, i) => (
+                <div key={i} className="flex gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{item.title}</h3>
+                    <p className="text-slate-500 dark:text-slate-400">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="bg-white dark:bg-slate-900 p-8 md:p-12 rounded-[3rem] shadow-xl border border-slate-100 dark:border-slate-800">
+            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-8">How it works</h3>
+            <div className="space-y-8 relative before:absolute before:inset-0 before:ml-6 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-200 dark:before:via-slate-700 before:to-transparent">
+              {[
+                { step: '1', title: 'Pick a topic', desc: 'Choose from exam-specific categories.' },
+                { step: '2', title: 'Start learning instantly', desc: 'Flip cards and test your memory.' },
+                { step: '3', title: 'Improve every day', desc: 'Build a streak and track your progress.' },
+              ].map((item, i) => (
+                <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white dark:border-slate-900 bg-indigo-600 text-white font-black shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-md z-10">
+                    {item.step}
+                  </div>
+                  <div className="w-[calc(100%-4rem)] md:w-[calc(50%-3rem)] p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700">
+                    <h4 className="font-bold text-slate-900 dark:text-white mb-1">{item.title}</h4>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PREMIUM TEASER */}
+      <section className="py-20 px-6 bg-slate-900 text-white overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black mb-6">Go further with Premium</h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto">Unlock the ultimate toolkit to guarantee your target grade.</p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {[
+                { icon: <Volume2 className="w-5 h-5" />, text: `Audio pronunciation${(language === 'spanish' || language === 'french') ? ` (${language === 'spanish' ? 'Spanish' : 'French'})` : ''}` },
+                { icon: <Brain className="w-5 h-5" />, text: 'Smart spaced repetition' },
+                { icon: <Trophy className="w-5 h-5" />, text: 'Test mode (type answers)' },
+                { icon: <Target className="w-5 h-5" />, text: 'Weak words tracking' },
+                { icon: <BarChart3 className="w-5 h-5" />, text: 'Advanced progress insights' },
+                { icon: <Snowflake className="w-5 h-5" />, text: 'Streak freezes' },
+              ].map((feature, i) => (
+                <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10">
+                  <div className="text-indigo-400">{feature.icon}</div>
+                  <span className="font-medium text-sm">{feature.text}</span>
+                </div>
+              ))}
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-md p-8 rounded-[3rem] border border-white/20 text-center">
+              <div className="inline-block px-4 py-1.5 bg-indigo-500/20 text-indigo-300 font-bold text-sm rounded-full mb-6">
+                Early Access Pricing
+              </div>
+              <div className="flex justify-center items-end gap-2 mb-2">
+                <span className="text-5xl font-black">£4.99</span>
+                <span className="text-slate-400 mb-1">lifetime</span>
+              </div>
+              <p className="text-slate-400 mb-8">or £1.99/month</p>
+              <button 
+                onClick={onShowPro}
+                className="w-full py-4 bg-white text-slate-900 hover:bg-slate-100 font-black rounded-2xl transition-colors text-lg"
+              >
+                Register Interest
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="py-24 px-6 text-center">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-8 tracking-tight">
+            Start learning in seconds.
+          </h2>
+          <button 
+            onClick={onStartFlashcards}
+            className="px-10 py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all active:scale-95 shadow-2xl shadow-indigo-600/30 text-xl flex items-center justify-center gap-3 mx-auto"
+          >
+            <Zap className="w-6 h-6" />
+            Start Learning Free
+          </button>
+        </div>
+      </section>
+    </div>
   );
 }

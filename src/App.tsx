@@ -3,6 +3,7 @@ import { Word, UserProgress, Question, MasteryLevel, CustomDeck, SRSSettings } f
 import { VOCABULARY as BIBLICAL_HEBREW_VOCABULARY } from './data/vocabulary';
 import { MODERN_HEBREW_VOCABULARY } from './data/modern_hebrew';
 import { SPANISH_EDEXCEL_VOCABULARY } from './data/spanish_edexcel';
+import { FRENCH_EDEXCEL_VOCABULARY } from './data/french_edexcel';
 import { Dashboard } from './components/Dashboard';
 import { LearnCard } from './components/LearnCard';
 import { FlashcardMode } from './components/FlashcardMode';
@@ -23,17 +24,19 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.6.4';
+const CURRENT_VERSION = '1.8.7';
 
 const LATEST_CHANGES = [
-  { title: 'Pricing Update', description: 'Updated Premium pricing to £10 with lifetime support and updates. Early bird registration now offers a 50% discount (£5).' },
-  { title: 'Early Access Program', description: 'New users now get 7 days of free early access to all Premium features during our development phase.' },
-  { title: 'Cloudflare Compatibility', description: 'Refactored the entire project to be fully compatible with Cloudflare Pages deployment.' },
-  { title: 'Premium in Development', description: 'Updated the Premium system to reflect its development status and added a pre-launch discount registration.' },
-  { title: 'Flashcard UI Update', description: 'Removed the version number from the flashcard mode header.' },
+  { title: 'Auth Configuration', description: 'Reverted to standard plaintext password for developer mode access.' },
+  { title: 'PC Flag Compatibility', description: 'Using image flags in selection UI for reliability across different operating systems.' },
+  { title: 'Default Language: BH', description: 'Biblical Hebrew is now the standard entry point for all users.' },
+  { title: 'Security Profile', description: 'Optimized authentication flow for smoother developer access.' },
 ];
 
 const ARCHIVED_CHANGES = [
+  { title: 'Pricing Update', description: 'Updated Premium pricing to £10 with lifetime support and updates. Early bird registration now offers a 50% discount (£5).' },
+  { title: 'Cloudflare Compatibility', description: 'Refactored the entire project to be fully compatible with Cloudflare Pages deployment.' },
+  { title: 'Premium in Development', description: 'Updated the Premium system to reflect its development status and added a pre-launch discount registration.' },
   { title: 'Spanish Vocabulary Update', description: 'Implemented a massive update to the Spanish vocabulary list with over 1200 new words and phrases.' },
   { title: 'Spanish Vocabulary Reset', description: 'Removed all existing Spanish keywords to prepare for a new, updated vocabulary list.' },
   { title: 'Email & Password Sign In', description: 'Added the ability to create an account and sign in using an email and password, bypassing the need for Google Sign-In entirely.' },
@@ -76,14 +79,16 @@ export default function App() {
       masteredInterval: 168
     };
   });
-  const [language, setLanguage] = useState<string>(() => {
+  const [language, setLanguage] = useState<string>('biblical');
+
+  useEffect(() => {
     const saved = safeLocalStorage.getItem('bh-language');
-    const parsed = saved || 'biblical';
-    if (safeLocalStorage.getItem('bh-dev-mode') !== 'true' && parsed === 'modern') {
-      return 'biblical';
+    if (saved) {
+      if (devMode || saved !== 'modern') {
+        setLanguage(saved);
+      }
     }
-    return parsed;
-  });
+  }, [devMode]);
 
   useEffect(() => {
     if (!devMode && language === 'modern') {
@@ -91,16 +96,36 @@ export default function App() {
     }
   }, [devMode, language]);
 
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+
   const activeVocabulary = useMemo(() => {
-    if (language === 'biblical') return BIBLICAL_HEBREW_VOCABULARY;
-    if (language === 'modern') return MODERN_HEBREW_VOCABULARY;
-    if (language === 'spanish') return SPANISH_EDEXCEL_VOCABULARY;
-    
-    const customDeck = customDecks.find(d => d.id === language);
-    if (customDeck) return customDeck.words;
-    
-    return BIBLICAL_HEBREW_VOCABULARY; // fallback
-  }, [language, customDecks]);
+    let vocab: Word[] = [];
+    if (language === 'biblical') vocab = BIBLICAL_HEBREW_VOCABULARY;
+    else if (language === 'modern') vocab = MODERN_HEBREW_VOCABULARY;
+    else if (language === 'spanish') vocab = SPANISH_EDEXCEL_VOCABULARY;
+    else if (language === 'french') vocab = FRENCH_EDEXCEL_VOCABULARY;
+    else {
+      const customDeck = customDecks.find(d => d.id === language);
+      vocab = customDeck ? customDeck.words : BIBLICAL_HEBREW_VOCABULARY;
+    }
+
+    if (selectedTopic && (language === 'spanish' || language === 'french')) {
+      const topicKeywords: Record<string, string[]> = {
+        'Family & Friends': ['family', 'friend', 'brother', 'sister', 'mother', 'father', 'son', 'daughter', 'uncle', 'aunt', 'grand', 'cousin', 'marry', 'boyfriend', 'girlfriend', 'people', 'person', 'neighbor', 'neighbour', 'invite', 'call', 'love', 'name', 'relationship', 'wedding'],
+        'School & Study': ['school', 'study', 'learn', 'teacher', 'professor', 'subject', 'homework', 'exam', 'grade', 'classroom', 'pen', 'book', 'notebook', 'library', 'education', 'maths', 'science', 'history', 'language', 'lesson', 'class'],
+        'Food & Drink': ['eat', 'drink', 'food', 'meal', 'restaurant', 'café', 'cafe', 'bread', 'water', 'milk', 'meat', 'fish', 'fruit', 'vegetable', 'cheese', 'egg', 'rice', 'pasta', 'dessert', 'dinner', 'lunch', 'breakfast', 'hungry', 'thirsty', 'cook', 'menu', 'bill', 'tasty', 'snack'],
+        'Holidays & Travel': ['holiday', 'trip', 'travel', 'hotel', 'beach', 'sea', 'sun', 'plane', 'train', 'bus', 'car', 'bike', 'bicycle', 'passport', 'ticket', 'luggage', 'tourism', 'tourist', 'visit', 'museum', 'monument', 'castle', 'island', 'costa', 'destination', 'station', 'airport', 'flight', 'arrival', 'departure', 'vacation']
+      };
+
+      const keywords = topicKeywords[selectedTopic] || [];
+      return vocab.filter(word => {
+        const eng = word.english.toLowerCase();
+        return keywords.some(k => eng.includes(k.toLowerCase()));
+      });
+    }
+
+    return vocab;
+  }, [language, customDecks, selectedTopic]);
 
   const PROGRESS_KEY = `bh-keywords-progress-${language}`;
   const SESSION_STATE_KEY = `bh-session-state-${language}`;
@@ -268,9 +293,19 @@ export default function App() {
   };
 
   const handleDevModePasswordSubmit = (password: string) => {
-    setDevMode(true);
-    safeLocalStorage.setItem('bh-dev-mode', 'true');
-    setShowDevModePasswordModal(false);
+    const pw = password.trim();
+    if (pw === 'leonisadmin') {
+      setDevMode(true);
+      safeLocalStorage.setItem('bh-dev-mode', 'true');
+      setShowDevModePasswordModal(false);
+    } else {
+      alert('Incorrect developer password.');
+    }
+  };
+
+  const handleStartFlashcards = (topic?: string) => {
+    setSelectedTopic(topic || null);
+    setView('flashcards');
   };
 
   // Auth listener
@@ -287,46 +322,6 @@ export default function App() {
       setView('home');
     }
   }, [user, isAuthReady, view, devMode]);
-
-  const handleGoogleSignIn = async () => {
-    try {
-      // First try popup, which is preferred in this environment
-      await signInWithPopup(auth, googleProvider);
-    } catch (error: any) {
-      // Don't log expected user actions as errors
-      if (error.code === 'auth/popup-closed-by-user' || error.code === 'auth/cancelled-popup-request') {
-        console.log("Sign in cancelled by user.");
-        return;
-      }
-      
-      // If popup is blocked or fails due to cross-origin/third-party cookie issues (common on iPad/Safari)
-      if (
-        error.code === 'auth/popup-blocked' || 
-        error.code === 'auth/web-storage-unsupported' ||
-        error.message?.toLowerCase().includes('cross-origin') ||
-        /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) // Fallback for Apple devices if popup fails
-      ) {
-        console.warn("Popup sign-in failed or blocked. Falling back to redirect sign-in...", error);
-        
-        // Check if we are running inside an iframe (like the AI Studio preview)
-        if (window !== window.top) {
-          alert("Apple devices block Google sign-in inside previews. Please click the 'Open in New Tab' button (the square with an arrow at the top right of the preview) to sign in with Google, or use Email/Password instead!");
-          return;
-        }
-
-        try {
-          await signInWithRedirect(auth, googleProvider);
-        } catch (redirectError) {
-          console.error("Redirect sign-in also failed:", redirectError);
-          alert("Sign in failed. If you are on an iPad/iPhone, please ensure 'Prevent Cross-Site Tracking' is disabled in Safari settings, or try another browser.");
-        }
-        return;
-      }
-      
-      console.error("Sign in failed:", error);
-      alert("Sign in failed. Please try again.");
-    }
-  };
 
   const handleSignIn = () => {
     setShowAuthModal(true);
@@ -831,6 +826,7 @@ export default function App() {
       <Navbar 
         onNavigate={(view) => setView(view)} 
         language={language} 
+        onLanguageChange={setLanguage}
         user={user}
         userProfile={userProfile}
         onSignIn={handleSignIn}
@@ -852,7 +848,6 @@ export default function App() {
         {showAuthModal && (
           <AuthModal 
             onClose={() => setShowAuthModal(false)} 
-            onGoogleSignIn={handleGoogleSignIn} 
           />
         )}
         
@@ -1000,7 +995,7 @@ export default function App() {
               <Hero 
                 onStartSession={startSession} 
                 onViewDashboard={() => setView('dashboard')} 
-                onStartFlashcards={() => setView('flashcards')}
+                onStartFlashcards={handleStartFlashcards}
                 onStartTest={() => setView('test')}
                 language={language}
                 onLanguageChange={handleLanguageChange}
@@ -1026,7 +1021,7 @@ export default function App() {
                 progress={progress}
                 onStartSession={startSession}
                 onStartIncorrectSession={startIncorrectSession}
-                onStartFlashcards={() => setView('flashcards')}
+                onStartFlashcards={handleStartFlashcards}
                 onStartTest={() => setView('test')}
                 onResetProgress={() => {
                   setProgress([]);
@@ -1066,7 +1061,10 @@ export default function App() {
             >
               <FlashcardMode
                 vocabulary={activeVocabulary}
-                onExit={() => setView('home')}
+                onExit={() => {
+                  setSelectedTopic(null);
+                  setView('home');
+                }}
                 onSwitchToLearn={startSession}
                 onWordProgress={updateWordProgress}
                 language={language}
@@ -1075,6 +1073,9 @@ export default function App() {
                   setShowGuestLimitModal(true);
                   setView('home');
                 }}
+                isPremium={isPremium}
+                onShowPro={() => setShowProModal(true)}
+                selectedTopic={selectedTopic}
               />
             </motion.div>
           )}
@@ -1205,7 +1206,7 @@ export default function App() {
                         Get 50% Off at Launch!
                       </h3>
                       <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                        Register your interest now to lock in a <strong>50% discount</strong> when we officially launch. Get lifetime access, support, and updates for just <strong>£5</strong> (instead of £10).
+                        Register your interest now to lock in a <strong>50% discount</strong> when we officially launch. Get lifetime access, support, and updates for just <strong>£4.99</strong> or <strong>£1.99/month</strong>.
                       </p>
                       <button 
                         onClick={() => {
@@ -1227,9 +1228,16 @@ export default function App() {
                 ) : (
                   <>
                     <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Premium in Development</h2>
-                    <p className="text-slate-500 dark:text-slate-400 mb-6">
-                      We're building something great! Sign up now to get <strong>7 days of free early access</strong> to all upcoming features like Spaced Repetition, AI Pronunciation, and Custom Decks.
+                    <p className="text-slate-500 dark:text-slate-400 mb-4">
+                      We're building the ultimate toolkit to guarantee your target grade. Sign up now to get <strong>7 days of free early access</strong> to all upcoming features:
                     </p>
+                    <ul className="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 font-medium">
+                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Audio pronunciation (Spanish)</li>
+                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Smart spaced repetition</li>
+                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Test mode (type answers)</li>
+                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Weak words tracking</li>
+                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Advanced progress insights</li>
+                    </ul>
                     {!user && (
                       <button 
                         onClick={() => {
@@ -1251,7 +1259,7 @@ export default function App() {
                 </div>
                 <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Request Received!</h2>
                 <p className="text-slate-500 dark:text-slate-400">
-                  We'll email you a secure checkout link to upgrade your account for £5 shortly.
+                  We'll email you a secure checkout link to upgrade your account shortly.
                 </p>
                 <button 
                   onClick={() => setShowProModal(false)}
@@ -1279,9 +1287,9 @@ export default function App() {
               <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Sparkles className="w-8 h-8" />
               </div>
-              <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Great Job!</h2>
+              <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">You're learning fast 🚀</h2>
               <p className="text-slate-500 dark:text-slate-400">
-                You've reviewed 50 cards! Your progress is saved locally, but sign up now to sync it across devices and unlock more features.
+                Sign up to save your progress and unlock smart spaced repetition.
               </p>
             </div>
             
@@ -1308,7 +1316,7 @@ export default function App() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm"
             >
               <Sparkles className="w-4 h-4 text-primary" />
-              Request a Feature
+              Request a Feature / Report a Bug
             </a>
           </div>
           
