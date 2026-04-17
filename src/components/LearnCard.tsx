@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Question, Word } from '../types';
 import { Check, X, ArrowRight } from 'lucide-react';
+import { getForeignWord } from '../lib/utils';
 
 interface LearnCardProps {
   question: Question;
@@ -91,8 +92,8 @@ export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCa
             <span className="text-xs font-bold text-primary uppercase tracking-widest mb-4 block">
               {question.type === 'multiple-choice' ? 'Choose the correct meaning' : 'Type the meaning'}
             </span>
-            <h2 className={`font-bold text-slate-900 dark:text-white mb-6 ${getFontSize(question.word.hebrew)}`} dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
-              {question.word.hebrew}
+            <h2 className={`font-bold text-slate-900 dark:text-white mb-6 ${getFontSize(getForeignWord(question.word, language))}`} dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
+              {getForeignWord(question.word, language)}
             </h2>
             {isSubmitted && question.word.transliteration && (
               <motion.p

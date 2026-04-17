@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Word, UserProgress, CustomDeck, SRSSettings } from '../types';
-import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2, Settings2, Save, Snowflake, Share2, Flame } from 'lucide-react';
+import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2, Settings2, Save, Snowflake, Share2, Flame, User as UserIcon } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
 import { ProgressChart } from './ProgressChart';
 import { User } from 'firebase/auth';
@@ -8,13 +8,14 @@ import { db } from '../firebase';
 import { collection, addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { CreateDeckModal } from './CreateDeckModal';
 import { QuizletImportModal } from './QuizletImportModal';
+import { getForeignWord } from '../lib/utils';
 
 interface DashboardProps {
   vocabulary: Word[];
   progress: UserProgress[];
   onStartSession: () => void;
   onStartIncorrectSession: () => void;
-  onStartFlashcards: (topic?: string) => void;
+  onStartFlashcards: (topic?: string | any) => void;
   onStartTest: () => void;
   onResetProgress: () => void;
   user: User | null;
@@ -38,6 +39,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
   const [showCreateDeck, setShowCreateDeck] = useState(false);
   const [showImportDeck, setShowImportDeck] = useState(false);
   const [sharingDeckId, setSharingDeckId] = useState<string | null>(null);
+  const [showDatabase, setShowDatabase] = useState(false);
 
   const handleShareDeck = async (deck: CustomDeck) => {
     if (!user) return;
@@ -77,7 +79,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
     }
   };
 
-  const { masteredCount, learningCount, totalCount, dueCount, categories, filteredVocabulary, todayReviews } = useMemo(() => {
+  const stats = useMemo(() => {
     const mastered = progress.filter(p => p.mastery === 'mastered').length;
     const learning = progress.filter(p => p.mastery === 'learning').length;
     const total = vocabulary.length;
@@ -92,7 +94,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
       const status = wordProgress?.mastery || 'new';
 
       const matchesSearch = word.english.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        word.hebrew.includes(searchQuery) ||
+        getForeignWord(word, language).includes(searchQuery) ||
         word.category.toLowerCase().includes(searchQuery.toLowerCase());
       
       const matchesStatus = statusFilter === 'all' || status === statusFilter;
@@ -119,7 +121,9 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
       filteredVocabulary: filtered,
       todayReviews: todayRev
     };
-  }, [vocabulary, progress, searchQuery, statusFilter, categoryFilter]);
+  }, [vocabulary, progress, searchQuery, statusFilter, categoryFilter, language]);
+
+  const { masteredCount, learningCount, totalCount, dueCount, categories, filteredVocabulary, todayReviews } = stats;
 
   const analytics = useMemo(() => {
     let totalCorrect = 0;
@@ -166,92 +170,133 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
   }, [progress, vocabulary]);
 
   return (
-    <div className="max-w-[1100px] mx-auto px-6 py-12">
-      <div className="mb-12 flex flex-col md:flex-row justify-between items-end gap-6">
-        <div>
-          <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Your Progress</h1>
-            {user ? (
-              <div className="flex items-center gap-1.5 px-2 py-1 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-green-100 dark:border-green-900/30">
-                <CloudCheck className="w-3 h-3" />
-                Synced
-              </div>
-            ) : (
-              <div className="flex items-center gap-1.5 px-2 py-1 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 rounded-lg text-[10px] font-bold uppercase tracking-widest border border-slate-200 dark:border-slate-700">
-                <CloudOff className="w-3 h-3" />
-                Local Only
-              </div>
-            )}
+    <div className="max-w-[1200px] mx-auto px-4 md:px-8 py-8 md:py-12 pt-24 sm:pt-8 md:pt-12">
+      <div className="mb-10 flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pt-16 sm:pt-0">
+        <div className="w-full sm:w-auto">
+          <div className="flex flex-wrap items-center gap-3 mb-2">
+            <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
+              {language === 'biblical' ? 'Biblical Hebrew' : language === 'modern' ? 'Modern Hebrew' : language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Custom Deck'}
+            </h1>
+            <div className="flex items-center gap-2">
+              {user ? (
+                <div className="flex items-center gap-1.5 px-2.5 py-1 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-full text-[9px] font-black uppercase tracking-widest border border-green-100 dark:border-green-900/30">
+                  <CloudCheck className="w-3 h-3" />
+                  Synced
+                </div>
+              ) : (
+                <div className="flex items-center gap-1.5 px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500 rounded-full text-[9px] font-black uppercase tracking-widest border border-slate-200 dark:border-slate-700">
+                  <CloudOff className="w-3 h-3" />
+                  Local
+                </div>
+              )}
+            </div>
           </div>
-          <p className="text-slate-500 dark:text-slate-400 font-medium">
+          <p className="text-slate-500 dark:text-slate-400 font-bold text-sm md:text-base">
             {user ? `Signed in as ${user.displayName || user.email}` : 'Sign in to sync your progress across devices.'}
           </p>
-          {userProfile?.streak > 0 && (
-            <p className="mt-2 text-orange-500 font-bold flex items-center gap-2">
-              <Flame className="w-4 h-4" />
-              You're on a {userProfile.streak}-day streak! Keep it up! 🔥
-            </p>
-          )}
         </div>
-        <div className="relative">
-          {showResetConfirm ? (
-            <div className="flex items-center gap-3 bg-red-50 dark:bg-red-900/10 p-2 rounded-xl border border-red-100 dark:border-red-900/20">
-              <span className="text-[10px] font-bold text-red-600 dark:text-red-400 uppercase tracking-tight">Are you sure?</span>
-              <button
-                onClick={() => {
-                  onResetProgress();
-                  setShowResetConfirm(false);
-                }}
-                className="px-3 py-1 bg-red-500 text-white text-[10px] font-bold rounded-lg hover:bg-red-600 transition-colors uppercase"
-              >
-                Yes, Reset
-              </button>
-              <button
-                onClick={() => setShowResetConfirm(false)}
-                className="px-3 py-1 bg-white dark:bg-slate-800 text-slate-400 dark:text-slate-500 text-[10px] font-bold rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors uppercase"
-              >
-                Cancel
-              </button>
+        <div className="flex flex-col items-end gap-3 w-full sm:w-auto">
+          {userProfile?.streak > 0 && (
+            <div className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-2xl shadow-lg shadow-orange-500/20 border border-white/10 flex items-center gap-2 animate-bounce-subtle">
+              <Flame className="w-5 h-5 fill-current" />
+              <span className="font-black text-sm">{userProfile.streak} Day Streak!</span>
             </div>
-          ) : (
-            <button
-              onClick={() => setShowResetConfirm(true)}
-              className="text-xs font-bold text-slate-300 dark:text-slate-600 hover:text-red-500 transition-colors uppercase tracking-widest"
-            >
-              Reset All Progress
-            </button>
           )}
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800">
-          <div className="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 rounded-2xl flex items-center justify-center mb-6">
-            <Book className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+      {/* Hero / Quick Start Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
+        <div className="lg:col-span-8 bg-gradient-to-br from-indigo-700 via-indigo-600 to-indigo-800 dark:from-indigo-600 dark:to-indigo-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group">
+          <div className="relative z-10">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight leading-tight uppercase italic animate-bounce-subtle">
+              START LEARNING <br className="hidden md:block"/> NOW — IT'S FREE!
+            </h2>
+            <p className="text-indigo-100 font-bold text-base md:text-xl mb-8 max-w-lg opacity-90">
+              Master your {language === 'biblical' ? 'Biblical Hebrew' : language === 'spanish' ? 'Spanish' : 'vocabulary'} effectively with spaced repetition.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4">
+              <button
+                onClick={onStartSession}
+                className="flex-[2] min-h-[72px] px-8 bg-white text-indigo-700 rounded-2xl font-black text-xl md:text-2xl hover:bg-indigo-50 transition-all flex items-center justify-center gap-3 shadow-2xl hover:-translate-y-1 active:scale-95 uppercase tracking-tight animate-bounce-subtle"
+              >
+                <Play className="w-7 h-7 fill-current" /> Start Learning Now
+              </button>
+              <button
+                onClick={() => onStartFlashcards()}
+                className="flex-1 min-h-[72px] px-8 bg-white/20 hover:bg-white/30 text-white border border-white/20 rounded-2xl font-black text-xl transition-all flex items-center justify-center gap-3 backdrop-blur-sm hover:-translate-y-1 active:scale-95"
+              >
+                <Book className="w-6 h-6" /> Flashcards
+              </button>
+            </div>
+            
+            {!user && (
+              <div className="mt-8 flex items-center gap-3 p-4 bg-black/20 rounded-2xl backdrop-blur-sm border border-white/5 max-w-lg">
+                <div className="w-10 h-10 bg-indigo-500 rounded-xl flex items-center justify-center shrink-0">
+                  <UserIcon className="w-4 h-4 text-white" />
+                </div>
+                <div>
+                  <p className="text-xs font-black text-white uppercase tracking-wider mb-0.5">Guest Mode</p>
+                  <p className="text-[11px] text-indigo-100/80 font-bold leading-tight">Create an account to save your progress, build streaks, and study across all your devices!</p>
+                </div>
+              </div>
+            )}
           </div>
-          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Total Words</p>
-          <p className="text-4xl font-extrabold text-slate-900 dark:text-white">{totalCount}</p>
+          
+          {/* Decorative Elements */}
+          <div className="absolute -right-12 -bottom-12 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none group-hover:bg-white/15 transition-all duration-1000" />
+          <div className="absolute -left-12 -top-12 w-48 h-48 bg-indigo-400/20 rounded-full blur-3xl pointer-events-none group-hover:bg-indigo-400/30 transition-all duration-1000" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10 pointer-events-none mix-blend-overlay">
+            <RotateCw className="w-full h-full rotate-45 text-white" />
+          </div>
         </div>
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800">
-          <div className="w-12 h-12 bg-yellow-50 dark:bg-yellow-900/20 rounded-2xl flex items-center justify-center mb-6">
-            <Play className="w-6 h-6 text-yellow-600 dark:text-yellow-400" />
-          </div>
-          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Learning</p>
-          <p className="text-4xl font-extrabold text-slate-900 dark:text-white">{learningCount}</p>
+        
+        <div className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-6">
+          <button 
+            onClick={onStartIncorrectSession}
+            className="flex flex-col items-center justify-center p-6 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] shadow-soft hover:shadow-xl hover:border-amber-200 dark:hover:border-amber-900 group transition-all"
+          >
+            <div className="w-14 h-14 bg-amber-50 dark:bg-amber-900/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <RotateCw className="w-7 h-7 text-amber-600 dark:text-amber-400" />
+            </div>
+            <span className="font-black text-slate-900 dark:text-white">Review Errors</span>
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Target Weaknesses</span>
+          </button>
+          
+          <button 
+            onClick={onStartTest}
+            className="flex flex-col items-center justify-center p-6 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-[2rem] shadow-soft hover:shadow-xl hover:border-indigo-200 dark:hover:border-indigo-900 group transition-all"
+          >
+            <div className="w-14 h-14 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <Trophy className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+            </div>
+            <span className="font-black text-slate-900 dark:text-white">Test Mode</span>
+            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Challenge Yourself</span>
+          </button>
         </div>
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800">
-          <div className="w-12 h-12 bg-green-50 dark:bg-green-900/20 rounded-2xl flex items-center justify-center mb-6">
-            <Trophy className="w-6 h-6 text-green-600 dark:text-green-400" />
-          </div>
-          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Mastered</p>
-          <p className="text-4xl font-extrabold text-slate-900 dark:text-white">{masteredCount}</p>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12">
+        <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-center sm:text-left">
+          <Book className="w-6 h-6 text-blue-600 dark:text-blue-400 mb-4 mx-auto sm:mx-0" />
+          <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Total</p>
+          <p className="text-2xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">{totalCount}</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800">
-          <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl flex items-center justify-center mb-6">
-            <Calendar className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-          </div>
-          <p className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Due for Review</p>
-          <p className="text-4xl font-extrabold text-slate-900 dark:text-white">{dueCount}</p>
+        <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-center sm:text-left">
+          <Play className="w-6 h-6 text-yellow-600 dark:text-yellow-400 mb-4 mx-auto sm:mx-0" />
+          <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Learning</p>
+          <p className="text-2xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">{learningCount}</p>
+        </div>
+        <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-center sm:text-left">
+          <Trophy className="w-6 h-6 text-green-600 dark:text-green-400 mb-4 mx-auto sm:mx-0" />
+          <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Mastered</p>
+          <p className="text-2xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">{masteredCount}</p>
+        </div>
+        <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-center sm:text-left">
+          <Calendar className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mb-4 mx-auto sm:mx-0" />
+          <p className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-1">Due</p>
+          <p className="text-2xl md:text-4xl font-black text-slate-900 dark:text-white tracking-tight">{dueCount}</p>
         </div>
       </div>
 
@@ -284,67 +329,40 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
 
       {activeTab === 'overview' && (
         <>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 shadow-soft border border-slate-100 dark:border-slate-800 relative overflow-hidden group">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 px-4 md:px-0">
+            <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-soft border border-slate-100 dark:border-slate-800 relative overflow-hidden group transition-all hover:shadow-xl">
               <div className="relative z-10">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-10">
-              <div>
-                <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">Mastery Overview</h2>
-                <p className="text-slate-500 dark:text-slate-400 font-medium">
-                  You've mastered {Math.round((masteredCount / totalCount) * 100)}% of the vocabulary. 
-                  Keep going to reach 100%!
-                </p>
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-10">
+                  <div>
+                    <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-2 tracking-tight">Mastery Overview</h2>
+                    <p className="text-slate-500 dark:text-slate-400 font-bold text-sm">
+                      You've mastered {Math.round((masteredCount / totalCount) * 100)}% of the vocabulary. 
+                      Keep going to reach 100%!
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center justify-center p-6 bg-primary/5 dark:bg-primary/10 rounded-[2rem] min-w-[140px] border border-primary/10">
+                    <div className="text-4xl font-black text-primary tracking-tighter">{Math.round((masteredCount / totalCount) * 100)}%</div>
+                    <div className="text-[10px] font-black text-primary/60 uppercase tracking-widest mt-1">Completion</div>
+                  </div>
+                </div>
+
+                <div className="mb-8">
+                  <div className="flex justify-between text-[11px] font-black text-slate-400 uppercase tracking-widest mb-4">
+                    <span>Progress</span>
+                    <span>{masteredCount} / {totalCount} Words</span>
+                  </div>
+                  <div className="h-4 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-1 shadow-inner border border-slate-200/50 dark:border-slate-700">
+                    <div 
+                      className="h-full bg-gradient-to-r from-primary to-indigo-500 rounded-full transition-all duration-1000 ease-out shadow-lg shadow-primary/20"
+                      style={{ width: `${(masteredCount / totalCount) * 100}%` }}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="flex flex-col items-center justify-center p-6 bg-primary/5 dark:bg-primary/10 rounded-[2rem] min-w-[140px]">
-                <div className="text-4xl font-black text-primary">{Math.round((masteredCount / totalCount) * 100)}%</div>
-                <div className="text-[10px] font-black text-primary/60 uppercase tracking-widest mt-1">Overall</div>
-              </div>
+              <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none group-hover:bg-primary/10 transition-colors duration-700" />
             </div>
 
-            <div className="mb-12">
-              <div className="flex justify-between text-xs font-black text-slate-400 uppercase tracking-widest mb-4">
-                <span>Learning Progress</span>
-                <span>{masteredCount} / {totalCount} Words</span>
-              </div>
-              <div className="h-4 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden p-1 shadow-inner">
-                <div 
-                  className="h-full bg-gradient-to-r from-primary to-indigo-500 rounded-full transition-all duration-1000 ease-out shadow-lg shadow-primary/20"
-                  style={{ width: `${(masteredCount / totalCount) * 100}%` }}
-                />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <button
-                onClick={onStartSession}
-                className="px-6 py-5 bg-indigo-600 text-white rounded-2xl font-black hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 shadow-xl shadow-indigo-600/20 hover:-translate-y-1 active:scale-95"
-              >
-                <Play className="w-5 h-5 fill-current" /> Learn
-              </button>
-              <button
-                onClick={onStartIncorrectSession}
-                className="px-6 py-5 bg-amber-500 text-white rounded-2xl font-black hover:bg-amber-600 transition-all flex items-center justify-center gap-3 shadow-xl shadow-amber-500/20 hover:-translate-y-1 active:scale-95"
-              >
-                <RotateCw className="w-5 h-5" /> Review Incorrect
-              </button>
-              <button
-                onClick={onStartFlashcards}
-                className="px-6 py-5 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-100 dark:border-slate-700 rounded-2xl font-black hover:bg-slate-100 dark:hover:bg-slate-700 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95"
-              >
-                <Book className="w-5 h-5" /> Flashcards
-              </button>
-              <button
-                onClick={onStartTest}
-                className="px-6 py-5 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-900/30 rounded-2xl font-black hover:bg-indigo-100 dark:hover:bg-indigo-900/40 transition-all flex items-center justify-center gap-3 hover:-translate-y-1 active:scale-95"
-              >
-                <Trophy className="w-5 h-5" /> Test Mode
-              </button>
-            </div>
-          </div>
-          <div className="absolute -right-20 -top-20 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none group-hover:bg-primary/10 transition-colors duration-700" />
-        </div>
-
-        <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-8">
           <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 flex flex-col">
             <div className="mb-6 flex justify-between items-end">
               <div>
@@ -394,7 +412,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                 </div>
                 <h3 className="text-2xl font-black mb-2">Welcome to Pro</h3>
                 <p className="text-amber-100 text-sm mb-6">
-                  You have access to all premium features, including Custom Decks, Advanced Analytics, and faster Streak Freezes!
+                  You have access to all premium features, including Grammar Modules, Exam Prep, Custom Decks, and Advanced Analytics!
                 </p>
                 <button 
                   onClick={onShowPro}
@@ -413,7 +431,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                 </div>
                 <h3 className="text-2xl font-black mb-2">Upgrade to Pro</h3>
                 <p className="text-indigo-100 text-sm mb-6">
-                  Your 7-day free trial has ended. Upgrade for lifetime support and updates, plus unlimited flashcards, streak freezes, and more!
+                  Upgrade for lifetime support, grammar learning modules, listening/writing exam prep, and unlimited flashcards!
                 </p>
                 <button 
                   onClick={onShowPro}
@@ -428,98 +446,186 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-soft border border-slate-100 dark:border-slate-800 overflow-hidden">
-        <div className="p-8 border-b border-slate-50 dark:border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6">
-          <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">Vocabulary Database</h3>
-          <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-            <div className="relative w-full sm:w-64">
-              <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
-              <input
-                type="text"
-                placeholder="Search words..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl text-sm font-medium outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all text-slate-900 dark:text-white"
-              />
+      {showDatabase ? (
+          <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 overflow-hidden mb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="p-8 border-b border-slate-50 dark:border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6">
+              <div className="flex items-center gap-4">
+                <button 
+                  onClick={() => setShowDatabase(false)}
+                  className="p-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-2xl text-slate-500 transition-colors"
+                  title="Back to Overview"
+                >
+                  <RotateCw className="w-5 h-5 -rotate-90" />
+                </button>
+                <div>
+                  <h3 className="text-xl font-black text-slate-900 dark:text-white">Vocabulary Database</h3>
+                  <p className="text-xs text-slate-400 font-bold uppercase tracking-widest">Browsing {totalCount} words</p>
+                </div>
+              </div>
+              <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+                <div className="relative w-full sm:w-64">
+                  <Search className="w-4 h-4 absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
+                  <input
+                    type="text"
+                    placeholder="Search words..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl text-sm font-bold outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all text-slate-900 dark:text-white"
+                  />
+                </div>
+                
+                <div className="flex gap-4 w-full sm:w-auto">
+                  <select
+                    value={statusFilter}
+                    onChange={(e) => setStatusFilter(e.target.value)}
+                    className="flex-1 sm:flex-none px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl text-sm font-bold text-slate-600 dark:text-slate-400 outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all appearance-none cursor-pointer"
+                  >
+                    <option value="all">All Status</option>
+                    <option value="new">New</option>
+                    <option value="learning">Learning</option>
+                    <option value="mastered">Mastered</option>
+                  </select>
+  
+                  <select
+                    value={categoryFilter}
+                    onChange={(e) => setCategoryFilter(e.target.value)}
+                    className="flex-1 sm:flex-none px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl text-sm font-bold text-slate-600 dark:text-slate-400 outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all appearance-none cursor-pointer"
+                  >
+                    <option value="all">All Categories</option>
+                    {categories.map(cat => (
+                      <option key={cat} value={cat}>{cat}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </div>
-            
-            <div className="flex gap-4 w-full sm:w-auto">
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="flex-1 sm:flex-none px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl text-sm font-bold text-slate-600 dark:text-slate-400 outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all appearance-none cursor-pointer"
-              >
-                <option value="all">All Status</option>
-                <option value="new">New</option>
-                <option value="learning">Learning</option>
-                <option value="mastered">Mastered</option>
-              </select>
-
-              <select
-                value={categoryFilter}
-                onChange={(e) => setCategoryFilter(e.target.value)}
-                className="flex-1 sm:flex-none px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl text-sm font-bold text-slate-600 dark:text-slate-400 outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all appearance-none cursor-pointer"
-              >
-                <option value="all">All Categories</option>
-                {categories.map(cat => (
-                  <option key={cat} value={cat}>{cat}</option>
-                ))}
-              </select>
+            {/* Desktop Table */}
+            <div className="hidden md:block overflow-x-auto max-h-[600px] overflow-y-auto custom-scrollbar">
+              <table className="w-full text-left">
+                <thead className="bg-slate-50/50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-500 text-xs font-bold uppercase tracking-widest sticky top-0 z-10 backdrop-blur-sm">
+                  <tr>
+                    <th className="px-8 py-5">{language === 'spanish' || language === 'french' ? 'Target' : 'Hebrew'}</th>
+                    <th className="px-8 py-5">English</th>
+                    <th className="px-8 py-5">Category</th>
+                    <th className="px-8 py-5">Status</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
+                  {filteredVocabulary.length > 0 ? (
+                    filteredVocabulary.map((word) => {
+                      const wordProgress = progress.find(p => p.wordId === word.id);
+                      const status = wordProgress?.mastery || 'new';
+  
+                      return (
+                        <tr key={word.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors group">
+                          <td className="px-8 py-6 text-3xl font-bold text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
+                            {getForeignWord(word, language)}
+                          </td>
+                          <td className="px-8 py-6 text-slate-600 dark:text-slate-400 font-bold overflow-hidden text-ellipsis">
+                            {word.english}
+                          </td>
+                          <td className="px-8 py-6">
+                            <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-lg text-[10px] font-bold uppercase tracking-wider">
+                              {word.category}
+                            </span>
+                          </td>
+                          <td className="px-8 py-6">
+                            <span className={`px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-widest ${
+                              status === 'mastered' ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400' :
+                              status === 'learning' ? 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400' :
+                              'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500'
+                            }`}>
+                              {status}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td colSpan={4} className="px-8 py-20 text-center text-slate-400 dark:text-slate-500 font-medium italic">
+                        No words found matching "{searchQuery}"
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
-          </div>
-        </div>
-        <div className="overflow-x-auto max-h-[600px] overflow-y-auto custom-scrollbar">
-          <table className="w-full text-left">
-            <thead className="bg-slate-50/50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-500 text-xs font-bold uppercase tracking-widest sticky top-0 z-10 backdrop-blur-sm">
-              <tr>
-                <th className="px-8 py-5">{language === 'spanish' ? 'Spanish' : 'Hebrew'}</th>
-                <th className="px-8 py-5">English</th>
-                <th className="px-8 py-5">Category</th>
-                <th className="px-8 py-5">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
+  
+            {/* Mobile List View */}
+            <div className="md:hidden divide-y divide-slate-100 dark:divide-slate-800">
               {filteredVocabulary.length > 0 ? (
                 filteredVocabulary.map((word) => {
                   const wordProgress = progress.find(p => p.wordId === word.id);
                   const status = wordProgress?.mastery || 'new';
-
+  
                   return (
-                    <tr key={word.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors group">
-                      <td className="px-8 py-6 text-3xl font-bold text-slate-900 dark:text-white" dir={language === 'spanish' ? 'ltr' : 'rtl'}>
-                        {word.hebrew}
-                      </td>
-                      <td className="px-8 py-6 text-slate-600 dark:text-slate-400 font-semibold">
-                        {word.english}
-                      </td>
-                      <td className="px-8 py-6">
-                        <span className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-lg text-[10px] font-bold uppercase tracking-wider">
-                          {word.category}
-                        </span>
-                      </td>
-                      <td className="px-8 py-6">
-                        <span className={`px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-widest ${
-                          status === 'mastered' ? 'bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400' :
-                          status === 'learning' ? 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-700 dark:text-yellow-400' :
-                          'bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-500'
+                    <div key={word.id} className="p-6 active:bg-slate-50 dark:active:bg-slate-800/50 transition-colors">
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="text-3xl font-bold text-slate-900 dark:text-white leading-tight" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
+                          {getForeignWord(word, language)}
+                        </div>
+                        <span className={`px-2 py-1 rounded text-[9px] font-black uppercase tracking-widest ${
+                          status === 'mastered' ? 'bg-green-100 text-green-700' :
+                          status === 'learning' ? 'bg-yellow-100 text-yellow-700' :
+                          'bg-slate-100 text-slate-400'
                         }`}>
                           {status}
                         </span>
-                      </td>
-                    </tr>
+                      </div>
+                      <div className="text-slate-600 dark:text-slate-400 font-bold mb-3">{word.english}</div>
+                      <div className="flex items-center gap-2">
+                        <span className="px-2 py-0.5 bg-slate-50 dark:bg-slate-800 text-slate-400 text-[10px] font-bold uppercase tracking-wider rounded">
+                          {word.category}
+                        </span>
+                      </div>
+                    </div>
                   );
                 })
               ) : (
-                <tr>
-                  <td colSpan={4} className="px-8 py-20 text-center text-slate-400 dark:text-slate-500 font-medium italic">
-                    No words found matching "{searchQuery}"
-                  </td>
-                </tr>
+                <div className="p-12 text-center text-slate-400 font-medium text-sm">
+                  No results found.
+                </div>
               )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+            </div>
+            
+            <div className="p-6 bg-slate-50 dark:bg-slate-800/30 border-t border-slate-100 dark:border-slate-800">
+              <button 
+                onClick={() => {
+                  setShowDatabase(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="w-full py-4 bg-white dark:bg-slate-900 font-black text-slate-900 dark:text-white rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm active:scale-95 transition-all"
+              >
+                Back to Overview
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="mb-12">
+            <button 
+              onClick={() => setShowDatabase(true)}
+              className="w-full bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-soft border border-slate-100 dark:border-slate-800 group transition-all hover:shadow-xl hover:-translate-y-1 text-left"
+            >
+              <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div className="flex items-center gap-6">
+                  <div className="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                    <Search className="w-10 h-10 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Vocabulary Database</h3>
+                    <p className="text-slate-500 dark:text-slate-400 font-bold max-w-sm">
+                      Search through all {totalCount} words, filter by mastery status, or browse by category.
+                    </p>
+                  </div>
+                </div>
+                <div className="w-full md:w-auto px-10 py-5 bg-primary text-white font-black rounded-2xl shadow-lg shadow-primary/20 text-center uppercase tracking-tight">
+                  Open Database
+                </div>
+              </div>
+            </button>
+          </div>
+        )}
       </>
       )}
 
@@ -574,7 +680,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                         {i + 1}
                       </div>
                       <div>
-                        <div className="font-bold text-slate-900 dark:text-white text-lg">{item.word?.hebrew}</div>
+                        <div className="font-bold text-slate-900 dark:text-white text-lg">{getForeignWord(item.word, language)}</div>
                         <div className="text-sm text-slate-500 dark:text-slate-400">{item.word?.english}</div>
                       </div>
                     </div>

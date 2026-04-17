@@ -24,16 +24,20 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.8.8';
+const CURRENT_VERSION = '1.9.4';
 
 const LATEST_CHANGES = [
-  { title: 'Flashcards Layout', description: 'Dynamically scale text sizes to fix rendering issues with long strings in Spanish and French.' },
-  { title: 'Session Isolation', description: 'Fixed cache mixing and reset issues when switching between language topics.' },
-  { title: 'Auth Configuration', description: 'Reverted to standard plaintext password for developer mode access.' },
-  { title: 'Default Language: BH', description: 'Biblical Hebrew is now the standard entry point for all users.' },
+  { title: 'Premium Roadmaps', description: 'Updated the Pro feature list to include upcoming Grammar learning modules and Listening/Writing exam preparation tools.' },
+  { title: 'Mobile-First Improvements', description: 'Optimized the Navbar language switcher for mobile accessibility and added attention-grabbing learning buttons.' },
+  { title: 'Gated Vocabulary Access', description: 'Hidden the extensive vocabulary database behind an "Open Database" button to keep the dashboard clean.' },
+  { title: 'Guest Incentives', description: 'Added clear benefits for signing in as a guest, highlighting progress saving and streak synchronization.' },
 ];
 
 const ARCHIVED_CHANGES = [
+  { title: 'Flashcard Availability', description: 'Resolved a caching issue that mistakenly showed "No cards available" when selecting specific topics.' },
+  { title: 'Auth Configuration', description: 'Reverted to standard plaintext password for developer mode access.' },
+  { title: 'Session Isolation', description: 'Fixed cache mixing and reset issues when switching between language topics.' },
+  { title: 'Default Language: BH', description: 'Biblical Hebrew is now the standard entry point for all users.' },
   { title: 'Pricing Update', description: 'Updated Premium pricing to £10 with lifetime support and updates. Early bird registration now offers a 50% discount (£5).' },
   { title: 'Cloudflare Compatibility', description: 'Refactored the entire project to be fully compatible with Cloudflare Pages deployment.' },
   { title: 'Premium in Development', description: 'Updated the Premium system to reflect its development status and added a pre-launch discount registration.' },
@@ -79,16 +83,19 @@ export default function App() {
       masteredInterval: 168
     };
   });
-  const [language, setLanguage] = useState<string>('biblical');
+  const [language, setLanguage] = useState<string>(() => {
+    const saved = safeLocalStorage.getItem('bh-language');
+    const isDev = safeLocalStorage.getItem('bh-dev-mode') === 'true';
+    if (saved) {
+      if (!isDev && saved === 'modern') return 'biblical';
+      return saved;
+    }
+    return 'biblical';
+  });
 
   useEffect(() => {
-    const saved = safeLocalStorage.getItem('bh-language');
-    if (saved) {
-      if (devMode || saved !== 'modern') {
-        setLanguage(saved);
-      }
-    }
-  }, [devMode]);
+    safeLocalStorage.setItem('bh-language', language);
+  }, [language]);
 
   useEffect(() => {
     if (!devMode && language === 'modern') {
@@ -303,8 +310,11 @@ export default function App() {
     }
   };
 
-  const handleStartFlashcards = (topic?: string) => {
-    setSelectedTopic(topic || null);
+  const handleStartFlashcards = (topic?: string | unknown) => {
+    // If the function is called directly from an onClick without an arrow function wrapper,
+    // React passes the SyntheticEvent object as the first argument. We must ignore it.
+    const actualTopic = typeof topic === 'string' ? topic : null;
+    setSelectedTopic(actualTopic);
     setView('flashcards');
   };
 
@@ -1185,7 +1195,7 @@ export default function App() {
                   <>
                     <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Active!</h2>
                     <p className="text-slate-500 dark:text-slate-400 mb-6">
-                      Premium is currently in development. As a new user, you have <strong>{trialInfo.daysLeft} days of early access</strong> to all latest features, including Unlimited Flashcards, Streak Freezes, and Advanced Analytics!
+                      Premium is currently in development. As a new user, you have <strong>{trialInfo.daysLeft} days of early access</strong> to all latest features, including Grammar modules, Exam Prep, Unlimited Flashcards, and Advanced Analytics!
                     </p>
                     <button 
                       onClick={() => setShowProModal(false)}
@@ -1206,7 +1216,7 @@ export default function App() {
                         Get 50% Off at Launch!
                       </h3>
                       <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                        Register your interest now to lock in a <strong>50% discount</strong> when we officially launch. Get lifetime access, support, and updates for just <strong>£4.99</strong> or <strong>£1.99/month</strong>.
+                        Register your interest now to lock in a <strong>50% discount</strong> when we officially launch. Get lifetime access to Grammar modules, Listening/Writing Exam Prep, and more for just <strong>£4.99</strong>.
                       </p>
                       <button 
                         onClick={() => {
@@ -1233,6 +1243,8 @@ export default function App() {
                     </p>
                     <ul className="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 font-medium">
                       <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Audio pronunciation (Spanish)</li>
+                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Easy grammar learning modules</li>
+                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Listening & Writing exam prep</li>
                       <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Smart spaced repetition</li>
                       <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Test mode (type answers)</li>
                       <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Weak words tracking</li>

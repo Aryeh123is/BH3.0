@@ -1,6 +1,8 @@
 export interface Word {
   id: string;
-  hebrew: string;
+  hebrew?: string;
+  spanish?: string;
+  french?: string;
   english: string;
   transliteration?: string;
   category: string;

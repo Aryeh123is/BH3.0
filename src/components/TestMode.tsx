@@ -18,11 +18,12 @@ import {
 } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
 import { safeLocalStorage } from '../lib/storage';
+import { getForeignWord } from '../lib/utils';
 
 interface TestModeProps {
   vocabulary: Word[];
   onExit: () => void;
-  language: 'biblical' | 'modern' | 'spanish';
+  language: 'biblical' | 'modern' | 'spanish' | 'french';
 }
 
 interface TestResult {
@@ -107,7 +108,7 @@ export function TestMode({ vocabulary, onExit, language }: TestModeProps) {
       const batch = questions.slice(currentIndex, currentIndex + batchSize);
       const pairs = batch.map(q => ({
         id: q.word.id,
-        word: q.word.hebrew,
+        word: getForeignWord(q.word, language),
         translation: q.word.english
       }));
       setMatchingPairs(pairs);
@@ -146,7 +147,7 @@ export function TestMode({ vocabulary, onExit, language }: TestModeProps) {
       percentage: Math.round((score / questions.length) * 100),
       language,
       answers: questions.map((q, i) => ({
-        word: q.word.hebrew,
+        word: getForeignWord(q.word, language),
         translation: q.word.english,
         correct: finalAnswers[i] === true,
         type: q.type
@@ -442,7 +443,7 @@ export function TestMode({ vocabulary, onExit, language }: TestModeProps) {
               <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                 {correctAnswers.map((q, i) => (
                   <div key={i} className="p-4 bg-green-50 dark:bg-green-900/10 rounded-2xl flex items-center justify-between">
-                    <div className="font-bold text-slate-900 dark:text-white" dir={language === 'spanish' ? 'ltr' : 'rtl'}>{q.word.hebrew}</div>
+                    <div className="font-bold text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>{getForeignWord(q.word, language)}</div>
                     <div className="text-sm text-green-600 font-medium">{q.word.english}</div>
                   </div>
                 ))}
@@ -456,7 +457,7 @@ export function TestMode({ vocabulary, onExit, language }: TestModeProps) {
               <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                 {incorrectAnswers.map((q, i) => (
                   <div key={i} className="p-4 bg-red-50 dark:bg-red-900/10 rounded-2xl flex items-center justify-between">
-                    <div className="font-bold text-slate-900 dark:text-white" dir={language === 'spanish' ? 'ltr' : 'rtl'}>{q.word.hebrew}</div>
+                    <div className="font-bold text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>{getForeignWord(q.word, language)}</div>
                     <div className="text-sm text-red-600 font-medium">{q.word.english}</div>
                   </div>
                 ))}
@@ -543,8 +544,8 @@ export function TestMode({ vocabulary, onExit, language }: TestModeProps) {
           {currentQuestion.type === 'written' && (
             <div className="text-center">
               <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Translate this word</div>
-              <div className="text-6xl font-black mb-12 text-slate-900 dark:text-white" dir={language === 'spanish' ? 'ltr' : 'rtl'}>
-                {currentQuestion.word.hebrew}
+              <div className="text-6xl font-black mb-12 text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
+                {getForeignWord(currentQuestion.word, language)}
               </div>
               <input
                 autoFocus
@@ -572,8 +573,8 @@ export function TestMode({ vocabulary, onExit, language }: TestModeProps) {
           {currentQuestion.type === 'true-false' && (
             <div className="text-center">
               <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Is this translation correct?</div>
-              <div className="text-6xl font-black mb-4 text-slate-900 dark:text-white" dir={language === 'spanish' ? 'ltr' : 'rtl'}>
-                {currentQuestion.word.hebrew}
+              <div className="text-6xl font-black mb-4 text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
+                {getForeignWord(currentQuestion.word, language)}
               </div>
               <div className="text-2xl font-bold text-primary mb-12 italic">
                 "{currentQuestion.options?.[0]}"

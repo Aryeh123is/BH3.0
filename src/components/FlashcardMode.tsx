@@ -3,7 +3,7 @@ import { Word } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, RotateCw, Shuffle, Volume2, Book, Trophy, RotateCcw, Layers, Settings, X } from 'lucide-react';
 import { safeLocalStorage } from '../lib/storage';
-
+import { getForeignWord } from '../lib/utils';
 import { User } from 'firebase/auth';
 
 interface FlashcardModeProps {
@@ -50,6 +50,20 @@ export function FlashcardMode({
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
+        
+        // Cache invalidation: if vocabulary changed or empty state was cached
+        if (vocabulary.length > 0) {
+          const cachedTotal = parsed.initialTotal || 0;
+          if (cachedTotal > 0 && cachedTotal !== vocabulary.length) {
+            throw new Error("Vocabulary length changed");
+          }
+          if ((!parsed.sessionCards || parsed.sessionCards.length === 0) &&
+              (!parsed.stillLearningPile || parsed.stillLearningPile.length === 0) &&
+              !parsed.isFinished) {
+            throw new Error("Corrupted empty cache");
+          }
+        }
+
         return {
           sessionCards: parsed.sessionCards || [],
           stillLearningPile: parsed.stillLearningPile || [],
@@ -648,14 +662,14 @@ export function FlashcardMode({
                           <span className="absolute top-10 left-10 text-[10px] font-bold text-slate-300 dark:text-slate-600 uppercase tracking-[0.2em]">
                             {frontSide === 'hebrew' ? (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew') : 'English'}
                           </span>
-                          <h2 className={`font-bold text-slate-900 dark:text-white mb-6 ${getFontSize(frontSide === 'hebrew' ? sessionCards[currentIndex].hebrew : sessionCards[currentIndex].english, frontSide === 'hebrew')}`} dir={frontSide === 'hebrew' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
-                            {frontSide === 'hebrew' ? sessionCards[currentIndex].hebrew : sessionCards[currentIndex].english}
+                          <h2 className={`font-bold text-slate-900 dark:text-white mb-6 ${getFontSize(frontSide === 'hebrew' ? getForeignWord(sessionCards[currentIndex], language) : sessionCards[currentIndex].english, frontSide === 'hebrew')}`} dir={frontSide === 'hebrew' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
+                            {frontSide === 'hebrew' ? getForeignWord(sessionCards[currentIndex], language) : sessionCards[currentIndex].english}
                           </h2>
                           {(language === 'spanish' || language === 'french') && frontSide === 'hebrew' && (
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
-                                handlePronounce(sessionCards[currentIndex].hebrew);
+                                handlePronounce(getForeignWord(sessionCards[currentIndex], language));
                               }}
                               className="p-3 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors mb-4"
                               title="Listen to pronunciation"
@@ -685,14 +699,14 @@ export function FlashcardMode({
                           <span className="absolute top-10 left-10 text-[10px] font-bold text-blue-100 uppercase tracking-[0.2em]">
                             {frontSide === 'hebrew' ? 'English' : (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew')}
                           </span>
-                          <h2 className={`font-black mb-6 drop-shadow-sm ${getFontSize(frontSide === 'hebrew' ? sessionCards[currentIndex].english : sessionCards[currentIndex].hebrew, frontSide === 'english')}`} dir={frontSide === 'english' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
-                            {frontSide === 'hebrew' ? sessionCards[currentIndex].english : sessionCards[currentIndex].hebrew}
+                          <h2 className={`font-black mb-6 drop-shadow-sm ${getFontSize(frontSide === 'hebrew' ? sessionCards[currentIndex].english : getForeignWord(sessionCards[currentIndex], language), frontSide === 'english')}`} dir={frontSide === 'english' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
+                            {frontSide === 'hebrew' ? sessionCards[currentIndex].english : getForeignWord(sessionCards[currentIndex], language)}
                           </h2>
                           {(language === 'spanish' || language === 'french') && frontSide === 'english' && (
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
-                                handlePronounce(sessionCards[currentIndex].hebrew);
+                                handlePronounce(getForeignWord(sessionCards[currentIndex], language));
                               }}
                               className="p-3 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors mb-4"
                               title="Listen to pronunciation"

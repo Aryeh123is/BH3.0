@@ -6,7 +6,7 @@ import { User } from 'firebase/auth';
 interface HeroProps {
   onStartSession: () => void;
   onViewDashboard: () => void;
-  onStartFlashcards: (topic?: string) => void;
+  onStartFlashcards: (topic?: string | any) => void;
   onStartTest: () => void;
   language: string;
   onLanguageChange: (lang: string) => void;
@@ -33,7 +33,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
   return (
     <div className="bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
       {/* HERO SECTION */}
-      <section className="pt-32 pb-20 px-6">
+      <section className="pt-24 sm:pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -60,10 +60,10 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-16">
               <button 
                 onClick={onStartFlashcards}
-                className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all active:scale-95 shadow-xl shadow-indigo-600/20 text-lg flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-indigo-600/20 text-lg flex items-center justify-center gap-2 animate-bounce-subtle group"
               >
-                <Zap className="w-5 h-5" />
-                Start Learning Free
+                <Zap className="w-5 h-5 fill-current group-hover:animate-pulse" />
+                START LEARNING NOW
               </button>
               {(language === 'spanish' || language === 'french') && (
                 <button 
@@ -242,10 +242,10 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
           </h2>
           <button 
             onClick={onStartFlashcards}
-            className="px-10 py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all active:scale-95 shadow-2xl shadow-indigo-600/30 text-xl flex items-center justify-center gap-3 mx-auto"
+            className="px-10 py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-indigo-600/30 text-xl flex items-center justify-center gap-3 mx-auto animate-bounce-subtle group"
           >
-            <Zap className="w-6 h-6" />
-            Start Learning Free
+            <Zap className="w-6 h-6 fill-current group-hover:animate-pulse" />
+            START LEARNING NOW
           </button>
         </div>
       </section>

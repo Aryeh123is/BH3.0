@@ -47,27 +47,35 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 transition-colors duration-300">
-      <div className="max-w-[1100px] mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-[1100px] mx-auto px-4 md:px-6 h-16 flex items-center justify-between gap-2">
         <motion.div 
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-4"
+          className="flex items-center gap-2 sm:gap-4 shrink-0"
         >
           <span 
-            className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight cursor-pointer"
+            className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight cursor-pointer shrink-0"
             onClick={() => onNavigate('home')}
           >
-            {language === 'biblical' ? 'BH' : language === 'modern' ? 'MH' : language === 'spanish' ? 'ES' : language === 'french' ? 'FR' : 'Custom'} <span className="text-primary">Keywords</span>
+            {language === 'biblical' ? 'BH' : language === 'modern' ? 'MH' : language === 'spanish' ? 'ES' : language === 'french' ? 'FR' : 'Custom'} <span className="text-primary hidden xxs:inline">Keywords</span>
           </span>
           
-          <div className="relative" ref={langMenuRef}>
+            <div className="relative" ref={langMenuRef}>
             <button
               onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-              className="flex items-center gap-2 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl transition-colors text-sm font-bold"
+              className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl transition-all text-sm font-bold border border-slate-200 dark:border-slate-700 active:scale-95 shadow-sm"
             >
-              <span>{currentLang.icon}</span>
-              <span className="hidden sm:inline">{currentLang.label}</span>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isLangMenuOpen ? 'rotate-180' : ''}`} />
+              <span className="text-base sm:text-sm">{currentLang.icon}</span>
+              {isLangMenuOpen ? (
+                <>
+                  <span className="max-w-[100px] truncate">{currentLang.label}</span>
+                </>
+              ) : (
+                <>
+                  <span className="hidden sm:inline-block max-w-[100px] truncate">{currentLang.label}</span>
+                </>
+              )}
+              <ChevronDown className={`w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 ${isLangMenuOpen ? 'rotate-180' : ''}`} />
             </button>
 
             <AnimatePresence>
@@ -110,14 +118,14 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
         <motion.div 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex items-center gap-3 md:gap-4"
+          className="flex items-center gap-1.5 sm:gap-3 md:gap-4 shrink-0"
         >
           <button 
             onClick={onToggleTheme}
-            className="p-2 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+            className="p-1.5 sm:p-2 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
             title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
           >
-            {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+            {theme === 'light' ? <Moon className="w-5 h-5 shadow-sm" /> : <Sun className="w-5 h-5 shadow-sm" />}
           </button>
 
           {!isPremium && (
@@ -147,27 +155,19 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
           
           {user ? (
             <div className="flex items-center gap-2 md:gap-3">
-              <div className="flex items-center gap-3 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700 min-w-[80px] justify-center transition-all duration-300">
+              <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700 transition-all duration-300">
                 {userProfile === null ? (
                   <>
-                    <div className="flex items-center gap-1.5 text-orange-500/50 font-bold text-xs">
-                      <Flame className="w-4 h-4" />
-                      <span>-</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-blue-500/50 font-bold text-xs border-l border-slate-200 dark:border-slate-700 pl-3">
-                      <Snowflake className="w-4 h-4" />
+                    <div className="flex items-center gap-1 text-orange-500/50 font-bold text-[10px] sm:text-xs">
+                      <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       <span>-</span>
                     </div>
                   </>
                 ) : (
                   <>
-                    <div className="flex items-center gap-1.5 text-orange-500 font-bold text-xs" title="Current Streak">
-                      <Flame className="w-4 h-4" />
+                    <div className="flex items-center gap-1 text-orange-500 font-bold text-[10px] sm:text-xs" title="Current Streak">
+                      <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                       <span>{userProfile.streak || 0}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-blue-500 font-bold text-xs border-l border-slate-200 dark:border-slate-700 pl-3" title="Available Freezes">
-                      <Snowflake className="w-4 h-4" />
-                      <span>{userProfile.streakFreezes || 0}</span>
                     </div>
                   </>
                 )}
@@ -175,7 +175,7 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
               
               <button 
                 onClick={() => onNavigate('dashboard')}
-                className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
+                className="flex items-center gap-2 p-1.5 sm:px-3 sm:py-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
                 title="Dashboard"
               >
                 {user.photoURL ? (
@@ -183,7 +183,7 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
                 ) : (
                   <UserIcon className="w-4 h-4 text-slate-400" />
                 )}
-                <span className="text-xs font-bold text-slate-600 dark:text-slate-300 hidden sm:inline">
+                <span className="text-xs font-bold text-slate-600 dark:text-slate-300 hidden md:inline">
                   Dashboard
                 </span>
               </button>
@@ -197,19 +197,19 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
               </button>
             </div>
           ) : (
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 sm:gap-4">
               <button 
                 onClick={onSignIn}
-                className="flex items-center gap-2 text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
+                className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors shrink-0"
               >
                 <LogIn className="w-4 h-4" />
-                <span className="hidden sm:inline">Sign In</span>
+                <span className="hidden xs:inline">Sign In</span>
               </button>
               <button 
                 onClick={devMode ? () => onNavigate('dashboard') : onSignIn}
-                className="px-4 py-2 bg-slate-900 dark:bg-white dark:text-slate-900 text-white text-sm font-bold rounded-lg hover:bg-slate-800 dark:hover:bg-slate-200 transition-all"
+                className="px-3 sm:px-4 py-2 bg-slate-900 dark:bg-white dark:text-slate-900 text-white text-[11px] sm:text-sm font-black rounded-xl hover:bg-slate-800 dark:hover:bg-slate-200 transition-all shrink-0 uppercase tracking-tight"
               >
-                {devMode ? 'Dashboard' : 'Get Started'}
+                {devMode ? 'Dashboard' : 'Start'}
               </button>
             </div>
           )}
