@@ -24,13 +24,13 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.8.7';
+const CURRENT_VERSION = '1.8.8';
 
 const LATEST_CHANGES = [
+  { title: 'Flashcards Layout', description: 'Dynamically scale text sizes to fix rendering issues with long strings in Spanish and French.' },
+  { title: 'Session Isolation', description: 'Fixed cache mixing and reset issues when switching between language topics.' },
   { title: 'Auth Configuration', description: 'Reverted to standard plaintext password for developer mode access.' },
-  { title: 'PC Flag Compatibility', description: 'Using image flags in selection UI for reliability across different operating systems.' },
   { title: 'Default Language: BH', description: 'Biblical Hebrew is now the standard entry point for all users.' },
-  { title: 'Security Profile', description: 'Optimized authentication flow for smoother developer access.' },
 ];
 
 const ARCHIVED_CHANGES = [
@@ -1054,7 +1054,7 @@ export default function App() {
 
           {view === 'flashcards' && (
             <motion.div
-              key={`flashcards-${language}`}
+              key={`flashcards-${language}-${selectedTopic || 'full'}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

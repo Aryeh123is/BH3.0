@@ -31,7 +31,7 @@ export function FlashcardMode({
   onShowPro,
   selectedTopic
 }: FlashcardModeProps) {
-  const SESSION_KEY = `bh-flashcard-session-${language}`;
+  const SESSION_KEY = `bh-flashcard-session-${language}-${selectedTopic || 'full'}`;
 
   const [sessionState, setSessionState] = useState<{
     sessionCards: Word[];
@@ -363,6 +363,16 @@ export function FlashcardMode({
     window.speechSynthesis.speak(utterance);
   };
 
+  // Responsive font scaling for longer words/phrases (especially needed for French/Spanish)
+  const getFontSize = (text: string, isHebrewSide: boolean) => {
+    if (!text) return isHebrewSide ? 'text-6xl md:text-8xl' : 'text-5xl md:text-6xl';
+    const len = text.length;
+    if (len < 12) return isHebrewSide ? 'text-6xl md:text-8xl' : 'text-5xl md:text-6xl';
+    if (len < 25) return isHebrewSide ? 'text-4xl md:text-6xl' : 'text-4xl md:text-5xl';
+    if (len < 40) return isHebrewSide ? 'text-3xl md:text-5xl' : 'text-3xl md:text-4xl';
+    return isHebrewSide ? 'text-2xl md:text-4xl' : 'text-2xl md:text-3xl';
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col relative overflow-hidden transition-colors duration-300">
       {/* WIP Indicator */}
@@ -420,7 +430,7 @@ export function FlashcardMode({
                           : 'bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:border-slate-200 dark:hover:border-slate-600'
                       }`}
                     >
-                      {language === 'spanish' ? 'Spanish' : 'Hebrew'}
+                      {language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew'}
                     </button>
                     <button
                       onClick={() => setFrontSide('english')}
@@ -638,7 +648,7 @@ export function FlashcardMode({
                           <span className="absolute top-10 left-10 text-[10px] font-bold text-slate-300 dark:text-slate-600 uppercase tracking-[0.2em]">
                             {frontSide === 'hebrew' ? (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew') : 'English'}
                           </span>
-                          <h2 className={`font-bold text-slate-900 dark:text-white mb-6 ${frontSide === 'hebrew' ? 'text-8xl' : 'text-6xl'}`} dir={frontSide === 'hebrew' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
+                          <h2 className={`font-bold text-slate-900 dark:text-white mb-6 ${getFontSize(frontSide === 'hebrew' ? sessionCards[currentIndex].hebrew : sessionCards[currentIndex].english, frontSide === 'hebrew')}`} dir={frontSide === 'hebrew' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
                             {frontSide === 'hebrew' ? sessionCards[currentIndex].hebrew : sessionCards[currentIndex].english}
                           </h2>
                           {(language === 'spanish' || language === 'french') && frontSide === 'hebrew' && (
@@ -675,7 +685,7 @@ export function FlashcardMode({
                           <span className="absolute top-10 left-10 text-[10px] font-bold text-blue-100 uppercase tracking-[0.2em]">
                             {frontSide === 'hebrew' ? 'English' : (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew')}
                           </span>
-                          <h2 className={`font-black mb-6 drop-shadow-sm ${frontSide === 'hebrew' ? 'text-6xl' : 'text-8xl'}`} dir={frontSide === 'english' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
+                          <h2 className={`font-black mb-6 drop-shadow-sm ${getFontSize(frontSide === 'hebrew' ? sessionCards[currentIndex].english : sessionCards[currentIndex].hebrew, frontSide === 'english')}`} dir={frontSide === 'english' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
                             {frontSide === 'hebrew' ? sessionCards[currentIndex].english : sessionCards[currentIndex].hebrew}
                           </h2>
                           {(language === 'spanish' || language === 'french') && frontSide === 'english' && (

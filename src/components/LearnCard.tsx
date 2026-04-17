@@ -22,6 +22,15 @@ export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCa
     setIsCorrect(null);
   }, [question]);
 
+  const getFontSize = (text: string) => {
+    if (!text) return 'text-6xl md:text-7xl';
+    const len = text.length;
+    if (len < 12) return 'text-6xl md:text-7xl';
+    if (len < 25) return 'text-4xl md:text-5xl';
+    if (len < 40) return 'text-3xl md:text-4xl';
+    return 'text-2xl md:text-3xl';
+  };
+
   const isPhoneticallySimilar = (input: string, target: string) => {
     const normalize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
     const s1 = normalize(input);
@@ -82,7 +91,7 @@ export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCa
             <span className="text-xs font-bold text-primary uppercase tracking-widest mb-4 block">
               {question.type === 'multiple-choice' ? 'Choose the correct meaning' : 'Type the meaning'}
             </span>
-            <h2 className="text-7xl font-bold text-slate-900 dark:text-white mb-6" dir={language === 'spanish' ? 'ltr' : 'rtl'}>
+            <h2 className={`font-bold text-slate-900 dark:text-white mb-6 ${getFontSize(question.word.hebrew)}`} dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
               {question.word.hebrew}
             </h2>
             {isSubmitted && question.word.transliteration && (
