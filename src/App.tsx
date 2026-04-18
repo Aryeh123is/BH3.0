@@ -119,8 +119,6 @@ export default function App() {
   const [devMode, setDevMode] = useState(() => safeLocalStorage.getItem('bh-dev-mode') === 'true');
   const [showDevModePasswordModal, setShowDevModePasswordModal] = useState(false);
   const [showProModal, setShowProModal] = useState(false);
-  const [proEmail, setProEmail] = useState('');
-  const [proSubmitted, setProSubmitted] = useState(false);
   const [customDecks, setCustomDecks] = useState<CustomDeck[]>([]);
   const [srsSettings, setSrsSettings] = useState<SRSSettings>(() => {
     const saved = safeLocalStorage.getItem('bh-srs-settings');
@@ -182,7 +180,6 @@ export default function App() {
     return vocab;
   }, [language, customDecks, selectedTopic]);
 
-  const PROGRESS_KEY = `bh-keywords-progress-${language}`;
   const SESSION_STATE_KEY = `bh-session-state-${language}`;
 
   const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard' | 'test'>(() => {
@@ -374,20 +371,50 @@ export default function App() {
   };
 
   const handleClearProgress = async (lang: string) => {
-    const progressKey = `bh-keywords-progress-${lang}`;
-    safeLocalStorage.removeItem(progressKey);
-    
-    if (language === lang) {
-      setProgress([]);
-    }
+    let targetVocab: Word[] = [];
+    if (lang === 'biblical') targetVocab = BIBLICAL_HEBREW_VOCABULARY;
+    else if (lang === 'modern') targetVocab = MODERN_HEBREW_VOCABULARY;
+    else if (lang === 'spanish') targetVocab = SPANISH_EDEXCEL_VOCABULARY;
+    else if (lang === 'french') targetVocab = FRENCH_EDEXCEL_VOCABULARY;
+    const targetIds = new Set(targetVocab.map(w => w.id));
 
-    if (user) {
+    // 1. Clear progress from local state
+    setProgress(prev => {
+      const filtered = prev.filter(p => !targetIds.has(p.wordId));
+      safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(filtered));
+      
+      // Clear legacy partitioned keys just in case
+      safeLocalStorage.removeItem(`bh-keywords-progress-${lang}`);
+      
+      return filtered;
+    });
+
+    // 2. Clear progress safely in cloud
+    if (user && !devMode) {
       try {
+        let targetVocab: Word[] = [];
+        if (lang === 'biblical') targetVocab = BIBLICAL_HEBREW_VOCABULARY;
+        else if (lang === 'modern') targetVocab = MODERN_HEBREW_VOCABULARY;
+        else if (lang === 'spanish') targetVocab = SPANISH_EDEXCEL_VOCABULARY;
+        else if (lang === 'french') targetVocab = FRENCH_EDEXCEL_VOCABULARY;
+        const targetIds = new Set(targetVocab.map(w => w.id));
+
         const progressRef = collection(db, 'users', user.uid, 'progress');
         const snapshot = await import('firebase/firestore').then(({ getDocs }) => getDocs(progressRef));
-        const batch = writeBatch(db);
-        snapshot.forEach((doc) => batch.delete(doc.ref));
-        await batch.commit();
+        
+        let batchCounter = 0;
+        let batch = writeBatch(db);
+        
+        snapshot.forEach((doc) => {
+          if (targetIds.has(doc.id)) {
+            batch.delete(doc.ref);
+            batchCounter++;
+          }
+        });
+        
+        if (batchCounter > 0) {
+          await batch.commit();
+        }
       } catch (err) {
         console.error("Error clearing cloud progress:", err);
       }
@@ -395,7 +422,7 @@ export default function App() {
   };
 
   const handleDeleteAccount = async () => {
-    if (!user) return;
+    if (!user || devMode) return;
     try {
       // 1. Delete Firestore data (optional but good for privacy)
       const userRef = doc(db, 'users', user.uid);
@@ -422,8 +449,10 @@ export default function App() {
   const handleUpdateDisplayName = async (name: string) => {
     if (!user) return;
     try {
-      const userRef = doc(db, 'users', user.uid);
-      await setDoc(userRef, { displayName: name }, { merge: true });
+      if (!devMode) {
+        const userRef = doc(db, 'users', user.uid);
+        await setDoc(userRef, { displayName: name }, { merge: true });
+      }
       setUserProfile((prev: any) => ({ ...prev, displayName: name }));
     } catch (err) {
       console.error("Error updating display name:", err);
@@ -477,12 +506,28 @@ export default function App() {
 
   // Auth listener
   useEffect(() => {
+    if (devMode) {
+      setUser({
+        uid: 'dev-user-123',
+        email: 'dev@test.com',
+        displayName: 'Dev Account',
+        emailVerified: true
+      } as any);
+      setUserProfile({
+        isPremium: true,
+        displayName: 'Dev Account',
+        role: 'admin'
+      });
+      setIsAuthReady(true);
+      return () => {};
+    }
+
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setIsAuthReady(true);
     });
     return () => unsubscribe();
-  }, []);
+  }, [devMode]);
 
   useEffect(() => {
     if (isAuthReady && !user && !devMode && view !== 'home' && view !== 'flashcards') {
@@ -547,6 +592,12 @@ export default function App() {
   useEffect(() => {
     if (!isAuthReady) return;
 
+    if (devMode) {
+      setProgress([]);
+      setUserProfile((prev: any) => prev || { isPremium: true });
+      return;
+    }
+
     if (user) {
       // Listen to User Profile
       const userRef = doc(db, 'users', user.uid);
@@ -570,18 +621,30 @@ export default function App() {
           setProgress(firestoreProgress);
         } else {
           // If Firestore is empty but local has progress, sync local to Firestore
-          const localProgress = safeLocalStorage.getItem(PROGRESS_KEY);
-          if (localProgress) {
-            const parsed = JSON.parse(localProgress);
-            if (parsed.length > 0) {
-              const batch = writeBatch(db);
-              parsed.forEach((p: UserProgress) => {
-                const docRef = doc(db, 'users', user.uid, 'progress', p.wordId);
-                batch.set(docRef, p);
-              });
-              batch.commit().catch(err => console.error("Initial sync failed:", err));
-              setProgress(parsed);
+          const allLegacyKeys = ['bh-keywords-progress', 'bh-keywords-progress-biblical', 'bh-keywords-progress-modern', 'bh-keywords-progress-spanish', 'bh-keywords-progress-french'];
+          const uniqueProgressMap = new Map();
+          
+          allLegacyKeys.forEach(key => {
+            const saved = safeLocalStorage.getItem(key);
+            if (saved) {
+              try {
+                const parsed = JSON.parse(saved);
+                parsed.forEach((p: UserProgress) => uniqueProgressMap.set(p.wordId, p));
+              } catch (e) {}
             }
+          });
+          
+          const mergedLocalProgress = Array.from(uniqueProgressMap.values());
+          
+          if (mergedLocalProgress.length > 0) {
+            const batch = writeBatch(db);
+            mergedLocalProgress.forEach((p: UserProgress) => {
+              const docRef = doc(db, 'users', user.uid, 'progress', p.wordId);
+              batch.set(docRef, p);
+            });
+            batch.commit().catch(err => console.error("Initial sync failed:", err));
+            setProgress(mergedLocalProgress);
+            safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(mergedLocalProgress));
           }
         }
       }, (error) => {
@@ -605,31 +668,41 @@ export default function App() {
         unsubscribeDecks();
       };
     } else {
-      // Load from local storage
-      const savedProgress = safeLocalStorage.getItem(PROGRESS_KEY);
-      if (savedProgress) {
-        try {
-          setProgress(JSON.parse(savedProgress));
-        } catch (e) {
-          console.error("Error parsing progress data", e);
-          setProgress([]);
+      // Load from local storage and migrate legacy fragmented storage
+      const allLegacyKeys = [PROGRESS_KEY, 'bh-keywords-progress-biblical', 'bh-keywords-progress-modern', 'bh-keywords-progress-spanish', 'bh-keywords-progress-french'];
+      const uniqueProgressMap = new Map();
+      
+      allLegacyKeys.forEach(key => {
+        const saved = safeLocalStorage.getItem(key);
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            parsed.forEach((p: UserProgress) => uniqueProgressMap.set(p.wordId, p));
+          } catch (e) {}
         }
-      } else {
-        setProgress([]);
+      });
+      
+      const mergedLocalProgress = Array.from(uniqueProgressMap.values());
+      setProgress(mergedLocalProgress);
+      
+      if (mergedLocalProgress.length > 0) {
+        safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(mergedLocalProgress));
       }
     }
-  }, [PROGRESS_KEY, user, isAuthReady]);
+  }, [user, isAuthReady]);
 
-  // Save progress to localStorage and Firestore
+  // Save progress to localStorage whenever progress legitimately updates
   useEffect(() => {
-    if (progress.length > 0 || safeLocalStorage.getItem(PROGRESS_KEY)) {
+    if (devMode) return;
+    // Only save if progress array contains items to prevent wiping on initial mount
+    if (progress.length > 0) {
       safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
     }
-  }, [progress, PROGRESS_KEY]);
+  }, [progress, devMode]);
 
   // Handle missed days and consume freezes
   useEffect(() => {
-    if (!user || !userProfile) return;
+    if (!user || !userProfile || devMode) return;
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -674,7 +747,7 @@ export default function App() {
 
   // Handle daily goal completion and streak increment
   useEffect(() => {
-    if (!user || !userProfile) return;
+    if (!user || !userProfile || devMode) return;
 
     const dailyGoal = srsSettings.dailyGoal || 20;
     if (todayReviews >= dailyGoal) {
@@ -706,7 +779,7 @@ export default function App() {
   }, [todayReviews, user, userProfile, srsSettings.dailyGoal, devMode, isPremium]);
 
   const updateFirestoreWordProgress = async (p: UserProgress) => {
-    if (!user) return;
+    if (!user || devMode) return;
     try {
       const docRef = doc(db, 'users', user.uid, 'progress', p.wordId);
       await setDoc(docRef, p);
@@ -1391,100 +1464,89 @@ export default function App() {
               <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             </button>
             
-            {!proSubmitted ? (
+            <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+              <Sparkles className="w-8 h-8" />
+            </div>
+            {trialInfo.isTrialActive ? (
               <>
-                <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-                  <Sparkles className="w-8 h-8" />
-                </div>
-                {trialInfo.isTrialActive ? (
-                  <>
-                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Active!</h2>
-                    <p className="text-slate-500 dark:text-slate-400 mb-6">
-                      Premium is currently in development. As a new user, you have <strong>{trialInfo.daysLeft} days of early access</strong> to all latest features, including Grammar modules, Exam Prep, Unlimited Flashcards, and Advanced Analytics!
-                    </p>
-                    <button 
-                      onClick={() => setShowProModal(false)}
-                      className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
-                    >
-                      Continue Learning
-                    </button>
-                  </>
-                ) : trialInfo.isExpired ? (
-                  <>
-                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Ended</h2>
-                    <p className="text-slate-500 dark:text-slate-400 mb-6">
-                      Your 7-day early access period has ended. Premium is still in development, but we're launching soon!
-                    </p>
-                    <div className="p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/50 mb-6">
-                      <h3 className="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
-                        <Sparkles className="w-5 h-5" />
-                        Get 50% Off at Launch!
-                      </h3>
-                      <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                        Register your interest now to get an exclusive discount when we officially launch. Get access to Grammar modules, Listening/Writing Exam Prep, and more for just <strong>£4.99/year</strong>.
-                      </p>
-                      <button 
-                        onClick={() => {
-                          window.open('https://forms.gle/NjUpvWAZCjTF4aPB6', '_blank');
-                          setShowProModal(false);
-                        }}
-                        className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
-                      >
-                        Register Interest
-                      </button>
-                    </div>
-                    <button 
-                      onClick={() => setShowProModal(false)}
-                      className="w-full py-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 font-bold transition-colors"
-                    >
-                      Maybe Later
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Premium in Development</h2>
-                    <p className="text-slate-500 dark:text-slate-400 mb-4">
-                      We're building the ultimate toolkit to guarantee your target grade. Sign up now to get <strong>7 days of free early access</strong> to all upcoming features:
-                    </p>
-                    <ul className="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 font-medium">
-                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Audio pronunciation (Spanish)</li>
-                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Easy grammar learning modules</li>
-                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Listening & Writing exam prep</li>
-                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Smart spaced repetition</li>
-                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Test mode (type answers)</li>
-                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Weak words tracking</li>
-                      <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Advanced progress insights</li>
-                    </ul>
-                    {!user && (
-                      <button 
-                        onClick={() => {
-                          setShowProModal(false);
-                          setShowAuthModal(true);
-                        }}
-                        className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
-                      >
-                        Sign Up for Early Access
-                      </button>
-                    )}
-                  </>
-                )}
-              </>
-            ) : (
-              <div className="text-center py-8">
-                <div className="w-16 h-16 bg-green-50 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                </div>
-                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Request Received!</h2>
-                <p className="text-slate-500 dark:text-slate-400">
-                  We'll email you a secure checkout link to upgrade your account shortly.
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Active!</h2>
+                <p className="text-slate-500 dark:text-slate-400 mb-6">
+                  Premium is currently in development. As a new user, you have <strong>{trialInfo.daysLeft} days of early access</strong> to all latest features, including Grammar modules, Exam Prep, Unlimited Flashcards, and Advanced Analytics!
                 </p>
                 <button 
                   onClick={() => setShowProModal(false)}
-                  className="mt-8 px-6 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                  className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
                 >
-                  Close
+                  Continue Learning
                 </button>
-              </div>
+              </>
+            ) : trialInfo.isExpired ? (
+              <>
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Ended</h2>
+                <p className="text-slate-500 dark:text-slate-400 mb-6">
+                  Your 7-day early access period has ended. Premium is still in development, but we're launching soon!
+                </p>
+                <div className="p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/50 mb-6">
+                  <h3 className="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5" />
+                    Get 50% Off at Launch!
+                  </h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                    Register your interest now to get an exclusive discount when we officially launch. Get access to Grammar modules, Listening/Writing Exam Prep, and more for just <strong>£4.99/year</strong>.
+                  </p>
+                  <button 
+                    onClick={() => {
+                      window.open('https://forms.gle/2pfkeCpef1XTrezV7', '_blank');
+                      setShowProModal(false);
+                    }}
+                    className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
+                  >
+                    Register Interest
+                  </button>
+                </div>
+                <button 
+                  onClick={() => setShowProModal(false)}
+                  className="w-full py-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 font-bold transition-colors"
+                >
+                  Maybe Later
+                </button>
+              </>
+            ) : (
+              <>
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Premium in Development</h2>
+                <p className="text-slate-500 dark:text-slate-400 mb-4">
+                  We're building the ultimate toolkit to guarantee your target grade. Register your interest to get an exclusive discount when we launch:
+                </p>
+                <ul className="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 font-medium">
+                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Audio pronunciation (Spanish)</li>
+                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Easy grammar learning modules</li>
+                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Listening & Writing exam prep</li>
+                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Smart spaced repetition</li>
+                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Test mode (type answers)</li>
+                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Weak words tracking</li>
+                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Advanced progress insights</li>
+                </ul>
+                <button 
+                  onClick={() => {
+                    window.open('https://forms.gle/2pfkeCpef1XTrezV7', '_blank');
+                    setShowProModal(false);
+                  }}
+                  className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20 mb-3"
+                >
+                  Register Interest
+                </button>
+                {!user && (
+                  <button 
+                    onClick={() => {
+                      setShowProModal(false);
+                      setShowAuthModal(true);
+                    }}
+                    className="w-full py-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-xl transition-colors border border-slate-200 dark:border-slate-700"
+                  >
+                    Sign in to sync your progress
+                  </button>
+                )}
+              </>
             )}
           </div>
         </div>

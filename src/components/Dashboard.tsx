@@ -419,7 +419,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                   onClick={onShowPro}
                   className="w-full py-3 bg-white text-amber-600 font-black rounded-xl hover:bg-amber-50 transition-colors"
                 >
-                  View Pro Status
+                  Premium Features Roadmap
                 </button>
               </div>
               <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
@@ -438,7 +438,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                   onClick={onShowPro}
                   className="w-full py-3 bg-white text-indigo-600 font-black rounded-xl hover:bg-indigo-50 transition-colors"
                 >
-                  Get Premium for £4.99/year
+                  Register Interest for £4.99/year
                 </button>
               </div>
               <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
