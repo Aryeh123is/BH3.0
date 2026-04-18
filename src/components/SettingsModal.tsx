@@ -1,0 +1,351 @@
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { 
+  X, User, Clock, Zap, Trash2, Download, 
+  Settings, ChevronRight, EyeOff, AlertTriangle,
+  LogOut, Save, RotateCcw, Shield
+} from 'lucide-react';
+import { User as FirebaseUser } from 'firebase/auth';
+import { UserPreferences } from '../types';
+
+interface SettingsModalProps {
+  onClose: () => void;
+  user: FirebaseUser | null;
+  userProfile: any;
+  preferences: UserPreferences;
+  onUpdatePreferences: (prefs: Partial<UserPreferences>) => void;
+  onUpdateDisplayName: (name: string) => Promise<void>;
+  onClearProgress: (lang: string) => Promise<void>;
+  onDeleteAccount: () => Promise<void>;
+  onExportData: () => void;
+  language: string;
+  devMode?: boolean;
+}
+
+export function SettingsModal({
+  onClose,
+  user,
+  userProfile,
+  preferences,
+  onUpdatePreferences,
+  onUpdateDisplayName,
+  onClearProgress,
+  onDeleteAccount,
+  onExportData,
+  language,
+  devMode = false
+}: SettingsModalProps) {
+  const [activeTab, setActiveTab] = useState<'account' | 'appearance' | 'data'>('account');
+  const [displayName, setDisplayName] = useState(userProfile?.displayName || user?.displayName || '');
+  const [isSavingName, setIsSavingName] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
+
+  const formatTime = (seconds: number = 0) => {
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    if (hrs > 0) return `${hrs}h ${mins}m`;
+    return `${mins}m`;
+  };
+
+  const handleUpdateName = async () => {
+    if (!displayName.trim() || displayName === (userProfile?.displayName || user?.displayName)) return;
+    setIsSavingName(true);
+    try {
+      await onUpdateDisplayName(displayName.trim());
+    } finally {
+      setIsSavingName(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-slate-800 max-w-2xl w-full h-[600px] flex overflow-hidden lg:h-[700px]"
+      >
+        {/* Sidebar */}
+        <div className="w-64 bg-slate-50/50 dark:bg-slate-800/30 border-r border-slate-100 dark:border-slate-800 p-8 hidden md:block">
+          <div className="flex items-center gap-3 mb-12">
+            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white">
+              <Settings className="w-6 h-6" />
+            </div>
+            <h2 className="text-xl font-black text-slate-900 dark:text-white">Settings</h2>
+          </div>
+
+          <nav className="space-y-2">
+            <button
+              onClick={() => setActiveTab('account')}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold transition-all ${
+                activeTab === 'account' 
+                  ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm border border-slate-100 dark:border-slate-700' 
+                  : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'
+              }`}
+            >
+              <User className="w-5 h-5" />
+              Account
+            </button>
+            <button
+              onClick={() => setActiveTab('appearance')}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold transition-all ${
+                activeTab === 'appearance' 
+                  ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm border border-slate-100 dark:border-slate-700' 
+                  : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'
+              }`}
+            >
+              <Zap className="w-5 h-5" />
+              App Features
+            </button>
+            <button
+              onClick={() => setActiveTab('data')}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold transition-all ${
+                activeTab === 'data' 
+                  ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm border border-slate-100 dark:border-slate-700' 
+                  : 'text-slate-400 hover:text-slate-600 dark:hover:text-slate-300'
+              }`}
+            >
+              <Download className="w-5 h-5" />
+              Data & Privacy
+            </button>
+          </nav>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 flex flex-col min-w-0">
+          <div className="p-8 md:p-10 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
+            <div className="md:hidden flex items-center gap-3">
+              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
+                <Settings className="w-5 h-5" />
+              </div>
+              <h2 className="text-lg font-black text-slate-900 dark:text-white">Settings</h2>
+            </div>
+            <div className="hidden md:block">
+              <h3 className="text-sm font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
+                {activeTab === 'account' ? 'Personal Info' : activeTab === 'appearance' ? 'Preferences' : 'Management'}
+              </h3>
+              <p className="text-xl font-bold text-slate-900 dark:text-white capitalize">{activeTab}</p>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl text-slate-400 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-8 md:p-10 space-y-8 custom-scrollbar">
+            {activeTab === 'account' && (
+              <div className="space-y-8">
+                <section className="space-y-4">
+                  <label className="block text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Display Name</label>
+                  <div className="flex gap-3">
+                    <input
+                      type="text"
+                      value={displayName}
+                      onChange={(e) => setDisplayName(e.target.value)}
+                      placeholder="Enter your name"
+                      className="flex-1 px-5 py-3 bg-slate-100 dark:bg-slate-800 rounded-2xl border-2 border-transparent focus:border-indigo-600 outline-none transition-all font-bold"
+                    />
+                    <button
+                      onClick={handleUpdateName}
+                      disabled={isSavingName || displayName === (userProfile?.displayName || user?.displayName)}
+                      className="px-6 py-3 bg-indigo-600 text-white font-black rounded-2xl hover:bg-indigo-700 transition-all disabled:opacity-50 disabled:grayscale"
+                    >
+                      {isSavingName ? 'Saving...' : 'Save'}
+                    </button>
+                  </div>
+                </section>
+
+                <section className="p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-[2rem] border border-indigo-100 dark:border-indigo-800/50 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                      <Clock className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">Learning Time</p>
+                      <p className="text-2xl font-black text-slate-900 dark:text-white">
+                        {formatTime(userProfile?.totalLearningTime || 0)}
+                      </p>
+                    </div>
+                  </div>
+                </section>
+
+                <section className="p-6 bg-orange-50 dark:bg-orange-900/20 rounded-[2rem] border border-orange-100 dark:border-orange-800/50 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-orange-600 dark:text-orange-400 text-xl font-bold">
+                      🔥
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold text-orange-600 dark:text-orange-400 uppercase tracking-widest">Current Streak</p>
+                      <p className="text-2xl font-black text-slate-900 dark:text-white">
+                        {userProfile?.streak || 0} Days
+                      </p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            )}
+
+            {activeTab === 'appearance' && (
+              <div className="space-y-6">
+                <section className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center justify-between">
+                    <div className="space-y-1">
+                      <h4 className="font-bold text-slate-900 dark:text-white">Study Animations</h4>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Confetti and sparkles when you finish a session.</p>
+                    </div>
+                    <button
+                      onClick={() => onUpdatePreferences({ animationsEnabled: !preferences.animationsEnabled })}
+                      className={`relative w-14 h-8 rounded-full transition-colors ${preferences.animationsEnabled ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'}`}
+                    >
+                      <div className={`absolute top-1 left-1 w-6 h-6 bg-white rounded-full transition-transform ${preferences.animationsEnabled ? 'translate-x-6' : 'translate-x-0'}`} />
+                    </button>
+                  </div>
+                </section>
+
+                <section className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center justify-between">
+                    <div className="space-y-1">
+                      <h4 className="font-bold text-slate-900 dark:text-white">Reduced Motion</h4>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Disable "bouncing" interactions and intense transitions.</p>
+                    </div>
+                    <button
+                      onClick={() => onUpdatePreferences({ reducedMotion: !preferences.reducedMotion })}
+                      className={`relative w-14 h-8 rounded-full transition-colors ${preferences.reducedMotion ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'}`}
+                    >
+                      <div className={`absolute top-1 left-1 w-6 h-6 bg-white rounded-full transition-transform ${preferences.reducedMotion ? 'translate-x-6' : 'translate-x-0'}`} />
+                    </button>
+                  </div>
+                </section>
+              </div>
+            )}
+
+            {activeTab === 'data' && (
+              <div className="space-y-6">
+                <section className="space-y-4">
+                  <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Progress Tools</h4>
+                  <button
+                    onClick={() => setShowResetConfirm(true)}
+                    className="w-full flex items-center justify-between p-6 bg-amber-50 dark:bg-amber-900/20 rounded-3xl border border-amber-100 dark:border-amber-800/50 group"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-amber-600 group-hover:scale-110 transition-transform">
+                        <RotateCcw className="w-6 h-6" />
+                      </div>
+                      <div className="text-left">
+                        <h5 className="font-bold text-slate-900 dark:text-white">Reset {language === 'biblical' ? 'Biblical Hebrew' : language === 'modern' ? 'Modern Hebrew' : language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Current Deck'}</h5>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Clear your mastery and starts fresh for this language.</p>
+                      </div>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-amber-300 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </section>
+
+                <section className="space-y-4 pt-6">
+                  <h4 className="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Export & Safety</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <button
+                      onClick={onExportData}
+                      className="flex items-center gap-3 p-5 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800 font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 transition-colors"
+                    >
+                      <Download className="w-5 h-5" />
+                      Export My Data
+                    </button>
+                    {!devMode && (
+                      <button
+                        onClick={() => setShowDeleteConfirm(true)}
+                        className="flex items-center gap-3 p-5 bg-red-50 dark:bg-red-900/20 rounded-2xl border border-red-100 dark:border-red-800/50 font-bold text-red-600 hover:bg-red-100 transition-colors"
+                      >
+                        <Trash2 className="w-5 h-5" />
+                        Delete Account
+                      </button>
+                    )}
+                  </div>
+                </section>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Overlays for confirmation */}
+        <AnimatePresence>
+          {showResetConfirm && (
+            <div className="fixed inset-0 z-[110] flex items-center justify-center p-6 bg-slate-900/60 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="bg-white dark:bg-slate-900 rounded-[2rem] p-8 max-w-sm w-full text-center shadow-2xl border lg:p-10"
+              >
+                <div className="w-16 h-16 bg-amber-50 text-amber-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                  <AlertTriangle className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-black mb-4">Reset Progress?</h3>
+                <p className="text-slate-500 dark:text-slate-400 mb-8 font-medium">
+                  This will permanently clear all your mastery and statistics for <strong>{language}</strong>. This action cannot be undone.
+                </p>
+                <div className="space-y-3">
+                  <button
+                    onClick={async () => {
+                      await onClearProgress(language);
+                      setShowResetConfirm(false);
+                      onClose();
+                    }}
+                    className="w-full py-4 bg-amber-600 text-white font-black rounded-2xl hover:bg-amber-700 transition-all shadow-lg shadow-amber-600/20"
+                  >
+                    Yes, Reset Progress
+                  </button>
+                  <button
+                    onClick={() => setShowResetConfirm(false)}
+                    className="w-full py-4 bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold rounded-2xl hover:bg-slate-200 transition-colors"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+
+          {showDeleteConfirm && (
+            <div className="fixed inset-0 z-[110] flex items-center justify-center p-6 bg-slate-900/60 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="bg-white dark:bg-slate-900 rounded-[2rem] p-8 max-w-sm w-full text-center shadow-2xl border lg:p-10"
+              >
+                <div className="w-16 h-16 bg-red-50 text-red-600 rounded-3xl flex items-center justify-center mx-auto mb-6">
+                  <Trash2 className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-black mb-4">Delete Account?</h3>
+                <p className="text-slate-500 dark:text-slate-400 mb-8 font-medium">
+                  We'll miss you! This will permanently delete your profile, study history, and all account data.
+                </p>
+                <div className="space-y-3">
+                  <button
+                    onClick={async () => {
+                      await onDeleteAccount();
+                      setShowDeleteConfirm(false);
+                      onClose();
+                    }}
+                    className="w-full py-4 bg-red-600 text-white font-black rounded-2xl hover:bg-red-700 transition-all shadow-lg shadow-red-600/20"
+                  >
+                    Delete Everything
+                  </button>
+                  <button
+                    onClick={() => setShowDeleteConfirm(false)}
+                    className="w-full py-4 bg-slate-100 dark:bg-slate-800 text-slate-500 font-bold rounded-2xl hover:bg-slate-200 transition-colors"
+                  >
+                    Keep My Account
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </div>
+  );
+}

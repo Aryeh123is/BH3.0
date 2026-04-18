@@ -28,9 +28,10 @@ interface DashboardProps {
   customDecks: CustomDeck[];
   srsSettings: SRSSettings;
   onUpdateSrsSettings: (settings: SRSSettings) => void;
+  reducedMotion?: boolean;
 }
 
-export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorrectSession, onStartFlashcards, onStartTest, onResetProgress, user, userProfile, language = 'biblical', onLanguageChange, onShowPro, devMode = false, isPremium = false, customDecks, srsSettings, onUpdateSrsSettings }: DashboardProps) {
+export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorrectSession, onStartFlashcards, onStartTest, onResetProgress, user, userProfile, language = 'biblical', onLanguageChange, onShowPro, devMode = false, isPremium = false, customDecks, srsSettings, onUpdateSrsSettings, reducedMotion = false }: DashboardProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
@@ -197,7 +198,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
         </div>
         <div className="flex flex-col items-end gap-3 w-full sm:w-auto">
           {userProfile?.streak > 0 && (
-            <div className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-2xl shadow-lg shadow-orange-500/20 border border-white/10 flex items-center gap-2 animate-bounce-subtle">
+            <div className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-2xl shadow-lg shadow-orange-500/20 border border-white/10 flex items-center gap-2">
               <Flame className="w-5 h-5 fill-current" />
               <span className="font-black text-sm">{userProfile.streak} Day Streak!</span>
             </div>
@@ -209,7 +210,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-12">
         <div className="lg:col-span-8 bg-gradient-to-br from-indigo-700 via-indigo-600 to-indigo-800 dark:from-indigo-600 dark:to-indigo-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden group">
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight leading-tight uppercase italic animate-bounce-subtle">
+            <h2 className={`text-3xl md:text-5xl font-black text-white mb-4 tracking-tight leading-tight uppercase italic ${!reducedMotion ? 'animate-bounce-subtle' : ''}`}>
               START LEARNING <br className="hidden md:block"/> NOW — IT'S FREE!
             </h2>
             <p className="text-indigo-100 font-bold text-base md:text-xl mb-8 max-w-lg opacity-90">
@@ -219,7 +220,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={onStartSession}
-                className="flex-[2] min-h-[72px] px-8 bg-white text-indigo-700 rounded-2xl font-black text-xl md:text-2xl hover:bg-indigo-50 transition-all flex items-center justify-center gap-3 shadow-2xl hover:-translate-y-1 active:scale-95 uppercase tracking-tight animate-bounce-subtle"
+                className={`flex-[2] min-h-[72px] px-8 bg-white text-indigo-700 rounded-2xl font-black text-xl md:text-2xl hover:bg-indigo-50 transition-all flex items-center justify-center gap-3 shadow-2xl ${!reducedMotion ? 'hover:-translate-y-1 active:scale-95 animate-bounce-subtle' : ''} uppercase tracking-tight`}
               >
                 <Play className="w-7 h-7 fill-current" /> Start Learning Now
               </button>
@@ -431,13 +432,13 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                 </div>
                 <h3 className="text-2xl font-black mb-2">Upgrade to Pro</h3>
                 <p className="text-indigo-100 text-sm mb-6">
-                  Upgrade for lifetime support, grammar learning modules, listening/writing exam prep, and unlimited flashcards!
+                  Upgrade for grammar learning modules, listening/writing exam prep, and unlimited flashcards!
                 </p>
                 <button 
                   onClick={onShowPro}
                   className="w-full py-3 bg-white text-indigo-600 font-black rounded-xl hover:bg-indigo-50 transition-colors"
                 >
-                  Get Premium for £10
+                  Get Premium for £4.99/year
                 </button>
               </div>
               <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />

@@ -46,3 +46,8 @@ export interface SRSSettings {
   masteredInterval: number; // in hours
   dailyGoal?: number;
 }
+
+export interface UserPreferences {
+  animationsEnabled: boolean;
+  reducedMotion: boolean;
+}

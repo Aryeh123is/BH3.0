@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Word, UserProgress, Question, MasteryLevel, CustomDeck, SRSSettings } from './types';
+import { Word, UserProgress, Question, MasteryLevel, CustomDeck, SRSSettings, UserPreferences } from './types';
 import { VOCABULARY as BIBLICAL_HEBREW_VOCABULARY } from './data/vocabulary';
 import { MODERN_HEBREW_VOCABULARY } from './data/modern_hebrew';
 import { SPANISH_EDEXCEL_VOCABULARY } from './data/spanish_edexcel';
@@ -14,6 +14,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
 import { AuthModal } from './components/AuthModal';
+import { SettingsModal } from './components/SettingsModal';
 import { DevModePasswordModal } from './components/DevModePasswordModal';
 import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun, Book } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -24,47 +25,94 @@ import { onAuthStateChanged, User } from 'firebase/auth';
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
-const CURRENT_VERSION = '1.9.4';
+const PREFS_KEY = 'bh-app-preferences';
+const CURRENT_VERSION = '1.9.7';
 
-const LATEST_CHANGES = [
-  { title: 'Premium Roadmaps', description: 'Updated the Pro feature list to include upcoming Grammar learning modules and Listening/Writing exam preparation tools.' },
-  { title: 'Mobile-First Improvements', description: 'Optimized the Navbar language switcher for mobile accessibility and added attention-grabbing learning buttons.' },
-  { title: 'Gated Vocabulary Access', description: 'Hidden the extensive vocabulary database behind an "Open Database" button to keep the dashboard clean.' },
-  { title: 'Guest Incentives', description: 'Added clear benefits for signing in as a guest, highlighting progress saving and streak synchronization.' },
-];
-
-const ARCHIVED_CHANGES = [
-  { title: 'Flashcard Availability', description: 'Resolved a caching issue that mistakenly showed "No cards available" when selecting specific topics.' },
-  { title: 'Auth Configuration', description: 'Reverted to standard plaintext password for developer mode access.' },
-  { title: 'Session Isolation', description: 'Fixed cache mixing and reset issues when switching between language topics.' },
-  { title: 'Default Language: BH', description: 'Biblical Hebrew is now the standard entry point for all users.' },
-  { title: 'Pricing Update', description: 'Updated Premium pricing to £10 with lifetime support and updates. Early bird registration now offers a 50% discount (£5).' },
-  { title: 'Cloudflare Compatibility', description: 'Refactored the entire project to be fully compatible with Cloudflare Pages deployment.' },
-  { title: 'Premium in Development', description: 'Updated the Premium system to reflect its development status and added a pre-launch discount registration.' },
-  { title: 'Spanish Vocabulary Update', description: 'Implemented a massive update to the Spanish vocabulary list with over 1200 new words and phrases.' },
-  { title: 'Spanish Vocabulary Reset', description: 'Removed all existing Spanish keywords to prepare for a new, updated vocabulary list.' },
-  { title: 'Email & Password Sign In', description: 'Added the ability to create an account and sign in using an email and password, bypassing the need for Google Sign-In entirely.' },
-  { title: 'Sign-In Preview Fix', description: 'Added detection for when the app is running in a preview window on Apple devices, prompting users to open the app in a new tab to complete sign-in.' },
-  { title: 'Update Indicator Fix', description: 'Fixed an issue where the version indicator in the footer would incorrectly show that an update was needed.' },
-  { title: 'iPad Sign-In Fix', description: 'Resolved an issue where Apple devices (iPad/iPhone/Safari) would block the sign-in popup. The app now automatically falls back to a redirect sign-in method.' },
-  { title: 'Developer Mode', description: 'Added a toggle in the footer to easily switch Developer Mode on and off, hiding work-in-progress languages from public view.' },
-  { title: 'Flashcard Session Fix', description: 'Permanently resolved the issue where the session would incorrectly revert to an earlier card (e.g., the 25th or 50th card) after batch transitions.' },
-  { title: 'Version Indicator', description: 'Added a version indicator to the flashcard study mode for easier troubleshooting.' },
-  { title: 'Stability Improvements', description: 'Refactored state management in Flashcard mode to ensure progress tracking remains accurate throughout the entire deck.' },
-  { title: 'Keyboard Improvements', description: 'Keyboard shortcuts now reliably prevent page scrolling for a smoother study session.' },
-  { title: 'Request a Feature', description: 'Have an idea for the app? You can now submit feature requests directly via the new button in the footer.' },
-  { title: 'Keyboard Shortcut Toggle', description: 'Study with total control. Disable keyboard shortcuts if they interfere with your experience.' },
-  { title: 'Stability Fixes', description: 'Fixed the "blank screen" bug with robust state management and memoized handlers.' },
-  { title: 'Flashcard Batches', description: 'Study in focused sets of 25 cards with a summary after each batch.' },
-  { title: 'Undo Action', description: 'Made a mistake? Use the new Undo button in Flashcard mode.' },
-  { title: 'Creator Signature', description: 'Added a subtle signature to celebrate the app\'s creator, Aryeh Isaac-Saul.' },
-  { title: 'Space Bar Flip', description: 'Use the space bar to flip flashcards quickly.' },
-  { title: 'Keyboard Shortcuts', description: 'Use Arrow Keys (Left/Right) to grade cards and Backspace to undo.' },
-  { title: 'Progress Tracking', description: 'Track your mastery of each word with a visual progress bar.' },
-  { title: 'Dashboard Overview', description: 'See your overall learning statistics and deck completion at a glance.' },
-  { title: 'Interactive Learning', description: 'A new way to learn keywords with multiple-choice questions and instant feedback.' },
-  { title: 'Hebrew Vocabulary', description: 'Initial release with 100+ essential Hebrew keywords and phrases.' },
-  { title: 'Mobile Optimization', description: 'Fully responsive design for studying on the go.' }
+const CHANGELOG = [
+  {
+    version: '1.9.7',
+    changes: [
+      { title: 'Full Update History', description: 'Restored the very first launch updates (from back in 1.0.0) so you can scroll all the way back to the beginning of our journey.' }
+    ]
+  },
+  {
+    version: '1.9.6',
+    changes: [
+      { title: 'Changelog Improvements', description: 'We\'ve overhauled the update archives so you can seamlessly scroll through all our past releases with clean version headers!' },
+      { title: 'Backend Polish', description: 'Cleaned up minor layout jumps and applied some privacy tweaks under the hood for developers.', internal: true }
+    ]
+  },
+  {
+    version: '1.9.5',
+    changes: [
+      { title: 'User Settings Hub', description: 'A new place to manage your account, including display name updates, learning statistics, and accessibility preferences.' },
+      { title: 'Reduced Motion', description: 'Enable a smoother experience by disabling heavy animations and "bouncing" UI elements.' },
+      { title: 'Clear Progress', description: 'Start fresh in any language by resetting your vocabulary mastery and study statistics.' },
+      { title: 'Data Export & Privacy', description: 'Export your learning data as a JSON file or permanently delete your account directly from the settings.' },
+    ]
+  },
+  {
+    version: '1.9.4',
+    changes: [
+      { title: 'Premium Roadmaps', description: 'Updated the Pro feature list to include upcoming Grammar learning modules and Listening/Writing exam preparation tools.' },
+      { title: 'Pricing Update', description: 'Updated Premium pricing to £4.99/year with support and updates. Monthly subscription available for £1.99/month.' },
+      { title: 'Premium in Development', description: 'Updated the Premium system to reflect its development status and added a pre-launch discount registration.' },
+      { title: 'Auth Configuration', description: 'Reverted to standard plaintext password for developer mode access.', internal: true },
+      { title: 'Cloudflare Compatibility', description: 'Refactored the entire project to be fully compatible with Cloudflare Pages deployment.', internal: true },
+    ]
+  },
+  {
+    version: '1.9.3',
+    changes: [
+      { title: 'Spanish Vocabulary Update', description: 'Implemented a massive update to the Spanish vocabulary list with over 1200 new words and phrases.' },
+      { title: 'Spanish Vocabulary Reset', description: 'Removed all existing Spanish keywords to prepare for a new, updated vocabulary list.', internal: true },
+      { title: 'Flashcard Availability', description: 'Resolved a caching issue that mistakenly showed "No cards available" when selecting specific topics.' },
+      { title: 'Session Isolation', description: 'Fixed cache mixing and reset issues when switching between language topics.', internal: true },
+      { title: 'Default Language: BH', description: 'Biblical Hebrew is now the standard entry point for all users.' },
+    ]
+  },
+  {
+    version: '1.9.2',
+    changes: [
+      { title: 'Email & Password Sign In', description: 'Added the ability to create an account and sign in using an email and password, bypassing the need for Google Sign-In entirely.' },
+      { title: 'Sign-In Preview Fix', description: 'Added detection for when the app is running in a preview window on Apple devices, prompting users to open the app in a new tab to complete sign-in.', internal: true },
+      { title: 'iPad Sign-In Fix', description: 'Resolved an issue where Apple devices (iPad/iPhone/Safari) would block the sign-in popup. The app now automatically falls back to a redirect sign-in method.', internal: true },
+      { title: 'Developer Mode', description: 'Added a toggle in the footer to easily switch Developer Mode on and off, hiding work-in-progress languages from public view.', internal: true },
+    ]
+  },
+  {
+    version: '1.9.1',
+    changes: [
+      { title: 'Request a Feature', description: 'Have an idea for the app? You can now submit feature requests directly via the new button in the footer.' },
+      { title: 'Update Indicator Fix', description: 'Fixed an issue where the version indicator in the footer would incorrectly show that an update was needed.', internal: true },
+      { title: 'Flashcard Session Fix', description: 'Permanently resolved the issue where the session would incorrectly revert to an earlier card (e.g., the 25th or 50th card) after batch transitions.', internal: true },
+      { title: 'Version Indicator', description: 'Added a version indicator to the flashcard study mode for easier troubleshooting.', internal: true },
+      { title: 'Stability Improvements', description: 'Refactored state management in Flashcard mode to ensure progress tracking remains accurate throughout the entire deck.', internal: true },
+    ]
+  },
+  {
+    version: '1.9.0',
+    changes: [
+      { title: 'Flashcard Batches', description: 'Study in focused sets of 25 cards with a summary after each batch.' },
+      { title: 'Undo Action', description: 'Made a mistake? Use the new Undo button in Flashcard mode.' },
+      { title: 'Keyboard Shortcuts', description: 'Use Arrow Keys (Left/Right) to grade cards and Backspace to undo.' },
+      { title: 'Space Bar Flip', description: 'Use the space bar to flip flashcards quickly.' },
+      { title: 'Stability Fixes', description: 'Fixed the "blank screen" bug with robust state management and memoized handlers.', internal: true },
+      { title: 'Creator Signature', description: 'Added a subtle signature to celebrate the app\'s creator.', internal: true },
+      { title: 'Keyboard Improvements', description: 'Keyboard shortcuts now reliably prevent page scrolling for a smoother study session.', internal: true },
+      { title: 'Keyboard Shortcut Toggle', description: 'Study with total control. Disable keyboard shortcuts if they interfere with your experience.', internal: true },
+    ]
+  },
+  {
+    version: '1.0.0',
+    changes: [
+      { title: 'Hebrew Vocabulary', description: 'Initial release with 100+ essential Hebrew keywords and phrases.' },
+      { title: 'Interactive Learning', description: 'A new way to learn keywords with multiple-choice questions and instant feedback.' },
+      { title: 'Progress Tracking', description: 'Track your mastery of each word with a visual progress bar.' },
+      { title: 'Dashboard Overview', description: 'See your overall learning statistics and deck completion at a glance.' },
+      { title: 'Mobile Optimization', description: 'Fully responsive design for studying on the go.' }
+    ]
+  }
 ];
 
 export default function App() {
@@ -197,11 +245,43 @@ export default function App() {
   const [showChangelog, setShowChangelog] = useState(false);
   const [viewingArchive, setViewingArchive] = useState(false);
   const [showWipPopup, setShowWipPopup] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const [preferences, setPreferences] = useState<UserPreferences>(() => {
+    const saved = safeLocalStorage.getItem(PREFS_KEY);
+    return saved ? JSON.parse(saved) : {
+      animationsEnabled: true,
+      reducedMotion: false
+    };
+  });
+
+  useEffect(() => {
+    safeLocalStorage.setItem(PREFS_KEY, JSON.stringify(preferences));
+  }, [preferences]);
+
   const [showGuestLimitModal, setShowGuestLimitModal] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<any>(null);
   const [isAuthReady, setIsAuthReady] = useState(false);
   const [sharedDeckToImport, setSharedDeckToImport] = useState<any>(null);
+
+  const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (view === 'learn' || view === 'flashcards' || view === 'test') {
+      if (!sessionStartTime) setSessionStartTime(Date.now());
+    } else {
+      if (sessionStartTime) {
+        const durationSeconds = Math.floor((Date.now() - sessionStartTime) / 1000);
+        if (durationSeconds > 0 && user) {
+          const userRef = doc(db, 'users', user.uid);
+          setDoc(userRef, {
+            totalLearningTime: (userProfile?.totalLearningTime || 0) + durationSeconds
+          }, { merge: true }).catch(err => console.error("Error saving time:", err));
+        }
+        setSessionStartTime(null);
+      }
+    }
+  }, [view, user, userProfile?.totalLearningTime]);
 
   const trialInfo = useMemo(() => {
     if (!user) return { isTrialActive: false, daysLeft: 0, isExpired: false };
@@ -273,6 +353,83 @@ export default function App() {
       alert('Failed to import deck. Please try again.');
     }
   };
+  const handleExportData = () => {
+    const data = {
+      profile: userProfile,
+      progress: progress,
+      decks: customDecks,
+      settings: srsSettings,
+      preferences: preferences,
+      exportDate: new Date().toISOString()
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `language-learning-data-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleClearProgress = async (lang: string) => {
+    const progressKey = `bh-keywords-progress-${lang}`;
+    safeLocalStorage.removeItem(progressKey);
+    
+    if (language === lang) {
+      setProgress([]);
+    }
+
+    if (user) {
+      try {
+        const progressRef = collection(db, 'users', user.uid, 'progress');
+        const snapshot = await import('firebase/firestore').then(({ getDocs }) => getDocs(progressRef));
+        const batch = writeBatch(db);
+        snapshot.forEach((doc) => batch.delete(doc.ref));
+        await batch.commit();
+      } catch (err) {
+        console.error("Error clearing cloud progress:", err);
+      }
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!user) return;
+    try {
+      // 1. Delete Firestore data (optional but good for privacy)
+      const userRef = doc(db, 'users', user.uid);
+      await setDoc(userRef, { deleted: true, deletedAt: Date.now() }, { merge: true });
+      
+      // 2. Delete the user
+      const { deleteUser } = await import('firebase/auth');
+      await deleteUser(user);
+      
+      // 3. Sign out and reset
+      await signOut(auth);
+      setView('home');
+      alert("Your account and data have been deleted.");
+    } catch (err: any) {
+      console.error("Error deleting account:", err);
+      if (err.code === 'auth/requires-recent-login') {
+        alert("Please sign out and sign in again to perform this sensitive action.");
+      } else {
+        alert("Delete failed. Please try again later.");
+      }
+    }
+  };
+
+  const handleUpdateDisplayName = async (name: string) => {
+    if (!user) return;
+    try {
+      const userRef = doc(db, 'users', user.uid);
+      await setDoc(userRef, { displayName: name }, { merge: true });
+      setUserProfile((prev: any) => ({ ...prev, displayName: name }));
+    } catch (err) {
+      console.error("Error updating display name:", err);
+    }
+  };
+
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const saved = safeLocalStorage.getItem(THEME_KEY);
@@ -846,6 +1003,7 @@ export default function App() {
         onToggleTheme={toggleTheme}
         devMode={devMode}
         isPremium={isPremium}
+        onShowSettings={() => setShowSettings(true)}
       />
 
       <AnimatePresence>
@@ -950,18 +1108,48 @@ export default function App() {
                   </button>
                 </div>
 
-                <div className="space-y-6 mb-10 max-h-[350px] overflow-y-auto pr-2 custom-scrollbar">
-                  {(viewingArchive ? ARCHIVED_CHANGES : LATEST_CHANGES).map((item, index) => (
-                    <div key={index} className="flex gap-4">
-                      <div className="mt-1">
-                        <CheckCircle2 className="w-5 h-5 text-green-500" />
+                <div className="space-y-6 mb-10 max-h-[400px] overflow-y-auto pr-2 pb-8 custom-scrollbar">
+                  {!viewingArchive ? (
+                    CHANGELOG[0].changes.filter(c => devMode || !c.internal).map((item, index) => (
+                      <div key={index} className="flex gap-4">
+                        <div className="mt-1 shrink-0">
+                          <CheckCircle2 className="w-5 h-5 text-green-500" />
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-slate-900 dark:text-white text-sm">{item.title}</h3>
+                          <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{item.description}</p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="font-bold text-slate-900 dark:text-white text-sm">{item.title}</h3>
-                        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{item.description}</p>
-                      </div>
+                    ))
+                  ) : (
+                    <div className="space-y-8">
+                      {CHANGELOG.slice(1).map((release) => {
+                        const visibleChanges = release.changes.filter(c => devMode || !c.internal);
+                        if (visibleChanges.length === 0) return null;
+                        
+                        return (
+                          <div key={release.version} className="space-y-4">
+                            <h3 className="text-xs font-black text-indigo-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 pb-2">
+                              Version {release.version}
+                            </h3>
+                            <div className="space-y-4">
+                              {visibleChanges.map((item, index) => (
+                                <div key={index} className="flex gap-4">
+                                  <div className="mt-1 shrink-0">
+                                    <CheckCircle2 className="w-5 h-5 text-slate-300 dark:text-slate-600" />
+                                  </div>
+                                  <div>
+                                    <h4 className="font-bold text-slate-700 dark:text-slate-200 text-sm">{item.title}</h4>
+                                    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{item.description}</p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
-                  ))}
+                  )}
                 </div>
 
                 <div className="space-y-4">
@@ -991,6 +1179,21 @@ export default function App() {
             </motion.div>
           </div>
         )}
+        {showSettings && (
+          <SettingsModal
+            onClose={() => setShowSettings(false)}
+            user={user}
+            userProfile={userProfile}
+            preferences={preferences}
+            onUpdatePreferences={(newPrefs) => setPreferences(prev => ({ ...prev, ...newPrefs }))}
+            onUpdateDisplayName={handleUpdateDisplayName}
+            onClearProgress={handleClearProgress}
+            onDeleteAccount={handleDeleteAccount}
+            onExportData={handleExportData}
+            language={language}
+            devMode={devMode}
+          />
+        )}
       </AnimatePresence>
       
       <main className="pt-16">
@@ -1014,6 +1217,7 @@ export default function App() {
                 onShowPro={() => setShowProModal(true)}
                 devMode={devMode}
                 isPremium={isPremium}
+                reducedMotion={preferences.reducedMotion}
               />
               <HowItWorks language={language} />
             </motion.div>
@@ -1170,6 +1374,7 @@ export default function App() {
                 total={sessionQuestions.length}
                 onRestart={startSession}
                 onHome={() => setView('home')}
+                animationsEnabled={preferences.animationsEnabled}
               />
             </motion.div>
           )}
@@ -1216,7 +1421,7 @@ export default function App() {
                         Get 50% Off at Launch!
                       </h3>
                       <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                        Register your interest now to lock in a <strong>50% discount</strong> when we officially launch. Get lifetime access to Grammar modules, Listening/Writing Exam Prep, and more for just <strong>£4.99</strong>.
+                        Register your interest now to get an exclusive discount when we officially launch. Get access to Grammar modules, Listening/Writing Exam Prep, and more for just <strong>£4.99/year</strong>.
                       </p>
                       <button 
                         onClick={() => {
@@ -1321,15 +1526,17 @@ export default function App() {
       <footer className="py-12 border-t border-slate-100 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 text-center space-y-6">
           <div className="flex flex-col items-center gap-4">
-            <a 
-              href="https://forms.gle/NjUpvWAZCjTF4aPB6" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm"
-            >
-              <Sparkles className="w-4 h-4 text-primary" />
-              Request a Feature / Report a Bug
-            </a>
+            <div className="flex flex-wrap justify-center gap-3">
+              <a 
+                href="https://forms.gle/NjUpvWAZCjTF4aPB6" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm"
+              >
+                <Sparkles className="w-4 h-4 text-primary" />
+                Request a Feature / Bug
+              </a>
+            </div>
           </div>
           
           <div className="flex flex-col items-center gap-2">

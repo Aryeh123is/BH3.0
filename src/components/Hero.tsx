@@ -15,9 +15,10 @@ interface HeroProps {
   onShowPro: () => void;
   devMode?: boolean;
   isPremium?: boolean;
+  reducedMotion?: boolean;
 }
 
-export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onStartTest, language, onLanguageChange, user, onSignIn, onShowPro, devMode = false, isPremium = false }: HeroProps) {
+export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onStartTest, language, onLanguageChange, user, onSignIn, onShowPro, devMode = false, isPremium = false, reducedMotion = false }: HeroProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const previewCards: Record<string, { front: string, back: string, label: string }> = {
@@ -60,7 +61,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-16">
               <button 
                 onClick={onStartFlashcards}
-                className="w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-indigo-600/20 text-lg flex items-center justify-center gap-2 animate-bounce-subtle group"
+                className={`w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all ${!reducedMotion ? 'hover:scale-105 active:scale-95 animate-bounce-subtle' : ''} shadow-xl shadow-indigo-600/20 text-lg flex items-center justify-center gap-2 group`}
               >
                 <Zap className="w-5 h-5 fill-current group-hover:animate-pulse" />
                 START LEARNING NOW
@@ -220,7 +221,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
               </div>
               <div className="flex justify-center items-end gap-2 mb-2">
                 <span className="text-5xl font-black">£4.99</span>
-                <span className="text-slate-400 mb-1">lifetime</span>
+                <span className="text-slate-400 mb-1">/year</span>
               </div>
               <p className="text-slate-400 mb-8">or £1.99/month</p>
               <button 
@@ -242,7 +243,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
           </h2>
           <button 
             onClick={onStartFlashcards}
-            className="px-10 py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-indigo-600/30 text-xl flex items-center justify-center gap-3 mx-auto animate-bounce-subtle group"
+            className={`px-10 py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all ${!reducedMotion ? 'hover:scale-105 active:scale-95 animate-bounce-subtle' : ''} shadow-2xl shadow-indigo-600/30 text-xl flex items-center justify-center gap-3 mx-auto group`}
           >
             <Zap className="w-6 h-6 fill-current group-hover:animate-pulse" />
             START LEARNING NOW

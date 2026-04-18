@@ -20,8 +20,17 @@
       "description": "Stores user preferences and metadata.",
       "type": "object",
       "properties": {
-        "language": { "type": "string", "enum": ["biblical", "modern"], "description": "The preferred language." },
-        "lastActive": { "type": "integer", "description": "Timestamp of the last activity." }
+        "language": { "type": "string", "enum": ["biblical", "modern", "spanish", "french"], "description": "The preferred language." },
+        "lastActive": { "type": "integer", "description": "Timestamp of the last activity." },
+        "streak": { "type": "integer", "description": "Current user learning streak." },
+        "lastStreakUpdate": { "type": "integer", "description": "Timestamp streak was last updated." },
+        "streakFreezes": { "type": "integer", "description": "Number of streak freezes." },
+        "totalLearningTime": { "type": "integer", "description": "Total learning time in seconds." },
+        "displayName": { "type": "string", "description": "User's display name." },
+        "deleted": { "type": "boolean", "description": "Whether the user account is soft deleted." },
+        "deletedAt": { "type": "integer", "description": "Timestamp when the account was deleted." },
+        "isPremium": { "type": "boolean", "description": "Premium status." },
+        "role": { "type": "string", "description": "Role of the user (admin)." }
       }
     }
   },

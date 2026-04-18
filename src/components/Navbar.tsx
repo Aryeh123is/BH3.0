@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles, Flame, Snowflake, ChevronDown, Check } from 'lucide-react';
+import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles, Flame, Snowflake, ChevronDown, Check, LayoutDashboard } from 'lucide-react';
 import { User } from 'firebase/auth';
 
 interface NavbarProps {
@@ -16,9 +16,10 @@ interface NavbarProps {
   onToggleTheme: () => void;
   devMode?: boolean;
   isPremium?: boolean;
+  onShowSettings: () => void;
 }
 
-export function Navbar({ onNavigate, language, onLanguageChange, user, userProfile, onSignIn, onSignOut, onShowPro, theme, onToggleTheme, devMode = false, isPremium = false }: NavbarProps) {
+export function Navbar({ onNavigate, language, onLanguageChange, user, userProfile, onSignIn, onSignOut, onShowPro, theme, onToggleTheme, devMode = false, isPremium = false, onShowSettings }: NavbarProps) {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const langMenuRef = useRef<HTMLDivElement>(null);
 
@@ -175,17 +176,25 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
               
               <button 
                 onClick={() => onNavigate('dashboard')}
-                className="flex items-center gap-2 p-1.5 sm:px-3 sm:py-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
+                className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
                 title="Dashboard"
+              >
+                <LayoutDashboard className="w-4 h-4 text-indigo-500" />
+                <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
+                  Dashboard
+                </span>
+              </button>
+              
+              <button 
+                onClick={onShowSettings}
+                className="flex items-center justify-center p-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
+                title="Account Settings"
               >
                 {user.photoURL ? (
                   <img src={user.photoURL} alt={user.displayName || ''} className="w-5 h-5 rounded-full" referrerPolicy="no-referrer" />
                 ) : (
                   <UserIcon className="w-4 h-4 text-slate-400" />
                 )}
-                <span className="text-xs font-bold text-slate-600 dark:text-slate-300 hidden md:inline">
-                  Dashboard
-                </span>
               </button>
               
               <button 

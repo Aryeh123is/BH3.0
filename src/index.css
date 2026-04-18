@@ -58,6 +58,8 @@ body, nav, div, section, footer, button, h1, h2, h3, h4, p, span, input, table, 
 
 @utility animate-bounce-subtle {
   animation: bounce-subtle 2s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 @utility custom-scrollbar {

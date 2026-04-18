@@ -38,12 +38,18 @@ service cloud.firestore {
     }
 
     function isValidUser(data) {
-      return data.keys().hasOnly(['language', 'lastActive', 'role', 'streak', 'lastStreakUpdate', 'streakFreezes']) &&
+      return data.keys().hasOnly(['language', 'lastActive', 'role', 'streak', 'lastStreakUpdate', 'streakFreezes', 'totalLearningTime', 'displayName', 'deleted', 'deletedAt', 'isPremium']) &&
              (data.language == 'biblical' || data.language == 'modern' || data.language == 'spanish' || data.language == 'french') &&
              data.lastActive is number &&
              (!('streak' in data) || data.streak is number) &&
              (!('lastStreakUpdate' in data) || data.lastStreakUpdate is number) &&
-             (!('streakFreezes' in data) || data.streakFreezes is number);
+             (!('streakFreezes' in data) || data.streakFreezes is number) &&
+             (!('totalLearningTime' in data) || data.totalLearningTime is number) &&
+             (!('displayName' in data) || data.displayName is string) &&
+             (!('deleted' in data) || data.deleted is bool) &&
+             (!('deletedAt' in data) || data.deletedAt is number) &&
+             (!('isPremium' in data) || data.isPremium is bool) &&
+             (!('role' in data) || data.role is string);
     }
 
     function isValidProgress(data) {
