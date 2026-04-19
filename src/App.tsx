@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Word, UserProgress, Question, MasteryLevel, CustomDeck, SRSSettings, UserPreferences } from './types';
 import { VOCABULARY as BIBLICAL_HEBREW_VOCABULARY } from './data/vocabulary';
 import { MODERN_HEBREW_VOCABULARY } from './data/modern_hebrew';
@@ -21,14 +21,23 @@ import { motion, AnimatePresence } from 'motion/react';
 import { safeLocalStorage } from './lib/storage';
 import { auth, db, googleProvider, signInWithPopup, signInWithRedirect, signOut, doc, setDoc, getDoc, collection, onSnapshot, writeBatch } from './firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
+import { InstallPrompt } from './components/InstallPrompt';
 
 const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
 const PREFS_KEY = 'bh-app-preferences';
-const CURRENT_VERSION = '1.9.7';
+const CURRENT_VERSION = '1.9.8';
 
 const CHANGELOG = [
+  {
+    version: '1.9.8',
+    changes: [
+      { title: 'New Settings Layout', description: 'Completely revamped mobile UI layout for the Settings Menu for better responsive usability and tighter toggle layouts.' },
+      { title: 'Add to Home Screen', description: 'Added native "Add to Home Screen" install prompt for iOS/Safari users to properly install as a web app.' },
+      { title: 'Streak Freezes Dashboard', description: 'Added Streak Freezes component to the dashboard to intuitively monitor streak protection and freeze generation.' }
+    ]
+  },
   {
     version: '1.9.7',
     changes: [
@@ -140,8 +149,10 @@ export default function App() {
   });
 
   useEffect(() => {
-    safeLocalStorage.setItem('bh-language', language);
-  }, [language]);
+    if (!devMode) {
+      safeLocalStorage.setItem('bh-language', language);
+    }
+  }, [language, devMode]);
 
   useEffect(() => {
     if (!devMode && language === 'modern') {
@@ -252,8 +263,10 @@ export default function App() {
   });
 
   useEffect(() => {
-    safeLocalStorage.setItem(PREFS_KEY, JSON.stringify(preferences));
-  }, [preferences]);
+    if (!devMode) {
+      safeLocalStorage.setItem(PREFS_KEY, JSON.stringify(preferences));
+    }
+  }, [preferences, devMode]);
 
   const [showGuestLimitModal, setShowGuestLimitModal] = useState(false);
   const [user, setUser] = useState<User | null>(null);
@@ -269,7 +282,7 @@ export default function App() {
     } else {
       if (sessionStartTime) {
         const durationSeconds = Math.floor((Date.now() - sessionStartTime) / 1000);
-        if (durationSeconds > 0 && user) {
+        if (durationSeconds > 0 && user && !devMode) {
           const userRef = doc(db, 'users', user.uid);
           setDoc(userRef, {
             totalLearningTime: (userProfile?.totalLearningTime || 0) + durationSeconds
@@ -381,13 +394,35 @@ export default function App() {
     // 1. Clear progress from local state
     setProgress(prev => {
       const filtered = prev.filter(p => !targetIds.has(p.wordId));
-      safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(filtered));
-      
-      // Clear legacy partitioned keys just in case
-      safeLocalStorage.removeItem(`bh-keywords-progress-${lang}`);
+      if (!devMode) {
+        safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(filtered));
+        // Clear legacy partitioned keys just in case
+        safeLocalStorage.removeItem(`bh-keywords-progress-${lang}`);
+      }
       
       return filtered;
     });
+
+    if (lang === language) {
+      setSessionQuestions([]);
+      setSessionAnswers([]);
+      setCurrentQuestionIndex(0);
+    }
+    
+    if (!devMode) {
+      safeLocalStorage.removeItem(`bh-session-state-${lang}`);
+      safeLocalStorage.removeItem(`bh-flashcard-session-${lang}-full`);
+      safeLocalStorage.removeItem(`bh-test-history-${lang}`);
+      
+      const topicKeysToClear = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && key.startsWith(`bh-flashcard-session-${lang}-`)) {
+          topicKeysToClear.push(key);
+        }
+      }
+      topicKeysToClear.forEach(key => safeLocalStorage.removeItem(key));
+    }
 
     // 2. Clear progress safely in cloud
     if (user && !devMode) {
@@ -554,7 +589,9 @@ export default function App() {
     }
     
     setLanguage(newLang);
-    safeLocalStorage.setItem('bh-language', newLang);
+    if (!devMode) {
+      safeLocalStorage.setItem('bh-language', newLang);
+    }
   };
 
   useEffect(() => {
@@ -565,16 +602,21 @@ export default function App() {
   }, []);
 
   const handleCloseChangelog = () => {
-    safeLocalStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+    if (!devMode) {
+      safeLocalStorage.setItem(VERSION_KEY, CURRENT_VERSION);
+    }
     setShowChangelog(false);
     setViewingArchive(false);
   };
 
   useEffect(() => {
-    safeLocalStorage.setItem('bh-language', language);
-  }, [language]);
+    if (!devMode) {
+      safeLocalStorage.setItem('bh-language', language);
+    }
+  }, [language, devMode]);
 
   useEffect(() => {
+    if (devMode) return;
     const state = {
       view,
       sessionQuestions,
@@ -582,13 +624,15 @@ export default function App() {
       sessionAnswers
     };
     safeLocalStorage.setItem(SESSION_STATE_KEY, JSON.stringify(state));
-  }, [view, sessionQuestions, currentQuestionIndex, sessionAnswers, SESSION_STATE_KEY]);
+  }, [view, sessionQuestions, currentQuestionIndex, sessionAnswers, SESSION_STATE_KEY, devMode]);
 
   const sessionCorrectCount = useMemo(() => 
     sessionAnswers.filter(a => a === true).length,
   [sessionAnswers]);
 
   // Load progress from localStorage or Firestore
+  const hasAttemptedLocalSync = useRef(false);
+
   useEffect(() => {
     if (!isAuthReady) return;
 
@@ -619,33 +663,42 @@ export default function App() {
         
         if (firestoreProgress.length > 0) {
           setProgress(firestoreProgress);
+          hasAttemptedLocalSync.current = true;
         } else {
           // If Firestore is empty but local has progress, sync local to Firestore
-          const allLegacyKeys = ['bh-keywords-progress', 'bh-keywords-progress-biblical', 'bh-keywords-progress-modern', 'bh-keywords-progress-spanish', 'bh-keywords-progress-french'];
-          const uniqueProgressMap = new Map();
-          
-          allLegacyKeys.forEach(key => {
-            const saved = safeLocalStorage.getItem(key);
-            if (saved) {
-              try {
-                const parsed = JSON.parse(saved);
-                parsed.forEach((p: UserProgress) => uniqueProgressMap.set(p.wordId, p));
-              } catch (e) {}
-            }
-          });
-          
-          const mergedLocalProgress = Array.from(uniqueProgressMap.values());
-          
-          if (mergedLocalProgress.length > 0) {
-            const batch = writeBatch(db);
-            mergedLocalProgress.forEach((p: UserProgress) => {
-              const docRef = doc(db, 'users', user.uid, 'progress', p.wordId);
-              batch.set(docRef, p);
+          // Only attempt this once per session to avoid restoring deleted progress
+          if (!hasAttemptedLocalSync.current) {
+            hasAttemptedLocalSync.current = true;
+            const allLegacyKeys = ['bh-keywords-progress', 'bh-keywords-progress-biblical', 'bh-keywords-progress-modern', 'bh-keywords-progress-spanish', 'bh-keywords-progress-french'];
+            const uniqueProgressMap = new Map();
+            
+            allLegacyKeys.forEach(key => {
+              const saved = safeLocalStorage.getItem(key);
+              if (saved) {
+                try {
+                  const parsed = JSON.parse(saved);
+                  parsed.forEach((p: UserProgress) => uniqueProgressMap.set(p.wordId, p));
+                } catch (e) {}
+              }
             });
-            batch.commit().catch(err => console.error("Initial sync failed:", err));
-            setProgress(mergedLocalProgress);
-            safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(mergedLocalProgress));
+            
+            const mergedLocalProgress = Array.from(uniqueProgressMap.values());
+            
+            if (mergedLocalProgress.length > 0) {
+              const batch = writeBatch(db);
+              mergedLocalProgress.forEach((p: UserProgress) => {
+                const docRef = doc(db, 'users', user.uid, 'progress', p.wordId);
+                batch.set(docRef, p);
+              });
+              batch.commit().catch(err => console.error("Initial sync failed:", err));
+              setProgress(mergedLocalProgress);
+              safeLocalStorage.setItem(PROGRESS_KEY, JSON.stringify(mergedLocalProgress));
+              return;
+            }
           }
+          
+          // If we reach here, we have 0 progress in Firestore and no local to sync.
+          setProgress([]);
         }
       }, (error) => {
         console.error("Firestore progress listener error:", error);
@@ -743,7 +796,7 @@ export default function App() {
         lastStreakUpdate: newLastUpdate
       }, { merge: true });
     }
-  }, [user, userProfile?.lastStreakUpdate]);
+  }, [user, userProfile?.lastStreakUpdate, devMode]);
 
   // Handle daily goal completion and streak increment
   useEffect(() => {
@@ -1063,6 +1116,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/10 transition-colors duration-300">
+      <InstallPrompt />
       <Navbar 
         onNavigate={(view) => setView(view)} 
         language={language} 
@@ -1312,7 +1366,9 @@ export default function App() {
                 onStartTest={() => setView('test')}
                 onResetProgress={() => {
                   setProgress([]);
-                  safeLocalStorage.removeItem(`bh-flashcard-session-${language}`);
+                  if (!devMode) {
+                    safeLocalStorage.removeItem(`bh-flashcard-session-${language}`);
+                  }
                 }}
                 user={user}
                 userProfile={userProfile}
@@ -1325,7 +1381,9 @@ export default function App() {
                 srsSettings={srsSettings}
                 onUpdateSrsSettings={(newSettings) => {
                   setSrsSettings(newSettings);
-                  safeLocalStorage.setItem('bh-srs-settings', JSON.stringify(newSettings));
+                  if (!devMode) {
+                    safeLocalStorage.setItem('bh-srs-settings', JSON.stringify(newSettings));
+                  }
                 }}
               />
               <div className="text-center pb-20">
@@ -1363,6 +1421,7 @@ export default function App() {
                 isPremium={isPremium}
                 onShowPro={() => setShowProModal(true)}
                 selectedTopic={selectedTopic}
+                devMode={devMode}
               />
             </motion.div>
           )}
@@ -1378,6 +1437,7 @@ export default function App() {
                 vocabulary={activeVocabulary}
                 onExit={() => setView('home')}
                 language={language}
+                devMode={devMode}
               />
             </motion.div>
           )}
@@ -1489,10 +1549,19 @@ export default function App() {
                 <div className="p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/50 mb-6">
                   <h3 className="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
                     <Sparkles className="w-5 h-5" />
-                    Get 50% Off at Launch!
+                    Claim 50% Off!
                   </h3>
+                  <div className="mb-2 flex items-center justify-between">
+                    <div>
+                      <span className="text-sm text-slate-400 line-through mr-2">£9.99/yr</span>
+                      <span className="text-xl font-black text-slate-900 dark:text-white">£4.99/yr</span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-slate-500 font-bold text-sm">or <span className="line-through font-normal">£3.99</span> £1.99/mo</span>
+                    </div>
+                  </div>
                   <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                    Register your interest now to get an exclusive discount when we officially launch. Get access to Grammar modules, Listening/Writing Exam Prep, and more for just <strong>£4.99/year</strong>.
+                    Register your interest now to get an exclusive 50% early bird discount when we officially launch. Get access to Pronunciation Audio, Grammar modules, Exam Prep, Streak Freezes, and unlimited flashcards!
                   </p>
                   <button 
                     onClick={() => {
@@ -1501,7 +1570,7 @@ export default function App() {
                     }}
                     className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
                   >
-                    Register Interest
+                    Claim My 50% Discount
                   </button>
                 </div>
                 <button 
@@ -1513,27 +1582,34 @@ export default function App() {
               </>
             ) : (
               <>
-                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Premium in Development</h2>
-                <p className="text-slate-500 dark:text-slate-400 mb-4">
-                  We're building the ultimate toolkit to guarantee your target grade. Register your interest to get an exclusive discount when we launch:
+                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+                  Premium in Development
+                </h2>
+                <div className="inline-block px-3 py-1 bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 font-black text-[10px] rounded-full mb-4 uppercase tracking-widest animate-pulse">
+                  50% Pre-Launch Discount
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 mb-4 font-medium leading-relaxed">
+                  We're building the ultimate toolkit to guarantee your target grade. Register your interest now to claim your <strong className="text-indigo-600 dark:text-indigo-400">50% pioneer discount</strong> (just £4.99/yr instead of £9.99/yr, or £1.99/mo instead of £3.99/mo)!
                 </p>
-                <ul className="space-y-2 mb-6 text-sm text-slate-600 dark:text-slate-300 font-medium">
-                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Audio pronunciation (Spanish)</li>
-                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Easy grammar learning modules</li>
-                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Listening & Writing exam prep</li>
-                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Smart spaced repetition</li>
-                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Test mode (type answers)</li>
-                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Weak words tracking</li>
-                  <li className="flex items-center gap-2"><Sparkles className="w-4 h-4 text-indigo-500" /> Advanced progress insights</li>
-                </ul>
+                <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-4 mb-6 border border-slate-100 dark:border-slate-800">
+                  <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-bold">
+                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Audio pronunciation (Spanish & French)</li>
+                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Easy grammar learning modules</li>
+                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Listening & Writing exam prep</li>
+                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Smart spaced repetition (SRS)</li>
+                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Test mode (type answers)</li>
+                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Advanced progress insights</li>
+                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Streak freezes</li>
+                  </ul>
+                </div>
                 <button 
                   onClick={() => {
                     window.open('https://forms.gle/2pfkeCpef1XTrezV7', '_blank');
                     setShowProModal(false);
                   }}
-                  className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20 mb-3"
+                  className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20 mb-3 text-lg hover:-translate-y-0.5"
                 >
-                  Register Interest
+                  Claim My 50% Discount
                 </button>
                 {!user && (
                   <button 

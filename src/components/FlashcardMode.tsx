@@ -17,6 +17,7 @@ interface FlashcardModeProps {
   isPremium?: boolean;
   onShowPro?: () => void;
   selectedTopic?: string | null;
+  devMode?: boolean;
 }
 
 export function FlashcardMode({ 
@@ -29,7 +30,8 @@ export function FlashcardMode({
   onRequireAuth,
   isPremium,
   onShowPro,
-  selectedTopic
+  selectedTopic,
+  devMode = false
 }: FlashcardModeProps) {
   const SESSION_KEY = `bh-flashcard-session-${language}-${selectedTopic || 'full'}`;
 
@@ -118,8 +120,10 @@ export function FlashcardMode({
   });
 
   useEffect(() => {
-    safeLocalStorage.setItem(`bh-flashcard-front-${language}`, frontSide);
-  }, [frontSide, language]);
+    if (!devMode) {
+      safeLocalStorage.setItem(`bh-flashcard-front-${language}`, frontSide);
+    }
+  }, [frontSide, language, devMode]);
 
   const [direction, setDirection] = useState(0); // -1 for left, 1 for right
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -135,12 +139,14 @@ export function FlashcardMode({
   });
 
   useEffect(() => {
-    const stateToSave = {
-      ...sessionState,
-      history
-    };
-    safeLocalStorage.setItem(SESSION_KEY, JSON.stringify(stateToSave));
-  }, [sessionState, history, SESSION_KEY]);
+    if (!devMode) {
+      const stateToSave = {
+        ...sessionState,
+        history
+      };
+      safeLocalStorage.setItem(SESSION_KEY, JSON.stringify(stateToSave));
+    }
+  }, [sessionState, history, SESSION_KEY, devMode]);
 
   const saveToHistory = useCallback(() => {
     setHistory(prev => {
@@ -331,7 +337,9 @@ export function FlashcardMode({
   }, [saveToHistory]);
 
   const handleShuffle = useCallback(() => {
-    safeLocalStorage.removeItem(SESSION_KEY);
+    if (!devMode) {
+      safeLocalStorage.removeItem(SESSION_KEY);
+    }
     setHistory([]);
     setSessionState({
       sessionCards: [...vocabulary].sort(() => Math.random() - 0.5),

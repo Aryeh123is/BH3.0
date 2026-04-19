@@ -215,20 +215,30 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
               ))}
             </div>
             
-            <div className="bg-white/10 backdrop-blur-md p-8 rounded-[3rem] border border-white/20 text-center">
-              <div className="inline-block px-4 py-1.5 bg-indigo-500/20 text-indigo-300 font-bold text-sm rounded-full mb-6">
-                Early Access Pricing
+            <div className="bg-white/10 backdrop-blur-md p-8 rounded-[3rem] border border-indigo-400/30 text-center relative overflow-hidden group">
+              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-indigo-400 to-transparent opacity-50" />
+              <div className="inline-block px-4 py-1.5 bg-red-500 text-white font-black text-sm rounded-full mb-6 shadow-lg shadow-red-500/20 animate-pulse uppercase tracking-widest">
+                50% Pre-Launch Discount
               </div>
-              <div className="flex justify-center items-end gap-2 mb-2">
-                <span className="text-5xl font-black">£4.99</span>
-                <span className="text-slate-400 mb-1">/year</span>
+              <div className="mb-2">
+                <span className="text-xl text-indigo-200 line-through mr-2 font-bold opacity-70">£9.99/yr</span>
               </div>
-              <p className="text-slate-400 mb-8">or £1.99/month</p>
+              <div className="flex justify-between items-end gap-2 mb-2">
+                <div className="flex items-end gap-2">
+                  <span className="text-6xl font-black text-white drop-shadow-md">£4.99</span>
+                  <span className="text-white/80 font-bold mb-2">/year</span>
+                </div>
+                <div className="text-right pb-1">
+                  <span className="text-indigo-200 text-sm font-bold block">or <span className="line-through opacity-70 font-normal">£3.99</span></span>
+                  <span className="text-white font-bold block">£1.99/mo</span>
+                </div>
+              </div>
+              <p className="text-indigo-100 mb-8 font-medium">Register interest now to claim your 50% early bird discount.</p>
               <button 
                 onClick={onShowPro}
-                className="w-full py-4 bg-white text-slate-900 hover:bg-slate-100 font-black rounded-2xl transition-colors text-lg"
+                className="w-full py-4 bg-white text-indigo-600 hover:bg-slate-50 font-black rounded-2xl transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-white/20 text-lg shadow-lg"
               >
-                Register Interest
+                Claim My Discount
               </button>
             </div>
           </div>

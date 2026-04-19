@@ -56,6 +56,10 @@ body, nav, div, section, footer, button, h1, h2, h3, h4, p, span, input, table, 
   50% { transform: translateY(-3px); }
 }
 
+@keyframes shimmer {
+  100% { transform: translateX(150%) skewX(12deg); }
+}
+
 @utility animate-bounce-subtle {
   animation: bounce-subtle 2s ease-in-out infinite;
   will-change: transform;
@@ -75,5 +79,13 @@ body, nav, div, section, footer, button, h1, h2, h3, h4, p, span, input, table, 
   }
   &::-webkit-scrollbar-thumb:hover {
     background: #cbd5e1;
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
   }
 }

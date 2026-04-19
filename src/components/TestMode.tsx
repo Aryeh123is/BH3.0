@@ -24,6 +24,7 @@ interface TestModeProps {
   vocabulary: Word[];
   onExit: () => void;
   language: 'biblical' | 'modern' | 'spanish' | 'french';
+  devMode?: boolean;
 }
 
 interface TestResult {
@@ -37,7 +38,7 @@ interface TestResult {
 
 type TestStep = 'setup' | 'testing' | 'results' | 'history';
 
-export function TestMode({ vocabulary, onExit, language }: TestModeProps) {
+export function TestMode({ vocabulary, onExit, language, devMode = false }: TestModeProps) {
   const [step, setStep] = useState<TestStep>('setup');
   const [testCount, setTestCount] = useState<number>(Math.min(20, vocabulary.length));
   const [selectedTypes, setSelectedTypes] = useState<QuestionType[]>(['written', 'matching', 'true-false']);
@@ -156,7 +157,9 @@ export function TestMode({ vocabulary, onExit, language }: TestModeProps) {
 
     const newHistory = [result, ...testHistory].slice(0, 20);
     setTestHistory(newHistory);
-    safeLocalStorage.setItem(`bh-test-history-${language}`, JSON.stringify(newHistory));
+    if (!devMode) {
+      safeLocalStorage.setItem(`bh-test-history-${language}`, JSON.stringify(newHistory));
+    }
     setStep('results');
   };
 

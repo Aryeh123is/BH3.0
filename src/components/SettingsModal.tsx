@@ -64,18 +64,27 @@ export function SettingsModal({
         initial={{ opacity: 0, scale: 0.95, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-slate-800 max-w-2xl w-full h-[600px] flex overflow-hidden lg:h-[700px]"
+        className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-slate-800 w-full max-w-3xl max-h-[90vh] md:h-[600px] flex flex-col md:flex-row overflow-hidden lg:h-[700px]"
       >
         {/* Sidebar */}
-        <div className="w-64 bg-slate-50/50 dark:bg-slate-800/30 border-r border-slate-100 dark:border-slate-800 p-8 hidden md:block">
-          <div className="flex items-center gap-3 mb-12">
-            <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white">
-              <Settings className="w-6 h-6" />
+        <div className="w-full md:w-64 shrink-0 bg-slate-50/50 dark:bg-slate-800/30 border-b md:border-b-0 md:border-r border-slate-100 dark:border-slate-800 p-6 md:p-8 flex flex-col">
+          <div className="flex items-center justify-between md:justify-start md:gap-3 md:mb-12">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shrink-0">
+                <Settings className="w-6 h-6" />
+              </div>
+              <h2 className="text-xl font-black text-slate-900 dark:text-white">Settings</h2>
             </div>
-            <h2 className="text-xl font-black text-slate-900 dark:text-white">Settings</h2>
+            <button
+              onClick={onClose}
+              className="md:hidden p-2 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl text-slate-400 transition-colors"
+              title="Close"
+            >
+              <X className="w-6 h-6" />
+            </button>
           </div>
 
-          <nav className="space-y-2">
+          <nav className="hidden md:block space-y-2 mt-auto md:mt-0">
             <button
               onClick={() => setActiveTab('account')}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-bold transition-all ${
@@ -110,32 +119,35 @@ export function SettingsModal({
               Data & Privacy
             </button>
           </nav>
+          
+          <div className="md:hidden flex gap-2 overflow-x-auto pb-2 pt-6 scrollbar-none -mx-2 px-2 mt-4 border-t border-slate-200 dark:border-slate-700">
+            <button onClick={() => setActiveTab('account')} className={`px-4 py-2 shrink-0 text-sm font-bold rounded-xl whitespace-nowrap transition-colors ${activeTab === 'account' ? 'bg-indigo-600 text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>Account</button>
+            <button onClick={() => setActiveTab('appearance')} className={`px-4 py-2 shrink-0 text-sm font-bold rounded-xl whitespace-nowrap transition-colors ${activeTab === 'appearance' ? 'bg-indigo-600 text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>Features</button>
+            <button onClick={() => setActiveTab('data')} className={`px-4 py-2 shrink-0 text-sm font-bold rounded-xl whitespace-nowrap transition-colors ${activeTab === 'data' ? 'bg-indigo-600 text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-500'}`}>Data</button>
+          </div>
         </div>
 
         {/* Content */}
-        <div className="flex-1 flex flex-col min-w-0">
-          <div className="p-8 md:p-10 flex items-center justify-between border-b border-slate-100 dark:border-slate-800">
-            <div className="md:hidden flex items-center gap-3">
-              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
-                <Settings className="w-5 h-5" />
+        <div className="flex-1 flex flex-col min-w-0 md:overflow-hidden">
+          <div className="hidden md:flex p-6 md:p-10 items-center justify-between border-b border-slate-100 dark:border-slate-800 gap-6 shrink-0">
+            <div className="flex justify-between items-center w-full">
+              <div>
+                <h3 className="text-sm font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
+                  {activeTab === 'account' ? 'Personal Info' : activeTab === 'appearance' ? 'Preferences' : 'Management'}
+                </h3>
+                <p className="text-xl font-bold text-slate-900 dark:text-white capitalize">{activeTab}</p>
               </div>
-              <h2 className="text-lg font-black text-slate-900 dark:text-white">Settings</h2>
+              <button
+                onClick={onClose}
+                className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl text-slate-400 transition-colors"
+                title="Close"
+              >
+                <X className="w-6 h-6" />
+              </button>
             </div>
-            <div className="hidden md:block">
-              <h3 className="text-sm font-black text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
-                {activeTab === 'account' ? 'Personal Info' : activeTab === 'appearance' ? 'Preferences' : 'Management'}
-              </h3>
-              <p className="text-xl font-bold text-slate-900 dark:text-white capitalize">{activeTab}</p>
-            </div>
-            <button
-              onClick={onClose}
-              className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl text-slate-400 transition-colors"
-            >
-              <X className="w-6 h-6" />
-            </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-8 md:p-10 space-y-8 custom-scrollbar">
+          <div className="flex-1 overflow-y-auto p-6 md:p-10 space-y-8 custom-scrollbar">
             {activeTab === 'account' && (
               <div className="space-y-8">
                 <section className="space-y-4">
@@ -191,31 +203,35 @@ export function SettingsModal({
             {activeTab === 'appearance' && (
               <div className="space-y-6">
                 <section className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4 justify-between">
                     <div className="space-y-1">
                       <h4 className="font-bold text-slate-900 dark:text-white">Study Animations</h4>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Confetti and sparkles when you finish a session.</p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-snug">Confetti and sparkles when you finish a session.</p>
                     </div>
                     <button
                       onClick={() => onUpdatePreferences({ animationsEnabled: !preferences.animationsEnabled })}
-                      className={`relative w-14 h-8 rounded-full transition-colors ${preferences.animationsEnabled ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'}`}
+                      className={`relative shrink-0 w-12 h-6 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 ${preferences.animationsEnabled ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'}`}
+                      role="switch"
+                      aria-checked={preferences.animationsEnabled}
                     >
-                      <div className={`absolute top-1 left-1 w-6 h-6 bg-white rounded-full transition-transform ${preferences.animationsEnabled ? 'translate-x-6' : 'translate-x-0'}`} />
+                      <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${preferences.animationsEnabled ? 'translate-x-6' : 'translate-x-0'}`} />
                     </button>
                   </div>
                 </section>
 
                 <section className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4 justify-between">
                     <div className="space-y-1">
                       <h4 className="font-bold text-slate-900 dark:text-white">Reduced Motion</h4>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Disable "bouncing" interactions and intense transitions.</p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-snug">Disable "bouncing" interactions and intense transitions.</p>
                     </div>
                     <button
                       onClick={() => onUpdatePreferences({ reducedMotion: !preferences.reducedMotion })}
-                      className={`relative w-14 h-8 rounded-full transition-colors ${preferences.reducedMotion ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'}`}
+                      className={`relative shrink-0 w-12 h-6 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 ${preferences.reducedMotion ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'}`}
+                      role="switch"
+                      aria-checked={preferences.reducedMotion}
                     >
-                      <div className={`absolute top-1 left-1 w-6 h-6 bg-white rounded-full transition-transform ${preferences.reducedMotion ? 'translate-x-6' : 'translate-x-0'}`} />
+                      <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${preferences.reducedMotion ? 'translate-x-6' : 'translate-x-0'}`} />
                     </button>
                   </div>
                 </section>

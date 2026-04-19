@@ -405,6 +405,48 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
             </div>
           </div>
 
+          {/* Streak Freezes Component */}
+          <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-soft border border-slate-100 dark:border-slate-800 flex flex-col">
+            <div className="mb-6 flex items-start justify-between">
+              <div>
+                <h3 className="text-xl font-black text-slate-900 dark:text-white mb-1 flex items-center gap-2">
+                  <Snowflake className="w-6 h-6 text-sky-500" />
+                  Streak Freezes
+                </h3>
+                <p className="text-slate-400 dark:text-slate-500 text-xs font-medium">Protect your hard-earned streak.</p>
+              </div>
+              <div className="px-3 py-1 bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400 font-black rounded-xl text-lg">
+                {isPremium ? '2/2' : '1/1'}
+              </div>
+            </div>
+            
+            <div className="flex-1 flex flex-col justify-end mt-auto">
+              <div className="flex gap-2 mb-4">
+                <div className="h-3 flex-1 bg-sky-500 rounded-full shadow-[0_0_15px_rgba(14,165,233,0.3)] relative overflow-hidden">
+                  <div className="absolute inset-0 bg-white/20 w-1/2 rounded-full skew-x-12 translate-x-[-150%] animate-[shimmer_3s_infinite]" />
+                </div>
+                {isPremium ? (
+                  <div className="h-3 flex-1 bg-sky-500 rounded-full shadow-[0_0_15px_rgba(14,165,233,0.3)] relative overflow-hidden">
+                    <div className="absolute inset-0 bg-white/20 w-1/2 rounded-full skew-x-12 translate-x-[-150%] animate-[shimmer_3s_infinite_0.5s]" />
+                  </div>
+                ) : (
+                  <div className="h-3 flex-1 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden flex items-center justify-center relative group cursor-pointer" onClick={onShowPro}>
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-indigo-500/10">
+                      <span className="text-[10px] font-black text-indigo-600 dark:text-indigo-400 tracking-wider">UPGRADE</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <p className="text-sm font-medium text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-700/50">
+                {isPremium ? (
+                  <>You have <strong className="text-sky-500">max freezes</strong>! Your next freeze will generate automatically if you drop below 2.</>
+                ) : (
+                  <>You have <strong className="text-sky-500">1 freeze</strong>. <button onClick={onShowPro} className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">Go Premium</button> to hold up to 2 freezes simultaneously.</>
+                )}
+              </p>
+            </div>
+          </div>
+
           {isPremium ? (
             <div className="bg-gradient-to-br from-amber-500 to-orange-600 p-8 rounded-[2.5rem] shadow-lg shadow-amber-500/20 text-white relative overflow-hidden group">
               <div className="relative z-10">
@@ -427,18 +469,28 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
           ) : (
             <div className="bg-gradient-to-br from-indigo-500 to-purple-600 p-8 rounded-[2.5rem] shadow-lg shadow-indigo-500/20 text-white relative overflow-hidden group">
               <div className="relative z-10">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="px-2 py-1 bg-white/20 rounded text-[10px] font-bold uppercase tracking-widest">Trial Expired</span>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="px-2 py-1 bg-red-500 text-white rounded text-[10px] font-bold uppercase tracking-widest shrink-0 animate-pulse">50% Off Release Price</span>
                 </div>
-                <h3 className="text-2xl font-black mb-2">Upgrade to Pro</h3>
-                <p className="text-indigo-100 text-sm mb-6">
-                  Upgrade for grammar learning modules, listening/writing exam prep, and unlimited flashcards!
+                <h3 className="text-2xl font-black mb-1">Upgrade to Pro</h3>
+                <div className="mb-4 flex items-center justify-between">
+                  <div>
+                    <span className="text-sm text-indigo-200 line-through mr-2">£9.99/yr</span>
+                    <span className="text-2xl font-black text-white">£4.99/yr</span>
+                  </div>
+                  <div className="text-right flex flex-col justify-end">
+                    <span className="text-xs text-indigo-200 font-medium">or <span className="line-through">£3.99</span></span>
+                    <span className="text-[13px] font-black text-white">£1.99/mo</span>
+                  </div>
+                </div>
+                <p className="text-indigo-100 text-sm mb-6 leading-relaxed">
+                  Register your interest now to claim your <strong className="text-white">50% pioneer discount</strong>. Get Spanish & French Audio, Grammar Modules, Exam Prep, Streak Freezes, and unlimited flashcards!
                 </p>
                 <button 
                   onClick={onShowPro}
-                  className="w-full py-3 bg-white text-indigo-600 font-black rounded-xl hover:bg-indigo-50 transition-colors"
+                  className="w-full py-3 bg-white text-indigo-600 font-black rounded-xl hover:bg-indigo-50 transition-colors shadow-lg shadow-white/10 hover:-translate-y-0.5"
                 >
-                  Register Interest for £4.99/year
+                  Claim My Discount
                 </button>
               </div>
               <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition-colors duration-500" />
