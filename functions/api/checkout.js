@@ -1,5 +1,7 @@
+import Stripe from "stripe";
+
 export async function onRequest(context) {
-  const stripe = require("stripe")(context.env.STRIPE_SECRET_KEY);
+  const stripe = new Stripe(context.env.STRIPE_SECRET_KEY);
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
