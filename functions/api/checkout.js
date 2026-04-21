@@ -3,11 +3,25 @@ import Stripe from "stripe";
 export async function onRequest(context) {
   const stripe = new Stripe(context.env.STRIPE_SECRET_KEY);
 
+  const { plan } = await context.request.json();
+
+  let priceId;
+
+  if (plan === "monthly") {
+    priceId = "price_1TOfy2L0boOruOWZgWbfqdDP";
+  } 
+  else if (plan === "yearly") {
+    priceId = "price_1TOfycL0boOruOWZQcPk16hi";
+  } 
+  else {
+    return new Response("Invalid plan", { status: 400 });
+  }
+
   const session = await stripe.checkout.sessions.create({
-    mode: "payment",
+    mode: "subscription",
     line_items: [
       {
-        price: "price_1TOPUOL0boOruOWZZRwkOQgf",
+        price: priceId,
         quantity: 1,
       },
     ],
