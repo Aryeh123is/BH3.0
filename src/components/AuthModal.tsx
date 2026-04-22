@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { X, Mail, Lock, AlertCircle, Chrome, User as UserIcon } from 'lucide-react';
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut } from '../firebase';
+import { motion, AnimatePresence } from 'motion/react';
+import { X, Mail, Lock, AlertCircle, User as UserIcon } from 'lucide-react';
+import { db, auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setDoc, doc, updateDoc } from '../firebase';
 import { updateProfile } from 'firebase/auth';
 
 interface AuthModalProps {
   onClose: () => void;
+  onVerified?: () => void;
 }
 
-export function AuthModal({ onClose }: AuthModalProps) {
+export function AuthModal({ onClose, onVerified }: AuthModalProps) {
   const [isLogin, setIsLogin] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [verificationSent, setVerificationSent] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,15 +25,27 @@ export function AuthModal({ onClose }: AuthModalProps) {
     try {
       if (isLogin) {
         await signInWithEmailAndPassword(auth, email, password);
+        onVerified?.();
         onClose();
       } else {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         await updateProfile(userCredential.user, { displayName: name });
+        
+        // Create initial profile
+        await setDoc(doc(db, 'users', userCredential.user.uid), {
+          displayName: name,
+          email: email,
+          createdAt: Date.now(),
+          language: 'biblical',
+          streak: 0,
+          totalLearningTime: 0
+        }, { merge: true });
+
+        onVerified?.();
         onClose();
       }
     } catch (err: any) {
       console.error("Auth error:", err);
-      // Make error messages more user friendly
       if (err.code === 'auth/invalid-credential' || err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
         setError('Invalid email or password.');
       } else if (err.code === 'auth/email-already-in-use') {
@@ -49,33 +61,6 @@ export function AuthModal({ onClose }: AuthModalProps) {
       setLoading(false);
     }
   };
-
-  if (verificationSent) {
-    return (
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="bg-white dark:bg-slate-900 rounded-2xl p-6 md:p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden text-center"
-        >
-          <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Mail className="w-8 h-8" />
-          </div>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Check your email</h2>
-          <p className="text-slate-500 dark:text-slate-400 mb-6">
-            We've sent a verification link to <strong>{email}</strong>. Please click the link to activate your account before signing in.
-          </p>
-          <button
-            onClick={onClose}
-            className="w-full py-2.5 px-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg transition-colors"
-          >
-            Got it
-          </button>
-        </motion.div>
-      </div>
-    );
-  }
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
@@ -99,7 +84,7 @@ export function AuthModal({ onClose }: AuthModalProps) {
           <p className="text-slate-500 dark:text-slate-400 text-sm">
             {isLogin 
               ? 'Enter your details to sign in.' 
-              : 'Sign up to get 1 week of Premium for free and behind-the-scenes updates!'}
+              : 'Sign up to sync your language progress across all your devices.'}
           </p>
         </div>
 

@@ -45,9 +45,23 @@ export interface SRSSettings {
   learningInterval: number; // in hours
   masteredInterval: number; // in hours
   dailyGoal?: number;
+  advancedMode?: boolean; // Premium advanced spaced repetition mode
 }
 
 export interface UserPreferences {
   animationsEnabled: boolean;
   reducedMotion: boolean;
+}
+
+export interface ShopDocument {
+  id: string;
+  title: string;
+  description: string;
+  content?: string; // Optional Markdown content
+  pages?: string[]; // Array of image URLs for "PDF" style viewing
+  language: string;
+  price: number;
+  createdAt: number;
+  authorId?: string;
+  bought?: boolean;
 }

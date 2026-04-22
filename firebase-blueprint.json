@@ -32,6 +32,21 @@
         "isPremium": { "type": "boolean", "description": "Premium status." },
         "role": { "type": "string", "description": "Role of the user (admin)." }
       }
+    },
+    "ShopDocument": {
+      "title": "ShopDocument",
+      "description": "Premium study documents available in the shop.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "content": { "type": "string", "description": "Markdown content of the document." },
+        "language": { "type": "string" },
+        "price": { "type": "integer" },
+        "createdAt": { "type": "integer" },
+        "authorId": { "type": "string" }
+      },
+      "required": ["title", "description", "content", "language", "price", "createdAt"]
     }
   },
   "firestore": {
@@ -42,6 +57,10 @@
     "/users/{userId}/progress/{wordId}": {
       "schema": "UserProgress",
       "description": "User's progress for a specific word."
+    },
+    "/shopContent/{docId}": {
+      "schema": "ShopDocument",
+      "description": "Documents available in the shop."
     }
   }
 }

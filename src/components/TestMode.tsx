@@ -23,7 +23,7 @@ import { getForeignWord } from '../lib/utils';
 interface TestModeProps {
   vocabulary: Word[];
   onExit: () => void;
-  language: 'biblical' | 'modern' | 'spanish' | 'french';
+  language: string;
   devMode?: boolean;
 }
 
@@ -279,9 +279,9 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
                   className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-primary"
                 />
                 <div className="grid grid-cols-4 gap-3">
-                  {[10, 25, 50, vocabulary.length].map(count => (
+                  {Array.from(new Set([10, 25, 50, vocabulary.length])).sort((a,b) => a-b).map((count, i) => (
                     <button
-                      key={count}
+                      key={`test-count-${count}-${i}`}
                       onClick={() => setTestCount(count)}
                       className={`py-3 rounded-xl text-sm font-bold transition-all ${
                         testCount === count 
@@ -372,7 +372,7 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
 
           <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
             {testHistory.map((test, i) => (
-              <div key={i} className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl flex items-center justify-between group hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+              <div key={`test-history-${test.date}-${i}`} className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl flex items-center justify-between group hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
                 <div className="flex items-center gap-4">
                   <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg ${
                     test.percentage >= 80 ? 'bg-green-100 text-green-600' : 
@@ -445,7 +445,7 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
               </h3>
               <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                 {correctAnswers.map((q, i) => (
-                  <div key={i} className="p-4 bg-green-50 dark:bg-green-900/10 rounded-2xl flex items-center justify-between">
+                  <div key={`correct-${q.word.id}-${i}`} className="p-4 bg-green-50 dark:bg-green-900/10 rounded-2xl flex items-center justify-between">
                     <div className="font-bold text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>{getForeignWord(q.word, language)}</div>
                     <div className="text-sm text-green-600 font-medium">{q.word.english}</div>
                   </div>
@@ -459,7 +459,7 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
               </h3>
               <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                 {incorrectAnswers.map((q, i) => (
-                  <div key={i} className="p-4 bg-red-50 dark:bg-red-900/10 rounded-2xl flex items-center justify-between">
+                  <div key={`missed-${q.word.id}-${i}`} className="p-4 bg-red-50 dark:bg-red-900/10 rounded-2xl flex items-center justify-between">
                     <div className="font-bold text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>{getForeignWord(q.word, language)}</div>
                     <div className="text-sm text-red-600 font-medium">{q.word.english}</div>
                   </div>
@@ -509,7 +509,7 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
           <div className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden flex">
             {questions.map((_, i) => (
               <div 
-                key={i} 
+                key={`progress-dot-${i}`} 
                 className={`h-full flex-1 transition-colors duration-300 border-r border-white/10 last:border-0 ${
                   answers[i] === true ? 'bg-green-500' : 
                   answers[i] === false ? 'bg-red-500' : 
@@ -606,9 +606,9 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
               <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-8 text-center">Match the pairs</div>
               <div className="grid grid-cols-2 gap-12">
                 <div className="space-y-3">
-                  {matchingPairs.map(pair => (
+                  {matchingPairs.map((pair, i) => (
                     <button
-                      key={pair.id}
+                      key={`match-word-${pair.id}-${i}`}
                       disabled={matchedIds.includes(pair.id)}
                       onClick={() => {
                         if (selectedTranslation) {
@@ -633,9 +633,9 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
                   ))}
                 </div>
                 <div className="space-y-3">
-                  {[...matchingPairs].sort((a, b) => a.translation.localeCompare(b.translation)).map(pair => (
+                  {[...matchingPairs].sort((a, b) => a.translation.localeCompare(b.translation)).map((pair, i) => (
                     <button
-                      key={pair.id}
+                      key={`match-trans-${pair.id}-${i}`}
                       disabled={matchedIds.includes(pair.id)}
                       onClick={() => {
                         if (selectedWord) {

@@ -7,7 +7,7 @@ import { getForeignWord } from '../lib/utils';
 interface LearnCardProps {
   question: Question;
   onAnswer: (isCorrect: boolean) => void;
-  language?: 'biblical' | 'modern' | 'spanish' | 'french';
+  language?: string;
 }
 
 export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCardProps) {
@@ -82,7 +82,7 @@ export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCa
     <div className="w-full max-w-xl mx-auto">
       <AnimatePresence mode="wait">
         <motion.div
-          key={question.word.id}
+          key={`${question.word.id}-${question.type}`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
@@ -126,7 +126,7 @@ export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCa
 
                   return (
                     <button
-                      key={idx}
+                      key={`opt-${idx}`}
                       onClick={() => !isSubmitted && setSelectedOption(option)}
                       disabled={isSubmitted}
                       className={buttonClass}

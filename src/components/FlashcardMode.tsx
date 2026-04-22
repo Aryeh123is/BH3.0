@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Word } from '../types';
+import { Word, SRSSettings } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronLeft, ChevronRight, RotateCw, Shuffle, Volume2, Book, Trophy, RotateCcw, Layers, Settings, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RotateCw, Shuffle, Volume2, Book, Trophy, RotateCcw, Layers, Settings, X, Frown, Meh, Smile, Star } from 'lucide-react';
 import { safeLocalStorage } from '../lib/storage';
 import { getForeignWord } from '../lib/utils';
 import { User } from 'firebase/auth';
@@ -10,14 +10,15 @@ interface FlashcardModeProps {
   vocabulary: Word[];
   onExit: () => void;
   onSwitchToLearn: () => void;
-  onWordProgress: (wordId: string, isCorrect: boolean) => void;
-  language: 'biblical' | 'modern' | 'spanish' | 'french';
+  onWordProgress: (wordId: string, isCorrect: boolean, explicitIntervalDays?: number) => void;
+  language: string;
   user?: User | null;
   onRequireAuth?: () => void;
   isPremium?: boolean;
   onShowPro?: () => void;
   selectedTopic?: string | null;
   devMode?: boolean;
+  srsSettings?: SRSSettings;
 }
 
 export function FlashcardMode({ 
@@ -31,7 +32,8 @@ export function FlashcardMode({
   isPremium,
   onShowPro,
   selectedTopic,
-  devMode = false
+  devMode = false,
+  srsSettings
 }: FlashcardModeProps) {
   const SESSION_KEY = `bh-flashcard-session-${language}-${selectedTopic || 'full'}`;
 
@@ -114,6 +116,14 @@ export function FlashcardMode({
 
   const [isFlipped, setIsFlipped] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  
+  const isCurrentWordLong = useMemo(() => {
+    const word = sessionCards[currentIndex];
+    if (!word) return false;
+    const foreignVal = getForeignWord(word, language);
+    return (word.english?.length > 25 || (foreignVal && foreignVal.length > 20));
+  }, [sessionCards, currentIndex, language]);
+
   const [frontSide, setFrontSide] = useState<'hebrew' | 'english'>(() => {
     const saved = safeLocalStorage.getItem(`bh-flashcard-front-${language}`);
     return (saved as 'hebrew' | 'english') || 'hebrew';
@@ -253,7 +263,7 @@ export function FlashcardMode({
     }, 250);
   }, []);
 
-  const handleMarkCorrect = useCallback(() => {
+  const handleMarkCorrect = useCallback((explicitIntervalDays?: number) => {
     if (isTransitioning || showBatchSummary || isFinished) return;
     if (!user && (correctCount + incorrectCount) >= 50) {
       onRequireAuth?.();
@@ -267,7 +277,7 @@ export function FlashcardMode({
     setIsFlipped(false);
     
     try {
-      if (user) onWordProgress(currentWord.id, true);
+      if (user) onWordProgress(currentWord.id, true, explicitIntervalDays);
     } catch (err) {
       console.error("Error updating word progress:", err);
     }
@@ -276,7 +286,7 @@ export function FlashcardMode({
     processCardTransition(true, currentWord);
   }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, onWordProgress, saveToHistory, processCardTransition, user, correctCount, incorrectCount, onRequireAuth]);
 
-  const handleMarkIncorrect = useCallback(() => {
+  const handleMarkIncorrect = useCallback((explicitIntervalDays?: number) => {
     if (isTransitioning || showBatchSummary || isFinished) return;
     if (!user && (correctCount + incorrectCount) >= 50) {
       onRequireAuth?.();
@@ -290,7 +300,7 @@ export function FlashcardMode({
     setIsFlipped(false);
     
     try {
-      if (user) onWordProgress(currentWord.id, false);
+      if (user) onWordProgress(currentWord.id, false, explicitIntervalDays);
     } catch (err) {
       console.error("Error updating word progress:", err);
     }
@@ -387,27 +397,16 @@ export function FlashcardMode({
 
   // Responsive font scaling for longer words/phrases (especially needed for French/Spanish)
   const getFontSize = (text: string, isHebrewSide: boolean) => {
-    if (!text) return isHebrewSide ? 'text-6xl md:text-8xl' : 'text-5xl md:text-6xl';
+    if (!text) return isHebrewSide ? 'text-4xl sm:text-6xl md:text-8xl' : 'text-3xl sm:text-5xl md:text-6xl';
     const len = text.length;
-    if (len < 12) return isHebrewSide ? 'text-6xl md:text-8xl' : 'text-5xl md:text-6xl';
-    if (len < 25) return isHebrewSide ? 'text-4xl md:text-6xl' : 'text-4xl md:text-5xl';
-    if (len < 40) return isHebrewSide ? 'text-3xl md:text-5xl' : 'text-3xl md:text-4xl';
-    return isHebrewSide ? 'text-2xl md:text-4xl' : 'text-2xl md:text-3xl';
+    if (len < 12) return isHebrewSide ? 'text-4xl sm:text-6xl md:text-8xl' : 'text-3xl sm:text-5xl md:text-6xl';
+    if (len < 25) return isHebrewSide ? 'text-3xl sm:text-4xl md:text-6xl' : 'text-2xl sm:text-4xl md:text-5xl';
+    if (len < 40) return isHebrewSide ? 'text-2xl sm:text-3xl md:text-5xl' : 'text-xl sm:text-3xl md:text-4xl';
+    return isHebrewSide ? 'text-xl sm:text-2xl md:text-4xl' : 'text-lg sm:text-2xl md:text-3xl';
   };
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col relative overflow-hidden transition-colors duration-300">
-      {/* WIP Indicator */}
-      {(language === 'modern') && (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
-          <div className="px-4 py-1.5 bg-yellow-400 text-slate-900 text-[10px] font-black rounded-full uppercase tracking-[0.2em] shadow-lg border-2 border-white flex items-center gap-2">
-            <span className="animate-pulse">⚠️</span>
-            Work in Progress
-            <span className="animate-pulse">⚠️</span>
-          </div>
-        </div>
-      )}
-
       <AnimatePresence>
         {showSettings && (
           <motion.div
@@ -591,21 +590,21 @@ export function FlashcardMode({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="max-w-[1100px] mx-auto px-6 py-8 flex-1 flex flex-col w-full"
+            className="max-w-[1100px] mx-auto px-4 sm:px-6 py-4 sm:py-8 flex-1 flex flex-col w-full"
           >
-            <div className="flex items-center justify-between mb-12">
-              <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 sm:mb-12">
+              <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto w-full sm:w-auto no-scrollbar pb-2 sm:pb-0">
                 <button
                   onClick={onExit}
-                  className="flex items-center gap-2 px-4 py-2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-bold transition-colors"
+                  className="flex items-center gap-1.5 px-3 py-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-bold transition-colors text-sm"
                 >
                   <ChevronLeft className="w-5 h-5" />
-                  Back
+                  <span className="hidden xs:inline">Back</span>
                 </button>
                 {history.length > 0 && (
                   <button
                     onClick={handleBack}
-                    className="flex items-center gap-2 px-4 py-2 text-primary hover:text-primary-hover font-bold transition-colors"
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-primary hover:text-primary-hover font-bold transition-colors text-sm"
                   >
                     <RotateCcw className="w-4 h-4" />
                     Undo
@@ -613,43 +612,44 @@ export function FlashcardMode({
                 )}
                 <button
                   onClick={onSwitchToLearn}
-                  className="flex items-center gap-2 px-4 py-2 bg-primary/5 dark:bg-primary/10 text-primary rounded-xl font-bold hover:bg-primary/10 dark:hover:bg-primary/20 transition-all"
+                  className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/5 dark:bg-primary/10 text-primary rounded-xl font-bold hover:bg-primary/10 dark:hover:bg-primary/20 transition-all text-sm whitespace-nowrap"
                 >
                   <Book className="w-4 h-4" />
-                  Switch to Learn
+                  Learn
                 </button>
               </div>
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-4 text-sm font-bold">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase tracking-tighter">Total</span>
-                    <span className="text-red-500 bg-red-50 dark:bg-red-900/20 px-3 py-1 rounded-lg" title="Total Still Learning">{incorrectCount}</span>
-                    <span className="text-green-500 bg-green-50 dark:bg-green-900/20 px-3 py-1 rounded-lg" title="Total Known">{correctCount}</span>
+              <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6 w-full sm:w-auto">
+                <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-bold">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <span className="text-red-500 bg-red-50 dark:bg-red-900/20 px-2 sm:px-3 py-1 rounded-lg" title="Total Still Learning">{incorrectCount}</span>
+                    <span className="text-green-500 bg-green-50 dark:bg-green-900/20 px-2 sm:px-3 py-1 rounded-lg" title="Total Known">{correctCount}</span>
                   </div>
-                  <div className="flex items-center gap-1 text-slate-400 dark:text-slate-500 ml-2" title="Cards until next shuffle">
+                  <div className="flex items-center gap-1 text-slate-400 dark:text-slate-500" title="Cards until next shuffle">
                     <RotateCw className="w-3 h-3" />
                     <span>{25 - batchCounter}</span>
                   </div>
                 </div>
-                <button
-                  onClick={() => setShowSettings(true)}
-                  className="p-2 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary rounded-xl transition-all"
-                  title="Flashcard Settings"
-                >
-                  <Settings className="w-5 h-5" />
-                </button>
-                <span className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">
-                  {initialTotal - sessionCards.length + 1} / {initialTotal}
-                </span>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <button
+                    onClick={() => setShowSettings(true)}
+                    className="p-2 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary rounded-xl transition-all"
+                    title="Flashcard Settings"
+                  >
+                    <Settings className="w-5 h-5" />
+                  </button>
+                  <span className="text-xs sm:text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                    {initialTotal - sessionCards.length + 1}/{initialTotal}
+                  </span>
+                </div>
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col items-center justify-center gap-16">
-              <div className="relative w-full max-w-xl aspect-[4/3]">
+            <div className="flex-1 flex flex-col items-center justify-center gap-6 sm:gap-16">
+              <div className={`relative w-full transition-all duration-500 ease-in-out ${isCurrentWordLong ? 'max-w-[320px] aspect-[4/5]' : 'max-w-[260px] aspect-square'} sm:max-w-xl sm:aspect-[4/3]`}>
                 <AnimatePresence mode="popLayout">
                   {sessionCards[currentIndex] && (
                     <motion.div
-                      key={sessionCards[currentIndex].id}
+                      key={`${sessionCards[currentIndex].id}-${currentIndex}`}
                       initial={{ x: direction * 100, opacity: 0, scale: 0.9 }}
                       animate={{ x: 0, opacity: 1, scale: 1 }}
                       exit={{ x: -direction * 100, opacity: 0, scale: 0.9 }}
@@ -664,13 +664,13 @@ export function FlashcardMode({
                       >
                         {/* Front */}
                         <div 
-                          className="absolute inset-0 w-full h-full backface-hidden bg-white dark:bg-slate-900 rounded-[3rem] shadow-soft border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center p-12 text-center"
+                          className="absolute inset-0 w-full h-full backface-hidden bg-white dark:bg-slate-900 rounded-[2rem] sm:rounded-[3rem] shadow-soft border border-slate-100 dark:border-slate-800 flex flex-col items-center justify-center p-6 sm:p-12 text-center"
                           style={{ zIndex: isFlipped ? 0 : 1 }}
                         >
-                          <span className="absolute top-10 left-10 text-[10px] font-bold text-slate-300 dark:text-slate-600 uppercase tracking-[0.2em]">
+                          <span className="absolute top-6 left-6 sm:top-10 sm:left-10 text-[8px] sm:text-[10px] font-bold text-slate-300 dark:text-slate-600 uppercase tracking-[0.2em]">
                             {frontSide === 'hebrew' ? (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew') : 'English'}
                           </span>
-                          <h2 className={`font-bold text-slate-900 dark:text-white mb-6 ${getFontSize(frontSide === 'hebrew' ? getForeignWord(sessionCards[currentIndex], language) : sessionCards[currentIndex].english, frontSide === 'hebrew')}`} dir={frontSide === 'hebrew' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
+                          <h2 className={`font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 ${getFontSize(frontSide === 'hebrew' ? getForeignWord(sessionCards[currentIndex], language) : sessionCards[currentIndex].english, frontSide === 'hebrew')}`} dir={frontSide === 'hebrew' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
                             {frontSide === 'hebrew' ? getForeignWord(sessionCards[currentIndex], language) : sessionCards[currentIndex].english}
                           </h2>
                           {(language === 'spanish' || language === 'french') && frontSide === 'hebrew' && (
@@ -679,35 +679,35 @@ export function FlashcardMode({
                                 e.stopPropagation();
                                 handlePronounce(getForeignWord(sessionCards[currentIndex], language));
                               }}
-                              className="p-3 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors mb-4"
+                              className="p-2.5 sm:p-3 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors mb-2 sm:mb-4"
                               title="Listen to pronunciation"
                             >
-                              <Volume2 className="w-6 h-6" />
+                              <Volume2 className="w-5 h-5 sm:w-6 sm:h-6" />
                             </button>
                           )}
                           {frontSide === 'hebrew' && sessionCards[currentIndex].transliteration && (
-                            <p className="text-slate-400 dark:text-slate-500 font-medium text-xl italic">
+                            <p className="text-slate-400 dark:text-slate-500 font-medium text-lg sm:text-xl italic">
                               {sessionCards[currentIndex].transliteration}
                             </p>
                           )}
-                          <div className="absolute bottom-10 right-10 text-slate-300 dark:text-slate-600 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
-                            <span>Click to flip</span>
-                            <RotateCw className="w-4 h-4" />
+                          <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 text-slate-300 dark:text-slate-600 flex items-center gap-1.5 sm:gap-2 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest">
+                            <span>Flip</span>
+                            <RotateCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                           </div>
                         </div>
 
                         {/* Back */}
                         <div 
-                          className="absolute inset-0 w-full h-full backface-hidden bg-blue-600 rounded-[3rem] shadow-2xl flex flex-col items-center justify-center p-12 text-center text-white"
+                          className="absolute inset-0 w-full h-full backface-hidden bg-blue-600 rounded-[2rem] sm:rounded-[3rem] shadow-2xl flex flex-col items-center justify-center p-6 sm:p-12 text-center text-white"
                           style={{ 
                             transform: 'rotateY(180deg)',
                             zIndex: isFlipped ? 1 : 0
                           }}
                         >
-                          <span className="absolute top-10 left-10 text-[10px] font-bold text-blue-100 uppercase tracking-[0.2em]">
+                          <span className="absolute top-6 left-6 sm:top-10 sm:left-10 text-[8px] sm:text-[10px] font-bold text-blue-100 uppercase tracking-[0.2em]">
                             {frontSide === 'hebrew' ? 'English' : (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew')}
                           </span>
-                          <h2 className={`font-black mb-6 drop-shadow-sm ${getFontSize(frontSide === 'hebrew' ? sessionCards[currentIndex].english : getForeignWord(sessionCards[currentIndex], language), frontSide === 'english')}`} dir={frontSide === 'english' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
+                          <h2 className={`font-black mb-4 sm:mb-6 drop-shadow-sm ${getFontSize(frontSide === 'hebrew' ? sessionCards[currentIndex].english : getForeignWord(sessionCards[currentIndex], language), frontSide === 'english')}`} dir={frontSide === 'english' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
                             {frontSide === 'hebrew' ? sessionCards[currentIndex].english : getForeignWord(sessionCards[currentIndex], language)}
                           </h2>
                           {(language === 'spanish' || language === 'french') && frontSide === 'english' && (
@@ -716,18 +716,18 @@ export function FlashcardMode({
                                 e.stopPropagation();
                                 handlePronounce(getForeignWord(sessionCards[currentIndex], language));
                               }}
-                              className="p-3 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors mb-4"
+                              className="p-2.5 sm:p-3 bg-white/20 text-white rounded-full hover:bg-white/30 transition-colors mb-2 sm:mb-4"
                               title="Listen to pronunciation"
                             >
-                              <Volume2 className="w-6 h-6" />
+                              <Volume2 className="w-5 h-5 sm:w-6 sm:h-6" />
                             </button>
                           )}
-                          <p className="text-blue-100 font-bold uppercase tracking-[0.2em] text-xs">
+                          <p className="text-blue-100 font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs">
                             {sessionCards[currentIndex].category}
                           </p>
-                          <div className="absolute bottom-10 right-10 text-blue-100 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest">
-                            <span>Click to flip</span>
-                            <RotateCw className="w-4 h-4" />
+                          <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 text-blue-100 flex items-center gap-1.5 sm:gap-2 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest">
+                            <span>Flip</span>
+                            <RotateCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                           </div>
                         </div>
                       </motion.div>
@@ -736,42 +736,93 @@ export function FlashcardMode({
                 </AnimatePresence>
               </div>
 
-              <div className="flex items-center gap-12">
-                <button
-                  onClick={handleMarkIncorrect}
-                  disabled={isTransitioning}
-                  className="group flex flex-col items-center gap-3 disabled:opacity-50"
-                >
-                  <div className="w-20 h-20 flex items-center justify-center bg-white dark:bg-slate-900 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-red-400 group-hover:bg-red-500 group-hover:text-white group-hover:border-red-500 transition-all relative">
-                    <ChevronLeft className="w-10 h-10" />
-                    <div className="absolute -top-2 -left-2 w-7 h-7 bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-sm">
-                      {batchIncorrectCount}
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest group-hover:text-red-500">Still Learning</span>
-                </button>
+              <div className="flex flex-col items-center gap-4 sm:gap-6 w-full max-w-sm sm:max-w-none">
+                {(isPremium || devMode) && srsSettings?.advancedMode && isFlipped ? (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 w-full"
+                  >
+                    <button
+                      onClick={() => handleMarkIncorrect(1 / (24 * 60))}
+                      disabled={isTransitioning}
+                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
+                    >
+                      <Frown className="w-6 h-6 sm:w-8 sm:h-8 text-red-500 mb-1 sm:mb-2" />
+                      <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Forgot</span>
+                      <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-0.5 sm:mt-1">1 Min</span>
+                    </button>
+                    <button
+                      onClick={() => handleMarkCorrect(5)}
+                      disabled={isTransitioning}
+                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
+                    >
+                      <Meh className="w-6 h-6 sm:w-8 sm:h-8 text-amber-500 mb-1 sm:mb-2" />
+                      <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Partial</span>
+                      <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-0.5 sm:mt-1">5 Days</span>
+                    </button>
+                    <button
+                      onClick={() => handleMarkCorrect(11)}
+                      disabled={isTransitioning}
+                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
+                    >
+                      <Smile className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-500 mb-1 sm:mb-2" />
+                      <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Effort</span>
+                      <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-0.5 sm:mt-1">11 Days</span>
+                    </button>
+                    <button
+                      onClick={() => handleMarkCorrect(14)}
+                      disabled={isTransitioning}
+                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
+                    >
+                      <Star className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-500 mb-1 sm:mb-2" />
+                      <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Easy</span>
+                      <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-0.5 sm:mt-1">14 Days</span>
+                    </button>
+                  </motion.div>
+                ) : (
+                  <div className="flex items-center gap-4 sm:gap-12 w-full justify-center">
+                    {(!srsSettings?.advancedMode || (!isPremium && !devMode)) && (
+                      <button
+                        onClick={() => handleMarkIncorrect()}
+                        disabled={isTransitioning}
+                        className="group flex flex-col items-center gap-2 sm:gap-3 disabled:opacity-50 flex-1 sm:flex-none"
+                      >
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-red-400 group-hover:bg-red-500 group-hover:text-white group-hover:border-red-500 transition-all relative mx-auto">
+                          <ChevronLeft className="w-8 h-8 sm:w-10 sm:h-10" />
+                          <div className="absolute -top-1.5 -left-1.5 sm:-top-2 sm:-left-2 w-6 h-6 sm:w-7 sm:h-7 bg-red-500 text-white text-[9px] sm:text-[10px] rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-sm">
+                            {batchIncorrectCount}
+                          </div>
+                        </div>
+                        <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest group-hover:text-red-500 whitespace-nowrap">Still Learning</span>
+                      </button>
+                    )}
 
-                <button
-                  onClick={() => setIsFlipped(!isFlipped)}
-                  disabled={isTransitioning}
-                  className="px-16 py-5 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl font-bold hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-xl active:scale-95 disabled:opacity-50"
-                >
-                  Flip Card
-                </button>
+                    <button
+                      onClick={() => setIsFlipped(!isFlipped)}
+                      disabled={isTransitioning}
+                      className="flex-1 sm:flex-none px-6 sm:px-16 py-4 sm:py-5 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl font-bold hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-xl active:scale-95 disabled:opacity-50 text-sm sm:text-base"
+                    >
+                      Flip Card
+                    </button>
 
-                <button
-                  onClick={handleMarkCorrect}
-                  disabled={isTransitioning}
-                  className="group flex flex-col items-center gap-3 disabled:opacity-50"
-                >
-                  <div className="w-20 h-20 flex items-center justify-center bg-white dark:bg-slate-900 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-green-400 group-hover:bg-green-500 group-hover:text-white group-hover:border-green-500 transition-all relative">
-                    <ChevronRight className="w-10 h-10" />
-                    <div className="absolute -top-2 -right-2 w-7 h-7 bg-green-500 text-white text-[10px] rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-sm">
-                      {batchCorrectCount}
-                    </div>
+                    {(!srsSettings?.advancedMode || (!isPremium && !devMode)) && (
+                      <button
+                        onClick={() => handleMarkCorrect()}
+                        disabled={isTransitioning}
+                        className="group flex flex-col items-center gap-2 sm:gap-3 disabled:opacity-50 flex-1 sm:flex-none"
+                      >
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-green-400 group-hover:bg-green-500 group-hover:text-white group-hover:border-green-500 transition-all relative mx-auto">
+                          <ChevronRight className="w-8 h-8 sm:w-10 sm:h-10" />
+                          <div className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-7 sm:h-7 bg-green-500 text-white text-[9px] sm:text-[10px] rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-sm">
+                            {batchCorrectCount}
+                          </div>
+                        </div>
+                        <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest group-hover:text-green-500 whitespace-nowrap">I Know It</span>
+                      </button>
+                    )}
                   </div>
-                  <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest group-hover:text-green-500">Know it</span>
-                </button>
+                )}
               </div>
             </div>
 

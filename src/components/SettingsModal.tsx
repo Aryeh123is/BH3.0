@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   X, User, Clock, Zap, Trash2, Download, 
   Settings, ChevronRight, EyeOff, AlertTriangle,
-  LogOut, Save, RotateCcw, Shield
+  LogOut, Save, RotateCcw, Shield, Star, Sparkles,
+  Moon, Sun
 } from 'lucide-react';
 import { User as FirebaseUser } from 'firebase/auth';
-import { UserPreferences } from '../types';
+import { UserPreferences, SRSSettings } from '../types';
 
 interface SettingsModalProps {
   onClose: () => void;
@@ -14,12 +15,17 @@ interface SettingsModalProps {
   userProfile: any;
   preferences: UserPreferences;
   onUpdatePreferences: (prefs: Partial<UserPreferences>) => void;
+  srsSettings: SRSSettings;
+  onUpdateSrsSettings: (settings: Partial<SRSSettings>) => void;
   onUpdateDisplayName: (name: string) => Promise<void>;
   onClearProgress: (lang: string) => Promise<void>;
   onDeleteAccount: () => Promise<void>;
   onExportData: () => void;
+  onLeaveReview: () => void;
   language: string;
   devMode?: boolean;
+  theme: 'light' | 'dark';
+  onToggleTheme: () => void;
 }
 
 export function SettingsModal({
@@ -28,12 +34,17 @@ export function SettingsModal({
   userProfile,
   preferences,
   onUpdatePreferences,
+  srsSettings,
+  onUpdateSrsSettings,
   onUpdateDisplayName,
   onClearProgress,
   onDeleteAccount,
   onExportData,
+  onLeaveReview,
   language,
-  devMode = false
+  devMode = false,
+  theme,
+  onToggleTheme
 }: SettingsModalProps) {
   const [activeTab, setActiveTab] = useState<'account' | 'appearance' | 'data'>('account');
   const [displayName, setDisplayName] = useState(userProfile?.displayName || user?.displayName || '');
@@ -204,6 +215,28 @@ export function SettingsModal({
               <div className="space-y-6">
                 <section className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
                   <div className="flex items-center gap-4 justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-white dark:bg-slate-800 rounded-xl flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                        {theme === 'light' ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+                      </div>
+                      <div className="space-y-1">
+                        <h4 className="font-bold text-slate-900 dark:text-white">Dark Mode</h4>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-snug">Switch between light and dark themes.</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={onToggleTheme}
+                      className={`relative shrink-0 w-12 h-6 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 ${theme === 'dark' ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'}`}
+                      role="switch"
+                      aria-checked={theme === 'dark'}
+                    >
+                      <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${theme === 'dark' ? 'translate-x-6' : 'translate-x-0'}`} />
+                    </button>
+                  </div>
+                </section>
+
+                <section className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-4 justify-between">
                     <div className="space-y-1">
                       <h4 className="font-bold text-slate-900 dark:text-white">Study Animations</h4>
                       <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-snug">Confetti and sparkles when you finish a session.</p>
@@ -256,6 +289,21 @@ export function SettingsModal({
                       </div>
                     </div>
                     <ChevronRight className="w-5 h-5 text-amber-300 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                  <button
+                    onClick={onLeaveReview}
+                    className="w-full flex items-center justify-between p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-3xl border border-indigo-100 dark:border-indigo-800/50 group"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-2xl flex items-center justify-center text-indigo-600 group-hover:scale-110 transition-transform">
+                        <Star className="w-6 h-6 fill-current" />
+                      </div>
+                      <div className="text-left">
+                        <h5 className="font-bold text-slate-900 dark:text-white">Leave a Review</h5>
+                        <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Share your feedback to help us improve.</p>
+                      </div>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-indigo-300 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </section>
 

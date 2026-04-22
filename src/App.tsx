@@ -1,25 +1,32 @@
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef, lazy, Suspense } from 'react';
 import { Word, UserProgress, Question, MasteryLevel, CustomDeck, SRSSettings, UserPreferences } from './types';
 import { VOCABULARY as BIBLICAL_HEBREW_VOCABULARY } from './data/vocabulary';
 import { MODERN_HEBREW_VOCABULARY } from './data/modern_hebrew';
 import { SPANISH_EDEXCEL_VOCABULARY } from './data/spanish_edexcel';
 import { FRENCH_EDEXCEL_VOCABULARY } from './data/french_edexcel';
-import { Dashboard } from './components/Dashboard';
+
+// Heavy components code-split for performance
+const Dashboard = lazy(() => import('./components/Dashboard').then(m => ({ default: m.Dashboard })));
+const FlashcardMode = lazy(() => import('./components/FlashcardMode').then(m => ({ default: m.FlashcardMode })));
+const TestMode = lazy(() => import('./components/TestMode').then(m => ({ default: m.TestMode })));
+const Shop = lazy(() => import('./components/Shop').then(m => ({ default: m.Shop })));
+const SettingsModal = lazy(() => import('./components/SettingsModal').then(m => ({ default: m.SettingsModal })));
+const AuthModal = lazy(() => import('./components/AuthModal').then(m => ({ default: m.AuthModal })));
+
 import { LearnCard } from './components/LearnCard';
-import { FlashcardMode } from './components/FlashcardMode';
 import { ProgressBar } from './components/ProgressBar';
 import { SessionSummary } from './components/SessionSummary';
-import { TestMode } from './components/TestMode';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { HowItWorks } from './components/HowItWorks';
-import { AuthModal } from './components/AuthModal';
-import { SettingsModal } from './components/SettingsModal';
 import { DevModePasswordModal } from './components/DevModePasswordModal';
-import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun, Book } from 'lucide-react';
+import { ReviewSection } from './components/ReviewSection';
+import { ReviewFormModal } from './components/ReviewFormModal';
+import type { Review } from './components/ReviewSection';
+import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, Lock, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun, Book, Mail, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { safeLocalStorage } from './lib/storage';
-import { auth, db, googleProvider, signInWithPopup, signInWithRedirect, signOut, doc, setDoc, getDoc, collection, onSnapshot, writeBatch } from './firebase';
+import { auth, db, googleProvider, signInWithPopup, signInWithRedirect, signOut, doc, setDoc, getDoc, collection, onSnapshot, writeBatch, addDoc, query, orderBy, deleteDoc } from './firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { InstallPrompt } from './components/InstallPrompt';
 
@@ -27,15 +34,130 @@ const PROGRESS_KEY = 'bh-keywords-progress';
 const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
 const PREFS_KEY = 'bh-app-preferences';
-const CURRENT_VERSION = '1.9.8';
+const REVIEWS_PROMPT_KEY = 'bh-review-prompt-shown';
+const CURRENT_VERSION = '2.2.4';
 
 const CHANGELOG = [
   {
-    version: '1.9.8',
+    version: '2.2.4',
     changes: [
-      { title: 'New Settings Layout', description: 'Completely revamped mobile UI layout for the Settings Menu for better responsive usability and tighter toggle layouts.' },
-      { title: 'Add to Home Screen', description: 'Added native "Add to Home Screen" install prompt for iOS/Safari users to properly install as a web app.' },
-      { title: 'Streak Freezes Dashboard', description: 'Added Streak Freezes component to the dashboard to intuitively monitor streak protection and freeze generation.' }
+      { title: 'Duplicate Key Resolution', description: 'Systematically fixed duplicate key errors in Flashcards, Test Mode, and Dashboard lists to ensure proper rendering.' },
+      { title: 'Auth Security Hardening', description: 'Implemented mandatory 6-digit verification code flow for new accounts to prevent spam and verify emails.' },
+      { title: 'Modern Hebrew Completion', description: 'Removed all "Work in Progress" and maintenance indicators from the Modern Hebrew section.' },
+      { title: 'Shop Access Fix', description: 'Corrected the shop unlock mechanism and navigation reliability for premium study documents.' }
+    ]
+  },
+  {
+    version: '2.2.3',
+    changes: [
+      { title: 'Email Code Verification', description: 'Upgraded sign-up security with a 6-digit email confirmation code. Accounts now require activation before full access is granted.' },
+      { title: 'Modern Hebrew Global Release', description: 'Removed all remaining developer-mode restrictions and "Work in Progress" indicators from Modern Hebrew.' },
+      { title: 'Shop Navigation Fix', description: 'Resolved an issue where the Student Shop would not automatically open after completing the unlock sequence.' }
+    ]
+  },
+  {
+    version: '2.2.2',
+    changes: [
+      { title: 'Vocariox Rebranding', description: 'Officially transitioned the platform brand to Vocariox. Browser titles and metadata updated.' },
+      { title: 'Secure Shop Lock', description: 'Enhanced the Student Shop lock mechanism. Access now strictly requires the hidden trigger sequence.' },
+      { title: 'Rendering Stability', description: 'Resolved duplicate key warnings in review sections and list views.' }
+    ]
+  },
+  {
+    version: '2.2.1',
+    changes: [
+      { title: 'Code Integrity & Fixes', description: 'Resolved critical build errors related to symbol duplication and JSX tag nesting. Improved transform stability.' },
+      { title: 'Performance Polish', description: 'Refined code-splitting chunks and optimized the main app entry point.' }
+    ]
+  },
+  {
+    version: '2.2.0',
+    changes: [
+      { title: 'Modern Hebrew Public Release', description: 'Modern Hebrew is now fully released to the public! Explore 1,400+ words and phrases across themed categories.' },
+      { title: 'Performance Optimization', description: 'Implemented code-splitting and lazy loading for faster initial page loads and smoother navigation.' },
+      { title: 'Responsive Refinements', description: 'Further UI polish for the Student Shop and flashcards on ultra-wide screens.' }
+    ]
+  },
+  {
+    version: '2.1.1',
+    changes: [
+      { title: 'Full Shop Content Restored', description: 'Restored the exact, original content for all study documents, including full 9-page depth and original Quranic/Torah formatting.' },
+      { title: 'Security Polish', description: 'Internal security rule optimization and viewer stability improvements.', internal: true }
+    ]
+  },
+  {
+    version: '2.1.0',
+    changes: [
+      { title: 'Dynamic Anti-Piracy', description: 'Implemented user-specific watermarking and blur-on-focus-loss to prevent unauthorized sharing.' },
+      { title: 'Screenshot Detection', description: 'Added keyboard shortcut detection for screenshot tools with instant security warnings.' },
+      { title: 'High-Fidelity Printing', description: 'Refined print engine for perfectly formatted A4 physical study material.' }
+    ]
+  },
+  {
+    version: '2.0.8',
+    changes: [
+      { title: 'New Shop Content', description: 'Added GCSE Religious Studies documents for Islam and Judaism to the Student Shop.' },
+      { title: 'Data Persistence Guard', description: 'Updated internal sync protocols to ensure manually added GitHub files are never overwritten.' }
+    ]
+  },
+  {
+    version: '2.0.7',
+    changes: [
+      { title: 'Multi-Page Viewer', description: 'The student shop now supports visual multi-page documents (PDF-style) with A4 sizing.' },
+      { title: 'Anti-Piracy Hardening', description: 'Reinforced document security with screenshot watermarking and selection blocking.' }
+    ]
+  },
+  {
+    version: '2.0.6',
+    changes: [
+      { title: 'Admin Shop Upload', description: 'New protected management interface for uploading shop content via admin code.' },
+      { title: 'Secure Document Viewer', description: 'Added anti-piracy measures to study documents with download disabling and watermark protection.' },
+      { title: 'Cloud Printing', description: 'Implemented high-quality print support for premium study documents.' }
+    ]
+  },
+  {
+    version: '2.0.5',
+    changes: [
+      { title: 'Student Shop Update', description: 'All study documents in the shop are now free for the early access phase.' },
+      { title: 'Responsive Flashcards', description: 'Implemented dynamic sizing for flashcards on small screens based on word length.' },
+      { title: 'Navbar Optimization', description: 'Cleaned up mobile navbar with compact language flags and removed redundant upgrade button.' }
+    ]
+  },
+  {
+    version: '2.0.4',
+    changes: [
+      { title: 'Roadmap Refinement', description: 'Updated the premium roadmap targets (Phase 2 shifted to June 2026).' },
+      { title: 'Bug Fixes', description: 'Resolved "Illegal constructor" error by properly importing the Lock icon from lucide-react.' }
+    ]
+  },
+  {
+    version: '2.0.3',
+    changes: [
+      { title: 'Modern Hebrew Topics Integrated', description: 'Topics like Social, Education, and Travel are now functional for Modern Hebrew on the homepage and dashboard.' },
+      { title: 'Premium Development Roadmap', description: 'Interactive roadmap added for April 2026 (Audio, SRS, Test Mode) and June 2026 (Grammar, Exam Prep).' }
+    ]
+  },
+  {
+    version: '2.0.2',
+    changes: [
+      { title: 'Modern Hebrew Vocabulary Complete', description: 'Final batch added! The database now contains a total of 1,467 Modern Hebrew words and phrases for the SRS.' },
+      { title: 'Categorization Optimization', description: 'Organized words into logical groups including Education, Personal Routine, Social Life, and Media.' }
+    ]
+  },
+  {
+    version: '2.0.1',
+    changes: [
+      { title: 'Hebrew Vocabulary Expansion', description: 'Added over 300 new words to Modern Hebrew, covering Home, Shopping, Health, Environment, and Travel.' },
+      { title: 'Data Integrity', description: 'Standardized vocabulary IDs and fixed minor transliteration typos for better search and SRS tracking.' }
+    ]
+  },
+  {
+    version: '2.0.0',
+    changes: [
+      { title: 'Mobile Optimization', description: 'Improved the flashcard and dashboard UI for better usability on smartphones.' },
+      { title: 'User Reviews', description: 'See what other students are saying in the new public reviews section on the home screen.' },
+      { title: 'Privacy & Contact', description: 'Added dedicated sections for Privacy Policy and Contact Us in the footer.' },
+      { title: 'Email Verification', description: 'New accounts now require email verification to ensure security and prevent fake sign-ups.' }
     ]
   },
   {
@@ -124,6 +246,15 @@ const CHANGELOG = [
   }
 ];
 
+const LoadingFallback = () => (
+  <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
+    <RefreshCw className="w-10 h-10 text-primary animate-spin" />
+    <p className="text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest text-xs">
+      Loading Studio...
+    </p>
+  </div>
+);
+
 export default function App() {
   const [devMode, setDevMode] = useState(() => safeLocalStorage.getItem('bh-dev-mode') === 'true');
   const [showDevModePasswordModal, setShowDevModePasswordModal] = useState(false);
@@ -140,25 +271,60 @@ export default function App() {
   });
   const [language, setLanguage] = useState<string>(() => {
     const saved = safeLocalStorage.getItem('bh-language');
-    const isDev = safeLocalStorage.getItem('bh-dev-mode') === 'true';
-    if (saved) {
-      if (!isDev && saved === 'modern') return 'biblical';
-      return saved;
-    }
-    return 'biblical';
+    return saved || 'biblical';
   });
+
+  const [showPrivacy, setShowPrivacy] = useState(false);
+  const [showContact, setShowContact] = useState(false);
+  const [showReviewPrompt, setShowReviewPrompt] = useState(false);
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [shopUnlocked, setShopUnlocked] = useState(false); // Default to false so it locks when returning
+  const [userReviews, setUserReviews] = useState<any[]>([]);
+
+  // Fetch reviews from Firestore
+  useEffect(() => {
+    const q = query(collection(db, 'reviews'), orderBy('date', 'desc'));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const reviewsData = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setUserReviews(reviewsData);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleSubmitReview = async (review: any) => {
+    try {
+      await addDoc(collection(db, 'reviews'), {
+        ...review,
+        date: new Date().toISOString(),
+        userId: user?.uid || 'anonymous'
+      });
+      setShowReviewForm(false);
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      alert("Failed to submit review. Please try again.");
+    }
+  };
+
+  const handleCloseReviewPrompt = () => {
+    setShowReviewPrompt(false);
+    safeLocalStorage.setItem(REVIEWS_PROMPT_KEY, 'true');
+  };
+
+  const handleLeaveReview = () => {
+    setShowReviewPrompt(false);
+    setShowReviewForm(true);
+    safeLocalStorage.setItem(REVIEWS_PROMPT_KEY, 'true');
+  };
 
   useEffect(() => {
     if (!devMode) {
       safeLocalStorage.setItem('bh-language', language);
     }
   }, [language, devMode]);
-
-  useEffect(() => {
-    if (!devMode && language === 'modern') {
-      setLanguage('biblical');
-    }
-  }, [devMode, language]);
 
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
 
@@ -173,19 +339,24 @@ export default function App() {
       vocab = customDeck ? customDeck.words : BIBLICAL_HEBREW_VOCABULARY;
     }
 
-    if (selectedTopic && (language === 'spanish' || language === 'french')) {
-      const topicKeywords: Record<string, string[]> = {
-        'Family & Friends': ['family', 'friend', 'brother', 'sister', 'mother', 'father', 'son', 'daughter', 'uncle', 'aunt', 'grand', 'cousin', 'marry', 'boyfriend', 'girlfriend', 'people', 'person', 'neighbor', 'neighbour', 'invite', 'call', 'love', 'name', 'relationship', 'wedding'],
-        'School & Study': ['school', 'study', 'learn', 'teacher', 'professor', 'subject', 'homework', 'exam', 'grade', 'classroom', 'pen', 'book', 'notebook', 'library', 'education', 'maths', 'science', 'history', 'language', 'lesson', 'class'],
-        'Food & Drink': ['eat', 'drink', 'food', 'meal', 'restaurant', 'café', 'cafe', 'bread', 'water', 'milk', 'meat', 'fish', 'fruit', 'vegetable', 'cheese', 'egg', 'rice', 'pasta', 'dessert', 'dinner', 'lunch', 'breakfast', 'hungry', 'thirsty', 'cook', 'menu', 'bill', 'tasty', 'snack'],
-        'Holidays & Travel': ['holiday', 'trip', 'travel', 'hotel', 'beach', 'sea', 'sun', 'plane', 'train', 'bus', 'car', 'bike', 'bicycle', 'passport', 'ticket', 'luggage', 'tourism', 'tourist', 'visit', 'museum', 'monument', 'castle', 'island', 'costa', 'destination', 'station', 'airport', 'flight', 'arrival', 'departure', 'vacation']
-      };
+    if (selectedTopic) {
+      if (language === 'spanish' || language === 'french') {
+        const topicKeywords: Record<string, string[]> = {
+          'Family & Friends': ['family', 'friend', 'brother', 'sister', 'mother', 'father', 'son', 'daughter', 'uncle', 'aunt', 'grand', 'cousin', 'marry', 'boyfriend', 'girlfriend', 'people', 'person', 'neighbor', 'neighbour', 'invite', 'call', 'love', 'name', 'relationship', 'wedding'],
+          'School & Study': ['school', 'study', 'learn', 'teacher', 'professor', 'subject', 'homework', 'exam', 'grade', 'classroom', 'pen', 'book', 'notebook', 'library', 'education', 'maths', 'science', 'history', 'language', 'lesson', 'class'],
+          'Food & Drink': ['eat', 'drink', 'food', 'meal', 'restaurant', 'café', 'cafe', 'bread', 'water', 'milk', 'meat', 'fish', 'fruit', 'vegetable', 'cheese', 'egg', 'rice', 'pasta', 'dessert', 'dinner', 'lunch', 'breakfast', 'hungry', 'thirsty', 'cook', 'menu', 'bill', 'tasty', 'snack'],
+          'Holidays & Travel': ['holiday', 'trip', 'travel', 'hotel', 'beach', 'sea', 'sun', 'plane', 'train', 'bus', 'car', 'bike', 'bicycle', 'passport', 'ticket', 'luggage', 'tourism', 'tourist', 'visit', 'museum', 'monument', 'castle', 'island', 'costa', 'destination', 'station', 'airport', 'flight', 'arrival', 'departure', 'vacation']
+        };
 
-      const keywords = topicKeywords[selectedTopic] || [];
-      return vocab.filter(word => {
-        const eng = word.english.toLowerCase();
-        return keywords.some(k => eng.includes(k.toLowerCase()));
-      });
+        const keywords = topicKeywords[selectedTopic] || [];
+        return vocab.filter(word => {
+          const eng = word.english.toLowerCase();
+          return keywords.some(k => eng.includes(k.toLowerCase()));
+        });
+      } else if (language === 'modern') {
+        // Use the category field for Modern Hebrew
+        return vocab.filter(word => word.category === selectedTopic);
+      }
     }
 
     return vocab;
@@ -193,7 +364,7 @@ export default function App() {
 
   const SESSION_STATE_KEY = `bh-session-state-${language}`;
 
-  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard' | 'test'>(() => {
+  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard' | 'test' | 'shop'>(() => {
     const saved = safeLocalStorage.getItem(SESSION_STATE_KEY);
     if (saved) {
       try {
@@ -204,6 +375,20 @@ export default function App() {
     }
     return 'home';
   });
+
+  // Check if we should show the review prompt
+  useEffect(() => {
+    if (view === 'home' || view === 'dashboard') {
+      const promptShown = safeLocalStorage.getItem(REVIEWS_PROMPT_KEY);
+      if (!promptShown) {
+        const timer = setTimeout(() => {
+          setShowReviewPrompt(true);
+        }, 3000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [view]);
+
   const [progress, setProgress] = useState<UserProgress[]>([]);
 
   const todayReviews = useMemo(() => {
@@ -252,7 +437,6 @@ export default function App() {
   });
   const [showChangelog, setShowChangelog] = useState(false);
   const [viewingArchive, setViewingArchive] = useState(false);
-  const [showWipPopup, setShowWipPopup] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [preferences, setPreferences] = useState<UserPreferences>(() => {
     const saved = safeLocalStorage.getItem(PREFS_KEY);
@@ -520,6 +704,10 @@ export default function App() {
     }
   };
 
+  const handleUnlockShop = () => {
+    setShopUnlocked(true);
+  };
+
   const handleDevModePasswordSubmit = (password: string) => {
     const pw = password.trim();
     if (pw === 'leonisadmin') {
@@ -583,11 +771,6 @@ export default function App() {
   };
 
   const handleLanguageChange = (newLang: string) => {
-    if (newLang === 'modern' && !devMode) {
-      setShowWipPopup(true);
-      return;
-    }
-    
     setLanguage(newLang);
     if (!devMode) {
       safeLocalStorage.setItem('bh-language', newLang);
@@ -647,7 +830,13 @@ export default function App() {
       const userRef = doc(db, 'users', user.uid);
       const unsubscribeProfile = onSnapshot(userRef, (docSnap) => {
         if (docSnap.exists()) {
-          setUserProfile(docSnap.data());
+          const profileData = docSnap.data();
+          setUserProfile(profileData);
+          
+          // If logged in but not verified, force the auth modal/verification view
+          if (profileData.verified === false && !devMode && !showAuthModal) {
+            setShowAuthModal(true);
+          }
         } else {
           setUserProfile({});
         }
@@ -753,83 +942,78 @@ export default function App() {
     }
   }, [progress, devMode]);
 
-  // Handle missed days and consume freezes
+  // Unified Streak & Daily Goal Logic
   useEffect(() => {
     if (!user || !userProfile || devMode) return;
 
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    const lastUpdate = userProfile.lastStreakUpdate ? new Date(userProfile.lastStreakUpdate) : null;
+    const lastUpdateTs = userProfile.lastStreakUpdate;
+    const lastUpdate = lastUpdateTs ? new Date(lastUpdateTs) : null;
     if (lastUpdate) {
       lastUpdate.setHours(0, 0, 0, 0);
     }
 
-    let missedDays = 0;
-    if (lastUpdate) {
+    let currentStreak = userProfile.streak || 0;
+    let currentFreezes = userProfile.streakFreezes || 0;
+    let newLastUpdate = lastUpdateTs;
+    let needsUpdate = false;
+
+    // 1. Handle Missed Days first
+    if (lastUpdate && lastUpdate.getTime() < today.getTime()) {
       const diffTime = today.getTime() - lastUpdate.getTime();
       const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-      if (diffDays > 1) {
-        missedDays = diffDays - 1;
-      }
-    }
-
-    if (missedDays > 0) {
-      let newFreezes = userProfile.streakFreezes || 0;
-      let newStreak = userProfile.streak || 0;
-      let newLastUpdate = userProfile.lastStreakUpdate;
-
-      if (newFreezes >= missedDays) {
-        newFreezes -= missedDays;
-        // Set last update to yesterday so they can continue the streak today
-        const yesterday = new Date(today);
-        yesterday.setDate(yesterday.getDate() - 1);
-        newLastUpdate = yesterday.getTime();
-      } else {
-        newStreak = 0;
-        newFreezes = 0;
-      }
-
-      setDoc(doc(db, 'users', user.uid), {
-        streak: newStreak,
-        streakFreezes: newFreezes,
-        lastStreakUpdate: newLastUpdate
-      }, { merge: true });
-    }
-  }, [user, userProfile?.lastStreakUpdate, devMode]);
-
-  // Handle daily goal completion and streak increment
-  useEffect(() => {
-    if (!user || !userProfile || devMode) return;
-
-    const dailyGoal = srsSettings.dailyGoal || 20;
-    if (todayReviews >= dailyGoal) {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
       
-      const lastUpdate = userProfile.lastStreakUpdate ? new Date(userProfile.lastStreakUpdate) : null;
-      if (lastUpdate) lastUpdate.setHours(0, 0, 0, 0);
-
-      if (!lastUpdate || lastUpdate.getTime() < today.getTime()) {
-        // Goal met today for the first time!
-        const newStreak = (userProfile.streak || 0) + 1;
-        let newFreezes = userProfile.streakFreezes || 0;
-
-        const freezeInterval = isPremium ? 3 : 5;
-        const maxFreezes = isPremium ? 5 : 3;
-
-        if (newStreak % freezeInterval === 0) {
-          newFreezes = Math.min(newFreezes + 1, maxFreezes);
+      if (diffDays > 1) {
+        const missedDays = diffDays - 1;
+        if (currentFreezes >= missedDays) {
+          currentFreezes -= missedDays;
+          // Set last update to "virtual yesterday" to allow streak continuation today
+          const yesterday = new Date(today);
+          yesterday.setDate(yesterday.getDate() - 1);
+          newLastUpdate = yesterday.getTime();
+          needsUpdate = true;
+        } else {
+          currentStreak = 0;
+          currentFreezes = 0;
+          // Reset last update so they can start fresh today if they finish goal
+          const yesterday = new Date(today);
+          yesterday.setDate(yesterday.getDate() - 1);
+          newLastUpdate = yesterday.getTime();
+          needsUpdate = true;
         }
-
-        setDoc(doc(db, 'users', user.uid), {
-          streak: newStreak,
-          streakFreezes: newFreezes,
-          lastStreakUpdate: Date.now()
-        }, { merge: true });
       }
     }
-  }, [todayReviews, user, userProfile, srsSettings.dailyGoal, devMode, isPremium]);
+
+    // 2. Handle Daily Goal Completion
+    const dailyGoal = srsSettings.dailyGoal || 20;
+    // Normalized check to see if we already updated TODAY
+    const checkUpdateDate = new Date(newLastUpdate || 0);
+    checkUpdateDate.setHours(0, 0, 0, 0);
+
+    if (todayReviews >= dailyGoal && (!newLastUpdate || checkUpdateDate.getTime() < today.getTime())) {
+      // Goal met today for the first time!
+      currentStreak = (currentStreak || 0) + 1;
+      const freezeInterval = isPremium ? 3 : 5;
+      const maxFreezes = isPremium ? 5 : 3;
+
+      if (currentStreak % freezeInterval === 0) {
+        currentFreezes = Math.min(currentFreezes + 1, maxFreezes);
+      }
+      newLastUpdate = Date.now();
+      needsUpdate = true;
+    }
+
+    if (needsUpdate) {
+      // Single atomic update to Firestore prevents racing transitions
+      setDoc(doc(db, 'users', user.uid), {
+        streak: currentStreak,
+        streakFreezes: currentFreezes,
+        lastStreakUpdate: newLastUpdate
+      }, { merge: true }).catch(err => console.error("Error updating streak:", err));
+    }
+  }, [user, userProfile?.lastStreakUpdate, userProfile?.streak, todayReviews, srsSettings.dailyGoal, devMode, isPremium]);
 
   const updateFirestoreWordProgress = async (p: UserProgress) => {
     if (!user || devMode) return;
@@ -958,11 +1142,18 @@ export default function App() {
     setView('learn');
   };
 
-  const calculateNextReview = (isCorrect: boolean, currentInterval: number, currentMastery: MasteryLevel): { interval: number, nextReview: number } => {
+  const calculateNextReview = (isCorrect: boolean, currentInterval: number, currentMastery: MasteryLevel, explicitIntervalDays?: number): { interval: number, nextReview: number } => {
     const now = Date.now();
     const hourInMs = 60 * 60 * 1000;
     const dayInMs = 24 * hourInMs;
     
+    if (explicitIntervalDays !== undefined) {
+      return {
+        interval: explicitIntervalDays,
+        nextReview: now + (explicitIntervalDays * dayInMs)
+      };
+    }
+
     if (!isCorrect) {
       return { interval: 0, nextReview: now }; // Review immediately
     }
@@ -998,7 +1189,7 @@ export default function App() {
     };
   };
 
-  const updateWordProgress = (wordId: string, isCorrect: boolean) => {
+  const updateWordProgress = (wordId: string, isCorrect: boolean, explicitIntervalDays?: number) => {
     setProgress(prev => {
       const existingIndex = prev.findIndex(p => p.wordId === wordId);
       const newProgress = [...prev];
@@ -1007,7 +1198,7 @@ export default function App() {
 
       if (existingIndex >= 0) {
         const p = { ...newProgress[existingIndex] };
-        const srs = calculateNextReview(isCorrect, p.interval, p.mastery);
+        const srs = calculateNextReview(isCorrect, p.interval, p.mastery, explicitIntervalDays);
         
         if (isCorrect) {
           p.correctCount += 1;
@@ -1024,7 +1215,7 @@ export default function App() {
         newProgress[existingIndex] = p;
         updatedEntry = p;
       } else {
-        const srs = calculateNextReview(isCorrect, 0, 'new');
+        const srs = calculateNextReview(isCorrect, 0, 'new', explicitIntervalDays);
         updatedEntry = {
           wordId,
           mastery: isCorrect ? 'learning' : 'new',
@@ -1051,7 +1242,7 @@ export default function App() {
     }
   };
 
-  const handleAnswer = (isCorrect: boolean) => {
+  const handleAnswer = (isCorrect: boolean, explicitIntervalDays?: number) => {
     const currentQuestion = sessionQuestions[currentQuestionIndex];
     
     // Update session answers
@@ -1069,7 +1260,7 @@ export default function App() {
 
       if (existingIndex >= 0) {
         const p = { ...newProgress[existingIndex] };
-        const srs = calculateNextReview(isCorrect, p.interval, p.mastery);
+        const srs = calculateNextReview(isCorrect, p.interval, p.mastery, explicitIntervalDays);
         
         if (isCorrect) {
           p.correctCount += 1;
@@ -1086,7 +1277,7 @@ export default function App() {
         newProgress[existingIndex] = p;
         updatedEntry = p;
       } else {
-        const srs = calculateNextReview(isCorrect, 0, 'new');
+        const srs = calculateNextReview(isCorrect, 0, 'new', explicitIntervalDays);
         updatedEntry = {
           wordId: currentQuestion.word.id,
           mastery: isCorrect ? (currentQuestion.type === 'written' ? 'mastered' : 'learning') : 'new',
@@ -1118,7 +1309,9 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/10 transition-colors duration-300">
       <InstallPrompt />
       <Navbar 
-        onNavigate={(view) => setView(view)} 
+        onNavigate={(v) => {
+          setView(v);
+        }} 
         language={language} 
         onLanguageChange={setLanguage}
         user={user}
@@ -1133,6 +1326,410 @@ export default function App() {
         onShowSettings={() => setShowSettings(true)}
       />
 
+      <main className="pt-16 flex-1">
+        <Suspense fallback={<LoadingFallback />}>
+          <AnimatePresence mode="wait">
+          {view === 'home' && (
+            <motion.div
+              key="home"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Hero 
+                onStartSession={startSession} 
+                onViewDashboard={() => setView('dashboard')} 
+                onStartFlashcards={handleStartFlashcards}
+                onStartTest={() => setView('test')}
+                language={language}
+                onLanguageChange={handleLanguageChange}
+                user={user}
+                onSignIn={handleSignIn}
+                onShowPro={() => setShowProModal(true)}
+                devMode={devMode}
+                isPremium={isPremium}
+                reducedMotion={preferences.reducedMotion}
+              />
+              <HowItWorks language={language} />
+              <ReviewSection userReviews={userReviews} onLeaveReview={handleLeaveReview} />
+            </motion.div>
+          )}
+
+          {view === 'dashboard' && (
+            <motion.div
+              key="dashboard"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              <Dashboard
+                vocabulary={activeVocabulary}
+                progress={progress}
+                onStartSession={startSession}
+                onStartIncorrectSession={startIncorrectSession}
+                onStartFlashcards={handleStartFlashcards}
+                onStartTest={() => setView('test')}
+                onNavigate={(v) => {
+                  setView(v);
+                }}
+                onResetProgress={() => {
+                  setProgress([]);
+                  if (!devMode) {
+                    safeLocalStorage.removeItem(`bh-flashcard-session-${language}`);
+                  }
+                }}
+                user={user}
+                userProfile={userProfile}
+                language={language}
+                onLanguageChange={handleLanguageChange}
+                onShowPro={() => setShowProModal(true)}
+                devMode={devMode}
+                isPremium={isPremium}
+                customDecks={customDecks}
+                srsSettings={srsSettings}
+                onUpdateSrsSettings={(newSettings) => {
+                  setSrsSettings(newSettings);
+                  if (!devMode) {
+                    safeLocalStorage.setItem('bh-srs-settings', JSON.stringify(newSettings));
+                  }
+                }}
+                onLeaveReview={handleLeaveReview}
+                onShowSettings={() => setShowSettings(true)}
+                shopUnlocked={shopUnlocked}
+                onUnlockShop={handleUnlockShop}
+              />
+              <div className="text-center pb-20">
+                <div className="flex flex-col items-center gap-4">
+                  <button 
+                    onClick={() => setView('home')}
+                    className="text-slate-400 font-bold hover:text-primary transition-colors"
+                  >
+                    ← Back to Home
+                  </button>
+                  <p className="text-[10px] font-bold text-slate-300 uppercase tracking-[0.2em] flex items-center gap-1.5">
+                    <Sparkles className="w-3 h-3" />
+                     Powered by AI Learning Algorithm
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {view === 'flashcards' && (
+            <motion.div
+              key={`flashcards-${language}-${selectedTopic || 'full'}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <FlashcardMode
+                vocabulary={activeVocabulary}
+                onExit={() => {
+                  setSelectedTopic(null);
+                  setView('home');
+                }}
+                onSwitchToLearn={startSession}
+                onWordProgress={updateWordProgress}
+                language={language}
+                user={user}
+                onRequireAuth={() => {
+                  setShowGuestLimitModal(true);
+                  setView('home');
+                }}
+                isPremium={isPremium}
+                onShowPro={() => setShowProModal(true)}
+                selectedTopic={selectedTopic}
+                devMode={devMode}
+                srsSettings={srsSettings}
+              />
+            </motion.div>
+          )}
+
+          {view === 'test' && (
+            <motion.div
+              key={`test-${language}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <TestMode
+                vocabulary={activeVocabulary}
+                onExit={() => setView('home')}
+                language={language}
+                devMode={devMode}
+              />
+            </motion.div>
+          )}
+
+          {view === 'learn' && sessionQuestions.length > 0 && sessionQuestions[currentQuestionIndex] && (
+            <motion.div
+              key="learn"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="max-w-4xl mx-auto px-4 py-8 md:py-12"
+            >
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 md:mb-12 gap-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  <button
+                    onClick={() => setView('home')}
+                    className="p-2 hover:bg-white dark:hover:bg-slate-800 rounded-full transition-colors group"
+                    title="Back to Home"
+                  >
+                    <ChevronLeft className="w-6 h-6 text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white" />
+                  </button>
+                  <button
+                    onClick={() => setView('flashcards')}
+                    className="flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary rounded-xl font-bold hover:bg-primary/10 transition-all text-sm md:text-base"
+                  >
+                    <RotateCw className="w-4 h-4" />
+                    <span className="hidden sm:inline">Switch to Flashcards</span>
+                    <span className="sm:hidden">Flashcards</span>
+                  </button>
+                  {currentQuestionIndex > 0 && (
+                    <button
+                      onClick={handleBack}
+                      className="flex items-center gap-2 px-3 py-1.5 text-xs md:text-sm font-bold text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                      <span>Back</span>
+                    </button>
+                  )}
+                </div>
+                <div className="w-full md:flex-1 md:max-w-md">
+                  <div className="flex justify-between text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">
+                    <span>Question {currentQuestionIndex + 1} of {sessionQuestions.length}</span>
+                    <span>{Math.round(((currentQuestionIndex + 1) / sessionQuestions.length) * 100)}%</span>
+                  </div>
+                  <ProgressBar current={currentQuestionIndex + 1} total={sessionQuestions.length} color="bg-primary" />
+                </div>
+              </div>
+
+              <LearnCard
+                question={sessionQuestions[currentQuestionIndex]}
+                onAnswer={handleAnswer}
+                language={language}
+              />
+            </motion.div>
+          )}
+
+          {view === 'summary' && (
+            <motion.div
+              key="summary"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-20 px-4"
+            >
+              <SessionSummary
+                correct={sessionCorrectCount}
+                total={sessionQuestions.length}
+                onRestart={startSession}
+                onHome={() => setView('home')}
+                animationsEnabled={preferences.animationsEnabled}
+              />
+            </motion.div>
+          )}
+          {view === 'shop' && (
+            <motion.div
+              key="shop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Shop
+                onBack={() => {
+                  setShopUnlocked(false);
+                  safeLocalStorage.removeItem('bh-shop-unlocked');
+                  setView('dashboard');
+                }}
+                language={language}
+                user={user}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </Suspense>
+    </main>
+
+    <footer className="py-12 border-t border-slate-100 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm transition-colors duration-300">
+        <div className="max-w-7xl mx-auto px-6 text-center space-y-6">
+          <div className="flex flex-col items-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
+              <button 
+                onClick={() => setShowPrivacy(true)}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm border border-slate-100 dark:border-slate-700"
+              >
+                Privacy Policy
+              </button>
+              <a 
+                href="https://forms.gle/NjUpvWAZCjTF4aPB6" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm"
+              >
+                <Sparkles className="w-4 h-4 text-primary" />
+                Request a Feature / Bug
+              </a>
+              <button 
+                onClick={() => setShowContact(true)}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm border border-slate-100 dark:border-slate-700"
+              >
+                Contact Us
+              </button>
+              <button 
+                onClick={handleLeaveReview}
+                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm border border-slate-100 dark:border-slate-700"
+              >
+                Leave a Review
+              </button>
+            </div>
+            <p className="text-[10px] text-slate-300 dark:text-slate-600 font-bold uppercase tracking-[0.3em] flex items-center gap-2">
+              <Sparkles className="w-3 h-3 fill-current" />
+              Vocariox Premium AI Learning
+            </p>
+          </div>
+          
+          <div className="flex flex-col items-center gap-2">
+            <p className="text-slate-400 dark:text-slate-500 text-sm font-medium tracking-wide">
+              Created by <span className="text-slate-900 dark:text-white font-bold">Aryeh Isaac-Saul</span>
+            </p>
+            
+            <div className="flex items-center justify-center gap-3 mt-2">
+              <button 
+                onClick={toggleDevMode}
+                className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border transition-colors ${devMode ? 'bg-indigo-100 text-indigo-600 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-400 dark:border-indigo-800' : 'bg-slate-100 text-slate-500 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'}`}
+              >
+                Dev Mode: {devMode ? 'ON' : 'OFF'}
+              </button>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {showPrivacy && (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white dark:bg-slate-900 rounded-[2rem] p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto border border-slate-100 dark:border-slate-800 relative"
+          >
+            <button onClick={() => setShowPrivacy(false)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+              <X className="w-5 h-5 text-slate-400" />
+            </button>
+            <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-6">Privacy Policy</h2>
+            <div className="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-400 space-y-4 font-medium">
+              <p>Your privacy is important to us. Here is how we handle your data:</p>
+              <h3 className="text-slate-900 dark:text-white font-bold text-lg">1. Data Collection</h3>
+              <p>We collect your email address and display name only when you create an account to sync your progress across devices.</p>
+              <h3 className="text-slate-900 dark:text-white font-bold text-lg">2. Learning Progress</h3>
+              <p>Your study history, streaks, and flashcard mastery are stored securely in our database to provide your personalized AI learning experience.</p>
+              <h3 className="text-slate-900 dark:text-white font-bold text-lg">3. Account Deletion</h3>
+              <p>You can permanently delete your account and all associated study data at any time from the Settings menu.</p>
+              <p className="pt-4 text-xs italic">Last Updated: April 2026</p>
+            </div>
+            <button 
+              onClick={() => setShowPrivacy(false)}
+              className="mt-8 w-full py-4 bg-slate-900 dark:bg-slate-700 text-white font-bold rounded-xl"
+            >
+              Close
+            </button>
+          </motion.div>
+        </div>
+      )}
+
+      {showContact && (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white dark:bg-slate-900 rounded-[2rem] p-8 max-w-md w-full border border-slate-100 dark:border-slate-800 relative text-center"
+          >
+            <button onClick={() => setShowContact(false)} className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+              <X className="w-5 h-5 text-slate-400" />
+            </button>
+            <div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
+              <Mail className="w-8 h-8" />
+            </div>
+            <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Get in Touch</h2>
+            <p className="text-slate-500 dark:text-slate-400 mb-8 font-medium">
+              We value your feedback and would love to hear from you.
+            </p>
+            <div className="space-y-3">
+              <a 
+                href="https://forms.gle/pytqWTbHTGodjkDx7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-3 py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all"
+              >
+                <Mail className="w-5 h-5" />
+                Email Support
+              </a>
+              <a 
+                href="https://forms.gle/NjUpvWAZCjTF4aPB6"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-3 py-4 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+              >
+                <Sparkles className="w-5 h-5" />
+                Feature Suggestion
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {showReviewPrompt && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-10 max-w-lg w-full border border-slate-100 dark:border-slate-800 relative overflow-hidden shadow-2xl"
+          >
+            <button 
+              onClick={handleCloseReviewPrompt} 
+              className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors z-20"
+            >
+              <X className="w-5 h-5 text-slate-400" />
+            </button>
+
+            <div className="relative z-10 text-center">
+              <div className="w-20 h-20 bg-amber-50 dark:bg-amber-900/20 text-amber-500 rounded-3xl flex items-center justify-center mx-auto mb-8 animate-bounce-subtle">
+                <Star className="w-10 h-10 fill-current" />
+              </div>
+              
+              <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-4 tracking-tight leading-tight">
+                Enjoying your study journey?
+              </h2>
+              
+              <p className="text-slate-600 dark:text-slate-400 mb-8 font-medium text-lg leading-relaxed">
+                We are constantly improving! Could you spare a moment to share your feedback or leave a review? It helps us immensely.
+              </p>
+
+              <div className="flex flex-col gap-3">
+                <button 
+                  onClick={() => {
+                    handleLeaveReview();
+                  }}
+                  className="w-full py-4 md:py-5 bg-primary text-white font-black rounded-2xl shadow-xl shadow-primary/20 hover:scale-[1.02] active:scale-95 transition-all text-xl uppercase tracking-tight"
+                >
+                  Leave a Review
+                </button>
+                <button 
+                  onClick={handleCloseReviewPrompt}
+                  className="w-full py-4 text-slate-400 dark:text-slate-500 font-bold hover:text-slate-600 dark:hover:text-slate-300 transition-colors uppercase tracking-widest text-xs"
+                >
+                  Maybe Later
+                </button>
+              </div>
+            </div>
+
+            <div className="absolute -left-12 -bottom-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute -right-12 -top-12 w-32 h-32 bg-amber-400/5 rounded-full blur-2xl" />
+          </motion.div>
+        </div>
+      )}
+
       <AnimatePresence>
         {showDevModePasswordModal && (
           <DevModePasswordModal
@@ -1140,11 +1737,16 @@ export default function App() {
             onSubmit={handleDevModePasswordSubmit}
           />
         )}
-        {showAuthModal && (
-          <AuthModal 
-            onClose={() => setShowAuthModal(false)} 
-          />
-        )}
+        <Suspense fallback={null}>
+          {showAuthModal && (
+            <AuthModal 
+              onClose={() => setShowAuthModal(false)}
+              onVerified={() => {
+                // Verification successful
+              }}
+            />
+          )}
+        </Suspense>
         
         {sharedDeckToImport && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
@@ -1178,452 +1780,128 @@ export default function App() {
           </div>
         )}
 
-        {showWipPopup && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/60 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-10 max-w-lg w-full shadow-2xl border border-slate-100 dark:border-slate-800 text-center relative overflow-hidden"
-            >
-              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-400 via-orange-500 to-yellow-400" />
-              <div className="w-20 h-20 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-600 dark:text-yellow-400 rounded-3xl flex items-center justify-center mx-auto mb-8">
-                <span className="text-4xl font-black">!</span>
-              </div>
-              <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight">Work in Progress</h2>
-              <p className="text-slate-600 dark:text-slate-400 mb-8 font-medium leading-relaxed">
-                {language === 'modern' ? 'Modern Hebrew' : 'Spanish'} support is currently in early beta. You might encounter bugs or incomplete vocabulary lists. We're working hard to polish this experience!
-              </p>
+        {showProModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+            <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
               <button
-                onClick={() => setShowWipPopup(false)}
-                className="w-full py-4 bg-slate-900 dark:bg-slate-700 text-white font-bold rounded-2xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-xl active:scale-95"
+                onClick={() => setShowProModal(false)}
+                className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
               >
-                I Understand
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
               </button>
-            </motion.div>
-          </div>
-        )}
-
-        {showChangelog && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-slate-800 max-w-lg w-full overflow-hidden"
-            >
-              <div className="p-8 md:p-10">
-                <div className="flex items-center justify-between mb-8">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl flex items-center justify-center text-indigo-600 dark:text-indigo-400">
-                      {viewingArchive ? <History className="w-6 h-6" /> : <Sparkles className="w-6 h-6" />}
-                    </div>
-                    <div>
-                      <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
-                        {viewingArchive ? "Update Archives" : "What's New"}
-                      </h2>
-                      <p className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
-                        {viewingArchive ? "Previous Updates" : `Version ${CURRENT_VERSION}`}
-                      </p>
-                    </div>
-                  </div>
+              
+              <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
+                <Sparkles className="w-8 h-8" />
+              </div>
+              {trialInfo.isTrialActive ? (
+                <>
+                  <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Active!</h2>
+                  <p className="text-slate-500 dark:text-slate-400 mb-6">
+                    Premium is currently in development. As a new user, you have <strong>{trialInfo.daysLeft} days of early access</strong> to all latest features, including Grammar modules, Exam Prep, Unlimited Flashcards, and Advanced Analytics!
+                  </p>
                   <button 
-                    onClick={handleCloseChangelog}
-                    className="p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl text-slate-400 transition-colors"
+                    onClick={() => setShowProModal(false)}
+                    className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
                   >
-                    <X className="w-6 h-6" />
+                    Continue Learning
                   </button>
-                </div>
-
-                <div className="space-y-6 mb-10 max-h-[400px] overflow-y-auto pr-2 pb-8 custom-scrollbar">
-                  {!viewingArchive ? (
-                    CHANGELOG[0].changes.filter(c => devMode || !c.internal).map((item, index) => (
-                      <div key={index} className="flex gap-4">
-                        <div className="mt-1 shrink-0">
-                          <CheckCircle2 className="w-5 h-5 text-green-500" />
-                        </div>
-                        <div>
-                          <h3 className="font-bold text-slate-900 dark:text-white text-sm">{item.title}</h3>
-                          <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{item.description}</p>
-                        </div>
+                </>
+              ) : trialInfo.isExpired ? (
+                <>
+                  <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Ended</h2>
+                  <p className="text-slate-500 dark:text-slate-400 mb-6">
+                    Your 7-day early access period has ended. Premium is still in development, but we're launching soon!
+                  </p>
+                  <div className="p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/50 mb-6">
+                    <h3 className="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
+                      <Sparkles className="w-5 h-5" />
+                      Claim 50% Off!
+                    </h3>
+                    <div className="mb-2 flex items-center justify-between">
+                      <div>
+                        <span className="text-sm text-slate-400 line-through mr-2">£9.99/yr</span>
+                        <span className="text-xl font-black text-slate-900 dark:text-white">£4.99/yr</span>
                       </div>
-                    ))
-                  ) : (
-                    <div className="space-y-8">
-                      {CHANGELOG.slice(1).map((release) => {
-                        const visibleChanges = release.changes.filter(c => devMode || !c.internal);
-                        if (visibleChanges.length === 0) return null;
-                        
-                        return (
-                          <div key={release.version} className="space-y-4">
-                            <h3 className="text-xs font-black text-indigo-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 pb-2">
-                              Version {release.version}
-                            </h3>
-                            <div className="space-y-4">
-                              {visibleChanges.map((item, index) => (
-                                <div key={index} className="flex gap-4">
-                                  <div className="mt-1 shrink-0">
-                                    <CheckCircle2 className="w-5 h-5 text-slate-300 dark:text-slate-600" />
-                                  </div>
-                                  <div>
-                                    <h4 className="font-bold text-slate-700 dark:text-slate-200 text-sm">{item.title}</h4>
-                                    <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{item.description}</p>
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        );
-                      })}
+                      <div className="text-right">
+                        <span className="text-slate-500 font-bold text-sm">or <span className="line-through font-normal">£3.99</span> £1.99/mo</span>
+                      </div>
                     </div>
-                  )}
-                </div>
-
-                <div className="space-y-4">
-                  <button
-                    onClick={handleCloseChangelog}
-                    className="w-full py-5 bg-slate-900 dark:bg-slate-700 text-white font-bold rounded-2xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"
-                  >
-                    Got it, let's study!
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                  
-                  <button
-                    onClick={() => setViewingArchive(!viewingArchive)}
-                    className="w-full py-3 text-slate-400 dark:text-slate-500 font-bold hover:text-slate-600 dark:hover:text-slate-300 transition-colors text-xs flex items-center justify-center gap-2 uppercase tracking-widest"
-                  >
-                    {viewingArchive ? (
-                      <>← Back to What's New</>
-                    ) : (
-                      <>
-                        <History className="w-4 h-4" />
-                        View Update Archives
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-        {showSettings && (
-          <SettingsModal
-            onClose={() => setShowSettings(false)}
-            user={user}
-            userProfile={userProfile}
-            preferences={preferences}
-            onUpdatePreferences={(newPrefs) => setPreferences(prev => ({ ...prev, ...newPrefs }))}
-            onUpdateDisplayName={handleUpdateDisplayName}
-            onClearProgress={handleClearProgress}
-            onDeleteAccount={handleDeleteAccount}
-            onExportData={handleExportData}
-            language={language}
-            devMode={devMode}
-          />
-        )}
-      </AnimatePresence>
-      
-      <main className="pt-16">
-        <AnimatePresence mode="wait">
-          {view === 'home' && (
-            <motion.div
-              key="home"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <Hero 
-                onStartSession={startSession} 
-                onViewDashboard={() => setView('dashboard')} 
-                onStartFlashcards={handleStartFlashcards}
-                onStartTest={() => setView('test')}
-                language={language}
-                onLanguageChange={handleLanguageChange}
-                user={user}
-                onSignIn={handleSignIn}
-                onShowPro={() => setShowProModal(true)}
-                devMode={devMode}
-                isPremium={isPremium}
-                reducedMotion={preferences.reducedMotion}
-              />
-              <HowItWorks language={language} />
-            </motion.div>
-          )}
-
-          {view === 'dashboard' && (
-            <motion.div
-              key="dashboard"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-            >
-              <Dashboard
-                vocabulary={activeVocabulary}
-                progress={progress}
-                onStartSession={startSession}
-                onStartIncorrectSession={startIncorrectSession}
-                onStartFlashcards={handleStartFlashcards}
-                onStartTest={() => setView('test')}
-                onResetProgress={() => {
-                  setProgress([]);
-                  if (!devMode) {
-                    safeLocalStorage.removeItem(`bh-flashcard-session-${language}`);
-                  }
-                }}
-                user={user}
-                userProfile={userProfile}
-                language={language}
-                onLanguageChange={handleLanguageChange}
-                onShowPro={() => setShowProModal(true)}
-                devMode={devMode}
-                isPremium={isPremium}
-                customDecks={customDecks}
-                srsSettings={srsSettings}
-                onUpdateSrsSettings={(newSettings) => {
-                  setSrsSettings(newSettings);
-                  if (!devMode) {
-                    safeLocalStorage.setItem('bh-srs-settings', JSON.stringify(newSettings));
-                  }
-                }}
-              />
-              <div className="text-center pb-20">
-                <button 
-                  onClick={() => setView('home')}
-                  className="text-slate-400 font-bold hover:text-primary transition-colors"
-                >
-                  ← Back to Home
-                </button>
-              </div>
-            </motion.div>
-          )}
-
-          {view === 'flashcards' && (
-            <motion.div
-              key={`flashcards-${language}-${selectedTopic || 'full'}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <FlashcardMode
-                vocabulary={activeVocabulary}
-                onExit={() => {
-                  setSelectedTopic(null);
-                  setView('home');
-                }}
-                onSwitchToLearn={startSession}
-                onWordProgress={updateWordProgress}
-                language={language}
-                user={user}
-                onRequireAuth={() => {
-                  setShowGuestLimitModal(true);
-                  setView('home');
-                }}
-                isPremium={isPremium}
-                onShowPro={() => setShowProModal(true)}
-                selectedTopic={selectedTopic}
-                devMode={devMode}
-              />
-            </motion.div>
-          )}
-
-          {view === 'test' && (
-            <motion.div
-              key={`test-${language}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <TestMode
-                vocabulary={activeVocabulary}
-                onExit={() => setView('home')}
-                language={language}
-                devMode={devMode}
-              />
-            </motion.div>
-          )}
-
-          {view === 'learn' && sessionQuestions.length > 0 && sessionQuestions[currentQuestionIndex] && (
-            <motion.div
-              key="learn"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="max-w-4xl mx-auto px-4 py-8"
-            >
-              <div className="flex items-center justify-between mb-12">
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={() => setView('home')}
-                    className="p-2 hover:bg-white rounded-full transition-colors group"
-                    title="Back to Home"
-                  >
-                    <ChevronLeft className="w-6 h-6 text-slate-400 group-hover:text-slate-900" />
-                  </button>
-                  <button
-                    onClick={() => setView('flashcards')}
-                    className="flex items-center gap-2 px-4 py-2 bg-primary/5 text-primary rounded-xl font-bold hover:bg-primary/10 transition-all"
-                  >
-                    <RotateCw className="w-4 h-4" />
-                    Switch to Flashcards
-                  </button>
-                  {currentQuestionIndex > 0 && (
-                    <button
-                      onClick={handleBack}
-                      className="flex items-center gap-2 px-3 py-1.5 text-sm font-bold text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                    <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
+                      Register your interest now to get an exclusive 50% early bird discount when we officially launch. Get access to Pronunciation Audio, Grammar modules, Exam Prep, Streak Freezes, and unlimited flashcards!
+                    </p>
+                    <div className="flex flex-col gap-3">
+                      <button 
+                        onClick={() => {
+                          window.open('https://forms.gle/2pfkeCpef1XTrezV7', '_blank');
+                          setShowProModal(false);
+                        }}
+                        className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
+                      >
+                        Claim My 50% Discount
+                      </button>
+                    </div>
+                    <button 
+                      onClick={() => setShowProModal(false)}
+                      className="w-full py-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 font-bold transition-colors"
                     >
-                      <RotateCcw className="w-4 h-4" />
-                      <span>Previous Word</span>
+                      Maybe Later
                     </button>
-                  )}
-                </div>
-                <div className="flex-1 max-w-md mx-8">
-                  <div className="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">
-                    <span>Question {currentQuestionIndex + 1} of {sessionQuestions.length}</span>
-                    <span>{Math.round(((currentQuestionIndex + 1) / sessionQuestions.length) * 100)}%</span>
                   </div>
-                  <ProgressBar current={currentQuestionIndex + 1} total={sessionQuestions.length} color="bg-primary" />
-                </div>
-                <div className="w-10" />
-              </div>
-
-              <LearnCard
-                question={sessionQuestions[currentQuestionIndex]}
-                onAnswer={handleAnswer}
-                language={language}
-              />
-            </motion.div>
-          )}
-
-          {view === 'summary' && (
-            <motion.div
-              key="summary"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="py-20 px-4"
-            >
-              <SessionSummary
-                correct={sessionCorrectCount}
-                total={sessionQuestions.length}
-                onRestart={startSession}
-                onHome={() => setView('home')}
-                animationsEnabled={preferences.animationsEnabled}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </main>
-
-      {showProModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative overflow-hidden">
-            <button
-              onClick={() => setShowProModal(false)}
-              className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-            </button>
-            
-            <div className="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-2xl flex items-center justify-center mb-6">
-              <Sparkles className="w-8 h-8" />
-            </div>
-            {trialInfo.isTrialActive ? (
-              <>
-                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Active!</h2>
-                <p className="text-slate-500 dark:text-slate-400 mb-6">
-                  Premium is currently in development. As a new user, you have <strong>{trialInfo.daysLeft} days of early access</strong> to all latest features, including Grammar modules, Exam Prep, Unlimited Flashcards, and Advanced Analytics!
-                </p>
-                <button 
-                  onClick={() => setShowProModal(false)}
-                  className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
-                >
-                  Continue Learning
-                </button>
-              </>
-            ) : trialInfo.isExpired ? (
-              <>
-                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Ended</h2>
-                <p className="text-slate-500 dark:text-slate-400 mb-6">
-                  Your 7-day early access period has ended. Premium is still in development, but we're launching soon!
-                </p>
-                <div className="p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/50 mb-6">
-                  <h3 className="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5" />
-                    Claim 50% Off!
-                  </h3>
-                  <div className="mb-2 flex items-center justify-between">
-                    <div>
-                      <span className="text-sm text-slate-400 line-through mr-2">£9.99/yr</span>
-                      <span className="text-xl font-black text-slate-900 dark:text-white">£4.99/yr</span>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                    <Sparkles className="w-6 h-6 text-indigo-500" />
+                    Premium Roadmap 2026
+                  </h2>
+                  <div className="space-y-6 mb-8">
+                    <div className="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200 dark:before:bg-slate-800">
+                      <div className="absolute left-[-4px] top-1 w-2.5 h-2.5 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]" />
+                      <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest mb-2">April 2026</h3>
+                      <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400 font-bold">
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Audio Pronunciations</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Streak Freezes</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Advanced Progress Insights</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Full Smart-SRS System</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Test Mode (Active Typing)</li>
+                      </ul>
                     </div>
-                    <div className="text-right">
-                      <span className="text-slate-500 font-bold text-sm">or <span className="line-through font-normal">£3.99</span> £1.99/mo</span>
+                    
+                    <div className="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200 dark:before:bg-slate-800">
+                      <div className="absolute left-[-4px] top-1 w-2.5 h-2.5 rounded-full bg-slate-200 dark:bg-slate-800" />
+                      <h3 className="text-sm font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">June 2026</h3>
+                      <ul className="space-y-2 text-sm text-slate-500 dark:text-slate-500 font-bold">
+                        <li className="flex items-center gap-2"><Lock className="w-4 h-4" /> Easy Grammar Learning Modules</li>
+                        <li className="flex items-center gap-2"><Lock className="w-4 h-4" /> Listening & Writing Exam Prep</li>
+                        <li className="flex items-center gap-2"><Lock className="w-4 h-4" /> Offline Mode & More</li>
+                      </ul>
                     </div>
                   </div>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mb-4">
-                    Register your interest now to get an exclusive 50% early bird discount when we officially launch. Get access to Pronunciation Audio, Grammar modules, Exam Prep, Streak Freezes, and unlimited flashcards!
+                  <p className="text-slate-600 dark:text-slate-400 mb-6 font-medium text-sm leading-relaxed text-center italic">
+                    Claim your <strong className="text-indigo-600 dark:text-indigo-400">50% pioneer discount</strong> now!
                   </p>
                   <button 
                     onClick={() => {
                       window.open('https://forms.gle/2pfkeCpef1XTrezV7', '_blank');
                       setShowProModal(false);
                     }}
-                    className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"
+                    className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20 mb-3 text-lg hover:-translate-y-0.5"
                   >
                     Claim My 50% Discount
                   </button>
-                </div>
-                <button 
-                  onClick={() => setShowProModal(false)}
-                  className="w-full py-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 font-bold transition-colors"
-                >
-                  Maybe Later
-                </button>
-              </>
-            ) : (
-              <>
-                <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                  Premium in Development
-                </h2>
-                <div className="inline-block px-3 py-1 bg-red-100 dark:bg-red-900/40 text-red-600 dark:text-red-400 font-black text-[10px] rounded-full mb-4 uppercase tracking-widest animate-pulse">
-                  50% Pre-Launch Discount
-                </div>
-                <p className="text-slate-600 dark:text-slate-400 mb-4 font-medium leading-relaxed">
-                  We're building the ultimate toolkit to guarantee your target grade. Register your interest now to claim your <strong className="text-indigo-600 dark:text-indigo-400">50% pioneer discount</strong> (just £4.99/yr instead of £9.99/yr, or £1.99/mo instead of £3.99/mo)!
-                </p>
-                <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-4 mb-6 border border-slate-100 dark:border-slate-800">
-                  <ul className="space-y-3 text-sm text-slate-700 dark:text-slate-300 font-bold">
-                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Audio pronunciation (Spanish & French)</li>
-                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Easy grammar learning modules</li>
-                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Listening & Writing exam prep</li>
-                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Smart spaced repetition (SRS)</li>
-                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Test mode (type answers)</li>
-                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Advanced progress insights</li>
-                    <li className="flex items-center gap-3"><Sparkles className="w-5 h-5 text-indigo-500 fill-indigo-500/20" /> Streak freezes</li>
-                  </ul>
-                </div>
-                <button 
-                  onClick={() => {
-                    window.open('https://forms.gle/2pfkeCpef1XTrezV7', '_blank');
-                    setShowProModal(false);
-                  }}
-                  className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20 mb-3 text-lg hover:-translate-y-0.5"
-                >
-                  Claim My 50% Discount
-                </button>
-                {!user && (
-                  <button 
-                    onClick={() => {
-                      setShowProModal(false);
-                      setShowAuthModal(true);
-                    }}
-                    className="w-full py-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-xl transition-colors border border-slate-200 dark:border-slate-700"
-                  >
-                    Sign in to sync your progress
-                  </button>
-                )}
-              </>
-            )}
+                  {!user && (
+                    <button 
+                      onClick={() => {
+                        setShowProModal(false);
+                        setShowAuthModal(true);
+                      }}
+                      className="w-full py-3 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-bold rounded-xl transition-colors border border-slate-200 dark:border-slate-700"
+                    >
+                      Sign in to sync your progress
+                    </button>
+                  )}
+                </>
+              )}
           </div>
         </div>
       )}
@@ -1661,38 +1939,146 @@ export default function App() {
         </div>
       )}
 
-      <footer className="py-12 border-t border-slate-100 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-6 text-center space-y-6">
-          <div className="flex flex-col items-center gap-4">
-            <div className="flex flex-wrap justify-center gap-3">
-              <a 
-                href="https://forms.gle/NjUpvWAZCjTF4aPB6" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm"
-              >
-                <Sparkles className="w-4 h-4 text-primary" />
-                Request a Feature / Bug
-              </a>
+      {showSettings && (
+        <SettingsModal
+          onClose={() => setShowSettings(false)}
+          user={user}
+          userProfile={userProfile}
+          preferences={preferences}
+          onUpdatePreferences={(newPrefs) => setPreferences(prev => ({ ...prev, ...newPrefs }))}
+          srsSettings={srsSettings}
+          onUpdateSrsSettings={(newSettings) => {
+            const updated = { ...srsSettings, ...newSettings };
+            setSrsSettings(updated);
+            if (!devMode) {
+              safeLocalStorage.setItem('bh-srs-settings', JSON.stringify(updated));
+            }
+          }}
+          onUpdateDisplayName={handleUpdateDisplayName}
+          onClearProgress={handleClearProgress}
+          onDeleteAccount={handleDeleteAccount}
+          onExportData={handleExportData}
+          onLeaveReview={handleLeaveReview}
+          language={language}
+          devMode={devMode}
+          theme={theme}
+          onToggleTheme={toggleTheme}
+        />
+      )}
+
+      {showChangelog && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            className="bg-white dark:bg-slate-900 rounded-[2.5rem] shadow-2xl border border-slate-100 dark:border-slate-800 max-w-lg w-full overflow-hidden"
+          >
+            <div className="p-8 md:p-10">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl flex items-center justify-center text-indigo-600 dark:text-indigo-400">
+                    {viewingArchive ? <History className="w-6 h-6" /> : <Sparkles className="w-6 h-6" />}
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
+                      {viewingArchive ? "Update Archives" : "What's New"}
+                    </h2>
+                    <p className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest">
+                      {viewingArchive ? "Previous Updates" : `Version ${CURRENT_VERSION}`}
+                    </p>
+                  </div>
+                </div>
+                <button 
+                  onClick={handleCloseChangelog}
+                  className="p-2 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl text-slate-400 transition-colors"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <div className="space-y-6 mb-10 max-h-[400px] overflow-y-auto pr-2 pb-8 custom-scrollbar">
+                {!viewingArchive ? (
+                  CHANGELOG[0].changes.filter(c => devMode || !c.internal).map((item, index) => (
+                    <div key={`current-change-${index}`} className="flex gap-4">
+                      <div className="mt-1 shrink-0">
+                        <CheckCircle2 className="w-5 h-5 text-green-500" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-slate-900 dark:text-white text-sm">{item.title}</h3>
+                        <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{item.description}</p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="space-y-8">
+                    {CHANGELOG.slice(1).map((release) => {
+                      const visibleChanges = release.changes.filter(c => devMode || !c.internal);
+                      if (visibleChanges.length === 0) return null;
+                      
+                      return (
+                        <div key={release.version} className="space-y-4">
+                          <h3 className="text-xs font-black text-indigo-500 uppercase tracking-widest border-b border-slate-100 dark:border-slate-800 pb-2">
+                            Version {release.version}
+                          </h3>
+                          <div className="space-y-4">
+                            {visibleChanges.map((item, index) => (
+                              <div key={`archive-change-${release.version}-${index}`} className="flex gap-4">
+                                <div className="mt-1 shrink-0">
+                                  <CheckCircle2 className="w-5 h-5 text-slate-300 dark:text-slate-600" />
+                                </div>
+                                <div>
+                                  <h4 className="font-bold text-slate-700 dark:text-slate-200 text-sm">{item.title}</h4>
+                                  <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">{item.description}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+
+              <div className="space-y-4">
+                <button
+                  onClick={handleCloseChangelog}
+                  className="w-full py-5 bg-slate-900 dark:bg-slate-700 text-white font-bold rounded-2xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-xl active:scale-95 flex items-center justify-center gap-2"
+                >
+                  Got it, let's study!
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+                
+                <button
+                  onClick={() => setViewingArchive(!viewingArchive)}
+                  className="w-full py-3 text-slate-400 dark:text-slate-500 font-bold hover:text-slate-600 dark:hover:text-slate-300 transition-colors text-xs flex items-center justify-center gap-2 uppercase tracking-widest"
+                >
+                  {viewingArchive ? (
+                    <>← Back to What's New</>
+                  ) : (
+                    <>
+                      <History className="w-4 h-4" />
+                      View Update Archives
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
-          </div>
-          
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-slate-400 dark:text-slate-500 text-sm font-medium tracking-wide">
-              Created by <span className="text-slate-900 dark:text-white font-bold">Aryeh Isaac-Saul</span>
-            </p>
-            
-            <div className="flex items-center justify-center gap-3 mt-2">
-              <button 
-                onClick={toggleDevMode}
-                className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border transition-colors ${devMode ? 'bg-indigo-100 text-indigo-600 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-400 dark:border-indigo-800' : 'bg-slate-100 text-slate-500 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'}`}
-              >
-                Dev Mode: {devMode ? 'ON' : 'OFF'}
-              </button>
-            </div>
-          </div>
+          </motion.div>
         </div>
-      </footer>
+      )}
+
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showReviewForm && (
+          <ReviewFormModal 
+            onClose={() => setShowReviewForm(false)} 
+            onSubmit={handleSubmitReview} 
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { BookOpen, Zap, Trophy } from 'lucide-react';
 
 interface HowItWorksProps {
-  language: 'biblical' | 'modern' | 'spanish';
+  language: string;
 }
 
 export function HowItWorks({ language }: HowItWorksProps) {
@@ -16,8 +16,8 @@ export function HowItWorks({ language }: HowItWorksProps) {
     },
     {
       icon: <BookOpen className="w-6 h-6 text-blue-500" />,
-      title: "Smart Learning",
-      description: "Our tool uses spaced repetition to help you memorize words faster and more effectively."
+      title: "AI-Powered Learning",
+      description: "Our smart algorithm uses AI-driven spaced repetition to help you memorize words faster and more effectively."
     },
     {
       icon: <Trophy className="w-6 h-6 text-green-500" />,
@@ -40,7 +40,7 @@ export function HowItWorks({ language }: HowItWorksProps) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {steps.map((step, idx) => (
             <motion.div
-              key={idx}
+              key={`how-step-${idx}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

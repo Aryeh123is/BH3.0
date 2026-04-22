@@ -39,8 +39,8 @@ service cloud.firestore {
 
     function isValidUser(data) {
       return data.keys().hasOnly(['language', 'lastActive', 'role', 'streak', 'lastStreakUpdate', 'streakFreezes', 'totalLearningTime', 'displayName', 'deleted', 'deletedAt', 'isPremium']) &&
-             (data.language == 'biblical' || data.language == 'modern' || data.language == 'spanish' || data.language == 'french') &&
-             data.lastActive is number &&
+             (!('language' in data) || data.language is string) &&
+             (!('lastActive' in data) || data.lastActive is number) &&
              (!('streak' in data) || data.streak is number) &&
              (!('lastStreakUpdate' in data) || data.lastStreakUpdate is number) &&
              (!('streakFreezes' in data) || data.streakFreezes is number) &&
@@ -58,9 +58,9 @@ service cloud.firestore {
              (data.mastery == 'new' || data.mastery == 'learning' || data.mastery == 'mastered') &&
              data.correctCount is number &&
              data.incorrectCount is number &&
-             data.lastStudied is number &&
-             data.interval is number &&
-             data.nextReview is number;
+             (!('lastStudied' in data) || data.lastStudied is number) &&
+             (!('interval' in data) || data.interval is number) &&
+             (!('nextReview' in data) || data.nextReview is number);
     }
 
     function isValidCustomDeck(data) {
@@ -81,9 +81,24 @@ service cloud.firestore {
              data.authorId is string;
     }
 
+    function isValidShopDoc(data) {
+      return data.keys().hasAll(['title', 'description', 'content', 'language', 'price', 'createdAt']) &&
+             data.title is string && data.title.size() <= 200 &&
+             data.description is string && data.description.size() <= 1000 &&
+             data.content is string && data.content.size() <= 100000 &&
+             data.language is string &&
+             data.price is number &&
+             data.createdAt is number;
+    }
+
     // ===============================================================
     // Rules
     // ===============================================================
+
+    match /shopContent/{docId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
 
     match /sharedDecks/{deckId} {
       allow read: if true; // Anyone can read a shared deck
@@ -113,6 +128,26 @@ service cloud.firestore {
         allow create, update: if isOwner(userId) && isValidCustomDeck(request.resource.data);
         allow delete: if isOwner(userId) || isAdmin();
       }
+    }
+
+    match /verificationCodes/{email} {
+      allow read, write: if false; 
+    }
+
+    function isValidReview(data) {
+      return data.keys().hasOnly(['name', 'role', 'text', 'comment', 'rating', 'date', 'userId', 'id']) &&
+             data.name is string &&
+             data.comment is string &&
+             data.rating is number &&
+             data.date is string &&
+             (!('id' in data) || data.id is string) &&
+             data.userId is string;
+    }
+
+    match /reviews/{reviewId} {
+      allow read: if true;
+      allow create: if isValidReview(request.resource.data);
+      allow delete, update: if isAdmin();
     }
 
     // Default deny

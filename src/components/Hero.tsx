@@ -50,15 +50,14 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
             )}
             
             <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight leading-[1.1] max-w-4xl">
-              Master {(language === 'spanish' || language === 'french') ? 'GCSE' : currentPreview.label} Vocabulary <br className="hidden md:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">Fast</span>
+              Master {(language === 'spanish' || language === 'french') ? 'GCSE' : currentPreview.label} Vocabulary with <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 whitespace-nowrap">Vocariox</span>
             </h1>
             
             <p className="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-10 max-w-2xl mx-auto font-medium">
-              The fastest way to memorise vocabulary for {(language === 'spanish' || language === 'french') ? 'GCSEs' : 'exams'} and real life. No sign-up required to start learning.
+              The fastest way to memorise vocabulary for {(language === 'spanish' || language === 'french') ? 'GCSEs' : 'exams'} and real life. Powered by AI Smart-SRS technology.
             </p>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-16">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-8">
               <button 
                 onClick={onStartFlashcards}
                 className={`w-full sm:w-auto px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-2xl transition-all ${!reducedMotion ? 'hover:scale-105 active:scale-95 animate-bounce-subtle' : ''} shadow-xl shadow-indigo-600/20 text-lg flex items-center justify-center gap-2 group`}
@@ -78,6 +77,11 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
                 </button>
               )}
             </div>
+
+            <p className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-16 flex items-center gap-2 justify-center">
+              <Trophy className="w-4 h-4 text-amber-500" />
+              Trusted by thousands of students across the country
+            </p>
 
             {/* INTERACTIVE FLASHCARD PREVIEW */}
             <div className="w-full max-w-md mx-auto perspective-1000 cursor-pointer group" onClick={() => setIsFlipped(!isFlipped)}>
@@ -105,8 +109,8 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
         </div>
       </section>
 
-      {/* TOPICS SECTION (Only for Spanish & French) */}
-      {(language === 'spanish' || language === 'french') && (
+      {/* TOPICS SECTION (For Spanish, French & Modern Hebrew) */}
+      {(language === 'spanish' || language === 'french' || language === 'modern') && (
         <section id="topics-section" className="py-20 px-6 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
@@ -115,26 +119,51 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { title: 'Family & Friends', icon: '👨‍👩‍👧‍👦', color: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400' },
-                { title: 'School & Study', icon: '🏫', color: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400' },
-                { title: 'Food & Drink', icon: '🥘', color: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
-                { title: 'Holidays & Travel', icon: '✈️', color: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-600 dark:text-purple-400' },
-              ].map((topic, i) => (
-                <button 
-                  key={i}
-                  onClick={() => onStartFlashcards(topic.title)}
-                  className="group p-6 bg-slate-50 dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-lg hover:-translate-y-1 text-left flex flex-col gap-4"
-                >
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${topic.color}`}>
-                    {topic.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{topic.title}</h3>
-                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Start learning →</p>
-                  </div>
-                </button>
-              ))}
+              {language === 'modern' ? (
+                // Modern Hebrew Topics
+                [
+                  { title: 'Personal', icon: '👤', color: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400' },
+                  { title: 'Education', icon: '🎓', color: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400' },
+                  { title: 'Social', icon: '🤝', color: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
+                  { title: 'Travel', icon: '✈️', color: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-600 dark:text-purple-400' },
+                ].map((topic, i) => (
+                  <button 
+                    key={`modern-${i}`}
+                    onClick={() => onStartFlashcards(topic.title)}
+                    className="group p-6 bg-slate-50 dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-lg hover:-translate-y-1 text-left flex flex-col gap-4"
+                  >
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${topic.color}`}>
+                      {topic.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{topic.title}</h3>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Start learning →</p>
+                    </div>
+                  </button>
+                ))
+              ) : (
+                // Spanish & French Topics
+                [
+                  { title: 'Family & Friends', icon: '👨‍👩‍👧‍👦', color: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400' },
+                  { title: 'School & Study', icon: '🏫', color: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400' },
+                  { title: 'Food & Drink', icon: '🥘', color: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
+                  { title: 'Holidays & Travel', icon: '✈️', color: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-600 dark:text-purple-400' },
+                ].map((topic, i) => (
+                  <button 
+                    key={`lang-${i}`}
+                    onClick={() => onStartFlashcards(topic.title)}
+                    className="group p-6 bg-slate-50 dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-lg hover:-translate-y-1 text-left flex flex-col gap-4"
+                  >
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${topic.color}`}>
+                      {topic.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{topic.title}</h3>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Start learning →</p>
+                    </div>
+                  </button>
+                ))
+              )}
             </div>
           </div>
         </section>
@@ -151,7 +180,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
                 { icon: <Brain className="w-6 h-6" />, title: 'Learn faster with repetition', desc: 'Our smart algorithm ensures you remember words long-term.' },
                 { icon: <Target className="w-6 h-6" />, title: 'Designed for exam prep', desc: 'Focus on the high-frequency words that actually appear in exams.' },
               ].map((item, i) => (
-                <div key={i} className="flex gap-4">
+                <div key={`hero-feature-${i}`} className="flex gap-4">
                   <div className="w-12 h-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
                     {item.icon}
                   </div>
@@ -172,7 +201,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
                 { step: '2', title: 'Start learning instantly', desc: 'Flip cards and test your memory.' },
                 { step: '3', title: 'Improve every day', desc: 'Build a streak and track your progress.' },
               ].map((item, i) => (
-                <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                <div key={`how-it-works-${i}`} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                   <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-white dark:border-slate-900 bg-indigo-600 text-white font-black shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow-md z-10">
                     {item.step}
                   </div>
@@ -208,7 +237,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
                 { icon: <BarChart3 className="w-5 h-5" />, text: 'Advanced progress insights' },
                 { icon: <Snowflake className="w-5 h-5" />, text: 'Streak freezes' },
               ].map((feature, i) => (
-                <div key={i} className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10">
+                <div key={`premium-feature-${i}`} className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10">
                   <div className="text-indigo-400">{feature.icon}</div>
                   <span className="font-medium text-sm">{feature.text}</span>
                 </div>

@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Word, UserProgress, CustomDeck, SRSSettings } from '../types';
-import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2, Settings2, Save, Snowflake, Share2, Flame, User as UserIcon } from 'lucide-react';
+import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2, Settings2, Save, Snowflake, Share2, Flame, User as UserIcon, Sparkles, ShoppingCart } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
 import { ProgressChart } from './ProgressChart';
 import { User } from 'firebase/auth';
@@ -17,6 +17,7 @@ interface DashboardProps {
   onStartIncorrectSession: () => void;
   onStartFlashcards: (topic?: string | any) => void;
   onStartTest: () => void;
+  onNavigate: (view: 'home' | 'dashboard' | 'test' | 'shop') => void;
   onResetProgress: () => void;
   user: User | null;
   userProfile?: any;
@@ -29,9 +30,13 @@ interface DashboardProps {
   srsSettings: SRSSettings;
   onUpdateSrsSettings: (settings: SRSSettings) => void;
   reducedMotion?: boolean;
+  onLeaveReview?: () => void;
+  onShowSettings: () => void;
+  shopUnlocked?: boolean;
+  onUnlockShop?: () => void;
 }
 
-export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorrectSession, onStartFlashcards, onStartTest, onResetProgress, user, userProfile, language = 'biblical', onLanguageChange, onShowPro, devMode = false, isPremium = false, customDecks, srsSettings, onUpdateSrsSettings, reducedMotion = false }: DashboardProps) {
+export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorrectSession, onStartFlashcards, onStartTest, onNavigate, onResetProgress, user, userProfile, language = 'biblical', onLanguageChange, onShowPro, devMode = false, isPremium = false, customDecks, srsSettings, onUpdateSrsSettings, reducedMotion = false, onLeaveReview, onShowSettings, shopUnlocked = false, onUnlockShop }: DashboardProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
@@ -41,6 +46,25 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
   const [showImportDeck, setShowImportDeck] = useState(false);
   const [sharingDeckId, setSharingDeckId] = useState<string | null>(null);
   const [showDatabase, setShowDatabase] = useState(false);
+  const [shopClickCount, setShopClickCount] = useState(0);
+
+  const handleShopClick = () => {
+    if (shopUnlocked) {
+      onNavigate?.('shop');
+    }
+  };
+
+  const handleIconClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Don't trigger the button click
+    const newCount = shopClickCount + 1;
+    setShopClickCount(newCount);
+    
+    if (newCount >= 5) {
+      onUnlockShop?.();
+      setShopClickCount(0);
+      onNavigate?.('shop');
+    }
+  };
 
   const handleShareDeck = async (deck: CustomDeck) => {
     if (!user) return;
@@ -197,12 +221,21 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
           </p>
         </div>
         <div className="flex flex-col items-end gap-3 w-full sm:w-auto">
-          {userProfile?.streak > 0 && (
-            <div className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-2xl shadow-lg shadow-orange-500/20 border border-white/10 flex items-center gap-2">
-              <Flame className="w-5 h-5 fill-current" />
-              <span className="font-black text-sm">{userProfile.streak} Day Streak!</span>
-            </div>
-          )}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={onShowSettings}
+              className="p-3 bg-white dark:bg-slate-900 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-soft transition-all active:scale-95"
+              title="User Settings"
+            >
+              <Settings2 className="w-6 h-6" />
+            </button>
+            {userProfile?.streak > 0 && (
+              <div className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-2xl shadow-lg shadow-orange-500/20 border border-white/10 flex items-center gap-2">
+                <Flame className="w-5 h-5 fill-current" />
+                <span className="font-black text-sm">{userProfile.streak} Day Streak!</span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
@@ -214,7 +247,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
               START LEARNING <br className="hidden md:block"/> NOW — IT'S FREE!
             </h2>
             <p className="text-indigo-100 font-bold text-base md:text-xl mb-8 max-w-lg opacity-90">
-              Master your {language === 'biblical' ? 'Biblical Hebrew' : language === 'spanish' ? 'Spanish' : 'vocabulary'} effectively with spaced repetition.
+              Master your {language === 'biblical' ? 'Biblical Hebrew' : language === 'spanish' ? 'Spanish' : 'vocabulary'} effectively with Vocariox Smart-SRS.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
@@ -275,6 +308,32 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
             <span className="font-black text-slate-900 dark:text-white">Test Mode</span>
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Challenge Yourself</span>
           </button>
+
+          <button 
+            onClick={handleShopClick}
+            className={`col-span-2 lg:col-span-1 flex flex-col items-center justify-center p-6 border rounded-[2rem] shadow-lg group transition-all hover:-translate-y-1 ${
+              shopUnlocked 
+                ? 'bg-gradient-to-br from-pink-500 to-rose-600 border-pink-400/50 shadow-pink-500/20' 
+                : 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-none grayscale opacity-80'
+            }`}
+          >
+            <div 
+              onClick={handleIconClick}
+              className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform cursor-pointer ${
+                shopUnlocked ? 'bg-white/20' : 'bg-slate-200 dark:bg-slate-700'
+              }`}
+            >
+              <ShoppingCart className={`w-7 h-7 ${shopUnlocked ? 'text-white' : 'text-slate-400'}`} />
+            </div>
+            <span className={`font-black ${shopUnlocked ? 'text-white' : 'text-slate-500'}`}>
+              {shopUnlocked ? 'Student Shop' : 'Work in Progress'}
+            </span>
+            <span className={`text-[10px] font-black uppercase tracking-widest mt-1 ${
+              shopUnlocked ? 'text-pink-100' : 'text-slate-400'
+            }`}>
+              {shopUnlocked ? 'Premium Cheat Sheets' : 'Coming Soon'}
+            </span>
+          </button>
         </div>
       </div>
 
@@ -330,7 +389,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
 
       {activeTab === 'overview' && (
         <>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 px-4 md:px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16 px-0 md:px-0">
             <div className="lg:col-span-2 bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-soft border border-slate-100 dark:border-slate-800 relative overflow-hidden group transition-all hover:shadow-xl">
               <div className="relative z-10">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-10">
@@ -545,8 +604,8 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                     className="flex-1 sm:flex-none px-4 py-3 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-2xl text-sm font-bold text-slate-600 dark:text-slate-400 outline-none focus:ring-4 focus:ring-primary/5 focus:border-primary transition-all appearance-none cursor-pointer"
                   >
                     <option value="all">All Categories</option>
-                    {categories.map(cat => (
-                      <option key={cat} value={cat}>{cat}</option>
+                    {categories.map((cat, i) => (
+                      <option key={`cat-${cat}-${i}`} value={cat}>{cat}</option>
                     ))}
                   </select>
                 </div>
@@ -565,12 +624,12 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                 </thead>
                 <tbody className="divide-y divide-slate-50 dark:divide-slate-800">
                   {filteredVocabulary.length > 0 ? (
-                    filteredVocabulary.map((word) => {
+                    filteredVocabulary.map((word, i) => {
                       const wordProgress = progress.find(p => p.wordId === word.id);
                       const status = wordProgress?.mastery || 'new';
   
                       return (
-                        <tr key={word.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors group">
+                        <tr key={`vocab-${word.id}-${i}`} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors group">
                           <td className="px-8 py-6 text-3xl font-bold text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
                             {getForeignWord(word, language)}
                           </td>
@@ -608,12 +667,12 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
             {/* Mobile List View */}
             <div className="md:hidden divide-y divide-slate-100 dark:divide-slate-800">
               {filteredVocabulary.length > 0 ? (
-                filteredVocabulary.map((word) => {
+                filteredVocabulary.map((word, i) => {
                   const wordProgress = progress.find(p => p.wordId === word.id);
                   const status = wordProgress?.mastery || 'new';
   
                   return (
-                    <div key={word.id} className="p-6 active:bg-slate-50 dark:active:bg-slate-800/50 transition-colors">
+                    <div key={`mobile-vocab-${word.id}-${i}`} className="p-6 active:bg-slate-50 dark:active:bg-slate-800/50 transition-colors">
                       <div className="flex justify-between items-start mb-2">
                         <div className="text-3xl font-bold text-slate-900 dark:text-white leading-tight" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
                           {getForeignWord(word, language)}
@@ -697,7 +756,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                 <div className="grid grid-rows-7 grid-flow-col gap-1.5 min-w-max">
                   {analytics.heatmapData.map((count, i) => (
                     <div 
-                      key={i} 
+                      key={`heatmap-${i}`} 
                       className={`w-4 h-4 rounded-sm transition-colors ${
                         count === 0 ? 'bg-slate-100 dark:bg-slate-800' : 
                         count < 5 ? 'bg-indigo-200 dark:bg-indigo-900/40' : 
@@ -727,7 +786,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
             {analytics.difficultWords.length > 0 ? (
               <div className="space-y-4">
                 {analytics.difficultWords.map((item, i) => (
-                  <div key={item.wordId} className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700">
+                  <div key={`diff-${item.wordId}-${i}`} className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-700">
                     <div className="flex items-center gap-4">
                       <div className="w-8 h-8 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full flex items-center justify-center font-bold text-sm">
                         {i + 1}
@@ -794,9 +853,9 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {customDecks.map((deck) => (
+              {customDecks.map((deck, i) => (
                 <div 
-                  key={deck.id}
+                  key={`deck-${deck.id}-${i}`}
                   className={`bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-soft border transition-all ${language === deck.id ? 'border-primary ring-2 ring-primary/20' : 'border-slate-100 dark:border-slate-800 hover:border-primary/30'}`}
                 >
                   <div className="flex items-start justify-between mb-4">
@@ -897,25 +956,58 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
               <label className="block text-sm font-bold text-slate-700 dark:text-slate-300">
                 Algorithm
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button
-                  onClick={() => onUpdateSrsSettings({ ...srsSettings, algorithm: 'leitner' })}
-                  className={`p-4 rounded-2xl border text-left transition-all ${srsSettings.algorithm === 'leitner' ? 'border-primary ring-2 ring-primary/20 bg-primary/5' : 'border-slate-200 dark:border-slate-700 hover:border-primary/30'}`}
-                >
-                  <div className="font-bold text-slate-900 dark:text-white mb-1">Standard (Leitner)</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Fixed intervals (1d, 3d, 7d, 14d...). Best for most users.</div>
-                </button>
-                <button
-                  onClick={() => onUpdateSrsSettings({ ...srsSettings, algorithm: 'custom' })}
-                  className={`p-4 rounded-2xl border text-left transition-all ${srsSettings.algorithm === 'custom' ? 'border-primary ring-2 ring-primary/20 bg-primary/5' : 'border-slate-200 dark:border-slate-700 hover:border-primary/30'}`}
-                >
-                  <div className="font-bold text-slate-900 dark:text-white mb-1">Custom Intervals</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400">Define your own intervals for each mastery level.</div>
-                </button>
+              
+              <div className="p-6 mb-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-3xl border border-indigo-100 dark:border-indigo-800 flex flex-col gap-4">
+                <div className="flex items-start gap-4 justify-between">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                      <h4 className="font-bold text-slate-900 dark:text-white">Advanced AI Spaced Repetition</h4>
+                      {(!isPremium && !devMode) && (
+                        <span className="text-[10px] font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 px-2 py-0.5 rounded-full uppercase tracking-widest">Premium</span>
+                      )}
+                    </div>
+                    <p className="text-sm text-slate-600 dark:text-slate-400 font-medium leading-snug">
+                      Use our science & AI-backed 4-button review system instead of simple pass/fail to drastically improve your long-term retention.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      if (isPremium || devMode) {
+                        onUpdateSrsSettings({ ...srsSettings, advancedMode: !srsSettings?.advancedMode });
+                      }
+                    }}
+                    disabled={!isPremium && !devMode}
+                    className={`relative shrink-0 w-12 h-6 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed ${srsSettings?.advancedMode ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'}`}
+                    role="switch"
+                    aria-checked={!!srsSettings?.advancedMode}
+                  >
+                    <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${srsSettings?.advancedMode ? 'translate-x-6' : 'translate-x-0'}`} />
+                  </button>
+                </div>
               </div>
+
+              {!srsSettings.advancedMode && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <button
+                    onClick={() => onUpdateSrsSettings({ ...srsSettings, algorithm: 'leitner' })}
+                    className={`p-4 rounded-2xl border text-left transition-all ${srsSettings.algorithm === 'leitner' ? 'border-primary ring-2 ring-primary/20 bg-primary/5' : 'border-slate-200 dark:border-slate-700 hover:border-primary/30'}`}
+                  >
+                    <div className="font-bold text-slate-900 dark:text-white mb-1">Standard (Leitner)</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">Fixed intervals (1d, 3d, 7d, 14d...).</div>
+                  </button>
+                  <button
+                    onClick={() => onUpdateSrsSettings({ ...srsSettings, algorithm: 'custom' })}
+                    className={`p-4 rounded-2xl border text-left transition-all ${srsSettings.algorithm === 'custom' ? 'border-primary ring-2 ring-primary/20 bg-primary/5' : 'border-slate-200 dark:border-slate-700 hover:border-primary/30'}`}
+                  >
+                    <div className="font-bold text-slate-900 dark:text-white mb-1">Custom Intervals</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400">Define your own intervals depending on mastery level.</div>
+                  </button>
+                </div>
+              )}
             </div>
 
-            {srsSettings.algorithm === 'custom' && (
+            {!srsSettings.advancedMode && srsSettings.algorithm === 'custom' && (
               <div className="space-y-6 p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
                 <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
                   <RotateCw className="w-4 h-4 text-primary" />

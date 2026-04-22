@@ -4,7 +4,7 @@ import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles, Flame, Snowflake,
 import { User } from 'firebase/auth';
 
 interface NavbarProps {
-  onNavigate: (view: 'home' | 'dashboard' | 'test') => void;
+  onNavigate: (view: 'home' | 'dashboard' | 'test' | 'shop') => void;
   language: string;
   onLanguageChange: (lang: string) => void;
   user: User | null;
@@ -36,8 +36,8 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
   const languages = [
     { id: 'french', label: 'French (Edexcel)', icon: <img src="https://flagcdn.com/w40/fr.png" alt="FR" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
     { id: 'spanish', label: 'Spanish (Edexcel)', icon: <img src="https://flagcdn.com/w40/es.png" alt="ES" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
+    { id: 'modern', label: 'Modern Hebrew', icon: <img src="https://flagcdn.com/w40/il.png" alt="IL" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
     { id: 'biblical', label: 'Biblical Hebrew', icon: '📜' },
-    ...(devMode ? [{ id: 'modern', label: 'Modern Hebrew', icon: <img src="https://flagcdn.com/w40/il.png" alt="IL" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> }] : []),
   ];
 
   if (language !== 'spanish' && language !== 'biblical' && language !== 'modern' && language !== 'french') {
@@ -54,14 +54,26 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-2 sm:gap-4 shrink-0"
         >
-          <span 
-            className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight cursor-pointer shrink-0"
+          <div 
+            className="flex items-center gap-1.5 text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight cursor-pointer shrink-0"
             onClick={() => onNavigate('home')}
           >
-            {language === 'biblical' ? 'BH' : language === 'modern' ? 'MH' : language === 'spanish' ? 'ES' : language === 'french' ? 'FR' : 'Custom'} <span className="text-primary hidden xxs:inline">Keywords</span>
-          </span>
+            <span>
+              {language === 'biblical' ? 'BH' : 
+               language === 'modern' ? 'MH' : 
+               language === 'spanish' ? 'ES' : 
+               language === 'french' ? 'FR' : 'Custom'}
+            </span>
+            <span className="text-primary hidden sm:inline">Keywords</span>
+            <span className="sm:hidden flex items-center">
+              {language === 'french' && <img src="https://flagcdn.com/w40/fr.png" alt="FR" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
+              {language === 'spanish' && <img src="https://flagcdn.com/w40/es.png" alt="ES" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
+              {language === 'modern' && <img src="https://flagcdn.com/w40/il.png" alt="IL" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
+              {language === 'biblical' && <span className="text-base leading-none">📜</span>}
+            </span>
+          </div>
           
-            <div className="relative" ref={langMenuRef}>
+          <div className="relative" ref={langMenuRef}>
             <button
               onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
               className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-2 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-xl transition-all text-sm font-bold border border-slate-200 dark:border-slate-700 active:scale-95 shadow-sm"
@@ -121,14 +133,6 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-1.5 sm:gap-3 md:gap-4 shrink-0"
         >
-          <button 
-            onClick={onToggleTheme}
-            className="p-1.5 sm:p-2 text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-            title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-          >
-            {theme === 'light' ? <Moon className="w-5 h-5 shadow-sm" /> : <Sun className="w-5 h-5 shadow-sm" />}
-          </button>
-
           {!isPremium && (
             <button 
               onClick={onShowPro}
@@ -176,25 +180,13 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
               
               <button 
                 onClick={() => onNavigate('dashboard')}
-                className="hidden md:flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
+                className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
                 title="Dashboard"
               >
                 <LayoutDashboard className="w-4 h-4 text-indigo-500" />
-                <span className="text-xs font-bold text-slate-600 dark:text-slate-300">
+                <span className="text-xs font-bold text-slate-600 dark:text-slate-300 hidden sm:inline">
                   Dashboard
                 </span>
-              </button>
-              
-              <button 
-                onClick={onShowSettings}
-                className="flex items-center justify-center p-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
-                title="Account Settings"
-              >
-                {user.photoURL ? (
-                  <img src={user.photoURL} alt={user.displayName || ''} className="w-5 h-5 rounded-full" referrerPolicy="no-referrer" />
-                ) : (
-                  <UserIcon className="w-4 h-4 text-slate-400" />
-                )}
               </button>
               
               <button 
