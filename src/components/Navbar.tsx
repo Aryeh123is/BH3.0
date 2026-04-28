@@ -161,21 +161,10 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
           {user ? (
             <div className="flex items-center gap-2 md:gap-3">
               <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-1.5 bg-slate-50 dark:bg-slate-800 rounded-full border border-slate-100 dark:border-slate-700 transition-all duration-300">
-                {userProfile === null ? (
-                  <>
-                    <div className="flex items-center gap-1 text-orange-500/50 font-bold text-[10px] sm:text-xs">
-                      <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      <span>-</span>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="flex items-center gap-1 text-orange-500 font-bold text-[10px] sm:text-xs" title="Current Streak">
-                      <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                      <span>{userProfile.streak || 0}</span>
-                    </div>
-                  </>
-                )}
+                <div className={`flex items-center gap-1 ${userProfile?.streak > 0 ? 'text-orange-500 font-bold' : 'text-slate-400 dark:text-slate-500 font-medium'} text-[10px] sm:text-xs`} title="Current Streak">
+                  <Flame className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${userProfile?.streak > 0 ? 'fill-current' : ''}`} />
+                  <span>{userProfile?.streak || 0}</span>
+                </div>
               </div>
               
               <button 

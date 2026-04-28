@@ -8,6 +8,7 @@ interface HeroProps {
   onViewDashboard: () => void;
   onStartFlashcards: (topic?: string | any) => void;
   onStartTest: () => void;
+  onStartSpeakingMode?: () => void;
   language: string;
   onLanguageChange: (lang: string) => void;
   user: User | null;
@@ -18,7 +19,7 @@ interface HeroProps {
   reducedMotion?: boolean;
 }
 
-export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onStartTest, language, onLanguageChange, user, onSignIn, onShowPro, devMode = false, isPremium = false, reducedMotion = false }: HeroProps) {
+export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onStartTest, onStartSpeakingMode, language, onLanguageChange, user, onSignIn, onShowPro, devMode = false, isPremium = false, reducedMotion = false }: HeroProps) {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const previewCards: Record<string, { front: string, back: string, label: string }> = {
@@ -65,6 +66,16 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
                 <Zap className="w-5 h-5 fill-current group-hover:animate-pulse" />
                 START LEARNING NOW
               </button>
+              {(language === 'spanish' || language === 'french') && (
+                <button 
+                  disabled={!devMode}
+                  onClick={devMode ? onStartSpeakingMode : undefined}
+                  className={`w-full sm:w-auto px-8 py-4 ${devMode ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-amber-500/20 active:scale-95' : 'bg-slate-200 dark:bg-slate-800 text-slate-400 dark:text-slate-500 cursor-not-allowed'} font-black rounded-2xl transition-all shadow-xl text-lg flex items-center justify-center gap-2`}
+                >
+                  <Volume2 className="w-5 h-5" />
+                  {devMode ? 'SPEAKING EXAM MODE' : 'COMING SOON!'}
+                </button>
+              )}
               {(language === 'spanish' || language === 'french') && (
                 <button 
                   onClick={() => {

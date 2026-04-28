@@ -673,7 +673,7 @@ export function FlashcardMode({
                           <h2 className={`font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 ${getFontSize(frontSide === 'hebrew' ? getForeignWord(sessionCards[currentIndex], language) : sessionCards[currentIndex].english, frontSide === 'hebrew')}`} dir={frontSide === 'hebrew' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
                             {frontSide === 'hebrew' ? getForeignWord(sessionCards[currentIndex], language) : sessionCards[currentIndex].english}
                           </h2>
-                          {(language === 'spanish' || language === 'french') && frontSide === 'hebrew' && (
+                          {user && (language === 'spanish' || language === 'french') && frontSide === 'hebrew' && (
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
@@ -710,7 +710,7 @@ export function FlashcardMode({
                           <h2 className={`font-black mb-4 sm:mb-6 drop-shadow-sm ${getFontSize(frontSide === 'hebrew' ? sessionCards[currentIndex].english : getForeignWord(sessionCards[currentIndex], language), frontSide === 'english')}`} dir={frontSide === 'english' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
                             {frontSide === 'hebrew' ? sessionCards[currentIndex].english : getForeignWord(sessionCards[currentIndex], language)}
                           </h2>
-                          {(language === 'spanish' || language === 'french') && frontSide === 'english' && (
+                          {user && (language === 'spanish' || language === 'french') && frontSide === 'english' && (
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();

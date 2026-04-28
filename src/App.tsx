@@ -13,6 +13,7 @@ const Shop = lazy(() => import('./components/Shop').then(m => ({ default: m.Shop
 const SettingsModal = lazy(() => import('./components/SettingsModal').then(m => ({ default: m.SettingsModal })));
 const AuthModal = lazy(() => import('./components/AuthModal').then(m => ({ default: m.AuthModal })));
 
+import { SpeakingExamMode } from './components/SpeakingExamMode';
 import { LearnCard } from './components/LearnCard';
 import { ProgressBar } from './components/ProgressBar';
 import { SessionSummary } from './components/SessionSummary';
@@ -35,9 +36,25 @@ const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
 const PREFS_KEY = 'bh-app-preferences';
 const REVIEWS_PROMPT_KEY = 'bh-review-prompt-shown';
-const CURRENT_VERSION = '2.2.4';
+const CURRENT_VERSION = '3.0.1';
 
 const CHANGELOG = [
+  {
+    version: '3.0.1',
+    changes: [
+      { title: 'Duplicate Reviews & Lists Resolution', description: 'Systematically fixed duplicate key errors across the app.' },
+      { title: 'Fast & Reliable Authentication', description: 'Removed email verification to make account creation instant!' }
+    ]
+  },
+  {
+    version: '3.0.0',
+    changes: [
+      { title: '🎉 MAJOR UPDATE: AI-Powered SRS', description: 'Next-generation Spaced Repetition System integrated directly into your learning flow. Master vocabulary faster with smart, adaptive scheduling.' },
+      { title: '🌍 Modern Hebrew Full Release', description: 'Modern Hebrew is now 100% unlocked and out of beta! Dive into thousands of words, phrases, and native pronunciations.' },
+      { title: '⚡ Instant Authentication & Cloud Sync', description: 'We completely rewrote the login engine. Sign ups are now instant, entirely frictionless, and your study data perfectly syncs everywhere.' },
+      { title: '🛡️ Premium Account Hardening', description: 'Enhanced data security for user profiles and eliminated annoying duplicate submit bugs in the review UI.' }
+    ]
+  },
   {
     version: '2.2.4',
     changes: [
@@ -247,10 +264,13 @@ const CHANGELOG = [
 ];
 
 const LoadingFallback = () => (
-  <div className="flex flex-col items-center justify-center min-h-[60vh] gap-4">
-    <RefreshCw className="w-10 h-10 text-primary animate-spin" />
-    <p className="text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest text-xs">
-      Loading Studio...
+  <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6">
+    <div className="relative">
+      <img src="/logo.png" alt="Loading" className="w-20 h-20 animate-bounce rounded-3xl shadow-2xl shadow-indigo-500/30" />
+      <div className="absolute inset-0 bg-white/20 rounded-3xl animate-ping opacity-75" />
+    </div>
+    <p className="text-slate-400 dark:text-slate-500 font-bold uppercase tracking-[0.3em] text-xs animate-pulse">
+      Loading Vocariox...
     </p>
   </div>
 );
@@ -309,15 +329,32 @@ export default function App() {
     }
   };
 
+  const handleDeleteReview = async (reviewId: string) => {
+    if (window.confirm("Are you sure you want to delete this review?")) {
+      try {
+        await deleteDoc(doc(db, 'reviews', reviewId));
+      } catch (error) {
+        console.error("Error deleting review:", error);
+        alert("Failed to delete review.");
+      }
+    }
+  };
+
   const handleCloseReviewPrompt = () => {
     setShowReviewPrompt(false);
     safeLocalStorage.setItem(REVIEWS_PROMPT_KEY, 'true');
+    if (user && !devMode) {
+      setDoc(doc(db, 'users', user.uid), { reviewPromptShown: true }, { merge: true }).catch(console.error);
+    }
   };
 
   const handleLeaveReview = () => {
     setShowReviewPrompt(false);
     setShowReviewForm(true);
     safeLocalStorage.setItem(REVIEWS_PROMPT_KEY, 'true');
+    if (user && !devMode) {
+      setDoc(doc(db, 'users', user.uid), { reviewPromptShown: true }, { merge: true }).catch(console.error);
+    }
   };
 
   useEffect(() => {
@@ -364,7 +401,7 @@ export default function App() {
 
   const SESSION_STATE_KEY = `bh-session-state-${language}`;
 
-  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard' | 'test' | 'shop'>(() => {
+  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard' | 'test' | 'shop' | 'speakingMode'>(() => {
     const saved = safeLocalStorage.getItem(SESSION_STATE_KEY);
     if (saved) {
       try {
@@ -375,19 +412,6 @@ export default function App() {
     }
     return 'home';
   });
-
-  // Check if we should show the review prompt
-  useEffect(() => {
-    if (view === 'home' || view === 'dashboard') {
-      const promptShown = safeLocalStorage.getItem(REVIEWS_PROMPT_KEY);
-      if (!promptShown) {
-        const timer = setTimeout(() => {
-          setShowReviewPrompt(true);
-        }, 3000);
-        return () => clearTimeout(timer);
-      }
-    }
-  }, [view]);
 
   const [progress, setProgress] = useState<UserProgress[]>([]);
 
@@ -459,6 +483,20 @@ export default function App() {
   const [sharedDeckToImport, setSharedDeckToImport] = useState<any>(null);
 
   const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
+
+  // Check if we should show the review prompt
+  useEffect(() => {
+    if (view === 'home' || view === 'dashboard') {
+      const promptShown = safeLocalStorage.getItem(REVIEWS_PROMPT_KEY);
+      const shownForUser = userProfile?.reviewPromptShown;
+      if (!promptShown && !shownForUser && progress.length >= 25) {
+        const timer = setTimeout(() => {
+          setShowReviewPrompt(true);
+        }, 3000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [view, progress.length, userProfile?.reviewPromptShown]);
 
   useEffect(() => {
     if (view === 'learn' || view === 'flashcards' || view === 'test') {
@@ -777,12 +815,15 @@ export default function App() {
     }
   };
 
+  // Show changelog only after login for the first time on a new version
   useEffect(() => {
-    const savedVersion = safeLocalStorage.getItem(VERSION_KEY);
-    if (savedVersion !== CURRENT_VERSION) {
-      setShowChangelog(true);
+    if (user && !showChangelog) {
+      const savedVersion = safeLocalStorage.getItem(VERSION_KEY);
+      if (savedVersion !== CURRENT_VERSION) {
+        setShowChangelog(true);
+      }
     }
-  }, []);
+  }, [user]);
 
   const handleCloseChangelog = () => {
     if (!devMode) {
@@ -963,7 +1004,7 @@ export default function App() {
     // 1. Handle Missed Days first
     if (lastUpdate && lastUpdate.getTime() < today.getTime()) {
       const diffTime = today.getTime() - lastUpdate.getTime();
-      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
       
       if (diffDays > 1) {
         const missedDays = diffDays - 1;
@@ -1006,6 +1047,14 @@ export default function App() {
     }
 
     if (needsUpdate) {
+      // Optimistic local update to prevent UI flickering
+      setUserProfile((prev: any) => ({
+        ...prev,
+        streak: currentStreak,
+        streakFreezes: currentFreezes,
+        lastStreakUpdate: newLastUpdate
+      }));
+
       // Single atomic update to Firestore prevents racing transitions
       setDoc(doc(db, 'users', user.uid), {
         streak: currentStreak,
@@ -1307,7 +1356,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/10 transition-colors duration-300">
-      <InstallPrompt />
+      <InstallPrompt isSignedIn={!!user} totalLearned={progress.length} />
       <Navbar 
         onNavigate={(v) => {
           setView(v);
@@ -1341,6 +1390,7 @@ export default function App() {
                 onViewDashboard={() => setView('dashboard')} 
                 onStartFlashcards={handleStartFlashcards}
                 onStartTest={() => setView('test')}
+                onStartSpeakingMode={() => setView('speakingMode')}
                 language={language}
                 onLanguageChange={handleLanguageChange}
                 user={user}
@@ -1351,7 +1401,7 @@ export default function App() {
                 reducedMotion={preferences.reducedMotion}
               />
               <HowItWorks language={language} />
-              <ReviewSection userReviews={userReviews} onLeaveReview={handleLeaveReview} />
+              <ReviewSection userReviews={userReviews} onLeaveReview={handleLeaveReview} devMode={devMode} onDeleteReview={handleDeleteReview} />
             </motion.div>
           )}
 
@@ -1457,6 +1507,19 @@ export default function App() {
                 onExit={() => setView('home')}
                 language={language}
                 devMode={devMode}
+              />
+            </motion.div>
+          )}
+          
+          {view === 'speakingMode' && (
+            <motion.div
+              key={`speaking-${language}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <SpeakingExamMode
+                onBack={() => setView('home')}
               />
             </motion.div>
           )}

@@ -5,18 +5,20 @@ import type { Review } from './ReviewSection';
 
 interface ReviewFormModalProps {
   onClose: () => void;
-  onSubmit: (review: Review) => void;
+  onSubmit: (review: Review) => Promise<void> | void;
 }
 
 export function ReviewFormModal({ onClose, onSubmit }: ReviewFormModalProps) {
   const [rating, setRating] = useState(5);
   const [name, setName] = useState('');
   const [comment, setComment] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!name.trim() || !comment.trim()) return;
+    if (!name.trim() || !comment.trim() || isSubmitting) return;
 
+    setIsSubmitting(true);
     const newReview: Review = {
       id: Math.random().toString(36).substr(2, 9),
       name: name.trim(),
@@ -25,7 +27,13 @@ export function ReviewFormModal({ onClose, onSubmit }: ReviewFormModalProps) {
       date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
     };
 
-    onSubmit(newReview);
+    try {
+      await onSubmit(newReview);
+      // We don't reset isSubmitting if successful because the modal will unmount.
+      // Doing so would re-enable the button during the exit animation.
+    } catch (error) {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -101,11 +109,11 @@ export function ReviewFormModal({ onClose, onSubmit }: ReviewFormModalProps) {
 
           <button 
             type="submit"
-            disabled={!name.trim() || !comment.trim()}
+            disabled={!name.trim() || !comment.trim() || isSubmitting}
             className="w-full py-4 bg-primary text-white font-black rounded-xl shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
-            <Send className="w-5 h-5" />
-            Submit Review
+            <Send className={`w-5 h-5 ${isSubmitting ? 'animate-pulse' : ''}`} />
+            {isSubmitting ? 'Submitting...' : 'Submit Review'}
           </button>
         </form>
       </motion.div>

@@ -38,7 +38,7 @@ service cloud.firestore {
     }
 
     function isValidUser(data) {
-      return data.keys().hasOnly(['language', 'lastActive', 'role', 'streak', 'lastStreakUpdate', 'streakFreezes', 'totalLearningTime', 'displayName', 'deleted', 'deletedAt', 'isPremium']) &&
+      return data.keys().hasOnly(['language', 'lastActive', 'role', 'streak', 'lastStreakUpdate', 'streakFreezes', 'totalLearningTime', 'displayName', 'deleted', 'deletedAt', 'isPremium', 'email', 'createdAt', 'reviewPromptShown']) &&
              (!('language' in data) || data.language is string) &&
              (!('lastActive' in data) || data.lastActive is number) &&
              (!('streak' in data) || data.streak is number) &&
@@ -49,6 +49,9 @@ service cloud.firestore {
              (!('deleted' in data) || data.deleted is bool) &&
              (!('deletedAt' in data) || data.deletedAt is number) &&
              (!('isPremium' in data) || data.isPremium is bool) &&
+             (!('email' in data) || data.email is string) &&
+             (!('createdAt' in data) || data.createdAt is number) &&
+             (!('reviewPromptShown' in data) || data.reviewPromptShown is bool) &&
              (!('role' in data) || data.role is string);
     }
 
@@ -115,7 +118,7 @@ service cloud.firestore {
     match /users/{userId} {
       allow read: if isOwner(userId) || isAdmin();
       allow create: if isOwner(userId) && isValidUser(request.resource.data) && (!('role' in request.resource.data) || isAdmin());
-      allow update: if isOwner(userId) && isValidUser(request.resource.data) && (request.resource.data.role == resource.data.role || isAdmin());
+      allow update: if isOwner(userId) && isValidUser(request.resource.data) && (request.resource.data.get('role', '') == resource.data.get('role', '') || isAdmin());
 
       match /progress/{wordId} {
         allow read: if isOwner(userId) || isAdmin();

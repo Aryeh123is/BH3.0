@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Star, User, MessageSquareHeart, X, LayoutGrid } from 'lucide-react';
+import { Star, User, MessageSquareHeart, X, LayoutGrid, Trash2 } from 'lucide-react';
 
 export interface Review {
   id: string;
@@ -13,6 +13,8 @@ export interface Review {
 interface ReviewSectionProps {
   onLeaveReview?: () => void;
   userReviews?: Review[];
+  devMode?: boolean;
+  onDeleteReview?: (id: string) => void;
 }
 
 const PUBLIC_REVIEWS: Review[] = [
@@ -22,7 +24,7 @@ const PUBLIC_REVIEWS: Review[] = [
   { id: 'public-4', name: 'Samuel O.', rating: 5, comment: 'The custom decks feature is a game changer. I can import my own lists from school.', date: 'April 15, 2026' }
 ];
 
-export function ReviewSection({ onLeaveReview, userReviews = [] }: ReviewSectionProps) {
+export function ReviewSection({ onLeaveReview, userReviews = [], devMode = false, onDeleteReview }: ReviewSectionProps) {
   const allReviews = [...userReviews, ...PUBLIC_REVIEWS];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAllModal, setShowAllModal] = useState(false);
@@ -50,7 +52,7 @@ export function ReviewSection({ onLeaveReview, userReviews = [] }: ReviewSection
         <div className="max-w-2xl mx-auto relative min-h-[300px] mb-12 flex justify-center">
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentIndex}
+              key={`${allReviews[currentIndex]?.id}-${currentIndex}`}
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
@@ -126,13 +128,22 @@ export function ReviewSection({ onLeaveReview, userReviews = [] }: ReviewSection
                   key={`review-${review.id}-${i}`}
                   className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 flex flex-col h-full"
                 >
-                  <div className="flex items-center gap-1 mb-4">
+                  <div className="flex items-center gap-1 mb-4 relative">
                     {[...Array(5)].map((_, i) => (
                       <Star 
                         key={`modal-star-${review.id}-${i}`} 
                         className={`w-4 h-4 ${i < review.rating ? 'text-amber-400 fill-amber-400' : 'text-slate-200 dark:text-slate-700'}`} 
                       />
                     ))}
+                    {devMode && !review.id.startsWith('public-') && onDeleteReview && (
+                      <button
+                        onClick={() => onDeleteReview(review.id)}
+                        className="absolute right-0 top-0 p-1.5 text-red-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-lg transition-colors"
+                        title="Delete Review (Dev Mode)"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
                   </div>
                   <p className="text-slate-600 dark:text-slate-300 font-medium mb-6 flex-1 italic leading-relaxed">
                     "{review.comment}"

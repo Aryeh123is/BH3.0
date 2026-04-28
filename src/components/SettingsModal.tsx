@@ -268,6 +268,24 @@ export function SettingsModal({
                     </button>
                   </div>
                 </section>
+
+                <section className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
+                  <div className="flex items-start gap-4 flex-col md:flex-row md:justify-between">
+                    <div className="space-y-2">
+                      <h4 className="font-bold text-slate-900 dark:text-white">
+                        Install App (iPhone/iPad)
+                      </h4>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-snug">
+                        For a full-screen, native app experience on iOS:
+                      </p>
+                      <ul className="text-sm text-slate-500 dark:text-slate-400 list-decimal pl-4 space-y-1">
+                        <li>Open this website in Safari</li>
+                        <li>Tap the Share button at the bottom</li>
+                        <li>Scroll down and tap <strong>Add to Home Screen</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
               </div>
             )}
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Share, PlusSquare, X } from 'lucide-react';
 
-export function InstallPrompt() {
+export function InstallPrompt({ isSignedIn, totalLearned }: { isSignedIn: boolean, totalLearned: number }) {
   const [showPrompt, setShowPrompt] = useState(false);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export function InstallPrompt() {
     const promptShownCount = parseInt(localStorage.getItem('bh-install-prompt-count') || '0', 10);
 
     // Only show on iOS Safari, if not standalone, and if not recently dismissed
-    if (isIOS && isSafari && !isStandalone && !hasDismissed && promptShownCount < 3) {
+    if (isIOS && isSafari && !isStandalone && !hasDismissed && promptShownCount < 3 && isSignedIn && totalLearned >= 100 && !showPrompt) {
       // Delay showing the prompt to not interrupt the initial experience
       const timer = setTimeout(() => {
         setShowPrompt(true);
@@ -26,7 +26,7 @@ export function InstallPrompt() {
       }, 5000);
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [isSignedIn, totalLearned, showPrompt]);
 
   const handleDismiss = () => {
     setShowPrompt(false);

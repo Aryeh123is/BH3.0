@@ -39,7 +39,7 @@ export function AuthModal({ onClose, onVerified }: AuthModalProps) {
           language: 'biblical',
           streak: 0,
           totalLearningTime: 0
-        }, { merge: true });
+        });
 
         onVerified?.();
         onClose();

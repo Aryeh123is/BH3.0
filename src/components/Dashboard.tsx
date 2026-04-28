@@ -229,12 +229,12 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
             >
               <Settings2 className="w-6 h-6" />
             </button>
-            {userProfile?.streak > 0 && (
+            {(userProfile?.streak > 0) ? (
               <div className="px-4 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-2xl shadow-lg shadow-orange-500/20 border border-white/10 flex items-center gap-2">
                 <Flame className="w-5 h-5 fill-current" />
                 <span className="font-black text-sm">{userProfile.streak} Day Streak!</span>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
       </div>
