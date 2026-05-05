@@ -3,6 +3,7 @@ export interface Word {
   hebrew?: string;
   spanish?: string;
   french?: string;
+  german?: string;
   english: string;
   transliteration?: string;
   category: string;

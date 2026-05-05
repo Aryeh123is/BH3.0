@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Lock, X } from 'lucide-react';
+import { hashDevString } from '../lib/utils';
 
 interface DevModePasswordModalProps {
   onClose: () => void;
@@ -12,7 +13,7 @@ export function DevModePasswordModal({ onClose, onSubmit }: DevModePasswordModal
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'leonisadmin') {
+    if (hashDevString(password.trim()) === '19a8b66') {
       onSubmit(password);
     } else {
       setError(true);

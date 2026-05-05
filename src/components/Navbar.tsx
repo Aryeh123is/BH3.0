@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles, Flame, Snowflake, ChevronDown, Check, LayoutDashboard } from 'lucide-react';
+import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles, Flame, Snowflake, ChevronDown, Check, LayoutDashboard, BookOpen } from 'lucide-react';
 import { User } from 'firebase/auth';
 
 interface NavbarProps {
-  onNavigate: (view: 'home' | 'dashboard' | 'test' | 'shop') => void;
+  onNavigate: (view: 'home' | 'dashboard' | 'test' | 'shop' | 'pastPapers') => void;
   language: string;
   onLanguageChange: (lang: string) => void;
   user: User | null;
@@ -35,12 +35,13 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
 
   const languages = [
     { id: 'french', label: 'French (Edexcel)', icon: <img src="https://flagcdn.com/w40/fr.png" alt="FR" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
+    { id: 'german', label: 'German (AQA)', icon: <img src="https://flagcdn.com/w40/de.png" alt="DE" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
     { id: 'spanish', label: 'Spanish (Edexcel)', icon: <img src="https://flagcdn.com/w40/es.png" alt="ES" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
-    { id: 'modern', label: 'Modern Hebrew', icon: <img src="https://flagcdn.com/w40/il.png" alt="IL" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
-    { id: 'biblical', label: 'Biblical Hebrew', icon: '📜' },
+    { id: 'modern', label: 'Modern Hebrew (AQA)', icon: <img src="https://flagcdn.com/w40/il.png" alt="IL" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
+    { id: 'biblical', label: 'Biblical Hebrew (Edexcel)', icon: '📜' },
   ];
 
-  if (language !== 'spanish' && language !== 'biblical' && language !== 'modern' && language !== 'french') {
+  if (language !== 'spanish' && language !== 'biblical' && language !== 'modern' && language !== 'french' && language !== 'german') {
     languages.push({ id: language, label: 'Custom Deck', icon: '📁' });
   }
 
@@ -62,12 +63,14 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
               {language === 'biblical' ? 'BH' : 
                language === 'modern' ? 'MH' : 
                language === 'spanish' ? 'ES' : 
-               language === 'french' ? 'FR' : 'Custom'}
+               language === 'french' ? 'FR' : 
+               language === 'german' ? 'DE' : 'Custom'}
             </span>
             <span className="text-primary hidden sm:inline">Keywords</span>
             <span className="sm:hidden flex items-center">
               {language === 'french' && <img src="https://flagcdn.com/w40/fr.png" alt="FR" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
               {language === 'spanish' && <img src="https://flagcdn.com/w40/es.png" alt="ES" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
+              {language === 'german' && <img src="https://flagcdn.com/w40/de.png" alt="DE" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
               {language === 'modern' && <img src="https://flagcdn.com/w40/il.png" alt="IL" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
               {language === 'biblical' && <span className="text-base leading-none">📜</span>}
             </span>
@@ -150,12 +153,25 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
           )}
 
           {user || devMode ? (
-            <button 
-              onClick={() => onNavigate('test')}
-              className="hidden md:block text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
-            >
-              Test Mode
-            </button>
+            <div className="hidden md:flex items-center gap-4">
+              <button 
+                onClick={() => onNavigate('test')}
+                className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
+                title="Test Mode"
+              >
+                Test Mode
+              </button>
+              {devMode && (
+                <button 
+                  onClick={() => onNavigate('pastPapers')}
+                  className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-1.5"
+                  title="Past Papers"
+                >
+                  <BookOpen className="w-4 h-4" />
+                  Past Papers
+                </button>
+              )}
+            </div>
           ) : null}
           
           {user ? (

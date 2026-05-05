@@ -4,16 +4,23 @@ import { VOCABULARY as BIBLICAL_HEBREW_VOCABULARY } from './data/vocabulary';
 import { MODERN_HEBREW_VOCABULARY } from './data/modern_hebrew';
 import { SPANISH_EDEXCEL_VOCABULARY } from './data/spanish_edexcel';
 import { FRENCH_EDEXCEL_VOCABULARY } from './data/french_edexcel';
+import { GERMAN_AQA_VOCABULARY } from './data/german_aqa';
 
 // Heavy components code-split for performance
 const Dashboard = lazy(() => import('./components/Dashboard').then(m => ({ default: m.Dashboard })));
 const FlashcardMode = lazy(() => import('./components/FlashcardMode').then(m => ({ default: m.FlashcardMode })));
 const TestMode = lazy(() => import('./components/TestMode').then(m => ({ default: m.TestMode })));
+const GrammarMastery = lazy(() => import('./components/GrammarMastery').then(m => ({ default: m.GrammarMastery })));
 const Shop = lazy(() => import('./components/Shop').then(m => ({ default: m.Shop })));
+const ExamSimulator = lazy(() => import('./components/ExamSimulator').then(m => ({ default: m.ExamSimulator })));
+const ReadingExamMode = lazy(() => import('./components/ReadingExamMode').then(m => ({ default: m.ReadingExamMode })));
+const DocumentViewer = lazy(() => import('./components/DocumentViewer').then(m => ({ default: m.DocumentViewer })));
 const SettingsModal = lazy(() => import('./components/SettingsModal').then(m => ({ default: m.SettingsModal })));
+const ModesGuide = lazy(() => import('./components/ModesGuide').then(m => ({ default: m.ModesGuide })));
 const AuthModal = lazy(() => import('./components/AuthModal').then(m => ({ default: m.AuthModal })));
 
 import { SpeakingExamMode } from './components/SpeakingExamMode';
+import { PastPapers } from './components/PastPapers';
 import { LearnCard } from './components/LearnCard';
 import { ProgressBar } from './components/ProgressBar';
 import { SessionSummary } from './components/SessionSummary';
@@ -24,9 +31,10 @@ import { DevModePasswordModal } from './components/DevModePasswordModal';
 import { ReviewSection } from './components/ReviewSection';
 import { ReviewFormModal } from './components/ReviewFormModal';
 import type { Review } from './components/ReviewSection';
-import { ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, Lock, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun, Book, Mail, Star } from 'lucide-react';
+import { Play, ChevronLeft, RotateCcw, ArrowRight, RotateCw, Sparkles, X, CheckCircle2, Lock, History, AlertCircle, RefreshCw, LogIn, LogOut, User as UserIcon, Moon, Sun, Book, Mail, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { safeLocalStorage } from './lib/storage';
+import { hashDevString } from './lib/utils';
 import { auth, db, googleProvider, signInWithPopup, signInWithRedirect, signOut, doc, setDoc, getDoc, collection, onSnapshot, writeBatch, addDoc, query, orderBy, deleteDoc } from './firebase';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { InstallPrompt } from './components/InstallPrompt';
@@ -36,9 +44,48 @@ const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
 const PREFS_KEY = 'bh-app-preferences';
 const REVIEWS_PROMPT_KEY = 'bh-review-prompt-shown';
-const CURRENT_VERSION = '3.0.1';
+const CURRENT_VERSION = '3.4.0';
 
 const CHANGELOG = [
+  {
+    version: '3.4.0',
+    changes: [
+      { title: 'Security & Access Control', description: 'Strengthened developer mode authentication, secured hidden WIP features, and applied access controls to the exam simulator.' },
+      { title: 'Information updated', description: 'Updated instructions for Grammar Mastery to include details and instructions on how to effectively use the new AI Grammar Tutor feature.' },
+      { title: 'Grammar Layout & AI Design', description: 'Expanded the Biblical Hebrew grammar section to be wider, and improved the AI Tutor button and topic selector for a friendlier experience.' },
+      { title: 'Interactive BH AI Tutor', description: 'Added a new interactive AI grammar tutor mode to Biblical Hebrew Grammar Mastery to practice morphology and syntax with AI.' },
+      { title: 'PDF Viewer Fix', description: 'Resolved CORS restrictions to ensure official past paper PDFs display correctly in the Reading Simulator.' },
+      { title: 'Simulator UX Polish', description: 'Removed distracting overlays from the Reading Simulator and refined the Digital Answer Booklet for better exam focus.' },
+      { title: 'Stability Update', description: 'Updated animation libraries to ensure better deployment compatibility and matched project guidelines.' },
+      { title: 'Grade Boundary Calculator', description: 'Integrated official AQA/Pearson grade boundaries into the past paper tracker. Enter your marks to see your grade instantly.' },
+      { title: 'Exam Simulator Lobby', description: 'Created a new centralized lobby for the Ultimate AI Exam Simulator to categorize tests by skill.' },
+      { title: 'Admin Controls', description: 'Locked the Ultimate Exam Simulator behind admin logic to ensure a smooth development cycle.' },
+      { title: 'Promo Expanded', description: 'Added dedicated popups for the upcoming Ultimate AI Exam Simulator on the homepage, and re-linked the existing Speaking practice mode under the new simulator branding.' },
+      { title: 'Ultimate Exam Simulator', description: 'Replaced the coming soon buttons on the homepage with an AI Exam Simulator preview, reinforcing the upcoming Pro features depending on your language tracking.' },
+      { title: 'AI Exam Simulator Unveiled', description: 'Revealed the upcoming AI Exam Practice modes (Unseen Practice for BH, listening/reading/writing/speaking for others).' },
+      { title: 'Refined Branding', description: 'Updated Vocariox highlight color for a cleaner terminal look on the homepage.' },
+      { title: 'Visual Identity Update', description: 'Enhanced the "Vocariox" branding on the homepage with a dedicated emerald highlight for better visual separation.' },
+      { title: 'AI Branding & Trust', description: 'Added AI technology badges to the home screen and refined brand trust elements.' },
+      { title: 'Vocariox Branding', description: 'Updated the hero section to proudly display the Vocariox name and improved language-specific titles for better clarity.' },
+      { title: 'Pro Feature Expansion', description: 'Speaking Mock Exams are now a Premium feature. Updated past paper UI for better clarity and alignment with official exam board terminology.' },
+      { title: 'Grammar Lockdown & Stability', description: 'Moved Biblical Hebrew Grammar Mastery to Premium Only. Removed local PDF uploads to ensure exam board alignment and data integrity.' },
+      { title: 'Exam Series Refinement', description: 'Hidden 2026 exam series until officially released and prepared the tracker for upcoming direct PDF links.' },
+      { title: 'Past Paper Overhaul', description: 'Rebuilt the tracker with direct links to official AQA/Edexcel papers and language-specific exam structures.' },
+      { title: 'BH Grammar Mastery Content', description: 'Fully implemented the Biblical Hebrew grammar module with detailed guides for all 7 Binyanim, noun declensions, and syntax rules.' },
+      { title: 'Interactive Modes Guide', description: 'Added a new sidebar guide in the "How It Works" popup explaining all available study modes and their benefits for different languages.' },
+      { title: 'Grammar Mastery & Tidy Up', description: 'Added Grammar Mastery module for Biblical Hebrew and hid Past Papers tracker unless in developer mode.' },
+      { title: 'Landing Page Refinement', description: 'Polished the home page typography to be lively and enthusiastic without excessive capitalization. Improved readability of exam board notices.' },
+      { title: 'Exam Board Alignment', description: 'Updated language labels to specify Edexcel (Biblical Hebrew) and AQA (Modern Hebrew/German). Added exam-board verification notices throughout the UI.' },
+      { title: 'Mastery & Premium Feedback', description: 'Redesigned the mastery section and added positive feedback for completed reviews.' },
+      { title: 'Dashboard UI Polish', description: 'Completely redesigned the footer and bottom navigation for a cleaner, professional Look. Added "How It Works" accessible from anywhere.' },
+      { title: 'Final German Vocabulary Batch', description: 'Added the final batch of AQA German GCSE vocabulary (over 300 words), completing the core database.' },
+      { title: 'German Vocabulary Expansion III', description: 'Added fourth large batch of AQA German GCSE vocabulary (over 400 new words).' },
+      { title: 'German Vocabulary Expansion II', description: 'Added third large batch of AQA German GCSE vocabulary (over 400 new words).' },
+      { title: 'German Vocabulary Expansion', description: 'Added second large batch of AQA German GCSE vocabulary (over 200 new words).' },
+      { title: 'AQA German Language Support', description: 'Added full vocabulary database for AQA German GCSE. Speaking Exam mode is currently disabled for this language.' },
+      { title: 'Local PDF Support', description: 'Past papers now support uploading and viewing local PDF files with high-fidelity printing.' }
+    ]
+  },
   {
     version: '3.0.1',
     changes: [
@@ -266,7 +313,7 @@ const CHANGELOG = [
 const LoadingFallback = () => (
   <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6">
     <div className="relative">
-      <img src="/logo.png" alt="Loading" className="w-20 h-20 animate-bounce rounded-3xl shadow-2xl shadow-indigo-500/30" />
+      <img src="/logo-192.png?v=6" alt="Loading" className="w-20 h-20 object-cover bg-white animate-bounce rounded-3xl shadow-2xl shadow-indigo-500/30" />
       <div className="absolute inset-0 bg-white/20 rounded-3xl animate-ping opacity-75" />
     </div>
     <p className="text-slate-400 dark:text-slate-500 font-bold uppercase tracking-[0.3em] text-xs animate-pulse">
@@ -296,6 +343,8 @@ export default function App() {
 
   const [showPrivacy, setShowPrivacy] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const [showHowItWorks, setShowHowItWorks] = useState(false);
+  const [showNoErrorsToast, setShowNoErrorsToast] = useState(false);
   const [showReviewPrompt, setShowReviewPrompt] = useState(false);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [shopUnlocked, setShopUnlocked] = useState(false); // Default to false so it locks when returning
@@ -371,13 +420,14 @@ export default function App() {
     else if (language === 'modern') vocab = MODERN_HEBREW_VOCABULARY;
     else if (language === 'spanish') vocab = SPANISH_EDEXCEL_VOCABULARY;
     else if (language === 'french') vocab = FRENCH_EDEXCEL_VOCABULARY;
+    else if (language === 'german') vocab = GERMAN_AQA_VOCABULARY;
     else {
       const customDeck = customDecks.find(d => d.id === language);
       vocab = customDeck ? customDeck.words : BIBLICAL_HEBREW_VOCABULARY;
     }
 
     if (selectedTopic) {
-      if (language === 'spanish' || language === 'french') {
+      if (language === 'spanish' || language === 'french' || language === 'german') {
         const topicKeywords: Record<string, string[]> = {
           'Family & Friends': ['family', 'friend', 'brother', 'sister', 'mother', 'father', 'son', 'daughter', 'uncle', 'aunt', 'grand', 'cousin', 'marry', 'boyfriend', 'girlfriend', 'people', 'person', 'neighbor', 'neighbour', 'invite', 'call', 'love', 'name', 'relationship', 'wedding'],
           'School & Study': ['school', 'study', 'learn', 'teacher', 'professor', 'subject', 'homework', 'exam', 'grade', 'classroom', 'pen', 'book', 'notebook', 'library', 'education', 'maths', 'science', 'history', 'language', 'lesson', 'class'],
@@ -401,7 +451,7 @@ export default function App() {
 
   const SESSION_STATE_KEY = `bh-session-state-${language}`;
 
-  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard' | 'test' | 'shop' | 'speakingMode'>(() => {
+  const [view, setView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard' | 'test' | 'shop' | 'speakingMode' | 'readingExam' | 'pastPapers' | 'grammarMastery' | 'examSimulator'>(() => {
     const saved = safeLocalStorage.getItem(SESSION_STATE_KEY);
     if (saved) {
       try {
@@ -483,6 +533,7 @@ export default function App() {
   const [sharedDeckToImport, setSharedDeckToImport] = useState<any>(null);
 
   const [sessionStartTime, setSessionStartTime] = useState<number | null>(null);
+  const [viewingPdf, setViewingPdf] = useState<{ url: string, title: string } | null>(null);
 
   // Check if we should show the review prompt
   useEffect(() => {
@@ -532,7 +583,7 @@ export default function App() {
   }, [user, userProfile]);
 
   const isPremium = useMemo(() => {
-    if (devMode || user?.email === 'aisaacsaul@gmail.com') return true;
+    if (devMode) return true;
     if (!user) return false;
     if (userProfile?.isPremium) return true;
     return trialInfo.isTrialActive;
@@ -611,6 +662,7 @@ export default function App() {
     else if (lang === 'modern') targetVocab = MODERN_HEBREW_VOCABULARY;
     else if (lang === 'spanish') targetVocab = SPANISH_EDEXCEL_VOCABULARY;
     else if (lang === 'french') targetVocab = FRENCH_EDEXCEL_VOCABULARY;
+    else if (lang === 'german') targetVocab = GERMAN_AQA_VOCABULARY;
     const targetIds = new Set(targetVocab.map(w => w.id));
 
     // 1. Clear progress from local state
@@ -654,6 +706,7 @@ export default function App() {
         else if (lang === 'modern') targetVocab = MODERN_HEBREW_VOCABULARY;
         else if (lang === 'spanish') targetVocab = SPANISH_EDEXCEL_VOCABULARY;
         else if (lang === 'french') targetVocab = FRENCH_EDEXCEL_VOCABULARY;
+        else if (lang === 'german') targetVocab = GERMAN_AQA_VOCABULARY;
         const targetIds = new Set(targetVocab.map(w => w.id));
 
         const progressRef = collection(db, 'users', user.uid, 'progress');
@@ -748,7 +801,7 @@ export default function App() {
 
   const handleDevModePasswordSubmit = (password: string) => {
     const pw = password.trim();
-    if (pw === 'leonisadmin') {
+    if (hashDevString(pw) === '19a8b66') {
       setDevMode(true);
       safeLocalStorage.setItem('bh-dev-mode', 'true');
       setShowDevModePasswordModal(false);
@@ -1153,7 +1206,7 @@ export default function App() {
     });
 
     if (incorrectWords.length === 0) {
-      alert("Great job! You don't have any incorrect flashcards to review right now.");
+      setShowNoErrorsToast(true);
       return;
     }
 
@@ -1390,7 +1443,11 @@ export default function App() {
                 onViewDashboard={() => setView('dashboard')} 
                 onStartFlashcards={handleStartFlashcards}
                 onStartTest={() => setView('test')}
-                onStartSpeakingMode={() => setView('speakingMode')}
+                onStartSpeakingMode={() => {
+                  if ((user?.email && hashDevString(user.email.toLowerCase()) === '7aa66867') || devMode) {
+                    setView('examSimulator');
+                  }
+                }}
                 language={language}
                 onLanguageChange={handleLanguageChange}
                 user={user}
@@ -1399,6 +1456,7 @@ export default function App() {
                 devMode={devMode}
                 isPremium={isPremium}
                 reducedMotion={preferences.reducedMotion}
+                vocabularyCount={activeVocabulary.length}
               />
               <HowItWorks language={language} />
               <ReviewSection userReviews={userReviews} onLeaveReview={handleLeaveReview} devMode={devMode} onDeleteReview={handleDeleteReview} />
@@ -1419,7 +1477,19 @@ export default function App() {
                 onStartIncorrectSession={startIncorrectSession}
                 onStartFlashcards={handleStartFlashcards}
                 onStartTest={() => setView('test')}
+                onStartGrammarMastery={() => {
+                  if (isPremium) setView('grammarMastery');
+                  else setShowProModal(true);
+                }}
                 onNavigate={(v) => {
+                  if (v === 'speakingMode' && !((user?.email && hashDevString(user.email.toLowerCase()) === '7aa66867') || devMode)) {
+                    setShowProModal(true);
+                    return;
+                  }
+                  if (v === 'grammarMastery' && !isPremium) {
+                    setShowProModal(true);
+                    return;
+                  }
                   setView(v);
                 }}
                 onResetProgress={() => {
@@ -1511,6 +1581,43 @@ export default function App() {
             </motion.div>
           )}
           
+          {view === 'examSimulator' && (
+            <motion.div
+              key={`examSimulator-${language}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <ExamSimulator
+                language={language}
+                user={user}
+                devMode={devMode}
+                onSelectMode={(mode) => {
+                  if (mode === 'speaking') {
+                    setView('speakingMode');
+                  } else if (mode === 'reading') {
+                    setView('readingExam');
+                  }
+                }}
+                onBack={() => setView('dashboard')}
+              />
+            </motion.div>
+          )}
+
+          {view === 'readingExam' && (
+            <motion.div
+              key={`readingExam-${language}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <ReadingExamMode
+                language={language}
+                onBack={() => setView('examSimulator')}
+              />
+            </motion.div>
+          )}
+          
           {view === 'speakingMode' && (
             <motion.div
               key={`speaking-${language}`}
@@ -1519,10 +1626,55 @@ export default function App() {
               exit={{ opacity: 0 }}
             >
               <SpeakingExamMode
-                onBack={() => setView('home')}
+                onBack={() => setView('examSimulator')}
               />
             </motion.div>
           )}
+
+          {view === 'pastPapers' && devMode && (
+            <motion.div
+              key={`past-papers-${language}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <PastPapers
+                language={language}
+                onBack={() => setView('home')}
+                onViewPdf={(url, title) => setViewingPdf({ url, title })}
+              />
+            </motion.div>
+          )}
+
+          {view === 'grammarMastery' && language === 'biblical' && (
+            <motion.div
+              key="grammar-mastery"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Suspense fallback={<div className="flex items-center justify-center p-20"><RotateCw className="w-8 h-8 text-indigo-500 animate-spin" /></div>}>
+                <GrammarMastery
+                  onBack={() => setView('home')}
+                  devMode={devMode}
+                />
+              </Suspense>
+            </motion.div>
+          )}
+
+          <AnimatePresence>
+            {viewingPdf && (
+              <Suspense fallback={null}>
+                <DocumentViewer
+                  pdfUrl={viewingPdf.url}
+                  title={viewingPdf.title}
+                  onClose={() => setViewingPdf(null)}
+                  userEmail={user?.email || 'Protected'}
+                  isUnlocked={true}
+                />
+              </Suspense>
+            )}
+          </AnimatePresence>
 
           {view === 'learn' && sessionQuestions.length > 0 && sessionQuestions[currentQuestionIndex] && (
             <motion.div
@@ -1615,60 +1767,184 @@ export default function App() {
       </Suspense>
     </main>
 
-    <footer className="py-12 border-t border-slate-100 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm transition-colors duration-300">
-        <div className="max-w-7xl mx-auto px-6 text-center space-y-6">
-          <div className="flex flex-col items-center gap-4">
-            <div className="flex flex-wrap justify-center gap-3">
-              <button 
-                onClick={() => setShowPrivacy(true)}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm border border-slate-100 dark:border-slate-700"
-              >
-                Privacy Policy
-              </button>
-              <a 
-                href="https://forms.gle/NjUpvWAZCjTF4aPB6" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm"
-              >
-                <Sparkles className="w-4 h-4 text-primary" />
-                Request a Feature / Bug
-              </a>
-              <button 
-                onClick={() => setShowContact(true)}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm border border-slate-100 dark:border-slate-700"
-              >
-                Contact Us
-              </button>
-              <button 
-                onClick={handleLeaveReview}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 font-bold rounded-xl transition-all active:scale-95 text-sm border border-slate-100 dark:border-slate-700"
-              >
-                Leave a Review
-              </button>
+    <footer className="py-16 border-t border-slate-100 dark:border-slate-800 bg-white/50 dark:bg-slate-950/50 backdrop-blur-sm transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+          {/* Brand Section */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+                <Sparkles className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight italic">Vocariox</h3>
             </div>
-            <p className="text-[10px] text-slate-300 dark:text-slate-600 font-bold uppercase tracking-[0.3em] flex items-center gap-2">
-              <Sparkles className="w-3 h-3 fill-current" />
-              Vocariox Premium AI Learning
+            <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+              The ultimate GCSE vocabulary mastering platform. Powered by AI and smart Spaced Repetition.
             </p>
-          </div>
-          
-          <div className="flex flex-col items-center gap-2">
-            <p className="text-slate-400 dark:text-slate-500 text-sm font-medium tracking-wide">
-              Created by <span className="text-slate-900 dark:text-white font-bold">Aryeh Isaac-Saul</span>
-            </p>
-            
-            <div className="flex items-center justify-center gap-3 mt-2">
+            <div className="flex items-center gap-2">
               <button 
                 onClick={toggleDevMode}
                 className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border transition-colors ${devMode ? 'bg-indigo-100 text-indigo-600 border-indigo-200 dark:bg-indigo-900/30 dark:text-indigo-400 dark:border-indigo-800' : 'bg-slate-100 text-slate-500 border-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:border-slate-700'}`}
               >
                 Dev Mode: {devMode ? 'ON' : 'OFF'}
               </button>
+              <div className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">v{CURRENT_VERSION}</div>
             </div>
           </div>
+
+          {/* Support Section */}
+          <div>
+            <h4 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Support</h4>
+            <ul className="space-y-3">
+              <li>
+                <button onClick={() => setShowHowItWorks(true)} className="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 group">
+                  <Play className="w-3.5 h-3.5 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                  How it works
+                </button>
+              </li>
+              <li>
+                <button onClick={() => setShowContact(true)} className="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 group">
+                  <Mail className="w-3.5 h-3.5 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                  Contact Us
+                </button>
+              </li>
+              <li>
+                <a 
+                  href="https://forms.gle/NjUpvWAZCjTF4aPB6" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 group"
+                >
+                  <Sparkles className="w-3.5 h-3.5 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                  Request Feature
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal Section */}
+          <div>
+            <h4 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6">Legal</h4>
+            <ul className="space-y-3">
+              <li>
+                <button onClick={() => setShowPrivacy(true)} className="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 group">
+                  <Lock className="w-3.5 h-3.5 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                  Privacy Policy
+                </button>
+              </li>
+              <li>
+                <button onClick={handleLeaveReview} className="text-sm font-bold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-2 group">
+                  <Star className="w-3.5 h-3.5 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+                  Leave a Review
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          {/* Mastery/Premium Section */}
+          <div>
+            <h4 className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-6">{isPremium ? 'Mastery' : 'Premium'}</h4>
+            {isPremium ? (
+              <div className="bg-indigo-50 dark:bg-indigo-900/10 p-5 rounded-2xl border border-indigo-100/50 dark:border-indigo-800/30">
+                <p className="text-xs font-bold text-indigo-600/70 dark:text-indigo-400/70 uppercase tracking-widest mb-2">Today's Study</p>
+                <div className="flex items-end gap-2">
+                  <span className="text-2xl font-black text-slate-900 dark:text-white leading-none">{todayReviews}</span>
+                  <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 pb-1">WORDS MASTERED</span>
+                </div>
+                <div className="mt-4 h-1.5 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-indigo-500 rounded-full transition-all duration-1000"
+                    style={{ width: `${Math.min(100, (todayReviews / (srsSettings.dailyGoal || 20)) * 100)}%` }}
+                  />
+                </div>
+              </div>
+            ) : (
+              <button 
+                onClick={() => setShowProModal(true)}
+                className="w-full p-5 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl border border-indigo-500/50 shadow-lg shadow-indigo-500/20 group hover:-translate-y-1 transition-all text-left overflow-hidden relative"
+              >
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-300 fill-current" />
+                    <span className="text-[10px] font-black text-white uppercase tracking-[0.2em]">Upgrade Now</span>
+                  </div>
+                  <h5 className="text-lg font-black text-white mb-1 tracking-tight">50% DISCOUNT</h5>
+                  <p className="text-[10px] font-bold text-indigo-100 uppercase tracking-widest opacity-80">Claim Early Access</p>
+                </div>
+                <div className="absolute -right-4 -bottom-4 w-16 h-16 bg-white/10 rounded-full blur-xl group-hover:bg-white/20 transition-all" />
+              </button>
+            )}
+          </div>
         </div>
-      </footer>
+
+        <div className="pt-8 border-t border-slate-100 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-[10px] text-slate-300 dark:text-slate-600 font-bold uppercase tracking-[0.3em] flex items-center gap-2">
+            © 2026 Vocariox — Pioneering AI Education
+          </p>
+          <div className="flex items-center gap-6">
+            <button onClick={toggleTheme} className="p-2 text-slate-400 hover:text-primary transition-colors">
+              {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+      {showNoErrorsToast && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className="bg-white dark:bg-slate-900 rounded-[2rem] p-8 max-w-sm w-full text-center shadow-2xl border border-slate-100 dark:border-slate-800"
+          >
+            <div className="w-20 h-20 bg-green-50 dark:bg-green-900/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
+              <CheckCircle2 className="w-10 h-10 text-green-500" />
+            </div>
+            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-3 tracking-tight">Great job!</h3>
+            <p className="text-slate-500 dark:text-slate-400 font-bold mb-8 leading-relaxed">
+              You don't have any incorrect flashcards to review right now. Your accuracy is perfect!
+            </p>
+            <button 
+              onClick={() => setShowNoErrorsToast(false)}
+              className="w-full py-4 bg-slate-900 dark:bg-slate-700 text-white font-black rounded-xl hover:-translate-y-0.5 active:scale-95 transition-all shadow-lg"
+            >
+              Keep it up!
+            </button>
+          </motion.div>
+        </div>
+      )}
+
+      {showHowItWorks && (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-slate-100 dark:border-slate-800 relative shadow-2xl"
+          >
+            <button onClick={() => setShowHowItWorks(false)} className="absolute top-8 right-8 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors z-10">
+              <X className="w-6 h-6 text-slate-400" />
+            </button>
+            
+            <div className="mb-8">
+              <HowItWorks language={language} isModal={true} />
+            </div>
+            
+            <div className="mb-12">
+              <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-6 text-center">Interactive Modes Guide</h3>
+              <Suspense fallback={<div className="h-64 flex items-center justify-center"><RotateCw className="w-8 h-8 text-primary animate-spin" /></div>}>
+                <ModesGuide language={language} />
+              </Suspense>
+            </div>
+
+            <button 
+              onClick={() => setShowHowItWorks(false)}
+              className="w-full py-4 bg-slate-900 dark:bg-slate-700 text-white font-black rounded-xl text-lg hover:-translate-y-0.5 active:scale-95 transition-all"
+            >
+              Master Your Vocabulary Now
+            </button>
+          </motion.div>
+        </div>
+      )}
 
       {showPrivacy && (
         <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
@@ -1931,10 +2207,11 @@ export default function App() {
                     </div>
                     
                     <div className="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200 dark:before:bg-slate-800">
-                      <div className="absolute left-[-4px] top-1 w-2.5 h-2.5 rounded-full bg-slate-200 dark:bg-slate-800" />
-                      <h3 className="text-sm font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-2">June 2026</h3>
-                      <ul className="space-y-2 text-sm text-slate-500 dark:text-slate-500 font-bold">
-                        <li className="flex items-center gap-2"><Lock className="w-4 h-4" /> Easy Grammar Learning Modules</li>
+                      <div className="absolute left-[-4px] top-1 w-2.5 h-2.5 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]" />
+                      <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest mb-2">June 2026</h3>
+                      <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400 font-bold">
+                        <li className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-black"><Lock className="w-4 h-4" /> BH Grammar Mastery (Premium)</li>
+                        <li className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-black"><Lock className="w-4 h-4" /> AI Speaking Mock Exams (Pro)</li>
                         <li className="flex items-center gap-2"><Lock className="w-4 h-4" /> Listening & Writing Exam Prep</li>
                         <li className="flex items-center gap-2"><Lock className="w-4 h-4" /> Offline Mode & More</li>
                       </ul>

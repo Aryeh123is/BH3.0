@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Word, UserProgress, CustomDeck, SRSSettings } from '../types';
-import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2, Settings2, Save, Snowflake, Share2, Flame, User as UserIcon, Sparkles, ShoppingCart } from 'lucide-react';
+import { Play, Book, Trophy, Search, RotateCw, CloudCheck, CloudOff, Calendar, Plus, Upload, Trash2, Settings2, Save, Snowflake, Share2, Flame, User as UserIcon, Sparkles, ShoppingCart, CheckCircle2, Brain, Headphones, PenTool, Mic, Lock, BookOpen } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
 import { ProgressChart } from './ProgressChart';
 import { User } from 'firebase/auth';
@@ -8,7 +8,7 @@ import { db } from '../firebase';
 import { collection, addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { CreateDeckModal } from './CreateDeckModal';
 import { QuizletImportModal } from './QuizletImportModal';
-import { getForeignWord } from '../lib/utils';
+import { getForeignWord, hashDevString } from '../lib/utils';
 
 interface DashboardProps {
   vocabulary: Word[];
@@ -17,7 +17,7 @@ interface DashboardProps {
   onStartIncorrectSession: () => void;
   onStartFlashcards: (topic?: string | any) => void;
   onStartTest: () => void;
-  onNavigate: (view: 'home' | 'dashboard' | 'test' | 'shop') => void;
+  onNavigate: (view: 'home' | 'dashboard' | 'test' | 'shop' | 'pastPapers' | 'grammarMastery' | 'speakingMode' | 'examSimulator') => void;
   onResetProgress: () => void;
   user: User | null;
   userProfile?: any;
@@ -34,9 +34,11 @@ interface DashboardProps {
   onShowSettings: () => void;
   shopUnlocked?: boolean;
   onUnlockShop?: () => void;
+  onStartGrammarMastery?: () => void;
 }
 
-export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorrectSession, onStartFlashcards, onStartTest, onNavigate, onResetProgress, user, userProfile, language = 'biblical', onLanguageChange, onShowPro, devMode = false, isPremium = false, customDecks, srsSettings, onUpdateSrsSettings, reducedMotion = false, onLeaveReview, onShowSettings, shopUnlocked = false, onUnlockShop }: DashboardProps) {
+export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorrectSession, onStartFlashcards, onStartTest, onNavigate, onResetProgress, user, userProfile, language = 'biblical', onLanguageChange, onShowPro, devMode = false, isPremium = false, customDecks, srsSettings, onUpdateSrsSettings, reducedMotion = false, onLeaveReview, onShowSettings, shopUnlocked = false, onUnlockShop, onStartGrammarMastery }: DashboardProps) {
+
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [categoryFilter, setCategoryFilter] = useState<string>('all');
@@ -200,9 +202,13 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
         <div className="w-full sm:w-auto">
           <div className="flex flex-wrap items-center gap-3 mb-2">
             <h1 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
-              {language === 'biblical' ? 'Biblical Hebrew' : language === 'modern' ? 'Modern Hebrew' : language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Custom Deck'}
+              {language === 'biblical' ? 'Biblical Hebrew (Edexcel)' : language === 'modern' ? 'Modern Hebrew (AQA)' : language === 'spanish' ? 'Spanish (Edexcel)' : language === 'french' ? 'French (Edexcel)' : language === 'german' ? 'German (AQA)' : 'Custom Deck'}
             </h1>
             <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-full text-[9px] font-black uppercase tracking-widest border border-indigo-100 dark:border-indigo-900/30">
+                <CheckCircle2 className="w-3 h-3" />
+                Verified Spec
+              </div>
               {user ? (
                 <div className="flex items-center gap-1.5 px-2.5 py-1 bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded-full text-[9px] font-black uppercase tracking-widest border border-green-100 dark:border-green-900/30">
                   <CloudCheck className="w-3 h-3" />
@@ -247,7 +253,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
               START LEARNING <br className="hidden md:block"/> NOW — IT'S FREE!
             </h2>
             <p className="text-indigo-100 font-bold text-base md:text-xl mb-8 max-w-lg opacity-90">
-              Master your {language === 'biblical' ? 'Biblical Hebrew' : language === 'spanish' ? 'Spanish' : 'vocabulary'} effectively with Vocariox Smart-SRS.
+              Master the official {language === 'biblical' ? 'Edexcel' : 'AQA'} specification vocabulary—guaranteed to appear in your exams.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
@@ -309,33 +315,134 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Challenge Yourself</span>
           </button>
 
-          <button 
-            onClick={handleShopClick}
-            className={`col-span-2 lg:col-span-1 flex flex-col items-center justify-center p-6 border rounded-[2rem] shadow-lg group transition-all hover:-translate-y-1 ${
-              shopUnlocked 
-                ? 'bg-gradient-to-br from-pink-500 to-rose-600 border-pink-400/50 shadow-pink-500/20' 
-                : 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-none grayscale opacity-80'
-            }`}
-          >
-            <div 
-              onClick={handleIconClick}
-              className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform cursor-pointer ${
-                shopUnlocked ? 'bg-white/20' : 'bg-slate-200 dark:bg-slate-700'
+          {language === 'biblical' && (
+            <button 
+              onClick={onStartGrammarMastery}
+              className="col-span-2 lg:col-span-1 flex flex-col items-center justify-center p-6 bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800/30 rounded-[2rem] shadow-soft hover:shadow-xl hover:border-emerald-300 dark:hover:border-emerald-700 group transition-all"
+            >
+              <div className="w-14 h-14 bg-emerald-100 dark:bg-emerald-800/40 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Book className="w-7 h-7 text-emerald-600 dark:text-emerald-400" />
+              </div>
+              <span className="font-black text-emerald-900 dark:text-emerald-100">Grammar Mastery</span>
+              <span className="text-[10px] font-black text-emerald-600/70 dark:text-emerald-400/70 uppercase tracking-widest mt-1">Binyanim & Rules</span>
+            </button>
+          )}
+
+          {devMode && (
+            <button 
+              onClick={handleShopClick}
+              className={`col-span-2 lg:col-span-1 flex flex-col items-center justify-center p-6 border rounded-[2rem] shadow-lg group transition-all hover:-translate-y-1 ${
+                shopUnlocked 
+                  ? 'bg-gradient-to-br from-pink-500 to-rose-600 border-pink-400/50 shadow-pink-500/20' 
+                  : 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-none grayscale opacity-80'
               }`}
             >
-              <ShoppingCart className={`w-7 h-7 ${shopUnlocked ? 'text-white' : 'text-slate-400'}`} />
-            </div>
-            <span className={`font-black ${shopUnlocked ? 'text-white' : 'text-slate-500'}`}>
-              {shopUnlocked ? 'Student Shop' : 'Work in Progress'}
-            </span>
-            <span className={`text-[10px] font-black uppercase tracking-widest mt-1 ${
-              shopUnlocked ? 'text-pink-100' : 'text-slate-400'
-            }`}>
-              {shopUnlocked ? 'Premium Cheat Sheets' : 'Coming Soon'}
-            </span>
-          </button>
+              <div 
+                onClick={handleIconClick}
+                className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform cursor-pointer ${
+                  shopUnlocked ? 'bg-white/20' : 'bg-slate-200 dark:bg-slate-700'
+                }`}
+              >
+                <ShoppingCart className={`w-7 h-7 ${shopUnlocked ? 'text-white' : 'text-slate-400'}`} />
+              </div>
+              <span className={`font-black ${shopUnlocked ? 'text-white' : 'text-slate-500'}`}>
+                {shopUnlocked ? 'Student Shop' : 'Work in Progress'}
+              </span>
+              <span className={`text-[10px] font-black uppercase tracking-widest mt-1 ${
+                shopUnlocked ? 'text-pink-100' : 'text-slate-400'
+              }`}>
+                {shopUnlocked ? 'Premium Cheat Sheets' : 'Coming Soon'}
+              </span>
+            </button>
+          )}
         </div>
       </div>
+
+      {/* AI Exam Practice - Locked Promo */}
+      {devMode && (
+        <div className="relative overflow-hidden bg-gradient-to-br from-slate-900 to-black dark:from-black dark:to-slate-900 rounded-[2.5rem] p-8 md:p-12 shadow-2xl mb-12 group border border-slate-800">
+          <div className="absolute top-0 right-0 p-8 opacity-20 pointer-events-none translate-x-1/4 -translate-y-1/4 group-hover:scale-110 transition-transform duration-1000">
+            <Brain className="w-96 h-96 text-indigo-500" />
+          </div>
+          
+          <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-[10px] font-black uppercase tracking-widest border border-indigo-500/30 flex items-center gap-1.5">
+                  <Brain className="w-3 h-3" />
+                  AI Smart Technology
+                </div>
+                <div className="px-3 py-1 bg-rose-500/20 text-rose-300 rounded-full text-[10px] font-black uppercase tracking-widest border border-rose-500/30 flex items-center gap-1.5">
+                  <Lock className="w-3 h-3" />
+                  Coming Soon
+                </div>
+              </div>
+              
+              <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight leading-tight">
+                The Ultimate <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Exam Simulator</span>
+              </h2>
+              
+              <p className="text-slate-400 font-bold text-base md:text-lg mb-6 max-w-2xl leading-relaxed">
+                Experience the future of {language === 'biblical' ? 'Biblical Hebrew' : 'language'} revision. Our AI acts as your personal examiner, marking your answers instantly against official exam board criteria.
+              </p>
+
+              <div className="grid sm:grid-cols-2 gap-4 max-w-2xl">
+                {language === 'biblical' ? (
+                  <>
+                    <div className="p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                      <BookOpen className="w-6 h-6 text-indigo-400 mb-2" />
+                      <h3 className="text-white font-black mb-1">Unseen Practice</h3>
+                      <p className="text-sm text-slate-400 font-bold">Tackle unseen texts with AI-guided hints and immediate detailed mark schemes.</p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                      <Headphones className="w-6 h-6 text-indigo-400 mb-2" />
+                      <h3 className="text-white font-black mb-1">Listening</h3>
+                      <p className="text-sm text-slate-400 font-bold">AI-generated native speaker audio with exam-style questions.</p>
+                    </div>
+                    <div className="p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                      <BookOpen className="w-6 h-6 text-purple-400 mb-2" />
+                      <h3 className="text-white font-black mb-1">Reading</h3>
+                      <p className="text-sm text-slate-400 font-bold">Complex texts mimicking real exam passages with automated marking.</p>
+                    </div>
+                    <div className="p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                      <PenTool className="w-6 h-6 text-rose-400 mb-2" />
+                      <h3 className="text-white font-black mb-1">Writing</h3>
+                      <p className="text-sm text-slate-400 font-bold">Submit your essays for instant line-by-line AI corrections.</p>
+                    </div>
+                    <div className="p-4 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm relative overflow-hidden group">
+                      <div className="relative z-10">
+                        <div className="flex items-start justify-between mb-2">
+                          <Mic className="w-6 h-6 text-emerald-400" />
+                          <span className="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full uppercase tracking-widest font-black border border-emerald-500/20">Live in Lobby</span>
+                        </div>
+                        <h3 className="text-white font-black mb-1 group-hover:text-emerald-400 transition-colors flex items-center gap-2">
+                          Speaking
+                        </h3>
+                        <p className="text-sm text-slate-400 font-bold group-hover:text-slate-300">Real-time roleplay and photocard discussion with our AI examiner.</p>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+            
+            <div className="w-full md:w-auto flex flex-col gap-3 shrink-0">
+              <button 
+                onClick={() => {
+                  onNavigate('examSimulator');
+                }}
+                className="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-100 text-slate-900 rounded-2xl font-black transition-all flex items-center justify-center gap-2 shadow-xl"
+              >
+                <Sparkles className="w-5 h-5 text-indigo-600" />
+                Open Dev Lobby
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12">
         <div className="bg-white dark:bg-slate-900 p-6 md:p-8 rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-center sm:text-left">
@@ -616,7 +723,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
               <table className="w-full text-left">
                 <thead className="bg-slate-50/50 dark:bg-slate-800/50 text-slate-400 dark:text-slate-500 text-xs font-bold uppercase tracking-widest sticky top-0 z-10 backdrop-blur-sm">
                   <tr>
-                    <th className="px-8 py-5">{language === 'spanish' || language === 'french' ? 'Target' : 'Hebrew'}</th>
+                    <th className="px-8 py-5">{['spanish', 'french', 'german'].includes(language) ? 'Target' : 'Hebrew'}</th>
                     <th className="px-8 py-5">English</th>
                     <th className="px-8 py-5">Category</th>
                     <th className="px-8 py-5">Status</th>
@@ -630,7 +737,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
   
                       return (
                         <tr key={`vocab-${word.id}-${i}`} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors group">
-                          <td className="px-8 py-6 text-3xl font-bold text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
+                          <td className="px-8 py-6 text-3xl font-bold text-slate-900 dark:text-white" dir={['spanish', 'french', 'german'].includes(language) ? 'ltr' : 'rtl'}>
                             {getForeignWord(word, language)}
                           </td>
                           <td className="px-8 py-6 text-slate-600 dark:text-slate-400 font-bold overflow-hidden text-ellipsis">
@@ -674,7 +781,7 @@ export function Dashboard({ vocabulary, progress, onStartSession, onStartIncorre
                   return (
                     <div key={`mobile-vocab-${word.id}-${i}`} className="p-6 active:bg-slate-50 dark:active:bg-slate-800/50 transition-colors">
                       <div className="flex justify-between items-start mb-2">
-                        <div className="text-3xl font-bold text-slate-900 dark:text-white leading-tight" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
+                        <div className="text-3xl font-bold text-slate-900 dark:text-white leading-tight" dir={['spanish', 'french', 'german'].includes(language) ? 'ltr' : 'rtl'}>
                           {getForeignWord(word, language)}
                         </div>
                         <span className={`px-2 py-1 rounded text-[9px] font-black uppercase tracking-widest ${

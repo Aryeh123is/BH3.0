@@ -840,7 +840,7 @@ export function FlashcardMode({
                   {enableKeyboard ? "Disable Keyboard Shortcuts" : "Enable Keyboard Shortcuts"}
                 </button>
                 <div className="flex items-center gap-2">
-                  <p className="text-[10px] uppercase tracking-[0.2em] opacity-50">Created by Aryeh Isaac-Saul</p>
+                  <p className="text-[10px] uppercase tracking-[0.2em] opacity-50">Vocariox</p>
                 </div>
               </div>
             </div>

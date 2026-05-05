@@ -1,22 +1,44 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { X, Printer, ChevronLeft, ShieldCheck, Lock, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import ReactMarkdown from 'react-markdown';
 import { ShopDocument } from '../types';
 
 interface DocumentViewerProps {
-  document: ShopDocument; // keeping the prop name same for external usage
+  document?: ShopDocument; // optional now
+  pdfUrl?: string; // New: support direct PDF URL
   onClose: () => void;
   isUnlocked?: boolean;
   userEmail?: string;
+  title?: string;
 }
 
-export function DocumentViewer({ document: shopDoc, onClose, isUnlocked = true, userEmail = 'Protected Content' }: DocumentViewerProps) {
+export function DocumentViewer({ document: shopDoc, pdfUrl, onClose, isUnlocked = true, userEmail = 'Protected Content', title }: DocumentViewerProps) {
   const [isBlurred, setIsBlurred] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const displayTitle = title || shopDoc?.title || 'Document';
+  const displayPages = shopDoc?.pages;
+  const displayContent = shopDoc?.content;
+  const displayId = shopDoc?.id || 'temp';
+  const displayCreatedAt = shopDoc?.createdAt || Date.now();
+  const displayLanguage = shopDoc?.language || 'General';
 
   const handlePrint = () => {
     if (!isUnlocked) return;
+    
+    // If it's a PDF iframe, try to print the iframe content directly for better quality
+    if (pdfUrl && iframeRef.current && iframeRef.current.contentWindow) {
+      try {
+        iframeRef.current.contentWindow.print();
+        return;
+      } catch (err) {
+        console.error("Failed to print iframe directly:", err);
+        // Fallback below
+      }
+    }
+    
     window.print();
   };
 
@@ -111,12 +133,28 @@ export function DocumentViewer({ document: shopDoc, onClose, isUnlocked = true, 
         </div>
       ) : (
         <div className={`flex-1 overflow-y-auto no-scrollbar transition-all duration-300 ${isBlurred ? 'blur-2xl scale-[0.98] grayscale' : ''}`}>
-          <div className="max-w-[21cm] mx-auto my-8 sm:my-12 flex flex-col gap-8 print:gap-0 print:m-0 print:max-w-none relative">
-            {/* If document is image-based (PDF style) */}
-            {shopDoc.pages && shopDoc.pages.length > 0 ? (
-              shopDoc.pages.map((pageUrl, index) => (
+          <div className="max-w-[21cm] mx-auto my-8 sm:my-12 flex flex-col gap-8 print:gap-0 print:m-0 print:max-w-none relative h-full min-h-[80vh]">
+            {pdfUrl ? (
+              <div className="w-full h-full min-h-[80vh] bg-white rounded-xl shadow-2xl relative overflow-hidden flex flex-col">
+                <iframe
+                  ref={iframeRef}
+                  src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+                  className="w-full h-full flex-1 border-none"
+                  title={displayTitle}
+                />
+                {/* Overlay to prevent some interaction */}
+                <div className="absolute inset-0 pointer-events-none opacity-[0.04] grid grid-cols-3 gap-8 p-12 rotate-12 print:hidden overflow-hidden">
+                  {Array.from({ length: 15 }).map((_, i) => (
+                    <span key={`wm-pdf-${i}`} className="text-slate-900 text-sm font-black whitespace-nowrap uppercase tracking-tighter">
+                      {userEmail} • VOCARIOX
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : displayPages && displayPages.length > 0 ? (
+              displayPages.map((pageUrl, index) => (
                 <div 
-                  key={`doc-page-${shopDoc.id}-${index}`} 
+                  key={`doc-page-${displayId}-${index}`} 
                   className="bg-white shadow-2xl relative overflow-hidden group print:shadow-none print:m-0 print:bg-white"
                   style={{ aspectRatio: '210/297' }} // A4 Ratio
                 >
@@ -149,13 +187,13 @@ export function DocumentViewer({ document: shopDoc, onClose, isUnlocked = true, 
                 </div>
                 <div className="relative z-10 markdown-body prose prose-slate max-w-none print:prose-xl">
                   <div className="mb-12 border-b-2 border-slate-100 pb-8">
-                    <h1 className="text-4xl font-black text-slate-900 mb-2">{shopDoc.title}</h1>
+                    <h1 className="text-4xl font-black text-slate-900 mb-2">{displayTitle}</h1>
                     <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">
-                      {shopDoc.language} Keywords • {new Date(shopDoc.createdAt).toLocaleDateString()}
+                      {displayLanguage} Keywords • {new Date(displayCreatedAt).toLocaleDateString()}
                     </p>
                   </div>
                   <div className="text-slate-800 leading-relaxed printable-content">
-                    <ReactMarkdown>{shopDoc.content || ''}</ReactMarkdown>
+                    <ReactMarkdown>{displayContent || ''}</ReactMarkdown>
                   </div>
                 </div>
               </div>
@@ -167,19 +205,39 @@ export function DocumentViewer({ document: shopDoc, onClose, isUnlocked = true, 
       {/* Print & Protection Styles */}
       <style>{`
         @media print {
-          @page { size: A4; margin: 0; }
+          @page { size: A4; margin: 1cm; }
           html, body {
             margin: 0 !important;
             padding: 0 !important;
             height: auto !important;
+            min-height: 100% !important;
             overflow: visible !important;
             background: white !important;
           }
-          .print\\:hidden, header, nav, footer, button, .blur-2xl { display: none !important; }
+          
+          /* The fixed container must be static in print to allow multi-page scrolling */
+          .fixed.inset-0 {
+            position: relative !important;
+            display: block !important;
+            height: auto !important;
+            overflow: visible !important;
+            z-index: auto !important;
+            background: white !important;
+            padding: 0 !important;
+          }
+
+          .flex-1.overflow-y-auto {
+            overflow: visible !important;
+            height: auto !important;
+            display: block !important;
+          }
+
+          .print\\:hidden, header, nav, footer, button, .blur-2xl, .alert-warning { display: none !important; }
           
           /* Force page break behavior */
-          .bg-white {
-            page-break-after: always !important;
+          .bg-white, div > div > img {
+            page-break-after: auto !important;
+            page-break-inside: avoid !important;
             box-shadow: none !important;
             margin: 0 !important;
             width: 100% !important;
@@ -188,8 +246,8 @@ export function DocumentViewer({ document: shopDoc, onClose, isUnlocked = true, 
           /* Ensure images fill width and don't overflow pages */
           img { 
             width: 100% !important; 
+            max-width: 100% !important;
             height: auto !important; 
-            max-height: 29.7cm !important;
             object-fit: contain !important;
             display: block !important;
           }

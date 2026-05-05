@@ -302,7 +302,7 @@ export function SettingsModal({
                         <RotateCcw className="w-6 h-6" />
                       </div>
                       <div className="text-left">
-                        <h5 className="font-bold text-slate-900 dark:text-white">Reset {language === 'biblical' ? 'Biblical Hebrew' : language === 'modern' ? 'Modern Hebrew' : language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Current Deck'}</h5>
+                        <h5 className="font-bold text-slate-900 dark:text-white">Reset {language === 'biblical' ? 'Biblical Hebrew (Edexcel)' : language === 'modern' ? 'Modern Hebrew (AQA)' : language === 'spanish' ? 'Spanish (Edexcel)' : language === 'french' ? 'French (Edexcel)' : language === 'german' ? 'German (AQA)' : 'Current Deck'}</h5>
                         <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Clear your mastery and starts fresh for this language.</p>
                       </div>
                     </div>
