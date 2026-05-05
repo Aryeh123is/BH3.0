@@ -1628,6 +1628,7 @@ export default function App() {
             >
               <SpeakingExamMode
                 onBack={() => setView('examSimulator')}
+                preferences={preferences}
               />
             </motion.div>
           )}

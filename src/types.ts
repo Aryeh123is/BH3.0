@@ -52,6 +52,7 @@ export interface SRSSettings {
 export interface UserPreferences {
   animationsEnabled: boolean;
   reducedMotion: boolean;
+  extraTime?: boolean;
 }
 
 export interface ShopDocument {

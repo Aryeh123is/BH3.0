@@ -270,6 +270,23 @@ export function SettingsModal({
                 </section>
 
                 <section className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
+                  <div className="flex items-center gap-4 justify-between">
+                    <div className="space-y-1">
+                      <h4 className="font-bold text-slate-900 dark:text-white">Extra Time Allowance</h4>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-snug">Automatically apply extra time in Exam Simulators.</p>
+                    </div>
+                    <button
+                      onClick={() => onUpdatePreferences({ extraTime: !preferences.extraTime })}
+                      className={`relative shrink-0 w-12 h-6 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900 ${preferences.extraTime ? 'bg-indigo-600' : 'bg-slate-300 dark:bg-slate-700'}`}
+                      role="switch"
+                      aria-checked={preferences.extraTime}
+                    >
+                      <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${preferences.extraTime ? 'translate-x-6' : 'translate-x-0'}`} />
+                    </button>
+                  </div>
+                </section>
+
+                <section className="p-6 bg-slate-50 dark:bg-slate-800/50 rounded-3xl border border-slate-100 dark:border-slate-800">
                   <div className="flex items-start gap-4 flex-col md:flex-row md:justify-between">
                     <div className="space-y-2">
                       <h4 className="font-bold text-slate-900 dark:text-white">

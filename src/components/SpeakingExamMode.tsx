@@ -4,8 +4,11 @@ import { EXAM_THEMES, READ_ALOUD_TASKS, ROLE_PLAY_CARDS, PICTURE_CARDS } from '.
 import { GoogleGenAI, Modality } from '@google/genai';
 import Markdown from 'react-markdown';
 
+import { UserPreferences } from '../types';
+
 interface SpeakingExamModeProps {
   onBack: () => void;
+  preferences?: UserPreferences;
 }
 
 type ModeState = 'setup' | 'preparation' | 'exam' | 'feedback';
@@ -16,10 +19,10 @@ interface ChatMessage {
   text: string;
 }
 
-export function SpeakingExamMode({ onBack }: SpeakingExamModeProps) {
+export function SpeakingExamMode({ onBack, preferences }: SpeakingExamModeProps) {
   const [modeState, setModeState] = useState<ModeState>('setup');
   const [theme, setTheme] = useState<string>('');
-  const [extraTime, setExtraTime] = useState<boolean>(false);
+  const [extraTime, setExtraTime] = useState<boolean>(preferences?.extraTime || false);
   const [prepSeconds, setPrepSeconds] = useState<number>(0);
   
   // Tasks
@@ -315,13 +318,23 @@ Give 3 specific examples of how they could have rephrased their weaker answers i
               </div>
 
               <div>
-                 <label className="flex items-center gap-3 cursor-pointer p-4 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
-                   <input type="checkbox" checked={extraTime} onChange={() => setExtraTime(!extraTime)} className="w-5 h-5 accent-indigo-600" />
-                   <div>
-                     <p className="font-bold text-slate-900 dark:text-white">Extra Time (25%)</p>
-                     <p className="text-sm text-slate-500 dark:text-slate-400">18 minutes preparation time instead of 15</p>
+                 {preferences?.extraTime ? (
+                   <div className="p-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl border border-indigo-100 dark:border-indigo-800/50 flex items-center justify-between">
+                     <div>
+                       <p className="font-bold text-indigo-900 dark:text-indigo-100">Extra Time Applied</p>
+                       <p className="text-sm text-indigo-600 dark:text-indigo-400">18 minutes preparation time (from Settings)</p>
+                     </div>
+                     <CheckCircle2 className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                    </div>
-                 </label>
+                 ) : (
+                   <label className="flex items-center gap-3 cursor-pointer p-4 border border-slate-200 dark:border-slate-700 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors">
+                     <input type="checkbox" checked={extraTime} onChange={() => setExtraTime(!extraTime)} className="w-5 h-5 accent-indigo-600" />
+                     <div>
+                       <p className="font-bold text-slate-900 dark:text-white">Extra Time (25%)</p>
+                       <p className="text-sm text-slate-500 dark:text-slate-400">18 minutes preparation time instead of 15</p>
+                     </div>
+                   </label>
+                 )}
               </div>
 
               <button 

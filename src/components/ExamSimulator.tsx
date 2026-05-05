@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, Headphones, BookOpen, PenTool, Mic, Brain, Lock } from 'lucide-react';
+import { ArrowLeft, Headphones, BookOpen, PenTool, Mic, Brain, Lock, Clock } from 'lucide-react';
 import { motion } from 'motion/react';
 import { User } from 'firebase/auth';
 import { hashDevString } from '../lib/utils';
@@ -148,6 +148,18 @@ export function ExamSimulator({ language, user, devMode, onBack, onSelectMode }:
             </button>
           </>
         )}
+      </div>
+
+      <div className="mt-8 p-6 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-start gap-4">
+        <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-xl flex items-center justify-center shrink-0">
+          <Clock className="w-5 h-5" />
+        </div>
+        <div>
+          <h4 className="font-bold text-slate-900 dark:text-white mb-1 tracking-tight">Need Extra Time?</h4>
+          <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
+            You can automatically apply 25% extra time in all Exam Simulators by enabling <strong>Extra Time Allowance</strong> in your account <strong>Settings</strong>.
+          </p>
+        </div>
       </div>
     </div>
   );
