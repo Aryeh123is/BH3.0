@@ -585,6 +585,7 @@ export default function App() {
   const isPremium = useMemo(() => {
     if (devMode) return true;
     if (!user) return false;
+    if (user?.email && hashDevString(user.email.toLowerCase()) === '7aa66867') return true;
     if (userProfile?.isPremium) return true;
     return trialInfo.isTrialActive;
   }, [user, userProfile, devMode, trialInfo.isTrialActive]);
@@ -2146,12 +2147,42 @@ export default function App() {
                   </button>
                 </>
               ) : trialInfo.isExpired ? (
-                <>
+                <div className="max-h-[80vh] overflow-y-auto pr-2 custom-scrollbar">
                   <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">Early Access Ended</h2>
                   <p className="text-slate-500 dark:text-slate-400 mb-6">
                     Your 7-day early access period has ended. Premium is still in development, but we're launching soon!
                   </p>
-                  <div className="p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/50 mb-6">
+
+                  <h3 className="text-xl font-black text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-indigo-500" />
+                    Premium Roadmap 2026
+                  </h3>
+                  <div className="space-y-6 mb-8">
+                    <div className="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200 dark:before:bg-slate-800">
+                      <div className="absolute left-[-4px] top-1 w-2.5 h-2.5 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]" />
+                      <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest mb-2">April 2026</h3>
+                      <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400 font-bold">
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Audio Pronunciations</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Streak Freezes</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Advanced Progress Insights</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Full Smart-SRS System</li>
+                        <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500" /> Test Mode (Active Typing)</li>
+                      </ul>
+                    </div>
+                    
+                    <div className="relative pl-8 before:absolute before:left-0 before:top-2 before:bottom-0 before:w-px before:bg-slate-200 dark:before:bg-slate-800">
+                      <div className="absolute left-[-4px] top-1 w-2.5 h-2.5 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.5)]" />
+                      <h3 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest mb-2">June 2026</h3>
+                      <ul className="space-y-2 text-sm text-slate-600 dark:text-slate-400 font-bold">
+                        <li className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-black"><Lock className="w-4 h-4" /> BH Grammar Mastery (Premium)</li>
+                        <li className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-black"><Lock className="w-4 h-4" /> AI Speaking Mock Exams (Pro)</li>
+                        <li className="flex items-center gap-2"><Lock className="w-4 h-4" /> Listening & Writing Exam Prep</li>
+                        <li className="flex items-center gap-2"><Lock className="w-4 h-4" /> Offline Mode & More</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="p-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-2xl border border-indigo-100 dark:border-indigo-800/50 mb-2">
                     <h3 className="text-lg font-bold text-indigo-600 dark:text-indigo-400 mb-2 flex items-center gap-2">
                       <Sparkles className="w-5 h-5" />
                       Claim 50% Off!
@@ -2179,14 +2210,14 @@ export default function App() {
                         Claim My 50% Discount
                       </button>
                     </div>
-                    <button 
-                      onClick={() => setShowProModal(false)}
-                      className="w-full py-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 font-bold transition-colors"
-                    >
-                      Maybe Later
-                    </button>
                   </div>
-                </>
+                  <button 
+                    onClick={() => setShowProModal(false)}
+                    className="w-full py-2 mt-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 font-bold transition-colors"
+                  >
+                    Maybe Later
+                  </button>
+                </div>
               ) : (
                 <>
                   <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
