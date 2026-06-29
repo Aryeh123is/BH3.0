@@ -1,0 +1,914 @@
+[
+  {
+    "id": "ra-fr-1",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "passageText": "Ma famille et moi habitons dans un petit village, même si je dois dire que c'est parfois un peu ennuyeux pour les jeunes. Hier, je suis allé au centre sportif avec mes amis et après nous avons dîné dans mon restaurant préféré. À l'avenir, j'aimerais vivre dans une grande ville parce qu'il y a plus de choses à faire.",
+    "followUpQuestionIds": [
+      "conv-fr-1",
+      "conv-fr-2"
+    ]
+  },
+  {
+    "id": "ra-fr-2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "passageText": "J'ai beaucoup d'amis au collège mais mon meilleur ami s'appelle Pierre. Nous nous connaissons depuis dix ans et nous nous aidons toujours avec les devoirs. Le week-end dernier, nous avons décidé d'aller au cinéma pour voir un film d'horreur, ce qui était très excitant. Je pense que l'amitié est fondamentale pour être heureux.",
+    "followUpQuestionIds": [
+      "conv-fr-3",
+      "conv-fr-4"
+    ]
+  },
+  {
+    "id": "ra-fr-3",
+    "type": "read_aloud",
+    "themeId": "theme-3-school",
+    "language": "French",
+    "passageText": "Dans mon collège, les cours commencent à huit heures et demie du matin. Ma matière préférée est le dessin parce que cela me permet d'être créatif et de me détendre un peu. Cependant, je n'aime pas du tout la physique car cela me semble trop compliqué. L'année prochaine, j'espère avoir de bonnes notes à tous mes examens.",
+    "followUpQuestionIds": [
+      "conv-fr-5",
+      "conv-fr-6"
+    ]
+  },
+  {
+    "id": "ra-fr-4",
+    "type": "read_aloud",
+    "themeId": "theme-6-travel",
+    "language": "French",
+    "passageText": "Normalement, je vais en vacances à la côte avec mes parents pendant le mois d'août. Ce que j'aime le plus, c'est nager dans la mer et bronzer sur le sable. L'année dernière, nous sommes allés en Italie et nous avons visité beaucoup de monuments historiques à Rome. C'était une expérience inoubliable et j'ai pris beaucoup de photos magnifiques.",
+    "followUpQuestionIds": [
+      "conv-fr-7",
+      "conv-fr-8"
+    ]
+  },
+  {
+    "id": "ra-fr-5",
+    "type": "read_aloud",
+    "themeId": "theme-4-future-plans",
+    "language": "French",
+    "passageText": "Quand je terminerai mes études, je veux travailler comme ingénieur parce que j'adore les mathématiques et la technologie. Mon père est architecte et sa passion pour le design m'a toujours inspiré. L'été dernier, j'ai fait un stage dans son bureau et j'ai appris beaucoup de choses intéressantes sur la construction moderne.",
+    "followUpQuestionIds": [
+      "conv-fr-9",
+      "conv-fr-10"
+    ]
+  },
+  {
+    "id": "ra-fr-6",
+    "type": "read_aloud",
+    "themeId": "theme-5-environment",
+    "language": "French",
+    "passageText": "Le changement climatique m'inquiète beaucoup parce que c'est un problème mondial qui nous affecte tous. Chez moi, nous recyclons toujours le papier et le verre, et nous essayons de réduire la consommation de plastique. Le mois prochain, je vais participer à une campagne de nettoyage des plages avec mon groupe de volontaires locaux.",
+    "followUpQuestionIds": [
+      "conv-fr-13",
+      "conv-fr-14"
+    ]
+  },
+  {
+    "id": "ra-fr-7",
+    "type": "read_aloud",
+    "themeId": "theme-2-leisure",
+    "language": "French",
+    "passageText": "Pendant mon temps libre, j'aime beaucoup lire des livres d'aventure. La semaine dernière, j'ai fini un roman fascinant sur un voyage dans l'espace. En plus de lire, j'adore jouer de la guitare et parfois je joue dans un groupe avec mes cousins. Samedi prochain, nous allons donner un petit concert sur la place du village.",
+    "followUpQuestionIds": [
+      "conv-fr-11",
+      "conv-fr-12"
+    ]
+  },
+  {
+    "id": "ra-fr-8",
+    "type": "read_aloud",
+    "themeId": "theme-7-technology",
+    "language": "French",
+    "passageText": "J'utilise mon portable pour presque tout : pour parler avec mes amis, pour écouter de la musique et pour chercher des informations pour mes devoirs. Mes parents disent que je passe trop de temps devant l'écran, mais je pense que la technologie est très utile si on l'utilise bien. Hier, j'ai acheté de nouveaux écouteurs dans une boutique en ligne.",
+    "followUpQuestionIds": [
+      "conv-fr-15",
+      "conv-fr-16"
+    ]
+  },
+  {
+    "id": "ra-fr-9",
+    "type": "read_aloud",
+    "themeId": "theme-8-social-issues",
+    "language": "French",
+    "passageText": "Dans mon quartier, il y a un centre communautaire où les jeunes peuvent aller après les cours. J'aime y aller parce que nous pouvons jouer au tennis de table et participer à des ateliers de cuisine. Il est important que ces endroits existent pour que les jeunes aient une alternative saine et puissent socialiser dans un environnement sûr.",
+    "followUpQuestionIds": [
+      "conv-fr-17",
+      "conv-fr-18"
+    ]
+  },
+  {
+    "id": "rp-fr-1",
+    "type": "roleplay",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "scenarioPrompt": "Tu parles avec ton partenaire d'échange de ta famille et de tes amis.",
+    "studentRole": "Toi-même",
+    "examinerRole": "Partenaire d'échange",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Décris ton/ta meilleur(e) ami(e) physiquement.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explique ce que toi et tes amis avez fait le week-end dernier.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Mentionne un petit problème que tu as eu avec ta famille.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Pose une question sur les projets de ton ami.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-fr-2",
+    "type": "roleplay",
+    "themeId": "theme-3-school",
+    "language": "French",
+    "scenarioPrompt": "Tu parles avec un professeur de tes études et de tes projets d'avenir.",
+    "studentRole": "Élève",
+    "examinerRole": "Professeur",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dis-moi quelle matière tu préfères et pourquoi.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explique quelque chose que tu as fait au collège hier.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Mentionne ce que tu penses des règles de ton collège.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Pose une question sur le travail du professeur.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-fr-7",
+    "type": "roleplay",
+    "themeId": "theme-7-technology",
+    "language": "French",
+    "scenarioPrompt": "Tu achètes un nouvel ordinateur dans un magasin d'électronique.",
+    "studentRole": "Client",
+    "examinerRole": "Vendeur",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dis-lui quel type d'ordinateur tu cherches et pour quoi tu vas l'utiliser.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explique pourquoi tu préfères une tablette ou un ordinateur portable.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Mentionne combien d'argent tu veux dépenser.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Pose une question sur la garantie.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-fr-8",
+    "type": "roleplay",
+    "themeId": "theme-4-future-plans",
+    "language": "French",
+    "scenarioPrompt": "Tu as un entretien pour un job d'été dans un hôtel.",
+    "studentRole": "Candidat",
+    "examinerRole": "Gérant de l'hôtel",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Présente-toi et dis pourquoi tu veux ce travail.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Mentionne tes compétences linguistiques.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Explique quelle expérience professionnelle tu as eue auparavant.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Pose une question sur les horaires de travail.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "pc-fr-8",
+    "type": "photo_card",
+    "themeId": "theme-4-future-plans",
+    "language": "French",
+    "imageUrl": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+    ],
+    "studentPrompts": [
+      "Décris ce que tu vois sur la photo."
+    ],
+    "examinerPrompts": [
+      "Décris ce que tu vois sur la photo.",
+      "Quels sont les avantages de travailler dans un bureau ?",
+      "Quel genre de travail aimerais-tu avoir à l'avenir ?"
+    ],
+    "followUpQuestionIds": [
+      "conv-fr-9",
+      "conv-fr-10"
+    ]
+  },
+  {
+    "id": "pc-fr-1",
+    "type": "photo_card",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "imageUrl": "https://images.unsplash.com/photo-1511895426328-dc8714191300",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1511895426328-dc8714191300"
+    ],
+    "studentPrompts": [
+      "Décris la photo."
+    ],
+    "examinerPrompts": [
+      "Décris la photo.",
+      "Penses-tu que se marier est une tradition importante de nos jours ?",
+      "Que fêteras-tu avec ta famille l'année prochaine ?"
+    ],
+    "followUpQuestionIds": [
+      "conv-fr-1",
+      "conv-fr-2",
+      "conv-fr-3"
+    ]
+  },
+  {
+    "id": "pc-fr-2",
+    "type": "photo_card",
+    "themeId": "theme-3-school",
+    "language": "French",
+    "imageUrl": "https://images.unsplash.com/photo-1523050853064-00215715568a",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1523050853064-00215715568a"
+    ],
+    "studentPrompts": [
+      "Décris la photo."
+    ],
+    "examinerPrompts": [
+      "Décris la photo.",
+      "Que penses-tu des installations de ton collège ?",
+      "Comment serait ton collège idéal ?"
+    ],
+    "followUpQuestionIds": [
+      "conv-fr-5",
+      "conv-fr-6"
+    ]
+  },
+  {
+    "id": "conv-fr-11",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "French",
+    "questionText": "Qu'est-ce que tu fais d'habitude pendant ton temps libre ?"
+  },
+  {
+    "id": "conv-fr-12",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "French",
+    "questionText": "Préfères-tu regarder des films à la maison ou au cinéma ?"
+  },
+  {
+    "id": "conv-fr-13",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "French",
+    "questionText": "Quel est le problème environnemental le plus grave pour toi ?"
+  },
+  {
+    "id": "conv-fr-14",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "French",
+    "questionText": "Que fais-tu pour économiser l'eau chez toi ?"
+  },
+  {
+    "id": "conv-fr-1",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "questionText": "Est-ce que tu t'entends bien avec ta famille ?"
+  },
+  {
+    "id": "conv-fr-2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "questionText": "Qu'est-ce que tu as fait le week-end dernier avec ta famille ?"
+  },
+  {
+    "id": "conv-fr-3",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "questionText": "Comment est ton meilleur ami ?"
+  },
+  {
+    "id": "conv-fr-4",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "questionText": "Qu'est-ce que tu préfères faire avec tes amis ?"
+  },
+  {
+    "id": "conv-fr-5",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "French",
+    "questionText": "Quelle matière préfères-tu ?"
+  },
+  {
+    "id": "conv-fr-6",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "French",
+    "questionText": "Est-ce que tu portes un uniforme au collège ?"
+  },
+  {
+    "id": "conv-fr-7",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "French",
+    "questionText": "Où es-tu allé en vacances l'année dernière ?"
+  },
+  {
+    "id": "conv-fr-8",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "French",
+    "questionText": "Préfères-tu les vacances à la plage ou à la ville ?"
+  },
+  {
+    "id": "conv-fr-9",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "French",
+    "questionText": "Aimerais-tu travailler à l'étranger à l'avenir ?"
+  },
+  {
+    "id": "conv-fr-10",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "French",
+    "questionText": "Quels projets as-tu pour après tes examens ?"
+  },
+  {
+    "id": "conv-fr-15",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "French",
+    "questionText": "Combien d'heures par jour passes-tu sur ton téléphone portable ?"
+  },
+  {
+    "id": "conv-fr-16",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "French",
+    "questionText": "Quels sont les avantages et les inconvénients des réseaux sociaux ?"
+  },
+  {
+    "id": "conv-fr-17",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "French",
+    "questionText": "Que peut-on faire pour aider les personnes sans abri dans notre ville ?"
+  },
+  {
+    "id": "conv-fr-18",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "French",
+    "questionText": "Est-il important d'avoir un centre communautaire pour les jeunes dans ton quartier ?"
+  },
+  {
+    "id": "ra-fr-1_v2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "passageText": "Ma famille et moi habitons dans un petit village, même si je dois dire que c'est parfois un peu ennuyeux pour les jeunes. Hier, je suis allé au centre sportif avec mes amis et après nous avons dîné dans mon restaurant préféré. À l'avenir, j'aimerais vivre dans une grande ville parce qu'il y a plus de choses à faire.",
+    "followUpQuestionIds": [
+      "conv-fr-1",
+      "conv-fr-2"
+    ]
+  },
+  {
+    "id": "ra-fr-2_v2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "passageText": "J'ai beaucoup d'amis au collège mais mon meilleur ami s'appelle Pierre. Nous nous connaissons depuis dix ans et nous nous aidons toujours avec les devoirs. Le week-end dernier, nous avons décidé d'aller au cinéma pour voir un film d'horreur, ce qui était très excitant. Je pense que l'amitié est fondamentale pour être heureux.",
+    "followUpQuestionIds": [
+      "conv-fr-3",
+      "conv-fr-4"
+    ]
+  },
+  {
+    "id": "ra-fr-3_v2",
+    "type": "read_aloud",
+    "themeId": "theme-3-school",
+    "language": "French",
+    "passageText": "Dans mon collège, les cours commencent à huit heures et demie du matin. Ma matière préférée est le dessin parce que cela me permet d'être créatif et de me détendre un peu. Cependant, je n'aime pas du tout la physique car cela me semble trop compliqué. L'année prochaine, j'espère avoir de bonnes notes à tous mes examens.",
+    "followUpQuestionIds": [
+      "conv-fr-5",
+      "conv-fr-6"
+    ]
+  },
+  {
+    "id": "ra-fr-4_v2",
+    "type": "read_aloud",
+    "themeId": "theme-6-travel",
+    "language": "French",
+    "passageText": "Normalement, je vais en vacances à la côte avec mes parents pendant le mois d'août. Ce que j'aime le plus, c'est nager dans la mer et bronzer sur le sable. L'année dernière, nous sommes allés en Italie et nous avons visité beaucoup de monuments historiques à Rome. C'était une expérience inoubliable et j'ai pris beaucoup de photos magnifiques.",
+    "followUpQuestionIds": [
+      "conv-fr-7",
+      "conv-fr-8"
+    ]
+  },
+  {
+    "id": "ra-fr-5_v2",
+    "type": "read_aloud",
+    "themeId": "theme-4-future-plans",
+    "language": "French",
+    "passageText": "Quand je terminerai mes études, je veux travailler comme ingénieur parce que j'adore les mathématiques et la technologie. Mon père est architecte et sa passion pour le design m'a toujours inspiré. L'été dernier, j'ai fait un stage dans son bureau et j'ai appris beaucoup de choses intéressantes sur la construction moderne.",
+    "followUpQuestionIds": [
+      "conv-fr-9",
+      "conv-fr-10"
+    ]
+  },
+  {
+    "id": "ra-fr-6_v2",
+    "type": "read_aloud",
+    "themeId": "theme-5-environment",
+    "language": "French",
+    "passageText": "Le changement climatique m'inquiète beaucoup parce que c'est un problème mondial qui nous affecte tous. Chez moi, nous recyclons toujours le papier et le verre, et nous essayons de réduire la consommation de plastique. Le mois prochain, je vais participer à une campagne de nettoyage des plages avec mon groupe de volontaires locaux.",
+    "followUpQuestionIds": [
+      "conv-fr-13",
+      "conv-fr-14"
+    ]
+  },
+  {
+    "id": "ra-fr-7_v2",
+    "type": "read_aloud",
+    "themeId": "theme-2-leisure",
+    "language": "French",
+    "passageText": "Pendant mon temps libre, j'aime beaucoup lire des livres d'aventure. La semaine dernière, j'ai fini un roman fascinant sur un voyage dans l'espace. En plus de lire, j'adore jouer de la guitare et parfois je joue dans un groupe avec mes cousins. Samedi prochain, nous allons donner un petit concert sur la place du village.",
+    "followUpQuestionIds": [
+      "conv-fr-11",
+      "conv-fr-12"
+    ]
+  },
+  {
+    "id": "ra-fr-8_v2",
+    "type": "read_aloud",
+    "themeId": "theme-7-technology",
+    "language": "French",
+    "passageText": "J'utilise mon portable pour presque tout : pour parler avec mes amis, pour écouter de la musique et pour chercher des informations pour mes devoirs. Mes parents disent que je passe trop de temps devant l'écran, mais je pense que la technologie est très utile si on l'utilise bien. Hier, j'ai acheté de nouveaux écouteurs dans une boutique en ligne.",
+    "followUpQuestionIds": [
+      "conv-fr-15",
+      "conv-fr-16"
+    ]
+  },
+  {
+    "id": "ra-fr-9_v2",
+    "type": "read_aloud",
+    "themeId": "theme-8-social-issues",
+    "language": "French",
+    "passageText": "Dans mon quartier, il y a un centre communautaire où les jeunes peuvent aller après les cours. J'aime y aller parce que nous pouvons jouer au tennis de table et participer à des ateliers de cuisine. Il est important que ces endroits existent pour que les jeunes aient une alternative saine et puissent socialiser dans un environnement sûr.",
+    "followUpQuestionIds": [
+      "conv-fr-17",
+      "conv-fr-18"
+    ]
+  },
+  {
+    "id": "rp-fr-1_v2",
+    "type": "roleplay",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "scenarioPrompt": "Tu parles avec ton partenaire d'échange de ta famille et de tes amis.",
+    "studentRole": "Toi-même",
+    "examinerRole": "Partenaire d'échange",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Décris ton/ta meilleur(e) ami(e) physiquement.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explique ce que toi et tes amis avez fait le week-end dernier.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Mentionne un petit problème que tu as eu avec ta famille.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Pose une question sur les projets de ton ami.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-fr-2_v2",
+    "type": "roleplay",
+    "themeId": "theme-3-school",
+    "language": "French",
+    "scenarioPrompt": "Tu parles avec un professeur de tes études et de tes projets d'avenir.",
+    "studentRole": "Élève",
+    "examinerRole": "Professeur",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dis-moi quelle matière tu préfères et pourquoi.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explique quelque chose que tu as fait au collège hier.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Mentionne ce que tu penses des règles de ton collège.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Pose une question sur le travail du professeur.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-fr-7_v2",
+    "type": "roleplay",
+    "themeId": "theme-7-technology",
+    "language": "French",
+    "scenarioPrompt": "Tu achètes un nouvel ordinateur dans un magasin d'électronique.",
+    "studentRole": "Client",
+    "examinerRole": "Vendeur",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dis-lui quel type d'ordinateur tu cherches et pour quoi tu vas l'utiliser.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explique pourquoi tu préfères une tablette ou un ordinateur portable.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Mentionne combien d'argent tu veux dépenser.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Pose une question sur la garantie.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-fr-8_v2",
+    "type": "roleplay",
+    "themeId": "theme-4-future-plans",
+    "language": "French",
+    "scenarioPrompt": "Tu as un entretien pour un job d'été dans un hôtel.",
+    "studentRole": "Candidat",
+    "examinerRole": "Gérant de l'hôtel",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Présente-toi et dis pourquoi tu veux ce travail.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Mentionne tes compétences linguistiques.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Explique quelle expérience professionnelle tu as eue auparavant.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Pose une question sur les horaires de travail.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "pc-fr-8_v2",
+    "type": "photo_card",
+    "themeId": "theme-4-future-plans",
+    "language": "French",
+    "imageUrl": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+    ],
+    "studentPrompts": [
+      "Décris ce que tu vois sur la photo."
+    ],
+    "examinerPrompts": [
+      "Décris ce que tu vois sur la photo.",
+      "Quels sont les avantages de travailler dans un bureau ?",
+      "Quel genre de travail aimerais-tu avoir à l'avenir ?"
+    ],
+    "followUpQuestionIds": [
+      "conv-fr-9",
+      "conv-fr-10"
+    ]
+  },
+  {
+    "id": "pc-fr-1_v2",
+    "type": "photo_card",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "imageUrl": "https://images.unsplash.com/photo-1511895426328-dc8714191300",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1511895426328-dc8714191300"
+    ],
+    "studentPrompts": [
+      "Décris la photo."
+    ],
+    "examinerPrompts": [
+      "Décris la photo.",
+      "Penses-tu que se marier est une tradition importante de nos jours ?",
+      "Que fêteras-tu avec ta famille l'année prochaine ?"
+    ],
+    "followUpQuestionIds": [
+      "conv-fr-1",
+      "conv-fr-2",
+      "conv-fr-3"
+    ]
+  },
+  {
+    "id": "pc-fr-2_v2",
+    "type": "photo_card",
+    "themeId": "theme-3-school",
+    "language": "French",
+    "imageUrl": "https://images.unsplash.com/photo-1523050853064-00215715568a",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1523050853064-00215715568a"
+    ],
+    "studentPrompts": [
+      "Décris la photo."
+    ],
+    "examinerPrompts": [
+      "Décris la photo.",
+      "Que penses-tu des installations de ton collège ?",
+      "Comment serait ton collège idéal ?"
+    ],
+    "followUpQuestionIds": [
+      "conv-fr-5",
+      "conv-fr-6"
+    ]
+  },
+  {
+    "id": "conv-fr-11_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "French",
+    "questionText": "Qu'est-ce que tu fais d'habitude pendant ton temps libre ?"
+  },
+  {
+    "id": "conv-fr-12_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "French",
+    "questionText": "Préfères-tu regarder des films à la maison ou au cinéma ?"
+  },
+  {
+    "id": "conv-fr-13_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "French",
+    "questionText": "Quel est le problème environnemental le plus grave pour toi ?"
+  },
+  {
+    "id": "conv-fr-14_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "French",
+    "questionText": "Que fais-tu pour économiser l'eau chez toi ?"
+  },
+  {
+    "id": "conv-fr-1_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "questionText": "Est-ce que tu t'entends bien avec ta famille ?"
+  },
+  {
+    "id": "conv-fr-2_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "questionText": "Qu'est-ce que tu as fait le week-end dernier avec ta famille ?"
+  },
+  {
+    "id": "conv-fr-3_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "questionText": "Comment est ton meilleur ami ?"
+  },
+  {
+    "id": "conv-fr-4_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "French",
+    "questionText": "Qu'est-ce que tu préfères faire avec tes amis ?"
+  },
+  {
+    "id": "conv-fr-5_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "French",
+    "questionText": "Quelle matière préfères-tu ?"
+  },
+  {
+    "id": "conv-fr-6_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "French",
+    "questionText": "Est-ce que tu portes un uniforme au collège ?"
+  },
+  {
+    "id": "conv-fr-7_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "French",
+    "questionText": "Où es-tu allé en vacances l'année dernière ?"
+  },
+  {
+    "id": "conv-fr-8_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "French",
+    "questionText": "Préfères-tu les vacances à la plage ou à la ville ?"
+  },
+  {
+    "id": "conv-fr-9_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "French",
+    "questionText": "Aimerais-tu travailler à l'étranger à l'avenir ?"
+  },
+  {
+    "id": "conv-fr-10_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "French",
+    "questionText": "Quels projets as-tu pour après tes examens ?"
+  },
+  {
+    "id": "conv-fr-15_v2",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "French",
+    "questionText": "Combien d'heures par jour passes-tu sur ton téléphone portable ?"
+  },
+  {
+    "id": "conv-fr-16_v2",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "French",
+    "questionText": "Quels sont les avantages et les inconvénients des réseaux sociaux ?"
+  },
+  {
+    "id": "conv-fr-17_v2",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "French",
+    "questionText": "Que peut-on faire pour aider les personnes sans abri dans notre ville ?"
+  },
+  {
+    "id": "conv-fr-18_v2",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "French",
+    "questionText": "Est-il important d'avoir un centre communautaire pour les jeunes dans ton quartier ?"
+  }
+]

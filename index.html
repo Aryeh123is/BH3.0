@@ -16,9 +16,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="theme-color" content="#4f46e5" />
-    <link rel="manifest" href="/manifest.json?v=6" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=6" />
-    <link rel="icon" type="image/png" href="/favicon-32x32.png?v=6" />
+    <link rel="manifest" href="/manifest.json?v=7" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=7" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png?v=7" />
+    <link rel="shortcut icon" href="/favicon.ico?v=7" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -37,6 +39,37 @@
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "198b20c37e76476490123c63115f1d2a"}'></script>
     <!-- End Cloudflare Web Analytics -->
+
+    <!-- Suppress benign sandbox-related WebSocket or connection failures -->
+    <script>
+      (function() {
+        var isBenign = function(msg) {
+          if (!msg) return false;
+          var m = String(msg).toLowerCase();
+          return m.indexOf('websocket') !== -1 || 
+                 m.indexOf('closed without opened') !== -1 || 
+                 m.indexOf('failed to connect to websocket') !== -1 ||
+                 m.indexOf('[vite] connection failed') !== -1 ||
+                 m.indexOf('hmr') !== -1;
+        };
+        window.addEventListener('unhandledrejection', function(e) {
+          var reason = (e.reason && (e.reason.message || e.reason)) || '';
+          if (isBenign(reason)) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            e.stopPropagation();
+          }
+        }, true);
+        window.addEventListener('error', function(e) {
+          var msg = e.message || '';
+          if (isBenign(msg)) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            e.stopPropagation();
+          }
+        }, true);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

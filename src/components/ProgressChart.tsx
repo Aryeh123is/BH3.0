@@ -4,9 +4,10 @@ import { UserProgress } from '../types';
 
 interface ProgressChartProps {
   progress: UserProgress[];
+  language?: string;
 }
 
-export function ProgressChart({ progress }: ProgressChartProps) {
+export function ProgressChart({ progress, language = 'modern' }: ProgressChartProps) {
   const data = useMemo(() => {
     // Generate data for the current week (Sunday to Saturday)
     const currentWeek = Array.from({ length: 7 }, (_, i) => {
@@ -34,13 +35,15 @@ export function ProgressChart({ progress }: ProgressChartProps) {
       ).length;
 
       return {
-        name: date.getDay() === 6 ? 'שבת' : date.toLocaleDateString('en-US', { weekday: 'short' }),
+        name: date.getDay() === 6 
+          ? ((language === 'modern' || language === 'biblical') ? 'שבת' : 'Sat')
+          : date.toLocaleDateString('en-US', { weekday: 'short' }),
         mastered: masteredOnDay,
         learning: learningOnDay,
         total: masteredOnDay + learningOnDay
       };
     });
-  }, [progress]);
+  }, [progress, language]);
 
   return (
     <div className="w-full h-[400px] mt-8">

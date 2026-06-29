@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Book, Trophy, RotateCw, MessagesSquare, BookOpen, Lock } from 'lucide-react';
+import { Play, Book, Trophy, RotateCw, MessagesSquare, BookOpen, Lock, Layers, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface ModesGuideProps {
@@ -41,6 +41,21 @@ export function ModesGuide({ language }: ModesGuideProps) {
       howTo: 'Select "Flashcards" from the dashboard, pick a category (or all words), and click to flip the card. Use arrow keys or swipe to navigate.'
     },
     {
+      id: 'custom-decks',
+      title: 'Custom Deck Engine',
+      icon: <Layers className="w-5 h-5" />,
+      color: 'bg-emerald-600 text-white',
+      availableFor: 'all',
+      status: 'active',
+      description: 'Import or create your own custom study sets.',
+      benefits: [
+        'Import instantly from Quizlet URLs using our secure proxy.',
+        'Paste raw text lists to quickly build personal revision decks.',
+        'Use the full Smart SRS engine on your own specialized content.'
+      ],
+      howTo: 'Click "Manage Decks" or "New Deck" on the dashboard. Use the "Import from Quizlet" option for automatic multi-card creation from a link.'
+    },
+    {
       id: 'test',
       title: 'Written Test Mode',
       icon: <Trophy className="w-5 h-5" />,
@@ -70,6 +85,22 @@ export function ModesGuide({ language }: ModesGuideProps) {
       howTo: 'Click "Review Errors" on the dashboard. You will only see words that have a recorded incorrect attempt in your study history.'
     },
     {
+      id: 'verb-master',
+      title: 'Verb Master Practice',
+      icon: <Layers className="w-5 h-5" />,
+      color: 'bg-indigo-600 text-white',
+      availableFor: 'all',
+      status: 'active',
+      description: 'An interactive conjugation sandbox designed for mastering high-yield verbs, irregular grids, and tenses across all subjects.',
+      benefits: [
+        'Mastery Multiplier: Consecutive correct answers increase your multiplier by +0.3 (up to x2.5), accelerating your streak score, while any incorrect answer resets it back to x1.0.',
+        'Active Retention: A dynamic memory-fade indicator starting at 60% that updates live to show your cognitive retention based on conjugation accuracy.',
+        'Session History Log: Track every submission in a neat session-end history log to identify persistent conjugation bottlenecks.',
+        'Mistake Review Sandbox: Automatically logs incorrect conjugations so you can launch a targeted, pressure-free review round to correct mistakes immediately.'
+      ],
+      howTo: 'Click "Verb Master Playground" from the dashboard. Choose your preferred round length, answer conjugation multiple-choice quizzes, build up your Mastery Multiplier, and review your Mistakes at the end of the round.'
+    },
+    {
       id: 'speaking',
       title: 'Speaking Mock (Pro)',
       icon: <MessagesSquare className="w-5 h-5" />,
@@ -89,30 +120,30 @@ export function ModesGuide({ language }: ModesGuideProps) {
       title: 'Grammar Mastery (Pro)',
       icon: <BookOpen className="w-5 h-5" />,
       color: 'bg-teal-500 text-white',
-      availableFor: ['biblical'],
+      availableFor: 'all',
       status: 'active',
-      description: 'Learn the Binyanim, conjugations, and syntax specific to Biblical Hebrew with an interactive AI Tutor. (Premium Feature)',
+      description: 'Learn regular/irregular structures, case files, Binyanim, conjugations, and syntax custom-tailored to your language with an interactive AI Tutor. (Premium Feature)',
       benefits: [
-        'Understand exactly how verbs are constructed.',
-        'Master common prefixes, suffixes, and noun declensions.',
-        'Practice parsing with a responsive AI Tutor customized for Edexcel GCSE.',
+        'Understand exactly how verbs are constructed and conjugated across tenses.',
+        'Master common prefixes, suffixes, articles, and noun declension rules.',
+        'Practice parsing with a responsive AI Tutor customized specifically for GCSE specifications (AQA/Edexcel).'
       ],
-      howTo: 'Requires Premium. Click "Grammar Mastery" on the dashboard. Browse the Grammar modules, or click the "AI Grammar Tutor" button. Select a topic and chat with the AI to test your understanding of Biblical Hebrew rules and syntax.'
+      howTo: 'Requires Premium. Click "Grammar Mastery" on the dashboard. Browse the Grammar modules, or click the "AI Grammar Tutor" button. Select a topic and chat with the AI to test your understanding of your language group rules and syntax.'
     },
     {
       id: 'ai-exam',
-      title: 'AI Exam Simulator (Pro)',
+      title: 'Exam Simulator (Pro)',
       icon: <Trophy className="w-5 h-5" />,
       color: 'bg-indigo-600 text-white',
       availableFor: 'all',
-      status: 'in-progress',
-      description: 'The ultimate AI-powered exam practice environment tailored to your language specification. (Coming Soon)',
+      status: 'active',
+      description: 'The absolute sandbox simulation environment mirroring genuine GCSE guidelines.',
       benefits: [
-        'Biblical Hebrew: Unseen practice with AI hints and instant feedback.',
-        'Modern Languages: Listening, Reading, Writing, and Speaking practice.',
-        'AI instantly marks your answers against official exam board criteria.',
+        'Training Mode: Interactive study aids with immediate translations, vocabs, and unlimited playbacks.',
+        'Exam Mode: Restricts play counts to 2 runs, disables study hints, and simulates rigorous exam conditions.',
+        'Global Accommodations: Apply the globally-active 25% Extra Time allowance inside countdown timers seamlessly.'
       ],
-      howTo: 'Currently in development for Premium users. Register your interest on the dashboard to access it as soon as it launches!'
+      howTo: 'Select "Exam Simulator" from the dashboard interface. Fine-tune your environment between Training or Exam style, and choose from Speaking, Listening, Reading, or Writing papers.'
     },
     {
       id: 'past-papers',
@@ -120,13 +151,30 @@ export function ModesGuide({ language }: ModesGuideProps) {
       icon: <BookOpen className="w-5 h-5" />,
       color: 'bg-slate-700 text-white',
       availableFor: 'all',
-      status: 'dev-only',
-      description: 'Keep track of your past paper progress and scores.',
+      status: 'active',
+      description: 'Keep track of your past paper progress and official scores.',
       benefits: [
-        'Monitor your grades across different exam years.',
-        'Identify trends in your performance.',
+        'Monitor your grades across different exam years dynamically.',
+        'Syncs with official grade boundaries to show your true grade trajectory.',
+        'Provides tailored feedback loops for completed essays.'
       ],
-      howTo: 'This feature is currently under active development and restricted to developer mode. Stay tuned for release!'
+      howTo: 'Access Past Papers from the dashboard sidebar or options menu, enter your practice scores, and see your GCSE targets update live.'
+    },
+    {
+      id: 'security',
+      title: 'Regulated Security & Integrity',
+      icon: <ShieldCheck className="w-5 h-5" />,
+      color: 'bg-slate-900 text-indigo-400 dark:bg-slate-800',
+      availableFor: 'all',
+      status: 'active',
+      description: 'Strict, multi-layered data compliance systems ensuring your profile database and memory analytics are un-hackable.',
+      benefits: [
+        'Concurrent Stream Tracking: Restricts continuous account-sharing and anti-cheat attempts via live activeSessionId matching.',
+        'PCI-DSS Certified Transactions: Secure Stripe tokenization ensures credit card details never touch Vocariox servers.',
+        'Total User Rule Authorization: Security verification layers protect key student records and progress files.',
+        'GDPR Compliance: Absolute data authority with instant, permanent account-wiping mechanisms in Settings.'
+      ],
+      howTo: 'Vocariox is hardened using secure Firebase rules restricting database progress to authenticated user owners only. No local passwords or billing codes are ever stored in cleartext.'
     }
   ];
 

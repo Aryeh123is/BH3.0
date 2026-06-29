@@ -1,0 +1,2188 @@
+[
+  {
+    "id": "ra-es-1",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "passageText": "Mi familia y yo vivimos en un pueblo pequeño, aunque debo decir que a veces es un poco aburrido para los jóvenes. Ayer fui al polideportivo con mis amigos y después cenamos en mi restaurante favorito. En el futuro, me gustaría vivir en una ciudad grande porque hay más cosas que hacer.",
+    "followUpQuestionIds": [
+      "conv-es-1",
+      "conv-es-2"
+    ]
+  },
+  {
+    "id": "ra-es-2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "passageText": "Tengo muchos amigos en el colegio pero mi mejor amigo se llama Pedro. Nos conocemos desde hace diez años y siempre nos ayudamos con los deberes. El fin de semana pasado decidimos ir al cine para ver una película de terror, que fue muy emocionante. Creo que la amistad es fundamental para ser feliz.",
+    "followUpQuestionIds": [
+      "conv-es-3",
+      "conv-es-4"
+    ]
+  },
+  {
+    "id": "ra-es-3",
+    "type": "read_aloud",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "passageText": "En mi colegio las clases empiezan a las ocho y media de la mañana. Mi asignatura preferida es el dibujo porque me permite ser creativo y relajarme un poco. Sin embargo, no me gusta nada la física ya que me parece demasiado complicada. El año que viene espero sacar buenas notas en todos mis exámenes.",
+    "followUpQuestionIds": [
+      "conv-es-5",
+      "conv-es-6"
+    ]
+  },
+  {
+    "id": "ra-es-4",
+    "type": "read_aloud",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "passageText": "Normalmente voy de vacaciones a la costa con mis padres durante el mes de agosto. Lo que más me gusta es nadar en el mar y tomar el sol en la arena. El año pasado fuimos a Italia y visitamos muchos monumentos históricos en Roma. Fue una experiencia inolvidable y saqué muchísimas fotos preciosas.",
+    "followUpQuestionIds": [
+      "conv-es-7",
+      "conv-es-8"
+    ]
+  },
+  {
+    "id": "ra-es-5",
+    "type": "read_aloud",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "passageText": "Cuando termine mis estudios, quiero trabajar como ingeniero porque me encantan las matemáticas y la tecnología. Mi padre es arquitecto y siempre me ha inspirado su pasión por el diseño. El verano pasado hice unas prácticas en su oficina y aprendí muchísimas cosas interesantes sobre la construcción moderna.",
+    "followUpQuestionIds": [
+      "conv-es-9",
+      "conv-es-10"
+    ]
+  },
+  {
+    "id": "ra-es-6",
+    "type": "read_aloud",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "passageText": "Me preocupa mucho el cambio climático porque es un problema global que nos afecta a todos. En mi casa siempre reciclamos el papel y el vidrio, y tratamos de reducir el consumo de plástico. El mes que viene voy a participar en una campaña de limpieza de playas con mi grupo de voluntarios locales.",
+    "followUpQuestionIds": [
+      "conv-es-13",
+      "conv-es-14"
+    ]
+  },
+  {
+    "id": "ra-es-7",
+    "type": "read_aloud",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "passageText": "En mi tiempo libre me gusta mucho leer libros de aventura. La semana pasada terminé una novela fascinante sobre un viaje al espacio. Además de leer, me encanta tocar la guitarra y a veces toco en un grupo con mis primos. El próximo sábado vamos a dar un pequeño concierto en la plaza del pueblo.",
+    "followUpQuestionIds": [
+      "conv-es-11",
+      "conv-es-12"
+    ]
+  },
+  {
+    "id": "ra-es-8",
+    "type": "read_aloud",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "passageText": "Uso mi móvil para casi todo: para hablar con mis amigos, para escuchar música y para buscar información para mis deberes. Mis padres dicen que paso demasiado tiempo pegado a la pantalla, pero creo que la tecnología es muy útil si se usa bien. Ayer compré unos auriculares nuevos en una tienda en línea.",
+    "followUpQuestionIds": [
+      "conv-es-15",
+      "conv-es-16"
+    ]
+  },
+  {
+    "id": "ra-es-9",
+    "type": "read_aloud",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "passageText": "En mi barrio hay un centro comunitario donde los jóvenes pueden ir después de las clases. Me gusta ir allí porque podemos jugar al tenis de mesa y participar en talleres de cocina. Es importante que existan estos lugares para que los jóvenes tengan una alternativa sana y puedan socializar en un ambiente seguro.",
+    "followUpQuestionIds": [
+      "conv-es-17",
+      "conv-es-18"
+    ]
+  },
+  {
+    "id": "rp-es-1",
+    "type": "roleplay",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás hablando con tu compañero de intercambio sobre tu familia y amigos.",
+    "studentRole": "Tú mismo",
+    "examinerRole": "Compañero de intercambio",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Describe cómo es tu mejor amigo/a físicamente.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica qué hicisteis tú y tus amigos el fin de semana.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona un pequeño problema que tuviste con tu familia.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre los planes de tu amigo.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-2",
+    "type": "roleplay",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "scenarioPrompt": "Hablas con un profesor sobre tus estudios y planes futuros.",
+    "studentRole": "Alumno",
+    "examinerRole": "Profesor",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dime qué asignatura te gusta más y por qué.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica algo que hiciste en el colegio ayer.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona qué piensas de las reglas de tu colegio.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre el trabajo del profesor.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-4",
+    "type": "roleplay",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás en el polideportivo hablando con el recepcionista sobre las actividades disponibles.",
+    "studentRole": "Cliente",
+    "examinerRole": "Recepcionista",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile qué deporte quieres practicar y con qué frecuencia.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica por qué te gusta ese deporte en particular.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona cuándo fue la última vez que hiciste ejercicio.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre el precio de las clases.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-5",
+    "type": "roleplay",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "scenarioPrompt": "Hablas con un amigo sobre el medio ambiente y cómo ayudar al planeta.",
+    "studentRole": "Tú",
+    "examinerRole": "Amigo",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Menciona qué cosas reciclas normalmente en tu casa.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica un problema ecológico que haya en tu barrio.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Dile qué hiciste recientemente para ahorrar energía.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre su opinión del transporte público.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-6",
+    "type": "roleplay",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás en la oficina de turismo preguntando por lugares para visitar.",
+    "studentRole": "Turista",
+    "examinerRole": "Empleado",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile cuánto tiempo vas a estar en la ciudad y con quién.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica qué tipo de monumentos te gustaría ver.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona dónde te alojaste durante tus últimas vacaciones.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre el horario del museo principal.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-7",
+    "type": "roleplay",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás comprando un ordenador nuevo en una tienda de electrónica.",
+    "studentRole": "Cliente",
+    "examinerRole": "Dependiente",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile qué tipo de ordenador buscas y para qué lo vas a usar.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica por qué prefieres una tableta o un portátil.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona cuánto dinero quieres gastar.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre la garantía.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-8",
+    "type": "roleplay",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "scenarioPrompt": "Tienes una entrevista para un trabajo de verano en un hotel.",
+    "studentRole": "Candidato",
+    "examinerRole": "Gerente del hotel",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Preséntate y di por qué quieres este trabajo.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Menciona tus habilidades lingüísticas.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Explica qué experiencia laboral has tenido antes.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre el horario de trabajo.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-9",
+    "type": "roleplay",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás hablando con tu profesor sobre un proyecto de caridad en el colegio.",
+    "studentRole": "Estudiante",
+    "examinerRole": "Profesor",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile a qué organización quieres ayudar y por qué.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Menciona una actividad para recaudar fondos.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Explica por qué es importante ser voluntario.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre la fecha del evento.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "pc-es-8",
+    "type": "photo_card",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+    ],
+    "studentPrompts": [
+      "Dime qué ves en la foto."
+    ],
+    "examinerPrompts": [
+      "Dime qué ves en la foto.",
+      "¿Cuáles son las ventajas de trabajar en una oficina?",
+      "¿Qué tipo de trabajo te gustaría tener en el futuro?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-9",
+      "conv-es-10"
+    ]
+  },
+  {
+    "id": "pc-es-9",
+    "type": "photo_card",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "imageUrl": "",
+    "imageUrls": [],
+    "studentPrompts": [
+      "Describe lo que ocurre en la imagen."
+    ],
+    "examinerPrompts": [
+      "Describe lo que ocurre en la imagen.",
+      "¿Es importante ayudar a los necesitados en tu opinión?",
+      "¿Qué has hecho recientemente para ayudar a otros?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-17",
+      "conv-es-18"
+    ]
+  },
+  {
+    "id": "pc-es-1",
+    "type": "photo_card",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1511895426328-dc8714191300",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1511895426328-dc8714191300"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Crees que casarse es una tradición importante hoy en día?",
+      "¿Qué celebrarás con tu familia el año que viene?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-1",
+      "conv-es-2",
+      "conv-es-3"
+    ]
+  },
+  {
+    "id": "pc-es-2",
+    "type": "photo_card",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1523050853064-00215715568a",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1523050853064-00215715568a"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Qué opinas de las instalaciones de tu colegio?",
+      "¿Cómo sería tu colegio ideal?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-5",
+      "conv-es-6"
+    ]
+  },
+  {
+    "id": "pc-es-4",
+    "type": "photo_card",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1517649763962-0c623066013b",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Cuál es tu deporte favorito y por qué?",
+      "¿Qué hiciste para mantenerte en forma la semana pasada?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-11",
+      "conv-es-12"
+    ]
+  },
+  {
+    "id": "pc-es-5",
+    "type": "photo_card",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Crees que es importante reciclar hoy en día?",
+      "¿Qué harás tú para proteger el planeta en el futuro?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-13",
+      "conv-es-14"
+    ]
+  },
+  {
+    "id": "pc-es-6",
+    "type": "photo_card",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1518770660439-4636190af475"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Para qué usaste internet ayer?",
+      "¿Crees que la tecnología es fundamental para el estudio?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-15",
+      "conv-es-16"
+    ]
+  },
+  {
+    "id": "pc-es-7",
+    "type": "photo_card",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Prefieres ir de vacaciones con tu familia o con tus amigos?",
+      "¿Qué país te gustaría visitar en el futuro?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-7",
+      "conv-es-8"
+    ]
+  },
+  {
+    "id": "conv-es-21",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Qué es lo más importante en un amigo?"
+  },
+  {
+    "id": "conv-es-22",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Prefieres pasar tiempo con tu familia o con tus amigos?"
+  },
+  {
+    "id": "conv-es-23",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Cuál fue el último concierto al que fuiste?"
+  },
+  {
+    "id": "conv-es-24",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Te gusta leer? ¿Qué tipo de libros prefieres?"
+  },
+  {
+    "id": "conv-es-25",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Cómo son las instalaciones de tu colegio?"
+  },
+  {
+    "id": "conv-es-26",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Qué cambiarías de las reglas de tu instituto?"
+  },
+  {
+    "id": "conv-es-27",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Crees que es importante proteger los bosques?"
+  },
+  {
+    "id": "conv-es-28",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Cómo podemos reducir la contaminación en las ciudades?"
+  },
+  {
+    "id": "conv-es-29",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Prefieres los hoteles o los campings?"
+  },
+  {
+    "id": "conv-es-30",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Cuál es el viaje de tus sueños?"
+  },
+  {
+    "id": "conv-es-31",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Podrías vivir sin tu teléfono móvil?"
+  },
+  {
+    "id": "conv-es-32",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Qué ventajas tiene internet para el estudio?"
+  },
+  {
+    "id": "conv-es-33",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Piensas ir a la universidad o buscar trabajo directamente?"
+  },
+  {
+    "id": "conv-es-34",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Qué importancia tiene ganar mucho dinero en un trabajo?"
+  },
+  {
+    "id": "conv-es-1",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Te llevas bien con tu familia?"
+  },
+  {
+    "id": "conv-es-2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Qué hiciste el fin de semana pasado con tu familia?"
+  },
+  {
+    "id": "conv-es-3",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Cómo es tu mejor amigo?"
+  },
+  {
+    "id": "conv-es-4",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Qué prefieres hacer con tus amigos?"
+  },
+  {
+    "id": "conv-es-5",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Qué asignatura te gusta más?"
+  },
+  {
+    "id": "conv-es-6",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Llevas uniforme en el colegio?"
+  },
+  {
+    "id": "conv-es-7",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Adónde fuiste de vacaciones el año pasado?"
+  },
+  {
+    "id": "conv-es-8",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Prefieres las vacaciones en la playa o en la ciudad?"
+  },
+  {
+    "id": "conv-es-9",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Te gustaría trabajar en el extranjero en el futuro?"
+  },
+  {
+    "id": "conv-es-10",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Qué planes tienes para cuando termines tus exámenes?"
+  },
+  {
+    "id": "conv-es-11",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Qué sueles hacer en tu tiempo libre?"
+  },
+  {
+    "id": "conv-es-12",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Prefieres ver películas en casa o en el cine?"
+  },
+  {
+    "id": "conv-es-13",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Cuál es el problema medioambiental más grave para ti?"
+  },
+  {
+    "id": "conv-es-14",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Qué haces para ahorrar agua en tu casa?"
+  },
+  {
+    "id": "conv-es-15",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Para qué usas el móvil normalmente?"
+  },
+  {
+    "id": "conv-es-16",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Crees que los jóvenes están enganchados a las redes sociales?"
+  },
+  {
+    "id": "conv-es-17",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "questionText": "¿Crees que es importante ayudar a los demás en tu comunidad?"
+  },
+  {
+    "id": "conv-es-18",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "questionText": "¿Qué cambios te gustaría ver en tu ciudad para mejorar la vida social?"
+  },
+  {
+    "id": "conv-es-19",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Qué piensas de los deberes?"
+  },
+  {
+    "id": "ra-es-10",
+    "type": "read_aloud",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "passageText": "Me encanta ir al cine los fines de semana. La última película que vi fue de ciencia ficción y los efectos especiales eran increíbles. Después del cine, solemos ir a una hamburguesería que está cerca. Creo que es importante tener tiempo para relajarse y disfrutar con los amigos después de una semana dura en el instituto.",
+    "followUpQuestionIds": [
+      "conv-es-23",
+      "conv-es-24"
+    ]
+  },
+  {
+    "id": "ra-es-11",
+    "type": "read_aloud",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "passageText": "La protección del medio ambiente es un tema que me apasiona. En mi tiempo libre, participo en un grupo que planta árboles en el parque local. El año pasado plantamos más de cien árboles nativos. Me gustaría que más gente se diera cuenta de lo importante que es cuidar nuestra naturaleza para las generaciones futuras.",
+    "followUpQuestionIds": [
+      "conv-es-27",
+      "conv-es-28"
+    ]
+  },
+  {
+    "id": "rp-es-10",
+    "type": "roleplay",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás en una tienda de música buscando un regalo para el cumpleaños de tu hermano.",
+    "studentRole": "Cliente",
+    "examinerRole": "Dependiente",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile qué instrumento o tipo de música le gusta a tu hermano.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica por qué has decidido venir a esta tienda hoy.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona qué hiciste para celebrar tu propio cumpleaños el año pasado.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre si tienen descuentos para estudiantes.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-11",
+    "type": "roleplay",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás hablando con un recepcionista de un hotel sobre un problema con tu habitación.",
+    "studentRole": "Huésped",
+    "examinerRole": "Recepcionista",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile cuál es el problema específico en tu habitación.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica cuánto tiempo llevas esperando una solución.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona qué esperas que el hotel haga ahora.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre si puedes cambiar de habitación.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "pc-es-10",
+    "type": "photo_card",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1514525253361-bee8a48740ad",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1514525253361-bee8a48740ad"
+    ],
+    "studentPrompts": [
+      "Dime lo que ves en la foto."
+    ],
+    "examinerPrompts": [
+      "Dime lo que ves en la foto.",
+      "¿Te gusta ir a festivales de música?",
+      "¿Qué tipo de música prefieres escuchar cuando estás solo?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-23",
+      "conv-es-24"
+    ]
+  },
+  {
+    "id": "pc-es-11",
+    "type": "photo_card",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09"
+    ],
+    "studentPrompts": [
+      "Describe la imagen."
+    ],
+    "examinerPrompts": [
+      "Describe la imagen.",
+      "¿Qué opinas sobre el reciclaje en tu ciudad?",
+      "¿Cómo podemos reducir el uso del plástico en nuestra vida diaria?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-27",
+      "conv-es-28"
+    ]
+  },
+  {
+    "id": "conv-es-35",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Crees que es mejor tener muchos amigos o pocos pero buenos?"
+  },
+  {
+    "id": "conv-es-36",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Cómo celebraste tu último cumpleaños con tu familia?"
+  },
+  {
+    "id": "conv-es-37",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Qué tipo de programas de televisión te gustan más y por qué?"
+  },
+  {
+    "id": "conv-es-38",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Prefieres hacer deporte o verlo en la televisión?"
+  },
+  {
+    "id": "conv-es-39",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Qué opinas del acoso escolar en los institutos?"
+  },
+  {
+    "id": "conv-es-40",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Crees que el uniforme escolar ayuda a que todos se sientan iguales?"
+  },
+  {
+    "id": "conv-es-41",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Qué has hecho esta semana para ser más ecológico?"
+  },
+  {
+    "id": "conv-es-42",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Te preocupa la deforestación de las selvas tropicales?"
+  },
+  {
+    "id": "conv-es-43",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Has estado alguna vez en un país hispanohablante?"
+  },
+  {
+    "id": "conv-es-44",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Qué es lo que más te gusta de viajar a lugares nuevos?"
+  },
+  {
+    "id": "conv-es-45",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Crees que las redes sociales tienen un impacto positivo en la sociedad?"
+  },
+  {
+    "id": "conv-es-46",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Cómo crees que será la tecnología dentro de veinte años?"
+  },
+  {
+    "id": "conv-es-47",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Te gustaría tener tu propio negocio en el futuro?"
+  },
+  {
+    "id": "conv-es-48",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Es importante para ti estudiar algo que te apasione, aunque no paguen mucho?"
+  },
+  {
+    "id": "conv-es-49",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "questionText": "¿Crees que los jóvenes hoy en día están bien informados sobre los problemas globales?"
+  },
+  {
+    "id": "conv-es-50",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "questionText": "¿Qué harías tú para mejorar la igualdad en tu ciudad?"
+  },
+  {
+    "id": "ra-es-1_v2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "passageText": "Mi familia y yo vivimos en un pueblo pequeño, aunque debo decir que a veces es un poco aburrido para los jóvenes. Ayer fui al polideportivo con mis amigos y después cenamos en mi restaurante favorito. En el futuro, me gustaría vivir en una ciudad grande porque hay más cosas que hacer.",
+    "followUpQuestionIds": [
+      "conv-es-1",
+      "conv-es-2"
+    ]
+  },
+  {
+    "id": "ra-es-2_v2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "passageText": "Tengo muchos amigos en el colegio pero mi mejor amigo se llama Pedro. Nos conocemos desde hace diez años y siempre nos ayudamos con los deberes. El fin de semana pasado decidimos ir al cine para ver una película de terror, que fue muy emocionante. Creo que la amistad es fundamental para ser feliz.",
+    "followUpQuestionIds": [
+      "conv-es-3",
+      "conv-es-4"
+    ]
+  },
+  {
+    "id": "ra-es-3_v2",
+    "type": "read_aloud",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "passageText": "En mi colegio las clases empiezan a las ocho y media de la mañana. Mi asignatura preferida es el dibujo porque me permite ser creativo y relajarme un poco. Sin embargo, no me gusta nada la física ya que me parece demasiado complicada. El año que viene espero sacar buenas notas en todos mis exámenes.",
+    "followUpQuestionIds": [
+      "conv-es-5",
+      "conv-es-6"
+    ]
+  },
+  {
+    "id": "ra-es-4_v2",
+    "type": "read_aloud",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "passageText": "Normalmente voy de vacaciones a la costa con mis padres durante el mes de agosto. Lo que más me gusta es nadar en el mar y tomar el sol en la arena. El año pasado fuimos a Italia y visitamos muchos monumentos históricos en Roma. Fue una experiencia inolvidable y saqué muchísimas fotos preciosas.",
+    "followUpQuestionIds": [
+      "conv-es-7",
+      "conv-es-8"
+    ]
+  },
+  {
+    "id": "ra-es-5_v2",
+    "type": "read_aloud",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "passageText": "Cuando termine mis estudios, quiero trabajar como ingeniero porque me encantan las matemáticas y la tecnología. Mi padre es arquitecto y siempre me ha inspirado su pasión por el diseño. El verano pasado hice unas prácticas en su oficina y aprendí muchísimas cosas interesantes sobre la construcción moderna.",
+    "followUpQuestionIds": [
+      "conv-es-9",
+      "conv-es-10"
+    ]
+  },
+  {
+    "id": "ra-es-6_v2",
+    "type": "read_aloud",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "passageText": "Me preocupa mucho el cambio climático porque es un problema global que nos afecta a todos. En mi casa siempre reciclamos el papel y el vidrio, y tratamos de reducir el consumo de plástico. El mes que viene voy a participar en una campaña de limpieza de playas con mi grupo de voluntarios locales.",
+    "followUpQuestionIds": [
+      "conv-es-13",
+      "conv-es-14"
+    ]
+  },
+  {
+    "id": "ra-es-7_v2",
+    "type": "read_aloud",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "passageText": "En mi tiempo libre me gusta mucho leer libros de aventura. La semana pasada terminé una novela fascinante sobre un viaje al espacio. Además de leer, me encanta tocar la guitarra y a veces toco en un grupo con mis primos. El próximo sábado vamos a dar un pequeño concierto en la plaza del pueblo.",
+    "followUpQuestionIds": [
+      "conv-es-11",
+      "conv-es-12"
+    ]
+  },
+  {
+    "id": "ra-es-8_v2",
+    "type": "read_aloud",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "passageText": "Uso mi móvil para casi todo: para hablar con mis amigos, para escuchar música y para buscar información para mis deberes. Mis padres dicen que paso demasiado tiempo pegado a la pantalla, pero creo que la tecnología es muy útil si se usa bien. Ayer compré unos auriculares nuevos en una tienda en línea.",
+    "followUpQuestionIds": [
+      "conv-es-15",
+      "conv-es-16"
+    ]
+  },
+  {
+    "id": "ra-es-9_v2",
+    "type": "read_aloud",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "passageText": "En mi barrio hay un centro comunitario donde los jóvenes pueden ir después de las clases. Me gusta ir allí porque podemos jugar al tenis de mesa y participar en talleres de cocina. Es importante que existan estos lugares para que los jóvenes tengan una alternativa sana y puedan socializar en un ambiente seguro.",
+    "followUpQuestionIds": [
+      "conv-es-17",
+      "conv-es-18"
+    ]
+  },
+  {
+    "id": "rp-es-1_v2",
+    "type": "roleplay",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás hablando con tu compañero de intercambio sobre tu familia y amigos.",
+    "studentRole": "Tú mismo",
+    "examinerRole": "Compañero de intercambio",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Describe cómo es tu mejor amigo/a físicamente.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica qué hicisteis tú y tus amigos el fin de semana.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona un pequeño problema que tuviste con tu familia.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre los planes de tu amigo.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-2_v2",
+    "type": "roleplay",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "scenarioPrompt": "Hablas con un profesor sobre tus estudios y planes futuros.",
+    "studentRole": "Alumno",
+    "examinerRole": "Profesor",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dime qué asignatura te gusta más y por qué.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica algo que hiciste en el colegio ayer.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona qué piensas de las reglas de tu colegio.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre el trabajo del profesor.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-4_v2",
+    "type": "roleplay",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás en el polideportivo hablando con el recepcionista sobre las actividades disponibles.",
+    "studentRole": "Cliente",
+    "examinerRole": "Recepcionista",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile qué deporte quieres practicar y con qué frecuencia.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica por qué te gusta ese deporte en particular.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona cuándo fue la última vez que hiciste ejercicio.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre el precio de las clases.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-5_v2",
+    "type": "roleplay",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "scenarioPrompt": "Hablas con un amigo sobre el medio ambiente y cómo ayudar al planeta.",
+    "studentRole": "Tú",
+    "examinerRole": "Amigo",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Menciona qué cosas reciclas normalmente en tu casa.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica un problema ecológico que haya en tu barrio.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Dile qué hiciste recientemente para ahorrar energía.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre su opinión del transporte público.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-6_v2",
+    "type": "roleplay",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás en la oficina de turismo preguntando por lugares para visitar.",
+    "studentRole": "Turista",
+    "examinerRole": "Empleado",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile cuánto tiempo vas a estar en la ciudad y con quién.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica qué tipo de monumentos te gustaría ver.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona dónde te alojaste durante tus últimas vacaciones.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre el horario del museo principal.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-7_v2",
+    "type": "roleplay",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás comprando un ordenador nuevo en una tienda de electrónica.",
+    "studentRole": "Cliente",
+    "examinerRole": "Dependiente",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile qué tipo de ordenador buscas y para qué lo vas a usar.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica por qué prefieres una tableta o un portátil.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona cuánto dinero quieres gastar.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre la garantía.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-8_v2",
+    "type": "roleplay",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "scenarioPrompt": "Tienes una entrevista para un trabajo de verano en un hotel.",
+    "studentRole": "Candidato",
+    "examinerRole": "Gerente del hotel",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Preséntate y di por qué quieres este trabajo.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Menciona tus habilidades lingüísticas.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Explica qué experiencia laboral has tenido antes.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre el horario de trabajo.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-9_v2",
+    "type": "roleplay",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás hablando con tu profesor sobre un proyecto de caridad en el colegio.",
+    "studentRole": "Estudiante",
+    "examinerRole": "Profesor",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile a qué organización quieres ayudar y por qué.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Menciona una actividad para recaudar fondos.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Explica por qué es importante ser voluntario.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre la fecha del evento.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "pc-es-8_v2",
+    "type": "photo_card",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+    ],
+    "studentPrompts": [
+      "Dime qué ves en la foto."
+    ],
+    "examinerPrompts": [
+      "Dime qué ves en la foto.",
+      "¿Cuáles son las ventajas de trabajar en una oficina?",
+      "¿Qué tipo de trabajo te gustaría tener en el futuro?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-9",
+      "conv-es-10"
+    ]
+  },
+  {
+    "id": "pc-es-9_v2",
+    "type": "photo_card",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "imageUrl": "",
+    "imageUrls": [],
+    "studentPrompts": [
+      "Describe lo que ocurre en la imagen."
+    ],
+    "examinerPrompts": [
+      "Describe lo que ocurre en la imagen.",
+      "¿Es importante ayudar a los necesitados en tu opinión?",
+      "¿Qué has hecho recientemente para ayudar a otros?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-17",
+      "conv-es-18"
+    ]
+  },
+  {
+    "id": "pc-es-1_v2",
+    "type": "photo_card",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1511895426328-dc8714191300",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1511895426328-dc8714191300"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Crees que casarse es una tradición importante hoy en día?",
+      "¿Qué celebrarás con tu familia el año que viene?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-1",
+      "conv-es-2",
+      "conv-es-3"
+    ]
+  },
+  {
+    "id": "pc-es-2_v2",
+    "type": "photo_card",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1523050853064-00215715568a",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1523050853064-00215715568a"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Qué opinas de las instalaciones de tu colegio?",
+      "¿Cómo sería tu colegio ideal?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-5",
+      "conv-es-6"
+    ]
+  },
+  {
+    "id": "pc-es-4_v2",
+    "type": "photo_card",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1517649763962-0c623066013b",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1517649763962-0c623066013b"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Cuál es tu deporte favorito y por qué?",
+      "¿Qué hiciste para mantenerte en forma la semana pasada?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-11",
+      "conv-es-12"
+    ]
+  },
+  {
+    "id": "pc-es-5_v2",
+    "type": "photo_card",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Crees que es importante reciclar hoy en día?",
+      "¿Qué harás tú para proteger el planeta en el futuro?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-13",
+      "conv-es-14"
+    ]
+  },
+  {
+    "id": "pc-es-6_v2",
+    "type": "photo_card",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1518770660439-4636190af475"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Para qué usaste internet ayer?",
+      "¿Crees que la tecnología es fundamental para el estudio?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-15",
+      "conv-es-16"
+    ]
+  },
+  {
+    "id": "pc-es-7_v2",
+    "type": "photo_card",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1"
+    ],
+    "studentPrompts": [
+      "Describe la foto."
+    ],
+    "examinerPrompts": [
+      "Describe la foto.",
+      "¿Prefieres ir de vacaciones con tu familia o con tus amigos?",
+      "¿Qué país te gustaría visitar en el futuro?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-7",
+      "conv-es-8"
+    ]
+  },
+  {
+    "id": "conv-es-21_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Qué es lo más importante en un amigo?"
+  },
+  {
+    "id": "conv-es-22_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Prefieres pasar tiempo con tu familia o con tus amigos?"
+  },
+  {
+    "id": "conv-es-23_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Cuál fue el último concierto al que fuiste?"
+  },
+  {
+    "id": "conv-es-24_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Te gusta leer? ¿Qué tipo de libros prefieres?"
+  },
+  {
+    "id": "conv-es-25_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Cómo son las instalaciones de tu colegio?"
+  },
+  {
+    "id": "conv-es-26_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Qué cambiarías de las reglas de tu instituto?"
+  },
+  {
+    "id": "conv-es-27_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Crees que es importante proteger los bosques?"
+  },
+  {
+    "id": "conv-es-28_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Cómo podemos reducir la contaminación en las ciudades?"
+  },
+  {
+    "id": "conv-es-29_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Prefieres los hoteles o los campings?"
+  },
+  {
+    "id": "conv-es-30_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Cuál es el viaje de tus sueños?"
+  },
+  {
+    "id": "conv-es-31_v2",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Podrías vivir sin tu teléfono móvil?"
+  },
+  {
+    "id": "conv-es-32_v2",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Qué ventajas tiene internet para el estudio?"
+  },
+  {
+    "id": "conv-es-33_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Piensas ir a la universidad o buscar trabajo directamente?"
+  },
+  {
+    "id": "conv-es-34_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Qué importancia tiene ganar mucho dinero en un trabajo?"
+  },
+  {
+    "id": "conv-es-1_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Te llevas bien con tu familia?"
+  },
+  {
+    "id": "conv-es-2_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Qué hiciste el fin de semana pasado con tu familia?"
+  },
+  {
+    "id": "conv-es-3_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Cómo es tu mejor amigo?"
+  },
+  {
+    "id": "conv-es-4_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Qué prefieres hacer con tus amigos?"
+  },
+  {
+    "id": "conv-es-5_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Qué asignatura te gusta más?"
+  },
+  {
+    "id": "conv-es-6_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Llevas uniforme en el colegio?"
+  },
+  {
+    "id": "conv-es-7_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Adónde fuiste de vacaciones el año pasado?"
+  },
+  {
+    "id": "conv-es-8_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Prefieres las vacaciones en la playa o en la ciudad?"
+  },
+  {
+    "id": "conv-es-9_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Te gustaría trabajar en el extranjero en el futuro?"
+  },
+  {
+    "id": "conv-es-10_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Qué planes tienes para cuando termines tus exámenes?"
+  },
+  {
+    "id": "conv-es-11_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Qué sueles hacer en tu tiempo libre?"
+  },
+  {
+    "id": "conv-es-12_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Prefieres ver películas en casa o en el cine?"
+  },
+  {
+    "id": "conv-es-13_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Cuál es el problema medioambiental más grave para ti?"
+  },
+  {
+    "id": "conv-es-14_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Qué haces para ahorrar agua en tu casa?"
+  },
+  {
+    "id": "conv-es-15_v2",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Para qué usas el móvil normalmente?"
+  },
+  {
+    "id": "conv-es-16_v2",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Crees que los jóvenes están enganchados a las redes sociales?"
+  },
+  {
+    "id": "conv-es-17_v2",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "questionText": "¿Crees que es importante ayudar a los demás en tu comunidad?"
+  },
+  {
+    "id": "conv-es-18_v2",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "questionText": "¿Qué cambios te gustaría ver en tu ciudad para mejorar la vida social?"
+  },
+  {
+    "id": "conv-es-19_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Qué piensas de los deberes?"
+  },
+  {
+    "id": "ra-es-10_v2",
+    "type": "read_aloud",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "passageText": "Me encanta ir al cine los fines de semana. La última película que vi fue de ciencia ficción y los efectos especiales eran increíbles. Después del cine, solemos ir a una hamburguesería que está cerca. Creo que es importante tener tiempo para relajarse y disfrutar con los amigos después de una semana dura en el instituto.",
+    "followUpQuestionIds": [
+      "conv-es-23",
+      "conv-es-24"
+    ]
+  },
+  {
+    "id": "ra-es-11_v2",
+    "type": "read_aloud",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "passageText": "La protección del medio ambiente es un tema que me apasiona. En mi tiempo libre, participo en un grupo que planta árboles en el parque local. El año pasado plantamos más de cien árboles nativos. Me gustaría que más gente se diera cuenta de lo importante que es cuidar nuestra naturaleza para las generaciones futuras.",
+    "followUpQuestionIds": [
+      "conv-es-27",
+      "conv-es-28"
+    ]
+  },
+  {
+    "id": "rp-es-10_v2",
+    "type": "roleplay",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás en una tienda de música buscando un regalo para el cumpleaños de tu hermano.",
+    "studentRole": "Cliente",
+    "examinerRole": "Dependiente",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile qué instrumento o tipo de música le gusta a tu hermano.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica por qué has decidido venir a esta tienda hoy.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona qué hiciste para celebrar tu propio cumpleaños el año pasado.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre si tienen descuentos para estudiantes.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-es-11_v2",
+    "type": "roleplay",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "scenarioPrompt": "Estás hablando con un recepcionista de un hotel sobre un problema con tu habitación.",
+    "studentRole": "Huésped",
+    "examinerRole": "Recepcionista",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "Dile cuál es el problema específico en tu habitación.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "Explica cuánto tiempo llevas esperando una solución.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "Menciona qué esperas que el hotel haga ahora.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "Haz una pregunta sobre si puedes cambiar de habitación.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "pc-es-10_v2",
+    "type": "photo_card",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1514525253361-bee8a48740ad",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1514525253361-bee8a48740ad"
+    ],
+    "studentPrompts": [
+      "Dime lo que ves en la foto."
+    ],
+    "examinerPrompts": [
+      "Dime lo que ves en la foto.",
+      "¿Te gusta ir a festivales de música?",
+      "¿Qué tipo de música prefieres escuchar cuando estás solo?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-23",
+      "conv-es-24"
+    ]
+  },
+  {
+    "id": "pc-es-11_v2",
+    "type": "photo_card",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "imageUrl": "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09"
+    ],
+    "studentPrompts": [
+      "Describe la imagen."
+    ],
+    "examinerPrompts": [
+      "Describe la imagen.",
+      "¿Qué opinas sobre el reciclaje en tu ciudad?",
+      "¿Cómo podemos reducir el uso del plástico en nuestra vida diaria?"
+    ],
+    "followUpQuestionIds": [
+      "conv-es-27",
+      "conv-es-28"
+    ]
+  },
+  {
+    "id": "conv-es-35_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Crees que es mejor tener muchos amigos o pocos pero buenos?"
+  },
+  {
+    "id": "conv-es-36_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Spanish",
+    "questionText": "¿Cómo celebraste tu último cumpleaños con tu familia?"
+  },
+  {
+    "id": "conv-es-37_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Qué tipo de programas de televisión te gustan más y por qué?"
+  },
+  {
+    "id": "conv-es-38_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Spanish",
+    "questionText": "¿Prefieres hacer deporte o verlo en la televisión?"
+  },
+  {
+    "id": "conv-es-39_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Qué opinas del acoso escolar en los institutos?"
+  },
+  {
+    "id": "conv-es-40_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Spanish",
+    "questionText": "¿Crees que el uniforme escolar ayuda a que todos se sientan iguales?"
+  },
+  {
+    "id": "conv-es-41_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Qué has hecho esta semana para ser más ecológico?"
+  },
+  {
+    "id": "conv-es-42_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Spanish",
+    "questionText": "¿Te preocupa la deforestación de las selvas tropicales?"
+  },
+  {
+    "id": "conv-es-43_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Has estado alguna vez en un país hispanohablante?"
+  },
+  {
+    "id": "conv-es-44_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Spanish",
+    "questionText": "¿Qué es lo que más te gusta de viajar a lugares nuevos?"
+  },
+  {
+    "id": "conv-es-45_v2",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Crees que las redes sociales tienen un impacto positivo en la sociedad?"
+  },
+  {
+    "id": "conv-es-46_v2",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Spanish",
+    "questionText": "¿Cómo crees que será la tecnología dentro de veinte años?"
+  },
+  {
+    "id": "conv-es-47_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Te gustaría tener tu propio negocio en el futuro?"
+  },
+  {
+    "id": "conv-es-48_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Spanish",
+    "questionText": "¿Es importante para ti estudiar algo que te apasione, aunque no paguen mucho?"
+  },
+  {
+    "id": "conv-es-49_v2",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "questionText": "¿Crees que los jóvenes hoy en día están bien informados sobre los problemas globales?"
+  },
+  {
+    "id": "conv-es-50_v2",
+    "type": "conversation_question",
+    "themeId": "theme-8-social-issues",
+    "language": "Spanish",
+    "questionText": "¿Qué harías tú para mejorar la igualdad en tu ciudad?"
+  }
+]

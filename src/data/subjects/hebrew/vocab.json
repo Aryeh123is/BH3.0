@@ -1,0 +1,290 @@
+[
+  {
+    "id": "he_vocab_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Members",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: אבא (Abba)",
+    "answer": "father",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "he_vocab_002",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Members",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: אמא (Imma)",
+    "answer": "mother",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "he_vocab_003",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Issues",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: זיהום (Zihum)",
+    "answer": "pollution",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_vocab_004",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Internet",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: אינטרנט (Internet)",
+    "answer": "internet",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_vocab_005",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Jobs",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: מהנדס (Mehandes)",
+    "answer": "engineer",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "he_vocab_006",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: בית ספר (Beit Sefer)",
+    "answer": "school",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "he_vocab_007",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Charity",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: צדקה (Tzedakah)",
+    "answer": "charity",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "he_vocab_008",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Food",
+    "subtopic": "Fruit",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: תפוח (Tapuach)",
+    "answer": "apple",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "food"
+    ]
+  },
+  {
+    "id": "he_vocab_010",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: מכונית (Mechonit)",
+    "answer": "car",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_vocab_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Members",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: אבא (Abba) (Set B)",
+    "answer": "father",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "he_vocab_002_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Members",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: אמא (Imma) (Set B)",
+    "answer": "mother",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "he_vocab_003_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Issues",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: זיהום (Zihum) (Set B)",
+    "answer": "pollution",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_vocab_004_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Internet",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: אינטרנט (Internet) (Set B)",
+    "answer": "internet",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_vocab_005_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Jobs",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: מהנדס (Mehandes) (Set B)",
+    "answer": "engineer",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "he_vocab_006_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: בית ספר (Beit Sefer) (Set B)",
+    "answer": "school",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "he_vocab_007_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Charity",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: צדקה (Tzedakah) (Set B)",
+    "answer": "charity",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "he_vocab_008_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Food",
+    "subtopic": "Fruit",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: תפוח (Tapuach) (Set B)",
+    "answer": "apple",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "food"
+    ]
+  },
+  {
+    "id": "he_vocab_010_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: מכונית (Mechonit) (Set B)",
+    "answer": "car",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  }
+]

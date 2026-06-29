@@ -4,6 +4,7 @@ export interface Word {
   spanish?: string;
   french?: string;
   german?: string;
+  arabic?: string;
   english: string;
   transliteration?: string;
   category: string;
@@ -53,7 +54,47 @@ export interface UserPreferences {
   animationsEnabled: boolean;
   reducedMotion: boolean;
   extraTime?: boolean;
+  flashcardBatchSize?: number;
+  flashcardFrontSide?: 'hebrew' | 'english' | 'foreign';
+  lastLanguage?: string;
+  theme?: 'light' | 'dark';
+  microphoneAlwaysOn?: boolean;
+  audioAutoplay?: boolean;
+  preferredVoices?: Record<string, string>;
+  useCloudVoices?: boolean;
+  cloudVoices?: Record<string, string>;
+  ttsVolume?: number;
 }
+
+export interface SetTextWord {
+  text: string;
+  translation: string;
+  notes?: string;
+  lemma?: string;
+}
+
+export interface SetTextVerse {
+  id: string;
+  verseNumber: number;
+  hebrewText: string;
+  englishTranslation: string;
+  words: SetTextWord[];
+}
+
+export interface SetTextChapter {
+  id: string;
+  title: string;
+  verses: SetTextVerse[];
+}
+
+export interface SetText {
+  id: string;
+  title: string;
+  language: string;
+  chapters: SetTextChapter[];
+}
+
+export type ExamEnvironment = 'TRAINING' | 'EXAM';
 
 export interface ShopDocument {
   id: string;

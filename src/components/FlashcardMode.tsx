@@ -1,10 +1,11 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { Word, SRSSettings } from '../types';
+import { Word, SRSSettings, UserPreferences } from '../types';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, RotateCw, Shuffle, Volume2, Book, Trophy, RotateCcw, Layers, Settings, X, Frown, Meh, Smile, Star } from 'lucide-react';
 import { safeLocalStorage } from '../lib/storage';
 import { getForeignWord } from '../lib/utils';
 import { User } from 'firebase/auth';
+import { TTSService } from '../services/ttsService';
 
 interface FlashcardModeProps {
   vocabulary: Word[];
@@ -19,7 +20,12 @@ interface FlashcardModeProps {
   selectedTopic?: string | null;
   devMode?: boolean;
   srsSettings?: SRSSettings;
+  preferences?: UserPreferences;
+  onUpdatePreferences?: (prefs: Partial<UserPreferences>) => void;
 }
+
+import { syncSRSBatch } from '../services/srsSync';
+import { calculateSRS } from '../lib/srsLogic';
 
 export function FlashcardMode({ 
   vocabulary, 
@@ -33,10 +39,13 @@ export function FlashcardMode({
   onShowPro,
   selectedTopic,
   devMode = false,
-  srsSettings
+  srsSettings,
+  preferences,
+  onUpdatePreferences
 }: FlashcardModeProps) {
-  const SESSION_KEY = `bh-flashcard-session-${language}-${selectedTopic || 'full'}`;
 
+  const SESSION_KEY = `bh-flashcard-session-${language}-${selectedTopic || 'full'}`;
+  
   const [sessionState, setSessionState] = useState<{
     sessionCards: Word[];
     stillLearningPile: Word[];
@@ -46,9 +55,12 @@ export function FlashcardMode({
     batchCounter: number;
     batchCorrectCount: number;
     batchIncorrectCount: number;
+    batchCards: Word[];
+    mainDeckQueue: Word[]; // Store remaining deck while doing a sub-review
     initialTotal: number;
     isFinished: boolean;
     showBatchSummary: boolean;
+    isReviewingMissed?: boolean;
   }>(() => {
     const saved = safeLocalStorage.getItem(SESSION_KEY);
     if (saved) {
@@ -58,11 +70,12 @@ export function FlashcardMode({
         // Cache invalidation: if vocabulary changed or empty state was cached
         if (vocabulary.length > 0) {
           const cachedTotal = parsed.initialTotal || 0;
-          if (cachedTotal > 0 && cachedTotal !== vocabulary.length) {
+          if (cachedTotal > 0 && cachedTotal !== vocabulary.length && !parsed.isReviewingMissed) {
             throw new Error("Vocabulary length changed");
           }
           if ((!parsed.sessionCards || parsed.sessionCards.length === 0) &&
               (!parsed.stillLearningPile || parsed.stillLearningPile.length === 0) &&
+              (!parsed.mainDeckQueue || parsed.mainDeckQueue.length === 0) &&
               !parsed.isFinished) {
             throw new Error("Corrupted empty cache");
           }
@@ -77,9 +90,12 @@ export function FlashcardMode({
           batchCounter: parsed.batchCounter || 0,
           batchCorrectCount: parsed.batchCorrectCount || 0,
           batchIncorrectCount: parsed.batchIncorrectCount || 0,
+          batchCards: parsed.batchCards || [],
+          mainDeckQueue: parsed.mainDeckQueue || [],
           initialTotal: parsed.initialTotal || vocabulary.length,
           isFinished: parsed.isFinished || false,
-          showBatchSummary: parsed.showBatchSummary || false
+          showBatchSummary: parsed.showBatchSummary || false,
+          isReviewingMissed: parsed.isReviewingMissed || false
         };
       } catch (e) {
         console.error("Error parsing session state", e);
@@ -94,9 +110,12 @@ export function FlashcardMode({
       batchCounter: 0,
       batchCorrectCount: 0,
       batchIncorrectCount: 0,
+      batchCards: [],
+      mainDeckQueue: [],
       initialTotal: vocabulary.length,
       isFinished: false,
-      showBatchSummary: false
+      showBatchSummary: false,
+      isReviewingMissed: false
     };
   });
 
@@ -109,9 +128,12 @@ export function FlashcardMode({
     batchCounter, 
     batchCorrectCount, 
     batchIncorrectCount, 
+    batchCards,
+    mainDeckQueue,
     initialTotal, 
     isFinished, 
-    showBatchSummary 
+    showBatchSummary,
+    isReviewingMissed = false
   } = sessionState;
 
   const [isFlipped, setIsFlipped] = useState(false);
@@ -124,16 +146,51 @@ export function FlashcardMode({
     return (word.english?.length > 25 || (foreignVal && foreignVal.length > 20));
   }, [sessionCards, currentIndex, language]);
 
-  const [frontSide, setFrontSide] = useState<'hebrew' | 'english'>(() => {
+  const [frontSide, setFrontSideState] = useState<'hebrew' | 'english'>(() => {
+    if (preferences?.flashcardFrontSide && preferences.flashcardFrontSide !== 'foreign') {
+      return preferences.flashcardFrontSide as 'hebrew' | 'english';
+    }
     const saved = safeLocalStorage.getItem(`bh-flashcard-front-${language}`);
     return (saved as 'hebrew' | 'english') || 'hebrew';
   });
 
+  const setFrontSide = (side: 'hebrew' | 'english') => {
+    setFrontSideState(side);
+    if (onUpdatePreferences) {
+      onUpdatePreferences({ flashcardFrontSide: side });
+    }
+  };
+
+  const [batchSize, setBatchSizeState] = useState<number>(() => {
+    if (preferences?.flashcardBatchSize) {
+      return preferences.flashcardBatchSize;
+    }
+    const saved = safeLocalStorage.getItem(`bh-flashcard-batchsize-${language}`);
+    return saved ? parseInt(saved, 10) : 25;
+  });
+
+  const setBatchSize = (size: number) => {
+    setBatchSizeState(size);
+    if (onUpdatePreferences) {
+      onUpdatePreferences({ flashcardBatchSize: size });
+    }
+  };
+
+  useEffect(() => {
+    if (preferences?.flashcardFrontSide && preferences.flashcardFrontSide !== 'foreign') {
+      setFrontSideState(preferences.flashcardFrontSide as 'hebrew' | 'english');
+    }
+    if (preferences?.flashcardBatchSize) {
+      setBatchSizeState(preferences.flashcardBatchSize);
+    }
+  }, [preferences?.flashcardFrontSide, preferences?.flashcardBatchSize]);
+
   useEffect(() => {
     if (!devMode) {
       safeLocalStorage.setItem(`bh-flashcard-front-${language}`, frontSide);
+      safeLocalStorage.setItem(`bh-flashcard-batchsize-${language}`, batchSize.toString());
     }
-  }, [frontSide, language, devMode]);
+  }, [frontSide, batchSize, language, devMode]);
 
   const [direction, setDirection] = useState(0); // -1 for left, 1 for right
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -183,15 +240,14 @@ export function FlashcardMode({
   const processCardTransition = useCallback((isCorrect: boolean, word: Word) => {
     setSessionState(prev => {
       const nextBatchCount = prev.batchCounter + 1;
+      const nextBatchCards = [...prev.batchCards, word];
       const nextStillLearning = isCorrect ? prev.stillLearningPile : [...prev.stillLearningPile, word];
       const nextCards = prev.sessionCards.filter(c => c.id !== word.id);
       
-      const isSessionEnd = nextCards.length === 0 && nextStillLearning.length === 0;
-      const isBatchEnd = nextBatchCount >= 25;
+      const isSessionEnd = nextCards.length === 0 && nextStillLearning.length === 0 && prev.mainDeckQueue.length === 0;
+      const isBatchEnd = nextBatchCount >= batchSize;
       
       // Calculate next index carefully
-      // If we remove the current card, the next card is at the same index
-      // unless we were at the last card, in which case we wrap to 0
       const nextIndex = nextCards.length > 0 
         ? (prev.currentIndex >= nextCards.length ? 0 : prev.currentIndex)
         : 0;
@@ -202,6 +258,7 @@ export function FlashcardMode({
           ...prev,
           sessionCards: [],
           stillLearningPile: [],
+          batchCards: nextBatchCards,
           correctCount: isCorrect ? prev.correctCount + 1 : prev.correctCount,
           incorrectCount: isCorrect ? prev.incorrectCount : prev.incorrectCount + 1,
           isFinished: true,
@@ -210,12 +267,32 @@ export function FlashcardMode({
         };
       } 
       
-      // 2. Finished the entire deck (but have missed cards)
+      // 2. Finished the CURRENT queue (could be entire deck OR a sub-review session)
       if (nextCards.length === 0) {
+        // If we have a main deck waiting, return to it
+        if (prev.mainDeckQueue.length > 0) {
+          return {
+            ...prev,
+            sessionCards: prev.mainDeckQueue,
+            mainDeckQueue: [],
+            stillLearningPile: nextStillLearning,
+            batchCards: nextBatchCards,
+            currentIndex: 0,
+            correctCount: isCorrect ? prev.correctCount + 1 : prev.correctCount,
+            incorrectCount: isCorrect ? prev.incorrectCount : prev.incorrectCount + 1,
+            batchCorrectCount: isCorrect ? prev.batchCorrectCount + 1 : prev.batchCorrectCount,
+            batchIncorrectCount: isCorrect ? prev.batchIncorrectCount : prev.batchIncorrectCount + 1,
+            isFinished: false,
+            showBatchSummary: false // We just transition back to main deck
+          };
+        }
+
+        // Otherwise, we are truly finished with at least this pass of the deck
         return {
           ...prev,
           sessionCards: [],
           stillLearningPile: nextStillLearning,
+          batchCards: nextBatchCards,
           currentIndex: 0,
           correctCount: isCorrect ? prev.correctCount + 1 : prev.correctCount,
           incorrectCount: isCorrect ? prev.incorrectCount : prev.incorrectCount + 1,
@@ -226,12 +303,13 @@ export function FlashcardMode({
         };
       } 
 
-      // 3. Finished a batch of 25
+      // 3. Finished a batch
       if (isBatchEnd) {
         return {
           ...prev,
           sessionCards: nextCards,
           stillLearningPile: nextStillLearning,
+          batchCards: nextBatchCards,
           batchCounter: nextBatchCount,
           correctCount: isCorrect ? prev.correctCount + 1 : prev.correctCount,
           incorrectCount: isCorrect ? prev.incorrectCount : prev.incorrectCount + 1,
@@ -247,6 +325,7 @@ export function FlashcardMode({
         ...prev,
         sessionCards: nextCards,
         stillLearningPile: nextStillLearning,
+        batchCards: nextBatchCards,
         currentIndex: nextIndex,
         correctCount: isCorrect ? prev.correctCount + 1 : prev.correctCount,
         incorrectCount: isCorrect ? prev.incorrectCount : prev.incorrectCount + 1,
@@ -261,9 +340,9 @@ export function FlashcardMode({
       setIsTransitioning(false);
       setDirection(0);
     }, 250);
-  }, []);
+  }, [batchSize]);
 
-  const handleMarkCorrect = useCallback((explicitIntervalDays?: number) => {
+  const handleMarkResult = useCallback((choice: 'instant' | 'quick' | 'partial' | 'forgot') => {
     if (isTransitioning || showBatchSummary || isFinished) return;
     if (!user && (correctCount + incorrectCount) >= 50) {
       onRequireAuth?.();
@@ -273,56 +352,59 @@ export function FlashcardMode({
     if (!currentWord) return;
     
     setIsTransitioning(true);
-    setDirection(1);
+    setDirection(choice === 'forgot' ? -1 : 1);
     setIsFlipped(false);
     
-    try {
-      if (user) onWordProgress(currentWord.id, true, explicitIntervalDays);
-    } catch (err) {
-      console.error("Error updating word progress:", err);
+    const srsData = calculateSRS(choice);
+    
+    if (user) {
+      syncSRSBatch(user.uid, [{
+        wordId: currentWord.id,
+        ...srsData
+      }]).catch(console.error);
     }
     
     saveToHistory();
-    processCardTransition(true, currentWord);
-  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, onWordProgress, saveToHistory, processCardTransition, user, correctCount, incorrectCount, onRequireAuth]);
+    processCardTransition(choice !== 'forgot', currentWord);
+  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, saveToHistory, processCardTransition, user, correctCount, incorrectCount, onRequireAuth]);
 
-  const handleMarkIncorrect = useCallback((explicitIntervalDays?: number) => {
-    if (isTransitioning || showBatchSummary || isFinished) return;
-    if (!user && (correctCount + incorrectCount) >= 50) {
-      onRequireAuth?.();
-      return;
-    }
-    const currentWord = sessionCards[currentIndex];
-    if (!currentWord) return;
-    
-    setIsTransitioning(true);
-    setDirection(-1);
-    setIsFlipped(false);
-    
-    try {
-      if (user) onWordProgress(currentWord.id, false, explicitIntervalDays);
-    } catch (err) {
-      console.error("Error updating word progress:", err);
-    }
-    
-    saveToHistory();
-    processCardTransition(false, currentWord);
-  }, [isTransitioning, showBatchSummary, isFinished, sessionCards, currentIndex, onWordProgress, saveToHistory, processCardTransition, user, correctCount, incorrectCount, onRequireAuth]);
+  // Keep these for keyboard shortcuts mapping temporarily
+  const handleMarkCorrect = () => handleMarkResult('quick');
+  const handleMarkIncorrect = () => handleMarkResult('forgot');
 
   useEffect(() => {
     if (isFinished || showBatchSummary || !enableKeyboard) return;
     
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Don't intercept keyboard shortcuts if the user is typing inside text inputs or textareas
+      if (document.activeElement?.tagName === 'INPUT' || document.activeElement?.tagName === 'TEXTAREA') {
+        return;
+      }
+
       const keysToPrevent = ['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', ' '];
       if (keysToPrevent.includes(e.key) || keysToPrevent.includes(e.code)) {
          e.preventDefault();
       }
 
-      if (e.code === 'Space' || e.key === ' ' || e.code === 'ArrowUp' || e.key === 'ArrowUp') {
+      const keyLower = e.key.toLowerCase();
+      const code = e.code;
+
+      if (
+        code === 'Space' || 
+        e.key === ' ' || 
+        code === 'ArrowUp' || 
+        e.key === 'ArrowUp' ||
+        code === 'ArrowDown' ||
+        e.key === 'ArrowDown' ||
+        code === 'KeyW' ||
+        keyLower === 'w' ||
+        code === 'KeyS' ||
+        keyLower === 's'
+      ) {
         setIsFlipped(prev => !prev);
-      } else if (e.code === 'ArrowRight' || e.key === 'ArrowRight') {
+      } else if (code === 'ArrowRight' || e.key === 'ArrowRight' || code === 'KeyD' || keyLower === 'd') {
         handleMarkCorrect();
-      } else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {
+      } else if (code === 'ArrowLeft' || e.key === 'ArrowLeft' || code === 'KeyA' || keyLower === 'a') {
         handleMarkIncorrect();
       } else if (e.code === 'Backspace' || e.key === 'Backspace' || (e.metaKey && (e.code === 'ArrowLeft' || e.key === 'ArrowLeft'))) {
         handleBack();
@@ -340,11 +422,31 @@ export function FlashcardMode({
       batchCounter: 0,
       batchCorrectCount: 0,
       batchIncorrectCount: 0,
+      batchCards: [],
       showBatchSummary: false
     }));
     setIsFlipped(false);
     setDirection(0);
   }, [saveToHistory]);
+
+  const handleReviewFullBatch = useCallback(() => {
+    if (batchCards.length === 0) return;
+    saveToHistory();
+    setSessionState(prev => ({
+      ...prev,
+      mainDeckQueue: prev.sessionCards, // Save remaining deck
+      sessionCards: [...prev.batchCards].sort(() => Math.random() - 0.5),
+      batchCards: [],
+      batchCounter: 0,
+      batchCorrectCount: 0,
+      batchIncorrectCount: 0,
+      showBatchSummary: false,
+      isFinished: false,
+      currentIndex: 0
+    }));
+    setIsFlipped(false);
+    setDirection(0);
+  }, [batchCards, saveToHistory]);
 
   const handleShuffle = useCallback(() => {
     if (!devMode) {
@@ -360,6 +462,8 @@ export function FlashcardMode({
       batchCounter: 0,
       batchCorrectCount: 0,
       batchIncorrectCount: 0,
+      batchCards: [],
+      mainDeckQueue: [],
       initialTotal: vocabulary.length,
       isFinished: false,
       showBatchSummary: false
@@ -371,13 +475,14 @@ export function FlashcardMode({
 
   const handlePronounce = (text: string) => {
     if (!text) return;
-    if (!isPremium && (language === 'spanish' || language === 'french')) {
+    if (!isPremium && (language === 'spanish' || language === 'french' || language === 'german' || language === 'arabic')) {
       onShowPro?.();
       return;
     }
 
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.volume = TTSService.getVolume();
     
     // Improved voice selection
     const voices = window.speechSynthesis.getVoices();
@@ -392,6 +497,18 @@ export function FlashcardMode({
     }
     
     utterance.rate = 0.9;
+    utterance.onerror = (e: any) => {
+      console.error('Flashcard local speech error:', e);
+      if (e.error !== 'interrupted' && e.error !== 'canceled') {
+        window.dispatchEvent(new CustomEvent('app-toast-notification', {
+          detail: {
+            title: "Voice Audio Error",
+            message: "Offline voice playback failed. Please make sure your system's text-to-speech option is enabled.",
+            type: "warning"
+          }
+        }));
+      }
+    };
     window.speechSynthesis.speak(utterance);
   };
 
@@ -451,7 +568,7 @@ export function FlashcardMode({
                           : 'bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:border-slate-200 dark:hover:border-slate-600'
                       }`}
                     >
-                      {language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew'}
+                      {language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : language === 'german' ? 'German' : language === 'arabic' ? 'Arabic' : 'Hebrew'}
                     </button>
                     <button
                       onClick={() => setFrontSide('english')}
@@ -463,6 +580,25 @@ export function FlashcardMode({
                     >
                       English
                     </button>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <label className="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Cards Per Batch</label>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[25, 50, 100].map(size => (
+                      <button
+                        key={size}
+                        onClick={() => setBatchSize(size)}
+                        className={`py-3 rounded-2xl font-bold transition-all border-2 text-sm ${
+                          batchSize === size
+                            ? 'bg-indigo-50 dark:bg-indigo-900/20 border-indigo-600 text-indigo-600 dark:text-indigo-400'
+                            : 'bg-white dark:bg-slate-800 border-slate-100 dark:border-slate-700 text-slate-400 dark:text-slate-500 hover:border-slate-200 dark:hover:border-slate-600'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
                   </div>
                 </div>
 
@@ -505,7 +641,7 @@ export function FlashcardMode({
               </div>
               <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white mb-4">You're learning fast 🚀</h2>
               <p className="text-slate-500 dark:text-slate-400 mb-8">
-                You've completed a batch of 25 cards. Keep up the momentum!
+                You've completed a batch of {batchSize} cards. Keep up the momentum!
               </p>
               
               <div className="grid grid-cols-2 gap-4 mb-8">
@@ -519,12 +655,14 @@ export function FlashcardMode({
                 </div>
               </div>
 
-              <button
-                onClick={handleContinueNextBatch}
-                className="w-full py-5 bg-slate-900 dark:bg-slate-700 text-white font-bold rounded-2xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-xl active:scale-95"
-              >
-                Continue to Next Batch
-              </button>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={handleContinueNextBatch}
+                  className="w-full py-5 bg-slate-900 dark:bg-slate-700 text-white font-bold rounded-2xl hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-xl active:scale-95"
+                >
+                  Continue to Next Batch
+                </button>
+              </div>
             </div>
           </motion.div>
         ) : isFinished ? (
@@ -546,7 +684,7 @@ export function FlashcardMode({
                 ? `You've seen all words. You have ${stillLearningPile.length} words left to master.`
                 : `Congratulations! You've successfully reviewed all ${vocabulary.length} words.`}
             </p>
-            <div className="flex justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
               {stillLearningPile.length > 0 && (
                 <button
                   onClick={() => {
@@ -557,17 +695,30 @@ export function FlashcardMode({
                         ...prev,
                         sessionCards: combined,
                         stillLearningPile: [],
+                        batchCards: [],
                         currentIndex: 0,
                         isFinished: false,
                         batchCounter: 0,
                         batchCorrectCount: 0,
-                        batchIncorrectCount: 0
+                        batchIncorrectCount: 0,
+                        correctCount: 0,
+                        incorrectCount: 0,
+                        initialTotal: combined.length,
+                        isReviewingMissed: true
                       };
                     });
                   }}
-                  className="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold hover:bg-indigo-700 transition-all shadow-xl"
+                  className="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-bold hover:bg-indigo-700 transition-all shadow-xl cursor-pointer"
                 >
-                  Review {stillLearningPile.length} Missed Cards
+                  Review All Missed ({stillLearningPile.length})
+                </button>
+              )}
+              {batchCards.length > 0 && batchCards.length < vocabulary.length && (
+                <button
+                  onClick={handleReviewFullBatch}
+                  className="px-8 py-4 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white rounded-2xl font-bold hover:bg-slate-200 dark:hover:bg-slate-700 transition-all shadow-xl"
+                >
+                  Redo Last Batch ({batchCards.length})
                 </button>
               )}
               <button
@@ -590,62 +741,74 @@ export function FlashcardMode({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="max-w-[1100px] mx-auto px-4 sm:px-6 py-4 sm:py-8 flex-1 flex flex-col w-full"
+            className="max-w-[1100px] mx-auto px-3 sm:px-6 py-4 sm:py-8 flex-1 flex flex-col justify-between w-full h-[100dvh] overflow-hidden"
           >
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6 sm:mb-12">
-              <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto w-full sm:w-auto no-scrollbar pb-2 sm:pb-0">
+            <div className="flex flex-row items-center justify-between gap-2 border-b border-slate-100 dark:border-slate-800 pb-3 mb-4 sm:mb-8 shrink-0">
+              <div className="flex items-center gap-1 sm:gap-3 overflow-x-auto no-scrollbar">
                 <button
                   onClick={onExit}
-                  className="flex items-center gap-1.5 px-3 py-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-bold transition-colors text-sm"
+                  className="flex items-center gap-1 p-1 sm:px-3 sm:py-1.5 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-bold transition-colors text-xs sm:text-sm"
                 >
-                  <ChevronLeft className="w-5 h-5" />
-                  <span className="hidden xs:inline">Back</span>
+                  <ChevronLeft className="w-5 h-5 shrink-0" />
+                  <span className="hidden xs:inline">Exit</span>
                 </button>
                 {history.length > 0 && (
                   <button
                     onClick={handleBack}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-primary hover:text-primary-hover font-bold transition-colors text-sm"
+                    className="flex items-center gap-1 p-1 sm:px-3 sm:py-1.5 text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 font-bold transition-colors text-xs sm:text-sm shrink-0"
                   >
-                    <RotateCcw className="w-4 h-4" />
-                    Undo
+                    <RotateCcw className="w-4 h-4 shrink-0" />
+                    <span className="hidden sm:inline">Undo</span>
                   </button>
                 )}
                 <button
                   onClick={onSwitchToLearn}
-                  className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/5 dark:bg-primary/10 text-primary rounded-xl font-bold hover:bg-primary/10 dark:hover:bg-primary/20 transition-all text-sm whitespace-nowrap"
+                  className="flex items-center gap-1 p-1 sm:px-3 py-1 bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 rounded-lg font-bold hover:bg-indigo-100 dark:hover:bg-indigo-900/30 transition-all text-[11px] sm:text-sm whitespace-nowrap"
                 >
-                  <Book className="w-4 h-4" />
-                  Learn
+                  <Book className="w-3.5 h-3.5" />
+                  <span>Learn</span>
                 </button>
               </div>
-              <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-6 w-full sm:w-auto">
-                <div className="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm font-bold">
-                  <div className="flex items-center gap-1.5 sm:gap-2">
-                    <span className="text-red-500 bg-red-50 dark:bg-red-900/20 px-2 sm:px-3 py-1 rounded-lg" title="Total Still Learning">{incorrectCount}</span>
-                    <span className="text-green-500 bg-green-50 dark:bg-green-900/20 px-2 sm:px-3 py-1 rounded-lg" title="Total Known">{correctCount}</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-slate-400 dark:text-slate-500" title="Cards until next shuffle">
+              <div className="flex items-center gap-3 shrink-0">
+                <div className="flex items-center gap-2 text-[10px] sm:text-xs font-bold">
+                  {isReviewingMissed ? (
+                    <div className="flex items-center gap-2 bg-amber-500/10 text-amber-700 dark:bg-amber-400/10 dark:text-amber-300 px-3 py-1 rounded-xl border border-amber-500/20 text-[10px] sm:text-xs font-extrabold uppercase tracking-widest flex items-center">
+                      <span className="text-amber-600 dark:text-amber-400">Retry Session:</span>
+                      <span className="text-green-600 dark:text-green-400 flex items-center gap-0.5 ml-1">
+                        ✓ {correctCount}
+                      </span>
+                      <span className="text-red-600 dark:text-red-400 flex items-center gap-0.5 ml-1">
+                        ✗ {incorrectCount}
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center gap-1">
+                      <span className="text-red-500 bg-red-50 dark:bg-red-900/25 px-1.5 py-0.5 rounded cursor-help" title="Total Still Learning">{incorrectCount}</span>
+                      <span className="text-green-500 bg-green-50 dark:bg-green-900/25 px-1.5 py-0.5 rounded cursor-help" title="Total Known">{correctCount}</span>
+                    </div>
+                  )}
+                  <div className="flex items-center gap-0.5 text-slate-400" title="Until next batch">
                     <RotateCw className="w-3 h-3" />
-                    <span>{25 - batchCounter}</span>
+                    <span>{batchSize - batchCounter}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 sm:gap-3">
+                <div className="flex items-center gap-1.5">
                   <button
                     onClick={() => setShowSettings(true)}
-                    className="p-2 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary rounded-xl transition-all"
-                    title="Flashcard Settings"
+                    className="p-1 px-1.5 text-slate-400 hover:text-indigo-600 dark:text-slate-500 rounded-lg transition-all"
+                    title="Settings"
                   >
-                    <Settings className="w-5 h-5" />
+                    <Settings className="w-4 h-4" />
                   </button>
-                  <span className="text-xs sm:text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest whitespace-nowrap">
+                  <span className="text-[10px] sm:text-xs font-bold text-slate-400 uppercase tracking-widest whitespace-nowrap">
                     {initialTotal - sessionCards.length + 1}/{initialTotal}
                   </span>
                 </div>
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col items-center justify-center gap-6 sm:gap-16">
-              <div className={`relative w-full transition-all duration-500 ease-in-out ${isCurrentWordLong ? 'max-w-[320px] aspect-[4/5]' : 'max-w-[260px] aspect-square'} sm:max-w-xl sm:aspect-[4/3]`}>
+            <div className="flex-1 flex flex-col items-center justify-center gap-4 sm:gap-16 my-auto w-full">
+              <div className="relative w-full transition-all duration-300 ease-out max-w-[92%] xs:max-w-[340px] md:max-w-xl aspect-[11/14] md:aspect-[4/3] mx-auto select-none">
                 <AnimatePresence mode="popLayout">
                   {sessionCards[currentIndex] && (
                     <motion.div
@@ -668,18 +831,18 @@ export function FlashcardMode({
                           style={{ zIndex: isFlipped ? 0 : 1 }}
                         >
                           <span className="absolute top-6 left-6 sm:top-10 sm:left-10 text-[8px] sm:text-[10px] font-bold text-slate-300 dark:text-slate-600 uppercase tracking-[0.2em]">
-                            {frontSide === 'hebrew' ? (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew') : 'English'}
+                            {frontSide === 'hebrew' ? (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : language === 'german' ? 'German' : language === 'arabic' ? 'Arabic' : 'Hebrew') : 'English'}
                           </span>
-                          <h2 className={`font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 ${getFontSize(frontSide === 'hebrew' ? getForeignWord(sessionCards[currentIndex], language) : sessionCards[currentIndex].english, frontSide === 'hebrew')}`} dir={frontSide === 'hebrew' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
+                          <h2 className={`font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 ${getFontSize(frontSide === 'hebrew' ? getForeignWord(sessionCards[currentIndex], language) : sessionCards[currentIndex].english, frontSide === 'hebrew')}`} dir={frontSide === 'hebrew' && !['spanish', 'french', 'german'].includes(language) ? 'rtl' : 'ltr'}>
                             {frontSide === 'hebrew' ? getForeignWord(sessionCards[currentIndex], language) : sessionCards[currentIndex].english}
                           </h2>
-                          {user && (language === 'spanish' || language === 'french') && frontSide === 'hebrew' && (
+                          {user && (language === 'spanish' || language === 'french' || language === 'german' || language === 'arabic') && frontSide === 'hebrew' && (
                             <button
                               onClick={(e) => {
-                                e.stopPropagation();
-                                handlePronounce(getForeignWord(sessionCards[currentIndex], language));
+                                  e.stopPropagation();
+                                  handlePronounce(getForeignWord(sessionCards[currentIndex], language));
                               }}
-                              className="p-2.5 sm:p-3 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors mb-2 sm:mb-4"
+                              className="p-2.5 sm:p-3 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors mb-2 sm:mb-4 animate-bounce-subtle"
                               title="Listen to pronunciation"
                             >
                               <Volume2 className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -698,19 +861,19 @@ export function FlashcardMode({
 
                         {/* Back */}
                         <div 
-                          className="absolute inset-0 w-full h-full backface-hidden bg-blue-600 rounded-[2rem] sm:rounded-[3rem] shadow-2xl flex flex-col items-center justify-center p-6 sm:p-12 text-center text-white"
+                          className="absolute inset-0 w-full h-full backface-hidden bg-indigo-600 rounded-[2rem] sm:rounded-[3rem] shadow-2xl flex flex-col items-center justify-center p-6 sm:p-12 text-center text-white"
                           style={{ 
                             transform: 'rotateY(180deg)',
                             zIndex: isFlipped ? 1 : 0
                           }}
                         >
-                          <span className="absolute top-6 left-6 sm:top-10 sm:left-10 text-[8px] sm:text-[10px] font-bold text-blue-100 uppercase tracking-[0.2em]">
-                            {frontSide === 'hebrew' ? 'English' : (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'Hebrew')}
+                          <span className="absolute top-6 left-6 sm:top-10 sm:left-10 text-[8px] sm:text-[10px] font-bold text-indigo-100 uppercase tracking-[0.2em]">
+                            {frontSide === 'hebrew' ? 'English' : (language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : language === 'german' ? 'German' : language === 'arabic' ? 'Arabic' : 'Hebrew')}
                           </span>
-                          <h2 className={`font-black mb-4 sm:mb-6 drop-shadow-sm ${getFontSize(frontSide === 'hebrew' ? sessionCards[currentIndex].english : getForeignWord(sessionCards[currentIndex], language), frontSide === 'english')}`} dir={frontSide === 'english' && language !== 'spanish' && language !== 'french' ? 'rtl' : 'ltr'}>
+                          <h2 className={`font-black mb-4 sm:mb-6 drop-shadow-sm ${getFontSize(frontSide === 'hebrew' ? sessionCards[currentIndex].english : getForeignWord(sessionCards[currentIndex], language), frontSide === 'english')}`} dir={frontSide === 'english' && !['spanish', 'french', 'german'].includes(language) ? 'rtl' : 'ltr'}>
                             {frontSide === 'hebrew' ? sessionCards[currentIndex].english : getForeignWord(sessionCards[currentIndex], language)}
                           </h2>
-                          {user && (language === 'spanish' || language === 'french') && frontSide === 'english' && (
+                          {user && (language === 'spanish' || language === 'french' || language === 'german' || language === 'arabic') && frontSide === 'english' && (
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
@@ -722,10 +885,10 @@ export function FlashcardMode({
                               <Volume2 className="w-5 h-5 sm:w-6 sm:h-6" />
                             </button>
                           )}
-                          <p className="text-blue-100 font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs">
+                          <p className="text-indigo-100 font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs">
                             {sessionCards[currentIndex].category}
                           </p>
-                          <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 text-blue-100 flex items-center gap-1.5 sm:gap-2 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest">
+                          <div className="absolute bottom-6 right-6 sm:bottom-10 sm:right-10 text-indigo-100 flex items-center gap-1.5 sm:gap-2 text-[8px] sm:text-[10px] font-bold uppercase tracking-widest">
                             <span>Flip</span>
                             <RotateCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                           </div>
@@ -744,64 +907,64 @@ export function FlashcardMode({
                     className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 w-full"
                   >
                     <button
-                      onClick={() => handleMarkIncorrect(1 / (24 * 60))}
+                      onClick={() => handleMarkResult('forgot')}
                       disabled={isTransitioning}
-                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
+                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
                     >
-                      <Frown className="w-6 h-6 sm:w-8 sm:h-8 text-red-500 mb-1 sm:mb-2" />
+                      <span className="text-3xl sm:text-4xl mb-1 sm:mb-2 leading-none transition-transform group-hover:scale-110">❌</span>
                       <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Forgot</span>
                       <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-0.5 sm:mt-1">1 Min</span>
                     </button>
                     <button
-                      onClick={() => handleMarkCorrect(5)}
+                      onClick={() => handleMarkResult('partial')}
                       disabled={isTransitioning}
-                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
+                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
                     >
-                      <Meh className="w-6 h-6 sm:w-8 sm:h-8 text-amber-500 mb-1 sm:mb-2" />
+                      <span className="text-3xl sm:text-4xl mb-1 sm:mb-2 leading-none transition-transform group-hover:scale-110">🤔</span>
                       <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Partial</span>
                       <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-0.5 sm:mt-1">5 Days</span>
                     </button>
                     <button
-                      onClick={() => handleMarkCorrect(11)}
+                      onClick={() => handleMarkResult('quick')}
                       disabled={isTransitioning}
-                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
+                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
                     >
-                      <Smile className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-500 mb-1 sm:mb-2" />
-                      <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Effort</span>
+                      <span className="text-3xl sm:text-4xl mb-1 sm:mb-2 leading-none transition-transform group-hover:scale-110">🙂</span>
+                      <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Quick</span>
                       <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-0.5 sm:mt-1">11 Days</span>
                     </button>
                     <button
-                      onClick={() => handleMarkCorrect(14)}
+                      onClick={() => handleMarkResult('instant')}
                       disabled={isTransitioning}
-                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
+                      className="group flex flex-col items-center justify-between p-3 sm:p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all disabled:opacity-50 active:scale-95"
                     >
-                      <Star className="w-6 h-6 sm:w-8 sm:h-8 text-indigo-500 mb-1 sm:mb-2" />
-                      <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Easy</span>
+                      <span className="text-3xl sm:text-4xl mb-1 sm:mb-2 leading-none transition-transform group-hover:scale-110">⚡</span>
+                      <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white">Instant</span>
                       <span className="text-[8px] sm:text-[10px] uppercase font-bold tracking-widest text-slate-400 mt-0.5 sm:mt-1">14 Days</span>
                     </button>
                   </motion.div>
                 ) : (
-                  <div className="flex items-center gap-4 sm:gap-12 w-full justify-center">
+                  <div className="flex items-center gap-3 sm:gap-8 w-full max-w-md justify-between px-2 sm:px-4 shrink-0 transition-all">
                     {(!srsSettings?.advancedMode || (!isPremium && !devMode)) && (
                       <button
                         onClick={() => handleMarkIncorrect()}
                         disabled={isTransitioning}
-                        className="group flex flex-col items-center gap-2 sm:gap-3 disabled:opacity-50 flex-1 sm:flex-none"
+                        className="group flex flex-col items-center gap-1.5 sm:gap-2 disabled:opacity-50 flex-1"
                       >
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-red-400 group-hover:bg-red-500 group-hover:text-white group-hover:border-red-500 transition-all relative mx-auto">
-                          <ChevronLeft className="w-8 h-8 sm:w-10 sm:h-10" />
-                          <div className="absolute -top-1.5 -left-1.5 sm:-top-2 sm:-left-2 w-6 h-6 sm:w-7 sm:h-7 bg-red-500 text-white text-[9px] sm:text-[10px] rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-sm">
+                        <div className="w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 text-red-500 hover:bg-red-500 hover:text-white dark:hover:bg-red-500 transition-all relative mx-auto">
+                          <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
+                          <div className="absolute -top-1 -left-1 sm:-top-1.5 sm:-left-1.5 w-5 h-5 sm:w-6 sm:h-6 bg-red-500 text-white text-[8px] sm:text-[10px] rounded-full flex items-center justify-center font-bold">
                             {batchIncorrectCount}
                           </div>
                         </div>
-                        <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest group-hover:text-red-500 whitespace-nowrap">Still Learning</span>
+                        <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 text-center group-hover:text-red-500 whitespace-nowrap">Learn</span>
                       </button>
                     )}
 
                     <button
                       onClick={() => setIsFlipped(!isFlipped)}
                       disabled={isTransitioning}
-                      className="flex-1 sm:flex-none px-6 sm:px-16 py-4 sm:py-5 bg-slate-900 dark:bg-slate-700 text-white rounded-2xl font-bold hover:bg-slate-800 dark:hover:bg-slate-600 transition-all shadow-xl active:scale-95 disabled:opacity-50 text-sm sm:text-base"
+                      className="px-5 sm:px-12 py-3.5 sm:py-5 bg-slate-900 dark:bg-slate-800 text-white font-black uppercase text-xs tracking-widest rounded-xl sm:rounded-2xl transition-all shadow-md active:scale-95 text-center flex-1 max-w-[140px] sm:max-w-none hover:bg-slate-800 dark:hover:bg-slate-700 disabled:opacity-50"
                     >
                       Flip Card
                     </button>
@@ -810,15 +973,15 @@ export function FlashcardMode({
                       <button
                         onClick={() => handleMarkCorrect()}
                         disabled={isTransitioning}
-                        className="group flex flex-col items-center gap-2 sm:gap-3 disabled:opacity-50 flex-1 sm:flex-none"
+                        className="group flex flex-col items-center gap-1.5 sm:gap-2 disabled:opacity-50 flex-1"
                       >
-                        <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center bg-white dark:bg-slate-900 rounded-2xl sm:rounded-3xl shadow-soft border border-slate-100 dark:border-slate-800 text-green-400 group-hover:bg-green-500 group-hover:text-white group-hover:border-green-500 transition-all relative mx-auto">
-                          <ChevronRight className="w-8 h-8 sm:w-10 sm:h-10" />
-                          <div className="absolute -top-1.5 -right-1.5 sm:-top-2 sm:-right-2 w-6 h-6 sm:w-7 sm:h-7 bg-green-500 text-white text-[9px] sm:text-[10px] rounded-full flex items-center justify-center border-2 border-white dark:border-slate-800 shadow-sm">
+                        <div className="w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center bg-white dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-800 text-green-500 hover:bg-green-500 hover:text-white dark:hover:bg-green-500 transition-all relative mx-auto">
+                          <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
+                          <div className="absolute -top-1 -right-1 sm:-top-1.5 sm:-right-1.5 w-5 h-5 sm:w-6 sm:h-6 bg-green-500 text-white text-[8px] sm:text-[10px] rounded-full flex items-center justify-center font-bold">
                             {batchCorrectCount}
                           </div>
                         </div>
-                        <span className="text-[9px] sm:text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest group-hover:text-green-500 whitespace-nowrap">I Know It</span>
+                        <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 text-center group-hover:text-green-500 whitespace-nowrap">Know</span>
                       </button>
                     )}
                   </div>
@@ -826,9 +989,9 @@ export function FlashcardMode({
               </div>
             </div>
 
-            <div className="mt-16 text-center text-slate-400 dark:text-slate-500 text-sm font-medium space-y-4">
+            <div className="mt-6 sm:mt-16 text-center text-slate-400 dark:text-slate-500 text-xs font-medium space-y-3 shrink-0">
               {enableKeyboard ? (
-                <p>Tip: <span className="font-bold text-slate-600 dark:text-slate-300">Space</span> to flip • <span className="font-bold text-slate-600 dark:text-slate-300">←</span> Still Learning • <span className="font-bold text-slate-600 dark:text-slate-300">→</span> Know it</p>
+                <p className="hidden md:block">Tip: <span className="font-bold text-slate-600 dark:text-slate-300">Space</span> to flip • <span className="font-bold text-slate-600 dark:text-slate-300">←</span> Still Learning • <span className="font-bold text-slate-600 dark:text-slate-300">→</span> Know it</p>
               ) : (
                 <p className="text-red-400 font-bold">Keyboard shortcuts disabled</p>
               )}

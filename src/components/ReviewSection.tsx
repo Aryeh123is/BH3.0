@@ -52,7 +52,7 @@ export function ReviewSection({ onLeaveReview, userReviews = [], devMode = false
         <div className="max-w-2xl mx-auto relative min-h-[300px] mb-12 flex justify-center">
           <AnimatePresence mode="wait">
             <motion.div
-              key={`${allReviews[currentIndex]?.id}-${currentIndex}`}
+              key={allReviews[currentIndex]?.id || `empty-${currentIndex}`}
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -50 }}
@@ -61,9 +61,9 @@ export function ReviewSection({ onLeaveReview, userReviews = [], devMode = false
             >
               <div className="bg-slate-50 dark:bg-slate-800/50 p-8 rounded-[2rem] border border-slate-100 dark:border-slate-800 flex flex-col items-center text-center shadow-xl shadow-slate-200/20 dark:shadow-none min-h-[300px]">
                 <div className="flex items-center justify-center gap-1 mb-6">
-                  {[...Array(5)].map((_, i) => (
+                  {Array.from({ length: 5 }).map((_, i) => (
                     <Star 
-                      key={`star-${currentIndex}-${i}`} 
+                      key={i} 
                       className={`w-5 h-5 ${i < allReviews[currentIndex].rating ? 'text-amber-400 fill-amber-400' : 'text-slate-200 dark:text-slate-700'}`} 
                     />
                   ))}
@@ -123,16 +123,16 @@ export function ReviewSection({ onLeaveReview, userReviews = [], devMode = false
             <h2 className="text-3xl font-black text-slate-900 dark:text-white mb-8 tracking-tight shrink-0">All Reviews</h2>
 
             <div className="overflow-y-auto pr-2 custom-scrollbar grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allReviews.map((review, i) => (
+              {allReviews.map((review, index) => (
                 <div
-                  key={`review-${review.id}-${i}`}
+                  key={`${review.id}-${index}`}
                   className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-3xl border border-slate-100 dark:border-slate-800 flex flex-col h-full"
                 >
                   <div className="flex items-center gap-1 mb-4 relative">
-                    {[...Array(5)].map((_, i) => (
+                    {Array.from({ length: 5 }).map((_, starIdx) => (
                       <Star 
-                        key={`modal-star-${review.id}-${i}`} 
-                        className={`w-4 h-4 ${i < review.rating ? 'text-amber-400 fill-amber-400' : 'text-slate-200 dark:text-slate-700'}`} 
+                        key={starIdx} 
+                        className={`w-4 h-4 ${starIdx < review.rating ? 'text-amber-400 fill-amber-400' : 'text-slate-200 dark:text-slate-700'}`} 
                       />
                     ))}
                     {devMode && !review.id.startsWith('public-') && onDeleteReview && (

@@ -30,6 +30,17 @@
         "deleted": { "type": "boolean", "description": "Whether the user account is soft deleted." },
         "deletedAt": { "type": "integer", "description": "Timestamp when the account was deleted." },
         "isPremium": { "type": "boolean", "description": "Premium status." },
+        "subscriptionTier": { "type": "string", "enum": ["FREE", "PREMIUM"], "description": "Pricing tier." },
+        "premium": { "type": "boolean", "description": "Stripe active billing entitlements." },
+        "plan": { "type": "string", "enum": ["monthly", "yearly"], "description": "Stripe subscription billing interval." },
+        "subscriptionStatus": { "type": "string", "description": "Stripe subscription state (active, trialing, canceled, unpaid etc.)" },
+        "stripeCustomerId": { "type": "string", "description": "Stripe customer database unique identifier." },
+        "stripeSubscriptionId": { "type": "string", "description": "Stripe subscription transaction reference." },
+        "currentPeriodEnd": { "type": "object", "description": "Firestore timestamp of current period expiration date." },
+        "trial_used": { "type": "boolean", "description": "Whether the user has activated their one-time free trial." },
+        "trial_started_at": { "type": "string", "description": "Timestamp when the free trial started." },
+        "trial_ends_at": { "type": "string", "description": "Timestamp when the free trial expires." },
+        "premium_source": { "type": "string", "description": "How the user got premium (either 'trial' or 'stripe')." },
         "role": { "type": "string", "description": "Role of the user (admin)." }
       }
     },
@@ -47,6 +58,76 @@
         "authorId": { "type": "string" }
       },
       "required": ["title", "description", "content", "language", "price", "createdAt"]
+    },
+    "UserDeviceGroup": {
+      "title": "UserDeviceGroup",
+      "description": "Registry of devices used by the user.",
+      "type": "object",
+      "properties": {
+        "devices": { "type": "object" },
+        "updatedAt": { "type": "integer" }
+      },
+      "required": ["devices", "updatedAt"]
+    },
+    "ActiveSession": {
+      "title": "ActiveSession",
+      "description": "Currently active session for a user.",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string" },
+        "deviceId": { "type": "string" },
+        "lastActive": { "type": "integer" }
+      },
+      "required": ["sessionId", "deviceId", "lastActive"]
+    },
+    "PastPaper": {
+      "title": "PastPaper",
+      "description": "Metadata and external URLs for an exam past paper.",
+      "type": "object",
+      "properties": {
+        "paperId": { "type": "string", "description": "Deterministic ID: board_subject_tier_year_paper" },
+        "examBoard": { "type": "string" },
+        "subject": { "type": "string" },
+        "tier": { "type": "string", "enum": ["Foundation", "Higher"] },
+        "year": { "type": "integer" },
+        "paperNumber": { "type": "integer" },
+        "totalMarks": { "type": "integer" },
+        "paperUrl": { "type": "string", "description": "External PDF link" },
+        "markSchemeUrl": { "type": "string" },
+        "examinerReportUrl": { "type": "string" }
+      },
+      "required": ["paperId", "examBoard", "subject", "tier", "year", "paperNumber", "totalMarks", "paperUrl", "markSchemeUrl"]
+    },
+    "GradeBoundaries": {
+      "title": "GradeBoundaries",
+      "description": "Grade thresholds for a specific exam context.",
+      "type": "object",
+      "properties": {
+        "boundaryId": { "type": "string", "description": "Deterministic ID: board_subject_tier_year" },
+        "examBoard": { "type": "string" },
+        "subject": { "type": "string" },
+        "tier": { "type": "string" },
+        "year": { "type": "integer" },
+        "boundaries": {
+          "type": "object",
+          "description": "Mapping of grade (e.g. '9', '8') to minimum marks."
+        }
+      },
+      "required": ["boundaryId", "examBoard", "subject", "tier", "year", "boundaries"]
+    },
+    "UserPaperResult": {
+      "title": "UserPaperResult",
+      "description": "User's performance record for a specific past paper.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "paperId": { "type": "string" },
+        "score": { "type": "integer" },
+        "percentage": { "type": "number" },
+        "grade": { "type": "string" },
+        "timestamp": { "type": "integer" }
+      },
+      "required": ["userId", "paperId", "score", "percentage", "grade", "timestamp"]
     }
   },
   "firestore": {
@@ -58,9 +139,37 @@
       "schema": "UserProgress",
       "description": "User's progress for a specific word."
     },
+    "/users/{userId}/paperResults/{paperId}": {
+      "schema": "UserPaperResult",
+      "description": "User's results for a specific past paper."
+    },
+    "/users/{userId}/decks/{deckId}": {
+      "schema": "object",
+      "description": "Custom flashcard decks."
+    },
+    "/users/{userId}/settings/{settingId}": {
+      "schema": "object",
+      "description": "User specific app settings (e.g. targetGrades)."
+    },
+    "/pastPapers/{paperId}": {
+      "schema": "PastPaper",
+      "description": "Past paper metadata and links."
+    },
+    "/gradeBoundaries/{boundaryId}": {
+      "schema": "GradeBoundaries",
+      "description": "Official grade boundaries for exams."
+    },
     "/shopContent/{docId}": {
       "schema": "ShopDocument",
       "description": "Documents available in the shop."
+    },
+    "/userDevices/{userId}": {
+      "schema": "UserDeviceGroup",
+      "description": "Registered devices for the user."
+    },
+    "/activeSessions/{userId}/sessions/{deviceId}": {
+      "schema": "ActiveSession",
+      "description": "User's active session on a specific device."
     }
   }
 }

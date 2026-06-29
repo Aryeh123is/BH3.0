@@ -1,0 +1,2132 @@
+[
+  {
+    "id": "ar_reading_001",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أنا أحب التاريخ كثيراً لأنه ممتع جداً، لكني لا أحب الرياضيات.' Question: Does the person like math?",
+    "answer": "no",
+    "explanation": "The text says 'لا أحب الرياضيات' (I do not like mathematics).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_002",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'في المستقبل، أعتقد أن وسائل التواصل الاجتماعي ستكون أقل أهمية للشباب.' Question: What does the author think about the future of social media?",
+    "answer": "less important",
+    "acceptableAnswers": [
+      "it will be less important",
+      "will be less important"
+    ],
+    "explanation": "The text states it will be 'أقل أهمية' (less important).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "ar_reading_003",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'أنا ألعب التنس كل يوم سبت، لكن أخي يفضل لعب كرة السلة.' Question: Which sport does the speaker's brother prefer?",
+    "answer": "basketball",
+    "acceptableAnswers": [
+      "basketball"
+    ],
+    "explanation": "The text states 'أخي يفضل لعب كرة السلة' (my brother prefers playing basketball).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "sports"
+    ]
+  },
+  {
+    "id": "ar_reading_004",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'على الرغم من أن الرحلات الجوية إلى إيطاليا كانت مكلفة، إلا أن الرحلة كانت تستحق العناء، حيث كانت المعالم التاريخية في روما جميلة بشكل لا يصدق.' Question: Was the trip to Italy worth it despite the cost, and why?",
+    "answer": "yes; the historical sights in Rome were incredibly beautiful",
+    "acceptableAnswers": [
+      "yes, historical sights in Rome",
+      "yes, because of Rome's sights"
+    ],
+    "explanation": "The text says 'كانت تستحق العناء' (worth the trouble/cost) because the sights were 'جميلة بشكل لا يصدق' (incredibly beautiful).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_reading_005",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أعيش مع والدتي وزوجها في القاهرة. أخي الأكبر يدرس بالفعل في الإسكندرية.' Question: Where does the speaker's older brother live/study?",
+    "answer": "Alexandria",
+    "acceptableAnswers": [
+      "alexandria",
+      "in Alexandria"
+    ],
+    "explanation": "The text states 'أخي الأكبر يدرس بالفعل في الإسكندرية' (my older brother already studies in Alexandria).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_reading_006",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Climate Change",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'لا يمكن حل التلوث بين عشية وضحاها، ولكن إذا استخدم كل مواطن وسائل النقل العام، يمكننا تقليل انبعاثات الكربون بشكل كبير.' Question: What specific individual action is suggested to reduce CO2 emissions?",
+    "answer": "use public transport",
+    "acceptableAnswers": [
+      "using public transport",
+      "use public transportation"
+    ],
+    "explanation": "The text suggests 'إذا استخدم كل مواطن وسائل النقل العام' (if every citizen uses public transport).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_reading_007",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'مدرستنا بها مكتبة كبيرة وثلاث غرف كمبيوتر حديثة، ولكن للأسف لا توجد قاعة رياضية.' Question: Which facility is missing from the school?",
+    "answer": "sports hall",
+    "acceptableAnswers": [
+      "gym",
+      "a sports hall",
+      "a gym"
+    ],
+    "explanation": "The text mentions 'للأسف لا توجد قاعة رياضية' (unfortunately no sports hall/gym).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_008",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'عندما كنت طفلاً، أردت أن أصبح طبيباً بيطرياً، ولكن الآن أنا مهتم أكثر بالصحافة لأنني أحب الكتابة.' Question: Contrast the speaker's childhood ambition with their current career interest.",
+    "answer": "wanted to be a vet; now wants to be a journalist",
+    "acceptableAnswers": [
+      "vet then, journalist now",
+      "veterinarian as child, journalist now"
+    ],
+    "explanation": "The speaker says 'أردت أن أصبح طبيباً بيطرياً' (I wanted to be a vet) but is now interested in 'بالصحافة' (journalism).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_009",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'لتناول الغداء أشرب الماء دائماً، لكن لتناول العشاء أفضّل شرب عصير التفاح.' Question: What does the speaker prefer to drink at dinner?",
+    "answer": "apple juice",
+    "acceptableAnswers": [
+      "apple juice",
+      "an apple juice"
+    ],
+    "explanation": "The text says 'أفضّل شرب عصير التفاح' (I prefer to drink apple juice) for dinner.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_reading_010",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Accommodation",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'على الرغم من أن الفندق كان يطل على منظر جميل للبحر، إلا أن الغرف كانت حارة بشكل لا يطاق بسبب عدم وجود مكيف هواء.' Question: What was the main complaint about the hotel rooms, and why?",
+    "answer": "unbearably hot because there was no air conditioning",
+    "acceptableAnswers": [
+      "too hot, no air conditioning",
+      "unbearably hot, no AC"
+    ],
+    "explanation": "The rooms were hot 'بشكل لا يطاق' (unbearably) because of 'عدم وجود مكيف هواء' (lack of air conditioning).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "accommodation"
+    ]
+  },
+  {
+    "id": "ar_reading_011",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'خلال الأسبوع أستيقظ في الساعة السادسة صباحاً، ولكن في عطلة نهاية الأسبوع أنام غالباً حتى التاسعة.' Question: What time does the speaker get up on weekdays?",
+    "answer": "6:00 AM",
+    "acceptableAnswers": [
+      "6",
+      "6am",
+      "six",
+      "six o'clock"
+    ],
+    "explanation": "The speaker wakes up 'في الساعة السادسة' (at six o'clock) during the week ('خلال الأسبوع').",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_reading_012",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'أقضي الكثير من الوقت أمام الشاشة. تقول والدتي إنه يجب عليّ قراءة المزيد من الكتب، لكن الكتب الإلكترونية أكثر عملية.' Question: Why does the speaker prefer E-Books despite their mother's advice?",
+    "answer": "they are more practical",
+    "acceptableAnswers": [
+      "practical",
+      "because they are more practical"
+    ],
+    "explanation": "The speaker mentions 'الكتب الإلكترونية أكثر عملية' (E-books are more practical).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "technology"
+    ]
+  },
+  {
+    "id": "ar_reading_013",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أنا أغسل الأطباق بعد العشاء، بينما أختي تجهز الطاولة.' Question: What chore does the speaker's sister do?",
+    "answer": "sets the table",
+    "acceptableAnswers": [
+      "set the table",
+      "laying the table"
+    ],
+    "explanation": "The text says 'بينما أختي تجهز الطاولة' (while my sister sets/prepares the table).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_reading_014",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'معظم الطلاب يكرهون الزي المدرسي. ومع ذلك، أجد أنه جيد لأنه لا داعي للقلق بشأن ما ترتديه في الصباح.' Question: Why does the speaker support wearing a school uniform?",
+    "answer": "you do not have to worry about what to wear in the morning",
+    "acceptableAnswers": [
+      "no need to worry about clothes in morning",
+      "saves time thinking what to wear"
+    ],
+    "explanation": "The speaker likes it because 'لا داعي للقلق بشأن ما ترتديه في الصباح' (no need to worry about what you wear in the morning).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_015",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'في وقت فراغي أحب قراءة روايات المغامرات، ولكن هوايتي المفضلة هي الرسم.' Question: What is the speaker's favorite hobby?",
+    "answer": "drawing",
+    "acceptableAnswers": [
+      "painting",
+      "art"
+    ],
+    "explanation": "The speaker says 'هوايتي المفضلة هي الرسم' (my favorite hobby is drawing/painting).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ar_reading_016",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Part-time Job",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'على الرغم من أن العمل في السوبرماركت متعب، إلا أن المال يساعدني في شراء سيارتي الأولى.' Question: What is the speaker using their supermarket earnings for?",
+    "answer": "to buy their first car",
+    "acceptableAnswers": [
+      "finance a car",
+      "pay for a car",
+      "first car",
+      "buying a car"
+    ],
+    "explanation": "The money helps them 'في شراء سيارتي الأولى' (in buying my first car).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_017",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'نسافر إلى فرنسا كل عام لأننا نملك منزلاً صغيراً لقضاء العطلات في نورماندي.' Question: Why does the speaker's family go to France every year?",
+    "answer": "they own a small holiday home in Normandy",
+    "acceptableAnswers": [
+      "they have a holiday house there",
+      "own a house in Normandy"
+    ],
+    "explanation": "They own 'منزلاً صغيراً لقضاء العطلات' (a small holiday house) in Normandy.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_reading_018",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'تلوث الأنهار بالنفايات البلاستيكية يهدد العديد من أنواع الأسماك. يجب على الحكومة فرض عقوبات صارمة.' Question: What solution does the speaker suggest to protect fish from river pollution?",
+    "answer": "the government must introduce strict penalties",
+    "acceptableAnswers": [
+      "stricter fines/penalties",
+      "stricter laws",
+      "impose strict penalties"
+    ],
+    "explanation": "The text states 'يجب على الحكومة فرض عقوبات صارمة' (the government must impose strict penalties).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_reading_019",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أحب الاستماع إلى موسيقى البوب عندما أكتب واجباتي المنزلية لأنها تساعدني على التركيز.' Question: Why does the speaker listen to pop music while doing homework?",
+    "answer": "it helps them concentrate",
+    "acceptableAnswers": [
+      "helps to concentrate",
+      "helps concentration"
+    ],
+    "explanation": "The speaker states 'تساعدني على التركيز' (helps me concentrate).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "music"
+    ]
+  },
+  {
+    "id": "ar_reading_020",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Relationships",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'يمكنني التحدث مع صديقتي المفضلة عن كل شيء. لم تخذلني أبداً، وهو أمر مهم للغاية بالنسبة لي.' Question: What quality of the best friend does the speaker value most?",
+    "answer": "she has never let them down",
+    "acceptableAnswers": [
+      "never lets them down",
+      "reliability",
+      "loyalty"
+    ],
+    "explanation": "The speaker says 'لم تخذلني أبداً' (she has never let me down / failed me).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "friends"
+    ]
+  },
+  {
+    "id": "ar_reading_021",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'مضغ العلكة ممنوع تماماً في الفصل. كل من يتم ضبطه سيعاقب بالاحتجاز بعد المدرسة.' Question: What is the punishment for chewing gum in the classroom?",
+    "answer": "detention",
+    "acceptableAnswers": [
+      "after school detention",
+      "must do detention"
+    ],
+    "explanation": "Chewing gum is forbidden; those caught will be punished by 'بالاحتجاز بعد المدرسة' (detention after school).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_022",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'هذا الفيلم الجديد يحتوي على تأثيرات بصرية رائعة، ولكن القصة غير منطقية ومملة للغاية.' Question: What is the speaker's positive and negative critique of the action film?",
+    "answer": "fantastic special effects but an illogical and boring plot",
+    "acceptableAnswers": [
+      "good effects, boring plot",
+      "great effects, illogical story",
+      "great visual effects, boring story"
+    ],
+    "explanation": "Positive: 'تأثيرات بصرية رائعة' (great visual effects); Negative: 'القصة غير منطقية ومملة' (story is illogical and boring).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "cinema"
+    ]
+  },
+  {
+    "id": "ar_reading_023",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Weather",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'في الشتاء، تتساقط الثلوج غالباً في لبنان، وهو أمر ممتاز لعشاق الرياضات الشتوية.' Question: Why is the winter weather in Lebanon perfect for sports enthusiasts?",
+    "answer": "it snows often",
+    "acceptableAnswers": [
+      "snow",
+      "it snows",
+      "there is snow"
+    ],
+    "explanation": "The text says 'تتساقط الثلوج غالباً' (snows often) in winter in Lebanon.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "weather"
+    ]
+  },
+  {
+    "id": "ar_reading_024",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "University",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'أريد دراسة الفيزياء في جامعة القاهرة لأنها تتمتع بسمعة ممتازة في المجالات العلمية.' Question: Why does the speaker want to study physics at Cairo University?",
+    "answer": "it enjoys an excellent reputation in scientific fields",
+    "acceptableAnswers": [
+      "excellent science reputation",
+      "it has a great reputation"
+    ],
+    "explanation": "The university enjoys 'بسمعة ممتازة في المجالات العلمية' (an excellent reputation in scientific fields).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_025",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Weekend",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'يوم الأحد، أذهب عادة للمشي مع عائلتي وبعد ذلك نأكل الكعك.' Question: What do they do after their walk on Sundays?",
+    "answer": "eat cake",
+    "acceptableAnswers": [
+      "have cake",
+      "eat some cake"
+    ],
+    "explanation": "The text says 'وبعد ذلك نأكل الكعك' (and after that we eat cake).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_reading_026",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'مكتبة الحي الصغيرة تنجو فقط لأنها تقدم خدمة عملاء شخصية تفتقر إليها الشركات الكبرى عبر الإنترنت.' Question: Why is the small neighborhood bookstore able to survive against online competitors?",
+    "answer": "it offers a personal customer service",
+    "acceptableAnswers": [
+      "personal customer service",
+      "friendly service",
+      "personal service"
+    ],
+    "explanation": "It survives because of 'خدمة عملاء شخصية' (personal customer service).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ar_reading_027",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'معلم الأحياء صبور جداً، لكنه يتحدث بصوت منخفض جداً أحياناً.' Question: What is the complaint about the biology teacher?",
+    "answer": "he speaks too quietly sometimes",
+    "acceptableAnswers": [
+      "speaks too softly",
+      "speaks too quiet",
+      "too quiet"
+    ],
+    "explanation": "The text says 'يتحدث بصوت منخفض جداً أحياناً' (speaks in a very low voice sometimes).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_028",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Festivals",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'المهرجانات تجذب ملايين الزوار سنوياً من جميع أنحاء العالم، مما يجعل الفنادق باهظة الثمن.' Question: What is the negative consequence of festivals on local tourism?",
+    "answer": "hotels become expensive",
+    "acceptableAnswers": [
+      "hotels get expensive",
+      "hotel prices rise",
+      "hotels are very costly"
+    ],
+    "explanation": "The festivals make 'الفنادق باهظة الثمن' (hotels very expensive/costly).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "festivals"
+    ]
+  },
+  {
+    "id": "ar_reading_029",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أفضل ركوب المترو بدلاً من الحافلة لأنه أسرع بكثير.' Question: Why does the speaker prefer the metro to the bus?",
+    "answer": "it is much faster",
+    "acceptableAnswers": [
+      "it's faster",
+      "faster"
+    ],
+    "explanation": "The metro is preferred 'لأنه أسرع بكثير' (because it is much faster).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "transport"
+    ]
+  },
+  {
+    "id": "ar_reading_030",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Conservation",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'حماية غاباتنا أمر حيوي لوقف انقراض الأنواع. يجب علينا استهلاك المنتجات الخشبية بوعي أكبر.' Question: What solution is proposed to help halt the extinction of species in forests?",
+    "answer": "consume wood products more consciously",
+    "acceptableAnswers": [
+      "buy wood products consciously",
+      "use less wood products"
+    ],
+    "explanation": "The text suggests 'استهلاك المنتجات الخشبية بوعي أكبر' (consuming wood products more consciously).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_reading_031",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أحب طهي البيتزا لأصدقائي لأنه يمكن بسهولة تعديل المكونات لتناسب ذوقهم.' Question: Why does the speaker like to cook pizza for friends?",
+    "answer": "you can easily adapt the ingredients",
+    "acceptableAnswers": [
+      "easy to change toppings",
+      "easy to adapt ingredients",
+      "can choose ingredients"
+    ],
+    "explanation": "The speaker says 'بسهولة تعديل المكونات' (easily modifying the ingredients).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_reading_032",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'كان التبادل الطلابي في الأردن لا ينسى. تحدثنا اللغة العربية يومياً وزرنا مدينة البتراء الأثرية.' Question: Name two activities the students did during the Jordan exchange.",
+    "answer": "spoke Arabic daily and visited Petra",
+    "acceptableAnswers": [
+      "practised Arabic, visited Petra",
+      "spoke Arabic, saw Petra"
+    ],
+    "explanation": "They 'تحدثنا اللغة العربية يومياً' (spoke Arabic daily) and 'زرنا مدينة البتراء' (visited the city of Petra).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_033",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Hobbies",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'أبي يحب تصوير الطيور في الحديقة، بينما تفضل أمي العمل في دفيئة النباتات.' Question: What is the mother's hobby?",
+    "answer": "working in the greenhouse",
+    "acceptableAnswers": [
+      "gardening",
+      "greenhouse work"
+    ],
+    "explanation": "The mother prefers 'العمل في دفيئة النباتات' (working in the greenhouse).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "ar_reading_034",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'أريد العيش في الخارج لاحقاً للتعرف على ثقافة جديدة وتحسين مهاراتي اللغوية.' Question: Name two goals the speaker hopes to achieve by living abroad.",
+    "answer": "to experience a new culture and improve their language skills",
+    "acceptableAnswers": [
+      "learn new culture, perfect languages",
+      "experience new culture, improve languages"
+    ],
+    "explanation": "The speaker wants 'للتعرف على ثقافة جديدة' (to get to know a new culture) and 'تحسين مهاراتي اللغوية' (to improve my language skills).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_035",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Directions",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'يقع مبنى البلدية بجوار الحديقة الكبيرة تماماً. لا يمكن أن تخطئه لأن له سقفاً أحمر.' Question: How can you identify the Town Hall according to the text?",
+    "answer": "it has a red roof",
+    "acceptableAnswers": [
+      "by its red roof",
+      "red roof"
+    ],
+    "explanation": "The text says 'له سقفاً أحمر' (it has a red roof).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "directions"
+    ]
+  },
+  {
+    "id": "ar_reading_036",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'بفضل نظام إيداع الزجاجات البلاستيكية، زادت معدلات إعادة التدوير بشكل كبير.' Question: What system has boosted plastic bottle recycling rates according to the text?",
+    "answer": "the deposit system",
+    "acceptableAnswers": [
+      "bottle deposit system",
+      "deposit return system"
+    ],
+    "explanation": "The success is due to 'نظام إيداع الزجاجات' (the bottle deposit system).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_reading_037",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'يوم السبت يكون السوق مزدحماً للغاية. أشتري الفواكه والخضروات الطازجة هناك مباشرة من المزارعين.' Question: What items does the speaker purchase at the Saturday market?",
+    "answer": "fresh fruit and vegetables",
+    "acceptableAnswers": [
+      "fruit and veg",
+      "fresh fruit and veg",
+      "fruit, vegetables"
+    ],
+    "explanation": "The speaker buys 'الفواكه والخضروات الطازجة' (fresh fruit and vegetables).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ar_reading_038",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'جدي يتحدث غالباً عن طفولته. على الرغم من أنها كانت فترة صعبة، إلا أنه يبتسم دائماً عندما يتذكر.' Question: How does the grandfather feel when remembering his childhood?",
+    "answer": "he always smiles",
+    "acceptableAnswers": [
+      "happy",
+      "he smiles",
+      "smiling"
+    ],
+    "explanation": "The text says 'يبتسم دائماً عندما يتذكر' (he always smiles when he remembers).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_reading_039",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'في مدرستنا تستغرق كل حصة خمسة وأربعين دقيقة. لدينا ست حصص يومياً.' Question: How long is each lesson at this school?",
+    "answer": "45 minutes",
+    "acceptableAnswers": [
+      "45 mins",
+      "forty-five minutes",
+      "45"
+    ],
+    "explanation": "Each lesson lasts 'خمسة وأربعين دقيقة' (forty-five minutes).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_040",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'وسائل التواصل الاجتماعي قد تسبب الإدمان. يجب على الشباب تحديد وقت الشاشة للحفاظ على صداقاتهم الحقيقية.' Question: Why should young people limit their screen time according to the author?",
+    "answer": "to maintain real-world friendships",
+    "acceptableAnswers": [
+      "foster real friendships",
+      "keep real friendships",
+      "make real friends"
+    ],
+    "explanation": "The text says they should do it 'للحفاظ على صداقاتهم الحقيقية' (to maintain their real friendships).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "technology"
+    ]
+  },
+  {
+    "id": "ar_reading_041",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'القطارات غالباً ما تتأخر، مما يسبب الكثير من التوتر للمسافرين يومياً إلى العمل.' Question: Who is particularly stressed by train delays according to the text?",
+    "answer": "commuters",
+    "acceptableAnswers": [
+      "commuters",
+      "people travelling to work",
+      "daily travellers"
+    ],
+    "explanation": "The delays are stressful for 'المسافرين يومياً إلى العمل' (commuters / daily workers).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_reading_042",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'كمحامٍ، يجب أن تكون مجتهداً للغاية وتقرأ الملفات لساعات، لكن المكانة المرموقة للمهنة تعوض عن التعب والتوتر.' Question: What compensates for the stress of being a lawyer?",
+    "answer": "the high prestige of the profession",
+    "acceptableAnswers": [
+      "high status",
+      "high reputation of the job",
+      "the prestige of the job"
+    ],
+    "explanation": "The stress is compensated by 'المكانة المرموقة للمهنة' (the prestigious status of the profession).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_043",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'في الشرق الأوسط، يشتمل الفطور التقليدي غالباً على الفول المدمس والخبز العربي واللبنة.' Question: Name three items in a traditional Middle Eastern breakfast mentioned in the text.",
+    "answer": "foul mudammas, arabic bread and labneh",
+    "acceptableAnswers": [
+      "foul, bread and labneh",
+      "fava beans, bread and yogurt cheese"
+    ],
+    "explanation": "The text lists 'الفول المدمس' (foul mudammas), 'الخبز العربي' (arabic bread), and 'اللبنة' (labneh).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_reading_044",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'إعادة تدوير الورق تحمي الغابات. كل طن من الورق المعاد تدويره ينقذ حوالي سبعة عشر شجرة.' Question: How many trees does recycling one ton of paper save?",
+    "answer": "17",
+    "acceptableAnswers": [
+      "seventeen",
+      "17 trees"
+    ],
+    "explanation": "The text says it saves 'حوالي سبعة عشر شجرة' (about seventeen trees).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_reading_045",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'المختبر الجديد مجهز بأحدث الأجهزة للتجارب، مما يجعل دروس الكيمياء أكثر متعة.' Question: What subject has become more exciting thanks to the new lab equipment?",
+    "answer": "chemistry",
+    "acceptableAnswers": [
+      "chemistry lessons",
+      "Chemistry"
+    ],
+    "explanation": "The lab makes 'دروس الكيمياء' (chemistry lessons) more exciting.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_046",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'للبقاء بصحة جيدة، أشرب لترين من الماء يومياً وأذهب إلى الفراش مبكراً، على الرغم من أنني أود مشاهدة التلفزيون لفترة أطول.' Question: Name two healthy habits the speaker practices despite temptation.",
+    "answer": "drinks two litres of water daily and goes to bed early",
+    "acceptableAnswers": [
+      "drinks 2L water, goes to bed early",
+      "drinks water, early sleep"
+    ],
+    "explanation": "The speaker practices 'أشرب لترين من الماء يومياً' (drinks two litres of water daily) and 'أذهب إلى الفراش مبكراً' (goes to bed early).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_reading_047",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'شقيقي يجمع الطوابع البريدية من جميع أنحاء العالم منذ خمس سنوات. لديه بالفعل أكثر من ألف طابع.' Question: What does the speaker's brother collect, and for how long?",
+    "answer": "stamps; for five years",
+    "acceptableAnswers": [
+      "stamps for 5 years",
+      "postage stamps, five years"
+    ],
+    "explanation": "The brother collects 'الطوابع البريدية' (postage stamps) 'منذ خمس سنوات' (for five years).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "ar_reading_048",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'لتجنب السياحة الجماعية المزدحمة، نسافر هذا العام إلى قرية جبلية صغيرة ونائية.' Question: Why is the speaker's family traveling to a remote mountain village this year?",
+    "answer": "to avoid mass tourism",
+    "acceptableAnswers": [
+      "avoid mass tourism",
+      "avoid crowds of tourists"
+    ],
+    "explanation": "The travel is 'لتجنب السياحة الجماعية المزدحمة' (to avoid crowded mass tourism).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_reading_049",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أجد التاريخ مملاً، لكن اللغات الأجنبية ممتعة للغاية بالنسبة لي.' Question: Contrast the speaker's attitude towards history versus foreign languages.",
+    "answer": "history is boring, but foreign languages are great fun",
+    "acceptableAnswers": [
+      "history is boring, languages are fun",
+      "dislikes history, likes languages"
+    ],
+    "explanation": "The speaker finds history 'مميلاً' (boring) but foreign languages 'ممتعة للغاية' (very fun).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_0410",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'آمل بعد التخرج أن أؤسس شركتي الناشئة الخاصة في مجال الطاقة المتجددة.' Question: In what field does the speaker want to launch their start-up?",
+    "answer": "renewable energy",
+    "acceptableAnswers": [
+      "renewable energy",
+      "green energy",
+      "renewable energies"
+    ],
+    "explanation": "The speaker hopes to establish a start-up in 'الطاقة المتجددة' (renewable energy).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_001_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أنا أحب التاريخ كثيراً لأنه ممتع جداً، لكني لا أحب الرياضيات.' Question: Does the person like math? (Set B)",
+    "answer": "no",
+    "explanation": "The text says 'لا أحب الرياضيات' (I do not like mathematics).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'في المستقبل، أعتقد أن وسائل التواصل الاجتماعي ستكون أقل أهمية للشباب.' Question: What does the author think about the future of social media? (Set B)",
+    "answer": "less important",
+    "acceptableAnswers": [
+      "it will be less important",
+      "will be less important"
+    ],
+    "explanation": "The text states it will be 'أقل أهمية' (less important).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "ar_reading_003_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'أنا ألعب التنس كل يوم سبت، لكن أخي يفضل لعب كرة السلة.' Question: Which sport does the speaker's brother prefer? (Set B)",
+    "answer": "basketball",
+    "acceptableAnswers": [
+      "basketball"
+    ],
+    "explanation": "The text states 'أخي يفضل لعب كرة السلة' (my brother prefers playing basketball).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "sports"
+    ]
+  },
+  {
+    "id": "ar_reading_004_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'على الرغم من أن الرحلات الجوية إلى إيطاليا كانت مكلفة، إلا أن الرحلة كانت تستحق العناء، حيث كانت المعالم التاريخية في روما جميلة بشكل لا يصدق.' Question: Was the trip to Italy worth it despite the cost, and why? (Set B)",
+    "answer": "yes; the historical sights in Rome were incredibly beautiful",
+    "acceptableAnswers": [
+      "yes, historical sights in Rome",
+      "yes, because of Rome's sights"
+    ],
+    "explanation": "The text says 'كانت تستحق العناء' (worth the trouble/cost) because the sights were 'جميلة بشكل لا يصدق' (incredibly beautiful).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_reading_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أعيش مع والدتي وزوجها في القاهرة. أخي الأكبر يدرس بالفعل في الإسكندرية.' Question: Where does the speaker's older brother live/study? (Set B)",
+    "answer": "Alexandria",
+    "acceptableAnswers": [
+      "alexandria",
+      "in Alexandria"
+    ],
+    "explanation": "The text states 'أخي الأكبر يدرس بالفعل في الإسكندرية' (my older brother already studies in Alexandria).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_reading_006_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Climate Change",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'لا يمكن حل التلوث بين عشية وضحاها، ولكن إذا استخدم كل مواطن وسائل النقل العام، يمكننا تقليل انبعاثات الكربون بشكل كبير.' Question: What specific individual action is suggested to reduce CO2 emissions? (Set B)",
+    "answer": "use public transport",
+    "acceptableAnswers": [
+      "using public transport",
+      "use public transportation"
+    ],
+    "explanation": "The text suggests 'إذا استخدم كل مواطن وسائل النقل العام' (if every citizen uses public transport).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_reading_007_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'مدرستنا بها مكتبة كبيرة وثلاث غرف كمبيوتر حديثة، ولكن للأسف لا توجد قاعة رياضية.' Question: Which facility is missing from the school? (Set B)",
+    "answer": "sports hall",
+    "acceptableAnswers": [
+      "gym",
+      "a sports hall",
+      "a gym"
+    ],
+    "explanation": "The text mentions 'للأسف لا توجد قاعة رياضية' (unfortunately no sports hall/gym).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_008_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'عندما كنت طفلاً، أردت أن أصبح طبيباً بيطرياً، ولكن الآن أنا مهتم أكثر بالصحافة لأنني أحب الكتابة.' Question: Contrast the speaker's childhood ambition with their current career interest. (Set B)",
+    "answer": "wanted to be a vet; now wants to be a journalist",
+    "acceptableAnswers": [
+      "vet then, journalist now",
+      "veterinarian as child, journalist now"
+    ],
+    "explanation": "The speaker says 'أردت أن أصبح طبيباً بيطرياً' (I wanted to be a vet) but is now interested in 'بالصحافة' (journalism).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_009_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'لتناول الغداء أشرب الماء دائماً، لكن لتناول العشاء أفضّل شرب عصير التفاح.' Question: What does the speaker prefer to drink at dinner? (Set B)",
+    "answer": "apple juice",
+    "acceptableAnswers": [
+      "apple juice",
+      "an apple juice"
+    ],
+    "explanation": "The text says 'أفضّل شرب عصير التفاح' (I prefer to drink apple juice) for dinner.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_reading_010_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Accommodation",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'على الرغم من أن الفندق كان يطل على منظر جميل للبحر، إلا أن الغرف كانت حارة بشكل لا يطاق بسبب عدم وجود مكيف هواء.' Question: What was the main complaint about the hotel rooms, and why? (Set B)",
+    "answer": "unbearably hot because there was no air conditioning",
+    "acceptableAnswers": [
+      "too hot, no air conditioning",
+      "unbearably hot, no AC"
+    ],
+    "explanation": "The rooms were hot 'بشكل لا يطاق' (unbearably) because of 'عدم وجود مكيف هواء' (lack of air conditioning).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "accommodation"
+    ]
+  },
+  {
+    "id": "ar_reading_011_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'خلال الأسبوع أستيقظ في الساعة السادسة صباحاً، ولكن في عطلة نهاية الأسبوع أنام غالباً حتى التاسعة.' Question: What time does the speaker get up on weekdays? (Set B)",
+    "answer": "6:00 AM",
+    "acceptableAnswers": [
+      "6",
+      "6am",
+      "six",
+      "six o'clock"
+    ],
+    "explanation": "The speaker wakes up 'في الساعة السادسة' (at six o'clock) during the week ('خلال الأسبوع').",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_reading_012_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'أقضي الكثير من الوقت أمام الشاشة. تقول والدتي إنه يجب عليّ قراءة المزيد من الكتب، لكن الكتب الإلكترونية أكثر عملية.' Question: Why does the speaker prefer E-Books despite their mother's advice? (Set B)",
+    "answer": "they are more practical",
+    "acceptableAnswers": [
+      "practical",
+      "because they are more practical"
+    ],
+    "explanation": "The speaker mentions 'الكتب الإلكترونية أكثر عملية' (E-books are more practical).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "technology"
+    ]
+  },
+  {
+    "id": "ar_reading_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أنا أغسل الأطباق بعد العشاء، بينما أختي تجهز الطاولة.' Question: What chore does the speaker's sister do? (Set B)",
+    "answer": "sets the table",
+    "acceptableAnswers": [
+      "set the table",
+      "laying the table"
+    ],
+    "explanation": "The text says 'بينما أختي تجهز الطاولة' (while my sister sets/prepares the table).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_reading_014_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'معظم الطلاب يكرهون الزي المدرسي. ومع ذلك، أجد أنه جيد لأنه لا داعي للقلق بشأن ما ترتديه في الصباح.' Question: Why does the speaker support wearing a school uniform? (Set B)",
+    "answer": "you do not have to worry about what to wear in the morning",
+    "acceptableAnswers": [
+      "no need to worry about clothes in morning",
+      "saves time thinking what to wear"
+    ],
+    "explanation": "The speaker likes it because 'لا داعي للقلق بشأن ما ترتديه في الصباح' (no need to worry about what you wear in the morning).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'في وقت فراغي أحب قراءة روايات المغامرات، ولكن هوايتي المفضلة هي الرسم.' Question: What is the speaker's favorite hobby? (Set B)",
+    "answer": "drawing",
+    "acceptableAnswers": [
+      "painting",
+      "art"
+    ],
+    "explanation": "The speaker says 'هوايتي المفضلة هي الرسم' (my favorite hobby is drawing/painting).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ar_reading_016_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Part-time Job",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'على الرغم من أن العمل في السوبرماركت متعب، إلا أن المال يساعدني في شراء سيارتي الأولى.' Question: What is the speaker using their supermarket earnings for? (Set B)",
+    "answer": "to buy their first car",
+    "acceptableAnswers": [
+      "finance a car",
+      "pay for a car",
+      "first car",
+      "buying a car"
+    ],
+    "explanation": "The money helps them 'في شراء سيارتي الأولى' (in buying my first car).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'نسافر إلى فرنسا كل عام لأننا نملك منزلاً صغيراً لقضاء العطلات في نورماندي.' Question: Why does the speaker's family go to France every year? (Set B)",
+    "answer": "they own a small holiday home in Normandy",
+    "acceptableAnswers": [
+      "they have a holiday house there",
+      "own a house in Normandy"
+    ],
+    "explanation": "They own 'منزلاً صغيراً لقضاء العطلات' (a small holiday house) in Normandy.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_reading_018_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'تلوث الأنهار بالنفايات البلاستيكية يهدد العديد من أنواع الأسماك. يجب على الحكومة فرض عقوبات صارمة.' Question: What solution does the speaker suggest to protect fish from river pollution? (Set B)",
+    "answer": "the government must introduce strict penalties",
+    "acceptableAnswers": [
+      "stricter fines/penalties",
+      "stricter laws",
+      "impose strict penalties"
+    ],
+    "explanation": "The text states 'يجب على الحكومة فرض عقوبات صارمة' (the government must impose strict penalties).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_reading_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أحب الاستماع إلى موسيقى البوب عندما أكتب واجباتي المنزلية لأنها تساعدني على التركيز.' Question: Why does the speaker listen to pop music while doing homework? (Set B)",
+    "answer": "it helps them concentrate",
+    "acceptableAnswers": [
+      "helps to concentrate",
+      "helps concentration"
+    ],
+    "explanation": "The speaker states 'تساعدني على التركيز' (helps me concentrate).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "music"
+    ]
+  },
+  {
+    "id": "ar_reading_020_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Relationships",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'يمكنني التحدث مع صديقتي المفضلة عن كل شيء. لم تخذلني أبداً، وهو أمر مهم للغاية بالنسبة لي.' Question: What quality of the best friend does the speaker value most? (Set B)",
+    "answer": "she has never let them down",
+    "acceptableAnswers": [
+      "never lets them down",
+      "reliability",
+      "loyalty"
+    ],
+    "explanation": "The speaker says 'لم تخذلني أبداً' (she has never let me down / failed me).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "friends"
+    ]
+  },
+  {
+    "id": "ar_reading_021_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'مضغ العلكة ممنوع تماماً في الفصل. كل من يتم ضبطه سيعاقب بالاحتجاز بعد المدرسة.' Question: What is the punishment for chewing gum in the classroom? (Set B)",
+    "answer": "detention",
+    "acceptableAnswers": [
+      "after school detention",
+      "must do detention"
+    ],
+    "explanation": "Chewing gum is forbidden; those caught will be punished by 'بالاحتجاز بعد المدرسة' (detention after school).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_022_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'هذا الفيلم الجديد يحتوي على تأثيرات بصرية رائعة، ولكن القصة غير منطقية ومملة للغاية.' Question: What is the speaker's positive and negative critique of the action film? (Set B)",
+    "answer": "fantastic special effects but an illogical and boring plot",
+    "acceptableAnswers": [
+      "good effects, boring plot",
+      "great effects, illogical story",
+      "great visual effects, boring story"
+    ],
+    "explanation": "Positive: 'تأثيرات بصرية رائعة' (great visual effects); Negative: 'القصة غير منطقية ومملة' (story is illogical and boring).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "cinema"
+    ]
+  },
+  {
+    "id": "ar_reading_023_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Weather",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'في الشتاء، تتساقط الثلوج غالباً في لبنان، وهو أمر ممتاز لعشاق الرياضات الشتوية.' Question: Why is the winter weather in Lebanon perfect for sports enthusiasts? (Set B)",
+    "answer": "it snows often",
+    "acceptableAnswers": [
+      "snow",
+      "it snows",
+      "there is snow"
+    ],
+    "explanation": "The text says 'تتساقط الثلوج غالباً' (snows often) in winter in Lebanon.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "weather"
+    ]
+  },
+  {
+    "id": "ar_reading_024_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "University",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'أريد دراسة الفيزياء في جامعة القاهرة لأنها تتمتع بسمعة ممتازة في المجالات العلمية.' Question: Why does the speaker want to study physics at Cairo University? (Set B)",
+    "answer": "it enjoys an excellent reputation in scientific fields",
+    "acceptableAnswers": [
+      "excellent science reputation",
+      "it has a great reputation"
+    ],
+    "explanation": "The university enjoys 'بسمعة ممتازة في المجالات العلمية' (an excellent reputation in scientific fields).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_025_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Weekend",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'يوم الأحد، أذهب عادة للمشي مع عائلتي وبعد ذلك نأكل الكعك.' Question: What do they do after their walk on Sundays? (Set B)",
+    "answer": "eat cake",
+    "acceptableAnswers": [
+      "have cake",
+      "eat some cake"
+    ],
+    "explanation": "The text says 'وبعد ذلك نأكل الكعك' (and after that we eat cake).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_reading_026_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'مكتبة الحي الصغيرة تنجو فقط لأنها تقدم خدمة عملاء شخصية تفتقر إليها الشركات الكبرى عبر الإنترنت.' Question: Why is the small neighborhood bookstore able to survive against online competitors? (Set B)",
+    "answer": "it offers a personal customer service",
+    "acceptableAnswers": [
+      "personal customer service",
+      "friendly service",
+      "personal service"
+    ],
+    "explanation": "It survives because of 'خدمة عملاء شخصية' (personal customer service).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ar_reading_027_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'معلم الأحياء صبور جداً، لكنه يتحدث بصوت منخفض جداً أحياناً.' Question: What is the complaint about the biology teacher? (Set B)",
+    "answer": "he speaks too quietly sometimes",
+    "acceptableAnswers": [
+      "speaks too softly",
+      "speaks too quiet",
+      "too quiet"
+    ],
+    "explanation": "The text says 'يتحدث بصوت منخفض جداً أحياناً' (speaks in a very low voice sometimes).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_028_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Festivals",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'المهرجانات تجذب ملايين الزوار سنوياً من جميع أنحاء العالم، مما يجعل الفنادق باهظة الثمن.' Question: What is the negative consequence of festivals on local tourism? (Set B)",
+    "answer": "hotels become expensive",
+    "acceptableAnswers": [
+      "hotels get expensive",
+      "hotel prices rise",
+      "hotels are very costly"
+    ],
+    "explanation": "The festivals make 'الفنادق باهظة الثمن' (hotels very expensive/costly).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "festivals"
+    ]
+  },
+  {
+    "id": "ar_reading_029_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أفضل ركوب المترو بدلاً من الحافلة لأنه أسرع بكثير.' Question: Why does the speaker prefer the metro to the bus? (Set B)",
+    "answer": "it is much faster",
+    "acceptableAnswers": [
+      "it's faster",
+      "faster"
+    ],
+    "explanation": "The metro is preferred 'لأنه أسرع بكثير' (because it is much faster).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "transport"
+    ]
+  },
+  {
+    "id": "ar_reading_030_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Conservation",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'حماية غاباتنا أمر حيوي لوقف انقراض الأنواع. يجب علينا استهلاك المنتجات الخشبية بوعي أكبر.' Question: What solution is proposed to help halt the extinction of species in forests? (Set B)",
+    "answer": "consume wood products more consciously",
+    "acceptableAnswers": [
+      "buy wood products consciously",
+      "use less wood products"
+    ],
+    "explanation": "The text suggests 'استهلاك المنتجات الخشبية بوعي أكبر' (consuming wood products more consciously).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_reading_031_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أحب طهي البيتزا لأصدقائي لأنه يمكن بسهولة تعديل المكونات لتناسب ذوقهم.' Question: Why does the speaker like to cook pizza for friends? (Set B)",
+    "answer": "you can easily adapt the ingredients",
+    "acceptableAnswers": [
+      "easy to change toppings",
+      "easy to adapt ingredients",
+      "can choose ingredients"
+    ],
+    "explanation": "The speaker says 'بسهولة تعديل المكونات' (easily modifying the ingredients).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_reading_032_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'كان التبادل الطلابي في الأردن لا ينسى. تحدثنا اللغة العربية يومياً وزرنا مدينة البتراء الأثرية.' Question: Name two activities the students did during the Jordan exchange. (Set B)",
+    "answer": "spoke Arabic daily and visited Petra",
+    "acceptableAnswers": [
+      "practised Arabic, visited Petra",
+      "spoke Arabic, saw Petra"
+    ],
+    "explanation": "They 'تحدثنا اللغة العربية يومياً' (spoke Arabic daily) and 'زرنا مدينة البتراء' (visited the city of Petra).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_033_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Hobbies",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'أبي يحب تصوير الطيور في الحديقة، بينما تفضل أمي العمل في دفيئة النباتات.' Question: What is the mother's hobby? (Set B)",
+    "answer": "working in the greenhouse",
+    "acceptableAnswers": [
+      "gardening",
+      "greenhouse work"
+    ],
+    "explanation": "The mother prefers 'العمل في دفيئة النباتات' (working in the greenhouse).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "ar_reading_034_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'أريد العيش في الخارج لاحقاً للتعرف على ثقافة جديدة وتحسين مهاراتي اللغوية.' Question: Name two goals the speaker hopes to achieve by living abroad. (Set B)",
+    "answer": "to experience a new culture and improve their language skills",
+    "acceptableAnswers": [
+      "learn new culture, perfect languages",
+      "experience new culture, improve languages"
+    ],
+    "explanation": "The speaker wants 'للتعرف على ثقافة جديدة' (to get to know a new culture) and 'تحسين مهاراتي اللغوية' (to improve my language skills).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_035_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Directions",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'يقع مبنى البلدية بجوار الحديقة الكبيرة تماماً. لا يمكن أن تخطئه لأن له سقفاً أحمر.' Question: How can you identify the Town Hall according to the text? (Set B)",
+    "answer": "it has a red roof",
+    "acceptableAnswers": [
+      "by its red roof",
+      "red roof"
+    ],
+    "explanation": "The text says 'له سقفاً أحمر' (it has a red roof).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "directions"
+    ]
+  },
+  {
+    "id": "ar_reading_036_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'بفضل نظام إيداع الزجاجات البلاستيكية، زادت معدلات إعادة التدوير بشكل كبير.' Question: What system has boosted plastic bottle recycling rates according to the text? (Set B)",
+    "answer": "the deposit system",
+    "acceptableAnswers": [
+      "bottle deposit system",
+      "deposit return system"
+    ],
+    "explanation": "The success is due to 'نظام إيداع الزجاجات' (the bottle deposit system).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_reading_037_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'يوم السبت يكون السوق مزدحماً للغاية. أشتري الفواكه والخضروات الطازجة هناك مباشرة من المزارعين.' Question: What items does the speaker purchase at the Saturday market? (Set B)",
+    "answer": "fresh fruit and vegetables",
+    "acceptableAnswers": [
+      "fruit and veg",
+      "fresh fruit and veg",
+      "fruit, vegetables"
+    ],
+    "explanation": "The speaker buys 'الفواكه والخضروات الطازجة' (fresh fruit and vegetables).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ar_reading_038_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'جدي يتحدث غالباً عن طفولته. على الرغم من أنها كانت فترة صعبة، إلا أنه يبتسم دائماً عندما يتذكر.' Question: How does the grandfather feel when remembering his childhood? (Set B)",
+    "answer": "he always smiles",
+    "acceptableAnswers": [
+      "happy",
+      "he smiles",
+      "smiling"
+    ],
+    "explanation": "The text says 'يبتسم دائماً عندما يتذكر' (he always smiles when he remembers).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_reading_039_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'في مدرستنا تستغرق كل حصة خمسة وأربعين دقيقة. لدينا ست حصص يومياً.' Question: How long is each lesson at this school? (Set B)",
+    "answer": "45 minutes",
+    "acceptableAnswers": [
+      "45 mins",
+      "forty-five minutes",
+      "45"
+    ],
+    "explanation": "Each lesson lasts 'خمسة وأربعين دقيقة' (forty-five minutes).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_040_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'وسائل التواصل الاجتماعي قد تسبب الإدمان. يجب على الشباب تحديد وقت الشاشة للحفاظ على صداقاتهم الحقيقية.' Question: Why should young people limit their screen time according to the author? (Set B)",
+    "answer": "to maintain real-world friendships",
+    "acceptableAnswers": [
+      "foster real friendships",
+      "keep real friendships",
+      "make real friends"
+    ],
+    "explanation": "The text says they should do it 'للحفاظ على صداقاتهم الحقيقية' (to maintain their real friendships).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "technology"
+    ]
+  },
+  {
+    "id": "ar_reading_041_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'القطارات غالباً ما تتأخر، مما يسبب الكثير من التوتر للمسافرين يومياً إلى العمل.' Question: Who is particularly stressed by train delays according to the text? (Set B)",
+    "answer": "commuters",
+    "acceptableAnswers": [
+      "commuters",
+      "people travelling to work",
+      "daily travellers"
+    ],
+    "explanation": "The delays are stressful for 'المسافرين يومياً إلى العمل' (commuters / daily workers).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_reading_042_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'كمحامٍ، يجب أن تكون مجتهداً للغاية وتقرأ الملفات لساعات، لكن المكانة المرموقة للمهنة تعوض عن التعب والتوتر.' Question: What compensates for the stress of being a lawyer? (Set B)",
+    "answer": "the high prestige of the profession",
+    "acceptableAnswers": [
+      "high status",
+      "high reputation of the job",
+      "the prestige of the job"
+    ],
+    "explanation": "The stress is compensated by 'المكانة المرموقة للمهنة' (the prestigious status of the profession).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_reading_043_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'في الشرق الأوسط، يشتمل الفطور التقليدي غالباً على الفول المدمس والخبز العربي واللبنة.' Question: Name three items in a traditional Middle Eastern breakfast mentioned in the text. (Set B)",
+    "answer": "foul mudammas, arabic bread and labneh",
+    "acceptableAnswers": [
+      "foul, bread and labneh",
+      "fava beans, bread and yogurt cheese"
+    ],
+    "explanation": "The text lists 'الفول المدمس' (foul mudammas), 'الخبز العربي' (arabic bread), and 'اللبنة' (labneh).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_reading_044_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'إعادة تدوير الورق تحمي الغابات. كل طن من الورق المعاد تدويره ينقذ حوالي سبعة عشر شجرة.' Question: How many trees does recycling one ton of paper save? (Set B)",
+    "answer": "17",
+    "acceptableAnswers": [
+      "seventeen",
+      "17 trees"
+    ],
+    "explanation": "The text says it saves 'حوالي سبعة عشر شجرة' (about seventeen trees).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_reading_045_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'المختبر الجديد مجهز بأحدث الأجهزة للتجارب، مما يجعل دروس الكيمياء أكثر متعة.' Question: What subject has become more exciting thanks to the new lab equipment? (Set B)",
+    "answer": "chemistry",
+    "acceptableAnswers": [
+      "chemistry lessons",
+      "Chemistry"
+    ],
+    "explanation": "The lab makes 'دروس الكيمياء' (chemistry lessons) more exciting.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_046_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'للبقاء بصحة جيدة، أشرب لترين من الماء يومياً وأذهب إلى الفراش مبكراً، على الرغم من أنني أود مشاهدة التلفزيون لفترة أطول.' Question: Name two healthy habits the speaker practices despite temptation. (Set B)",
+    "answer": "drinks two litres of water daily and goes to bed early",
+    "acceptableAnswers": [
+      "drinks 2L water, goes to bed early",
+      "drinks water, early sleep"
+    ],
+    "explanation": "The speaker practices 'أشرب لترين من الماء يومياً' (drinks two litres of water daily) and 'أذهب إلى الفراش مبكراً' (goes to bed early).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_reading_047_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'شقيقي يجمع الطوابع البريدية من جميع أنحاء العالم منذ خمس سنوات. لديه بالفعل أكثر من ألف طابع.' Question: What does the speaker's brother collect, and for how long? (Set B)",
+    "answer": "stamps; for five years",
+    "acceptableAnswers": [
+      "stamps for 5 years",
+      "postage stamps, five years"
+    ],
+    "explanation": "The brother collects 'الطوابع البريدية' (postage stamps) 'منذ خمس سنوات' (for five years).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "ar_reading_048_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'لتجنب السياحة الجماعية المزدحمة، نسافر هذا العام إلى قرية جبلية صغيرة ونائية.' Question: Why is the speaker's family traveling to a remote mountain village this year? (Set B)",
+    "answer": "to avoid mass tourism",
+    "acceptableAnswers": [
+      "avoid mass tourism",
+      "avoid crowds of tourists"
+    ],
+    "explanation": "The travel is 'لتجنب السياحة الجماعية المزدحمة' (to avoid crowded mass tourism).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_reading_049_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'أجد التاريخ مملاً، لكن اللغات الأجنبية ممتعة للغاية بالنسبة لي.' Question: Contrast the speaker's attitude towards history versus foreign languages. (Set B)",
+    "answer": "history is boring, but foreign languages are great fun",
+    "acceptableAnswers": [
+      "history is boring, languages are fun",
+      "dislikes history, likes languages"
+    ],
+    "explanation": "The speaker finds history 'مميلاً' (boring) but foreign languages 'ممتعة للغاية' (very fun).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_reading_0410_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'آمل بعد التخرج أن أؤسس شركتي الناشئة الخاصة في مجال الطاقة المتجددة.' Question: In what field does the speaker want to launch their start-up? (Set B)",
+    "answer": "renewable energy",
+    "acceptableAnswers": [
+      "renewable energy",
+      "green energy",
+      "renewable energies"
+    ],
+    "explanation": "The speaker hopes to establish a start-up in 'الطاقة المتجددة' (renewable energy).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  }
+]

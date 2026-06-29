@@ -1,0 +1,2010 @@
+[
+  {
+    "id": "he_listening_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'ניקיתי את המטבח אחרי ארוחת הערב.' Question: What chore did Sarah do?",
+    "answer": "cleaned the kitchen",
+    "explanation": "Sarah mentions 'ניקיתי את המטבח' which translates to cleaned the kitchen.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "he_listening_002",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Problems",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'המלון היה רועש מאוד והאוכל היה נורא.' Question: What were the two problems with the hotel?",
+    "answer": "noisy and horrible food",
+    "acceptableAnswers": [
+      "it was noisy and food was bad",
+      "noisy, bad food",
+      "noise and bad food"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_003",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'המקצוע האהוב עלי הוא ציור כי הוא מאפשר לי להיות יצירתי.' Question: What is the speaker's favorite subject?",
+    "answer": "art",
+    "acceptableAnswers": [
+      "drawing",
+      "fine art",
+      "painting"
+    ],
+    "explanation": "The speaker mentions 'ציור' which is painting/art/drawing.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_004",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'בבית הספר שלנו אסור להשתמש בטלפון הנייד בכיתה, וזה נראה לי הוגן.' Question: What is the rule and what is the speaker's opinion?",
+    "answer": "phones are banned and they think it is fair",
+    "acceptableAnswers": [
+      "no phones in class and it is fair",
+      "mobile ban in class which is fair"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_005",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'אני משחק כדורסל בימי שלישי אחר הצהריים עם החברים שלי.' Question: What sport does the speaker play on Tuesdays?",
+    "answer": "basketball",
+    "acceptableAnswers": [
+      "play basketball"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "sports"
+    ]
+  },
+  {
+    "id": "he_listening_006",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Family",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'יש לי אח גדול שקוראים לו דני והוא מצחיק מאוד.' Question: Describe Danny according to the speaker.",
+    "answer": "an older brother who is very funny",
+    "acceptableAnswers": [
+      "older brother, funny",
+      "older brother, humorous"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "he_listening_007",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'בבית שלנו אנחנו ממחזרים את כל בקבוקי הזכוכית והקרטון.' Question: What two items does the family recycle?",
+    "answer": "glass bottles and cardboard",
+    "acceptableAnswers": [
+      "glass and cardboard",
+      "bottles and cardboard"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_008",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'אני מבלה שעתיים ביום באינסטגרם, אני חושב שזה בזבוז זמן.' Question: What is the speaker's opinion about using Instagram?",
+    "answer": "it is a waste of time",
+    "acceptableAnswers": [
+      "waste of time",
+      "useless",
+      "losing time"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_009",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Future",
+    "subtopic": "Careers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'כשאהיה גדול אני רוצה להיות אח כדי לעזור לחולים.' Question: What job does the speaker want to do in the future?",
+    "answer": "nurse",
+    "acceptableAnswers": [
+      "a nurse",
+      "male nurse"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_010",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Destination",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'הקיץ אני הולך לחוף הים בדרום צרפת.' Question: Where is the speaker going this summer?",
+    "answer": "the beach in the south of France",
+    "acceptableAnswers": [
+      "beach, south of France",
+      "south France beach"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_011",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אני מעדיף ללכת להופעות רוק כי האווירה נהדרת.' Question: Why does the speaker prefer rock concerts?",
+    "answer": "the atmosphere is great",
+    "acceptableAnswers": [
+      "great atmosphere",
+      "best atmosphere",
+      "atmosphere is amazing"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "music"
+    ]
+  },
+  {
+    "id": "he_listening_012",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני שוחה שלוש פעמים בשבוע כי זה מרגיע אותי.' Question: How often and why does the speaker do swimming?",
+    "answer": "three times a week because it relaxes them",
+    "acceptableAnswers": [
+      "3 times a week, relaxing",
+      "three times weekly, for relaxation"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "he_listening_013",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'זיהום האוויר בעיר מחמיר את בריאותם של קשישים.' Question: Who is most affected by urban air pollution according to the speaker?",
+    "answer": "the elderly",
+    "acceptableAnswers": [
+      "old people",
+      "elderly people",
+      "older people"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_014",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Phones",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'קניתי טלפון נייד חדש אתמול כי הישן כבר לא עבד.' Question: Why did the speaker buy a new phone?",
+    "answer": "the old one did not work",
+    "acceptableAnswers": [
+      "the old phone was broken",
+      "old one stopped working"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_015",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "University",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'אני מקווה ללמוד רפואה בירושלים בעוד שנתיים.' Question: What and where does the speaker hope to study?",
+    "answer": "medicine in Jerusalem",
+    "acceptableAnswers": [
+      "medicine, Jerusalem"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_016",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני לובש ג'קט כחול לא נוח וחולצה לבנה.' Question: What clothing items is the speaker wearing?",
+    "answer": "an uncomfortable blue jacket and a white shirt",
+    "acceptableAnswers": [
+      "blue jacket, white shirt",
+      "uncomfortable blue blazer and white shirt"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_017",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Accommodation",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'התאכסנו באכסניית נוער קרוב למרכז ההיסטורי.' Question: What type of accommodation and where did they stay?",
+    "answer": "youth hostel near the historic center",
+    "acceptableAnswers": [
+      "hostel, near historic center",
+      "youth hostel, historic center"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_018",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אני אוהב פלאפל חם, אבל אח שלי מעדיף סלט חסה.' Question: What food preferences are mentioned?",
+    "answer": "falafel for the speaker, salad for the brother",
+    "acceptableAnswers": [
+      "falafel and salad"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "he_listening_019",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Celebrations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'לכבוד יום ההולדת שלי, הלכנו לאכול במסעדת שלושה כוכבים.' Question: How did the speaker celebrate their birthday?",
+    "answer": "eating out at a three-star restaurant",
+    "acceptableAnswers": [
+      "dining at a 3-star restaurant",
+      "going to a 3-star restaurant"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "he_listening_020",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Environment",
+    "subtopic": "Local Area",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'אני גר בשכונה רועשת מאוד עם הרבה תנועה בכביש.' Question: Describe the speaker's neighborhood.",
+    "answer": "very noisy with lots of traffic",
+    "acceptableAnswers": [
+      "noisy, lots of traffic",
+      "noisy with traffic"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_021",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Internet",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני משתמש באינטרנט כדי להוריד מוזיקה ולשוחח עם חברים שלי.' Question: What two things does the speaker use the internet for?",
+    "answer": "downloading music and chatting with friends",
+    "acceptableAnswers": [
+      "music and chatting with friends",
+      "downloading music, chat"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_022",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Jobs",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אני רוצה לעבוד כמתנדב בחוץ לארץ בשנה הבאה.' Question: What are the speaker's plans for next year?",
+    "answer": "work as a volunteer abroad",
+    "acceptableAnswers": [
+      "volunteer overseas",
+      "do volunteering abroad"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_023",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'יצאתי לטיול בית ספר לתל אביב ולמדתי דברים מדהימים על ההיסטוריה.' Question: Where did the speaker go and what did they learn?",
+    "answer": "Tel Aviv and learned incredible things about history",
+    "acceptableAnswers": [
+      "Tel Aviv, history",
+      "Tel Aviv, learned history"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_024",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'היה מזג אוויר יפה מאוד אתמול, אבל היום יורד גשם חזק.' Question: Describe the weather yesterday and today.",
+    "answer": "sunny yesterday, pouring today",
+    "acceptableAnswers": [
+      "sunny yesterday, raining cats and dogs today",
+      "sun yesterday, rain today"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_025",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אני מעדיף לראות סרטים בשפה המקורית עם כתוביות.' Question: How does the speaker prefer to watch movies?",
+    "answer": "in the original version with subtitles",
+    "acceptableAnswers": [
+      "with subtitles, original version",
+      "subtitled original version"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "cinema"
+    ]
+  },
+  {
+    "id": "he_listening_026",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Relationships",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני מסתדר טוב מאוד עם אמא שלי, אבל אבא שלי יותר קשוח.' Question: What is the relationship with the parents like?",
+    "answer": "gets on great with mother, father is stricter",
+    "acceptableAnswers": [
+      "good with mother, strict father",
+      "loves mother, strict father"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "he_listening_027",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'שינויי האקלים מאיימים על החיים בים בצפון.' Question: What is threatened by climate change according to the text?",
+    "answer": "marine life in the north",
+    "acceptableAnswers": [
+      "sea life in the north",
+      "ocean life"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_028",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Games",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני משחק במשחקי מחשב עם אח שלי כי זה מרתק.' Question: Who and why does the speaker play video games with?",
+    "answer": "with their brother because it is exciting",
+    "acceptableAnswers": [
+      "brother, exciting",
+      "brother, thrill"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_029",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Salary",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'משכורת טובה זה דבר חשוב, אבל אני מעדיף לעבוד בעבודה שאני אוהב.' Question: What is more important than a good salary according to the speaker?",
+    "answer": "having a job they are passionate about",
+    "acceptableAnswers": [
+      "having a passionate job",
+      "doing something they love"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_030",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'המורה שלי למדעים מסבירה את הדברים בצורה ברורה מאוד.' Question: Why does the speaker like the science teacher?",
+    "answer": "she explains things very clearly",
+    "acceptableAnswers": [
+      "explains clearly",
+      "good explanations"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_031",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'אני מעדיף לנסוע ברכבת כי זה יותר ידידותי לסביבה.' Question: Why does the speaker prefer to travel by train?",
+    "answer": "it is more environmentally friendly",
+    "acceptableAnswers": [
+      "more eco-friendly",
+      "better for env",
+      "green"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_032",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Eating Out",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אתמול בערב אכלנו שווארמה טעימה במסעדה מקומית.' Question: What did they do yesterday?",
+    "answer": "ate traditional shawarma at a restaurant",
+    "acceptableAnswers": [
+      "ate shawarma",
+      "had shawarma"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "he_listening_033",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Friends",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'החבר הכי טוב שלי הוא מאוד סבלני ומקשיב לי כשיש לי בעיות.' Question: Describe the speaker's best friend.",
+    "answer": "very understanding and listens during problems",
+    "acceptableAnswers": [
+      "understanding and listens",
+      "supportive friend"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "friends"
+    ]
+  },
+  {
+    "id": "he_listening_034",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Energy",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'כיבוי אורות לא נחוצים עוזר לחסוך באנרגיה בבית.' Question: What helps to save energy at home?",
+    "answer": "turning off unused lights",
+    "acceptableAnswers": [
+      "turning off lights",
+      "switching off unneeded lights"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_035",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Computers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני עושה את שיעורי הבית שלי עם המחשב הנייד בחדר השינה שלי.' Question: Where and with what does the speaker do homework?",
+    "answer": "in their bedroom with their laptop",
+    "acceptableAnswers": [
+      "bedroom, laptop",
+      "laptop, bedroom"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_036",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Future",
+    "subtopic": "Ambition",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני מקווה לרכוש ניסיון בעבודה לפני שאחליט על הקריירה שלי.' Question: What does the speaker hope to do before deciding their career?",
+    "answer": "gain work experience",
+    "acceptableAnswers": [
+      "get a work experience",
+      "gain experience"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_037",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Clubs",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אני משתתף בחוג תיאטרון של בית הספר כי זה משפר את הביטחון העצמי שלי.' Question: What club does the speaker participate in and why?",
+    "answer": "drama club because it improves confidence",
+    "acceptableAnswers": [
+      "theatre club, builds confidence",
+      "school drama, helps confidence"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_038",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'קניתי הרבה מזכרות עבודת יד בשוק המקומי.' Question: What did the speaker buy at the local market?",
+    "answer": "many handmade souvenirs",
+    "acceptableAnswers": [
+      "handmade gifts",
+      "souvenirs",
+      "crafts"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_039",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'אני נלהב לגבי צילום טבע מכיוון שהוא תופס את היופי החולף.' Question: What passion is mentioned and why?",
+    "answer": "nature photography because it captures fleeting beauty",
+    "acceptableAnswers": [
+      "nature photography, beauty",
+      "photography, nature beauty"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "he_listening_040",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Pets",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'יש לי חתול שחור עצמאי מאוד.' Question: What kind of pet does the speaker have?",
+    "answer": "a very independent black cat",
+    "acceptableAnswers": [
+      "black cat",
+      "independent cat"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "he_listening_041",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Water",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'צריך לחסוך במים על ידי סגירת הברז כשמצחצחים שיניים.' Question: How can we save water according to the user?",
+    "answer": "closing the tap when brushing teeth",
+    "acceptableAnswers": [
+      "turning off tap while brushing",
+      "shutting water when brushing teeth"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_042",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "E-books",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני מעדיף ספרים דיגיטליים כי הם לא שוקלים כלום.' Question: Why does the speaker prefer e-books?",
+    "answer": "they weigh nothing",
+    "acceptableAnswers": [
+      "lightweight",
+      "easy to carry",
+      "no weight"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_043",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Aspirations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'אני מקווה למצוא עבודה מאתגרת במגזר הפיננסי.' Question: What kind of job and in which sector does the speaker hope to work?",
+    "answer": "a challenging job in the financial sector",
+    "acceptableAnswers": [
+      "challenging job, finance",
+      "finance job"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_044",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facility",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'בספריית בית הספר השכונתית התקינו לא מזמן מחשבים חדשים.' Question: What was recently installed in the school library?",
+    "answer": "new computers",
+    "acceptableAnswers": [
+      "computers",
+      "new PCs"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_045",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Review",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'המלון היה מפואר ביותר, אבל השירות בקבלה היה נורא ואיום.' Question: What is the speaker's review of the hotel?",
+    "answer": "luxurious hotel, but reception service was dreadful",
+    "acceptableAnswers": [
+      "luxurious but bad reception",
+      "fancy but terrible service"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_046",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Arts",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'אני אוהב לבקר בגלריות לאמנות מודרנית בימי שבת.' Question: What does the speaker love to do on Saturdays?",
+    "answer": "visiting contemporary art galleries",
+    "acceptableAnswers": [
+      "visiting art galleries",
+      "go to art galleries"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "he_listening_047",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Town",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'עיירת המולדת שלי מפורסמת בזכות טירה עתיקה מתקופת ימי הביניים.' Question: Why is the speaker's hometown famous?",
+    "answer": "its ancient medieval castle",
+    "acceptableAnswers": [
+      "medieval castle",
+      "old castle"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_048",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'צריך לאסור על כניסת מכוניות למרכז העיר כדי להפחית את זיהום האוויר.' Question: What proposal is made to reduce smog in the historic center?",
+    "answer": "ban traffic in the historic center",
+    "acceptableAnswers": [
+      "forbid cars in central historic area",
+      "no traffic in city center"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_049",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "E-safety",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני לא משתף את הסיסמאות שלי עם אף אחד מטעמי בטיחות.' Question: Why does the speaker not share password?",
+    "answer": "for security reasons",
+    "acceptableAnswers": [
+      "safe online",
+      "security",
+      "protect privacy"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_050",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Study",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'החלטתי ללמוד הנדסת תוכנה לאחר שהשתתפתי בסדנת תכנות מעשית.' Question: Why did the speaker decide to study computer engineering?",
+    "answer": "after doing a practical workshop",
+    "acceptableAnswers": [
+      "after a workshop",
+      "because of a coding workshop"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'ניקיתי את המטבח אחרי ארוחת הערב.' Question: What chore did Sarah do? (Set B)",
+    "answer": "cleaned the kitchen",
+    "explanation": "Sarah mentions 'ניקיתי את המטבח' which translates to cleaned the kitchen.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "he_listening_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Problems",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'המלון היה רועש מאוד והאוכל היה נורא.' Question: What were the two problems with the hotel? (Set B)",
+    "answer": "noisy and horrible food",
+    "acceptableAnswers": [
+      "it was noisy and food was bad",
+      "noisy, bad food",
+      "noise and bad food"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_003_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'המקצוע האהוב עלי הוא ציור כי הוא מאפשר לי להיות יצירתי.' Question: What is the speaker's favorite subject? (Set B)",
+    "answer": "art",
+    "acceptableAnswers": [
+      "drawing",
+      "fine art",
+      "painting"
+    ],
+    "explanation": "The speaker mentions 'ציור' which is painting/art/drawing.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_004_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'בבית הספר שלנו אסור להשתמש בטלפון הנייד בכיתה, וזה נראה לי הוגן.' Question: What is the rule and what is the speaker's opinion? (Set B)",
+    "answer": "phones are banned and they think it is fair",
+    "acceptableAnswers": [
+      "no phones in class and it is fair",
+      "mobile ban in class which is fair"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'אני משחק כדורסל בימי שלישי אחר הצהריים עם החברים שלי.' Question: What sport does the speaker play on Tuesdays? (Set B)",
+    "answer": "basketball",
+    "acceptableAnswers": [
+      "play basketball"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "sports"
+    ]
+  },
+  {
+    "id": "he_listening_006_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Family",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'יש לי אח גדול שקוראים לו דני והוא מצחיק מאוד.' Question: Describe Danny according to the speaker. (Set B)",
+    "answer": "an older brother who is very funny",
+    "acceptableAnswers": [
+      "older brother, funny",
+      "older brother, humorous"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "he_listening_007_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'בבית שלנו אנחנו ממחזרים את כל בקבוקי הזכוכית והקרטון.' Question: What two items does the family recycle? (Set B)",
+    "answer": "glass bottles and cardboard",
+    "acceptableAnswers": [
+      "glass and cardboard",
+      "bottles and cardboard"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_008_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'אני מבלה שעתיים ביום באינסטגרם, אני חושב שזה בזבוז זמן.' Question: What is the speaker's opinion about using Instagram? (Set B)",
+    "answer": "it is a waste of time",
+    "acceptableAnswers": [
+      "waste of time",
+      "useless",
+      "losing time"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_009_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Future",
+    "subtopic": "Careers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'כשאהיה גדול אני רוצה להיות אח כדי לעזור לחולים.' Question: What job does the speaker want to do in the future? (Set B)",
+    "answer": "nurse",
+    "acceptableAnswers": [
+      "a nurse",
+      "male nurse"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_010_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Destination",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'הקיץ אני הולך לחוף הים בדרום צרפת.' Question: Where is the speaker going this summer? (Set B)",
+    "answer": "the beach in the south of France",
+    "acceptableAnswers": [
+      "beach, south of France",
+      "south France beach"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_011_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אני מעדיף ללכת להופעות רוק כי האווירה נהדרת.' Question: Why does the speaker prefer rock concerts? (Set B)",
+    "answer": "the atmosphere is great",
+    "acceptableAnswers": [
+      "great atmosphere",
+      "best atmosphere",
+      "atmosphere is amazing"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "music"
+    ]
+  },
+  {
+    "id": "he_listening_012_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני שוחה שלוש פעמים בשבוע כי זה מרגיע אותי.' Question: How often and why does the speaker do swimming? (Set B)",
+    "answer": "three times a week because it relaxes them",
+    "acceptableAnswers": [
+      "3 times a week, relaxing",
+      "three times weekly, for relaxation"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "he_listening_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'זיהום האוויר בעיר מחמיר את בריאותם של קשישים.' Question: Who is most affected by urban air pollution according to the speaker? (Set B)",
+    "answer": "the elderly",
+    "acceptableAnswers": [
+      "old people",
+      "elderly people",
+      "older people"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_014_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Phones",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'קניתי טלפון נייד חדש אתמול כי הישן כבר לא עבד.' Question: Why did the speaker buy a new phone? (Set B)",
+    "answer": "the old one did not work",
+    "acceptableAnswers": [
+      "the old phone was broken",
+      "old one stopped working"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "University",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'אני מקווה ללמוד רפואה בירושלים בעוד שנתיים.' Question: What and where does the speaker hope to study? (Set B)",
+    "answer": "medicine in Jerusalem",
+    "acceptableAnswers": [
+      "medicine, Jerusalem"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_016_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני לובש ג'קט כחול לא נוח וחולצה לבנה.' Question: What clothing items is the speaker wearing? (Set B)",
+    "answer": "an uncomfortable blue jacket and a white shirt",
+    "acceptableAnswers": [
+      "blue jacket, white shirt",
+      "uncomfortable blue blazer and white shirt"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Accommodation",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'התאכסנו באכסניית נוער קרוב למרכז ההיסטורי.' Question: What type of accommodation and where did they stay? (Set B)",
+    "answer": "youth hostel near the historic center",
+    "acceptableAnswers": [
+      "hostel, near historic center",
+      "youth hostel, historic center"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_018_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אני אוהב פלאפל חם, אבל אח שלי מעדיף סלט חסה.' Question: What food preferences are mentioned? (Set B)",
+    "answer": "falafel for the speaker, salad for the brother",
+    "acceptableAnswers": [
+      "falafel and salad"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "he_listening_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Celebrations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'לכבוד יום ההולדת שלי, הלכנו לאכול במסעדת שלושה כוכבים.' Question: How did the speaker celebrate their birthday? (Set B)",
+    "answer": "eating out at a three-star restaurant",
+    "acceptableAnswers": [
+      "dining at a 3-star restaurant",
+      "going to a 3-star restaurant"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "he_listening_020_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Environment",
+    "subtopic": "Local Area",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'אני גר בשכונה רועשת מאוד עם הרבה תנועה בכביש.' Question: Describe the speaker's neighborhood. (Set B)",
+    "answer": "very noisy with lots of traffic",
+    "acceptableAnswers": [
+      "noisy, lots of traffic",
+      "noisy with traffic"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_021_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Internet",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני משתמש באינטרנט כדי להוריד מוזיקה ולשוחח עם חברים שלי.' Question: What two things does the speaker use the internet for? (Set B)",
+    "answer": "downloading music and chatting with friends",
+    "acceptableAnswers": [
+      "music and chatting with friends",
+      "downloading music, chat"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_022_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Jobs",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אני רוצה לעבוד כמתנדב בחוץ לארץ בשנה הבאה.' Question: What are the speaker's plans for next year? (Set B)",
+    "answer": "work as a volunteer abroad",
+    "acceptableAnswers": [
+      "volunteer overseas",
+      "do volunteering abroad"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_023_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'יצאתי לטיול בית ספר לתל אביב ולמדתי דברים מדהימים על ההיסטוריה.' Question: Where did the speaker go and what did they learn? (Set B)",
+    "answer": "Tel Aviv and learned incredible things about history",
+    "acceptableAnswers": [
+      "Tel Aviv, history",
+      "Tel Aviv, learned history"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_024_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'היה מזג אוויר יפה מאוד אתמול, אבל היום יורד גשם חזק.' Question: Describe the weather yesterday and today. (Set B)",
+    "answer": "sunny yesterday, pouring today",
+    "acceptableAnswers": [
+      "sunny yesterday, raining cats and dogs today",
+      "sun yesterday, rain today"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_025_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אני מעדיף לראות סרטים בשפה המקורית עם כתוביות.' Question: How does the speaker prefer to watch movies? (Set B)",
+    "answer": "in the original version with subtitles",
+    "acceptableAnswers": [
+      "with subtitles, original version",
+      "subtitled original version"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "cinema"
+    ]
+  },
+  {
+    "id": "he_listening_026_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Relationships",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני מסתדר טוב מאוד עם אמא שלי, אבל אבא שלי יותר קשוח.' Question: What is the relationship with the parents like? (Set B)",
+    "answer": "gets on great with mother, father is stricter",
+    "acceptableAnswers": [
+      "good with mother, strict father",
+      "loves mother, strict father"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "he_listening_027_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'שינויי האקלים מאיימים על החיים בים בצפון.' Question: What is threatened by climate change according to the text? (Set B)",
+    "answer": "marine life in the north",
+    "acceptableAnswers": [
+      "sea life in the north",
+      "ocean life"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_028_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Games",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני משחק במשחקי מחשב עם אח שלי כי זה מרתק.' Question: Who and why does the speaker play video games with? (Set B)",
+    "answer": "with their brother because it is exciting",
+    "acceptableAnswers": [
+      "brother, exciting",
+      "brother, thrill"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_029_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Salary",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'משכורת טובה זה דבר חשוב, אבל אני מעדיף לעבוד בעבודה שאני אוהב.' Question: What is more important than a good salary according to the speaker? (Set B)",
+    "answer": "having a job they are passionate about",
+    "acceptableAnswers": [
+      "having a passionate job",
+      "doing something they love"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_030_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'המורה שלי למדעים מסבירה את הדברים בצורה ברורה מאוד.' Question: Why does the speaker like the science teacher? (Set B)",
+    "answer": "she explains things very clearly",
+    "acceptableAnswers": [
+      "explains clearly",
+      "good explanations"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_031_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'אני מעדיף לנסוע ברכבת כי זה יותר ידידותי לסביבה.' Question: Why does the speaker prefer to travel by train? (Set B)",
+    "answer": "it is more environmentally friendly",
+    "acceptableAnswers": [
+      "more eco-friendly",
+      "better for env",
+      "green"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_032_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Eating Out",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אתמול בערב אכלנו שווארמה טעימה במסעדה מקומית.' Question: What did they do yesterday? (Set B)",
+    "answer": "ate traditional shawarma at a restaurant",
+    "acceptableAnswers": [
+      "ate shawarma",
+      "had shawarma"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "he_listening_033_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Friends",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'החבר הכי טוב שלי הוא מאוד סבלני ומקשיב לי כשיש לי בעיות.' Question: Describe the speaker's best friend. (Set B)",
+    "answer": "very understanding and listens during problems",
+    "acceptableAnswers": [
+      "understanding and listens",
+      "supportive friend"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "friends"
+    ]
+  },
+  {
+    "id": "he_listening_034_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Energy",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'כיבוי אורות לא נחוצים עוזר לחסוך באנרגיה בבית.' Question: What helps to save energy at home? (Set B)",
+    "answer": "turning off unused lights",
+    "acceptableAnswers": [
+      "turning off lights",
+      "switching off unneeded lights"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_035_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Computers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני עושה את שיעורי הבית שלי עם המחשב הנייד בחדר השינה שלי.' Question: Where and with what does the speaker do homework? (Set B)",
+    "answer": "in their bedroom with their laptop",
+    "acceptableAnswers": [
+      "bedroom, laptop",
+      "laptop, bedroom"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_036_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Future",
+    "subtopic": "Ambition",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני מקווה לרכוש ניסיון בעבודה לפני שאחליט על הקריירה שלי.' Question: What does the speaker hope to do before deciding their career? (Set B)",
+    "answer": "gain work experience",
+    "acceptableAnswers": [
+      "get a work experience",
+      "gain experience"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_037_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Clubs",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'אני משתתף בחוג תיאטרון של בית הספר כי זה משפר את הביטחון העצמי שלי.' Question: What club does the speaker participate in and why? (Set B)",
+    "answer": "drama club because it improves confidence",
+    "acceptableAnswers": [
+      "theatre club, builds confidence",
+      "school drama, helps confidence"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_038_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'קניתי הרבה מזכרות עבודת יד בשוק המקומי.' Question: What did the speaker buy at the local market? (Set B)",
+    "answer": "many handmade souvenirs",
+    "acceptableAnswers": [
+      "handmade gifts",
+      "souvenirs",
+      "crafts"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_039_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'אני נלהב לגבי צילום טבע מכיוון שהוא תופס את היופי החולף.' Question: What passion is mentioned and why? (Set B)",
+    "answer": "nature photography because it captures fleeting beauty",
+    "acceptableAnswers": [
+      "nature photography, beauty",
+      "photography, nature beauty"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "he_listening_040_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Pets",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'יש לי חתול שחור עצמאי מאוד.' Question: What kind of pet does the speaker have? (Set B)",
+    "answer": "a very independent black cat",
+    "acceptableAnswers": [
+      "black cat",
+      "independent cat"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "he_listening_041_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Water",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'צריך לחסוך במים על ידי סגירת הברז כשמצחצחים שיניים.' Question: How can we save water according to the user? (Set B)",
+    "answer": "closing the tap when brushing teeth",
+    "acceptableAnswers": [
+      "turning off tap while brushing",
+      "shutting water when brushing teeth"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_042_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "E-books",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני מעדיף ספרים דיגיטליים כי הם לא שוקלים כלום.' Question: Why does the speaker prefer e-books? (Set B)",
+    "answer": "they weigh nothing",
+    "acceptableAnswers": [
+      "lightweight",
+      "easy to carry",
+      "no weight"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_043_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Aspirations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'אני מקווה למצוא עבודה מאתגרת במגזר הפיננסי.' Question: What kind of job and in which sector does the speaker hope to work? (Set B)",
+    "answer": "a challenging job in the financial sector",
+    "acceptableAnswers": [
+      "challenging job, finance",
+      "finance job"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "he_listening_044_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facility",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'בספריית בית הספר השכונתית התקינו לא מזמן מחשבים חדשים.' Question: What was recently installed in the school library? (Set B)",
+    "answer": "new computers",
+    "acceptableAnswers": [
+      "computers",
+      "new PCs"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "he_listening_045_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Review",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'המלון היה מפואר ביותר, אבל השירות בקבלה היה נורא ואיום.' Question: What is the speaker's review of the hotel? (Set B)",
+    "answer": "luxurious hotel, but reception service was dreadful",
+    "acceptableAnswers": [
+      "luxurious but bad reception",
+      "fancy but terrible service"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_046_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Arts",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'אני אוהב לבקר בגלריות לאמנות מודרנית בימי שבת.' Question: What does the speaker love to do on Saturdays? (Set B)",
+    "answer": "visiting contemporary art galleries",
+    "acceptableAnswers": [
+      "visiting art galleries",
+      "go to art galleries"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "he_listening_047_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Town",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'עיירת המולדת שלי מפורסמת בזכות טירה עתיקה מתקופת ימי הביניים.' Question: Why is the speaker's hometown famous? (Set B)",
+    "answer": "its ancient medieval castle",
+    "acceptableAnswers": [
+      "medieval castle",
+      "old castle"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "he_listening_048_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'צריך לאסור על כניסת מכוניות למרכז העיר כדי להפחית את זיהום האוויר.' Question: What proposal is made to reduce smog in the historic center? (Set B)",
+    "answer": "ban traffic in the historic center",
+    "acceptableAnswers": [
+      "forbid cars in central historic area",
+      "no traffic in city center"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "he_listening_049_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "E-safety",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'אני לא משתף את הסיסמאות שלי עם אף אחד מטעמי בטיחות.' Question: Why does the speaker not share password? (Set B)",
+    "answer": "for security reasons",
+    "acceptableAnswers": [
+      "safe online",
+      "security",
+      "protect privacy"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "he_listening_050_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Study",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'החלטתי ללמוד הנדסת תוכנה לאחר שהשתתפתי בסדנת תכנות מעשית.' Question: Why did the speaker decide to study computer engineering? (Set B)",
+    "answer": "after doing a practical workshop",
+    "acceptableAnswers": [
+      "after a workshop",
+      "because of a coding workshop"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  }
+]

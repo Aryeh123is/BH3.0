@@ -1,0 +1,692 @@
+[
+  {
+    "id": "fr_vocab_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Town",
+    "subtopic": "Shops",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: la boulangerie",
+    "answer": "bakery",
+    "acceptableAnswers": [
+      "the bakery"
+    ],
+    "explanation": "Boulangerie is where you buy bread in France.",
+    "image": "/images/french/town/bakery.jpg",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "town",
+      "shops"
+    ]
+  },
+  {
+    "id": "fr_vocab_002",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Relationships",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: ma sœur",
+    "answer": "my sister",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "fr_vocab_003",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Warming",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: le réchauffement climatique",
+    "answer": "global warming",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_vocab_004",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Gadgets",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: un portable",
+    "answer": "a mobile phone",
+    "acceptableAnswers": [
+      "a cellphone",
+      "mobile"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_vocab_005",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: le chômage",
+    "answer": "unemployment",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "fr_vocab_006",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Food",
+    "subtopic": "Eating Out",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: l'addition, s'il vous plaît",
+    "answer": "the bill, please",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "food"
+    ]
+  },
+  {
+    "id": "fr_vocab_007",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: le règlement scolaire",
+    "answer": "school rules",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_vocab_008",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Activities",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: faire du ski",
+    "answer": "to ski",
+    "acceptableAnswers": [
+      "skiing",
+      "to go skiing"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "holidays"
+    ]
+  },
+  {
+    "id": "fr_vocab_009",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Homelessness",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: les SDF",
+    "answer": "homeless people",
+    "explanation": "Stands for 'Sans Domicile Fixe'.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "fr_vocab_010",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Personal Info",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: mon nom de famille",
+    "answer": "my surname",
+    "acceptableAnswers": [
+      "my last name"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "identity"
+    ]
+  },
+  {
+    "id": "fr_vocab_011",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Resources",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: les énergies renouvelables",
+    "answer": "renewable energy",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_vocab_012",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Free Time",
+    "subtopic": "TV",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: les émissions de télé-réalité",
+    "answer": "reality TV shows",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "leisure"
+    ]
+  },
+  {
+    "id": "fr_vocab_013",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Customs",
+    "subtopic": "Festivals",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: la fête nationale",
+    "answer": "the national holiday",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "culture"
+    ]
+  },
+  {
+    "id": "fr_vocab_014",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: l'EPS",
+    "answer": "PE",
+    "acceptableAnswers": [
+      "Physical Education"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_vocab_015",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Healthy Living",
+    "subtopic": "Drugs",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: la toxicomanie",
+    "answer": "drug addiction",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "fr_vocab_016",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "House",
+    "subtopic": "Rooms",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: la cuisine",
+    "answer": "kitchen",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "house"
+    ]
+  },
+  {
+    "id": "fr_vocab_017",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: mon rêve est de...",
+    "answer": "my dream is to...",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "plans"
+    ]
+  },
+  {
+    "id": "fr_vocab_018",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Town",
+    "subtopic": "Public Services",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: l'hôtel de ville",
+    "answer": "town hall",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "town"
+    ]
+  },
+  {
+    "id": "fr_vocab_019",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel",
+    "subtopic": "Buying Tickets",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: un aller-simple",
+    "answer": "a one-way ticket",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_vocab_020",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Part-time Jobs",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: un petit boulot",
+    "answer": "a part-time job",
+    "acceptableAnswers": [
+      "a side job",
+      "odd job"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "fr_vocab_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Town",
+    "subtopic": "Shops",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: la boulangerie (Set B)",
+    "answer": "bakery",
+    "acceptableAnswers": [
+      "the bakery"
+    ],
+    "explanation": "Boulangerie is where you buy bread in France.",
+    "image": "/images/french/town/bakery.jpg",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "town",
+      "shops"
+    ]
+  },
+  {
+    "id": "fr_vocab_002_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Relationships",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: ma sœur (Set B)",
+    "answer": "my sister",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "fr_vocab_003_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Warming",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: le réchauffement climatique (Set B)",
+    "answer": "global warming",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_vocab_004_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Gadgets",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: un portable (Set B)",
+    "answer": "a mobile phone",
+    "acceptableAnswers": [
+      "a cellphone",
+      "mobile"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_vocab_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: le chômage (Set B)",
+    "answer": "unemployment",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "fr_vocab_006_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Food",
+    "subtopic": "Eating Out",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: l'addition, s'il vous plaît (Set B)",
+    "answer": "the bill, please",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "food"
+    ]
+  },
+  {
+    "id": "fr_vocab_007_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: le règlement scolaire (Set B)",
+    "answer": "school rules",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_vocab_008_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Activities",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: faire du ski (Set B)",
+    "answer": "to ski",
+    "acceptableAnswers": [
+      "skiing",
+      "to go skiing"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "holidays"
+    ]
+  },
+  {
+    "id": "fr_vocab_009_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Homelessness",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: les SDF (Set B)",
+    "answer": "homeless people",
+    "explanation": "Stands for 'Sans Domicile Fixe'.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "fr_vocab_010_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Personal Info",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: mon nom de famille (Set B)",
+    "answer": "my surname",
+    "acceptableAnswers": [
+      "my last name"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "identity"
+    ]
+  },
+  {
+    "id": "fr_vocab_011_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Resources",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: les énergies renouvelables (Set B)",
+    "answer": "renewable energy",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_vocab_012_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Free Time",
+    "subtopic": "TV",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: les émissions de télé-réalité (Set B)",
+    "answer": "reality TV shows",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "leisure"
+    ]
+  },
+  {
+    "id": "fr_vocab_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Customs",
+    "subtopic": "Festivals",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: la fête nationale (Set B)",
+    "answer": "the national holiday",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "culture"
+    ]
+  },
+  {
+    "id": "fr_vocab_014_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: l'EPS (Set B)",
+    "answer": "PE",
+    "acceptableAnswers": [
+      "Physical Education"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_vocab_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Healthy Living",
+    "subtopic": "Drugs",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: la toxicomanie (Set B)",
+    "answer": "drug addiction",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "fr_vocab_016_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "House",
+    "subtopic": "Rooms",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: la cuisine (Set B)",
+    "answer": "kitchen",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "house"
+    ]
+  },
+  {
+    "id": "fr_vocab_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: mon rêve est de... (Set B)",
+    "answer": "my dream is to...",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "plans"
+    ]
+  },
+  {
+    "id": "fr_vocab_018_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Town",
+    "subtopic": "Public Services",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: l'hôtel de ville (Set B)",
+    "answer": "town hall",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "town"
+    ]
+  },
+  {
+    "id": "fr_vocab_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel",
+    "subtopic": "Buying Tickets",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: un aller-simple (Set B)",
+    "answer": "a one-way ticket",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_vocab_020_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Part-time Jobs",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: un petit boulot (Set B)",
+    "answer": "a part-time job",
+    "acceptableAnswers": [
+      "a side job",
+      "odd job"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  }
+]

@@ -1,0 +1,650 @@
+[
+  {
+    "id": "ar_vocab_001",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Members",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: أب (Ab)",
+    "answer": "father",
+    "explanation": "Ab means father in Arabic.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_vocab_002",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Members",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: أم (Umm)",
+    "answer": "mother",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_vocab_003",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Issues",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: التلوث (At-talawwuth)",
+    "answer": "pollution",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_vocab_004",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Internet",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: الإنترنت (Al-internet)",
+    "answer": "the internet",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "tech"
+    ]
+  },
+  {
+    "id": "ar_vocab_005",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Jobs",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: مهندس (Muhandis)",
+    "answer": "engineer",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "ar_vocab_006",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: مدرسة (Madrasa)",
+    "answer": "school",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_vocab_007",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Charity",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: جمعية خيرية (Jam'iya khayriya)",
+    "answer": "charity organization",
+    "acceptableAnswers": [
+      "charity"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "ar_vocab_008",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Food",
+    "subtopic": "Fruit",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: تفاح (Tuffah)",
+    "answer": "apple",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_vocab_009",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Healthy Living",
+    "subtopic": "Exercise",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: تمارين (Tamarin)",
+    "answer": "exercises",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "ar_vocab_010",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: سيارة (Sayyara)",
+    "answer": "car",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_vocab_011",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Equality",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: مساواة (Musawaa)",
+    "answer": "equality",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "ar_vocab_012",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Hobbies",
+    "subtopic": "Music",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: موسيقى (Musiqa)",
+    "answer": "music",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ar_vocab_013",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Renewable Energy",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: طاقة متجددة (Taqa mutajaddida)",
+    "answer": "renewable energy",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_vocab_014",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "House",
+    "subtopic": "Furniture",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: طاولة (Tawila)",
+    "answer": "table",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "house"
+    ]
+  },
+  {
+    "id": "ar_vocab_015",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Global Issues",
+    "subtopic": "Refugees",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: لاجئ (Laji')",
+    "answer": "refugee",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "ar_vocab_016",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: زي مدرسي (Zi madrasy)",
+    "answer": "school uniform",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_vocab_017",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Customs & Festivals",
+    "subtopic": "Traditions",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: تقاليد (Taqalid)",
+    "answer": "traditions",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "culture"
+    ]
+  },
+  {
+    "id": "ar_vocab_018",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Town",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: مستشفى (Mustashfa)",
+    "answer": "hospital",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "town"
+    ]
+  },
+  {
+    "id": "ar_vocab_019",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel",
+    "subtopic": "Booking",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: تذكرة (Tadhkira)",
+    "answer": "ticket",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_vocab_020",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Health",
+    "subtopic": "Obesity",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: سمنة (Sumna)",
+    "answer": "obesity",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "ar_vocab_001_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Members",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: أب (Ab) (Set B)",
+    "answer": "father",
+    "explanation": "Ab means father in Arabic.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_vocab_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Members",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: أم (Umm) (Set B)",
+    "answer": "mother",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_vocab_003_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Issues",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: التلوث (At-talawwuth) (Set B)",
+    "answer": "pollution",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_vocab_004_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Internet",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: الإنترنت (Al-internet) (Set B)",
+    "answer": "the internet",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "tech"
+    ]
+  },
+  {
+    "id": "ar_vocab_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Jobs",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: مهندس (Muhandis) (Set B)",
+    "answer": "engineer",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "ar_vocab_006_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: مدرسة (Madrasa) (Set B)",
+    "answer": "school",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_vocab_007_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Charity",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: جمعية خيرية (Jam'iya khayriya) (Set B)",
+    "answer": "charity organization",
+    "acceptableAnswers": [
+      "charity"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "ar_vocab_008_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Food",
+    "subtopic": "Fruit",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: تفاح (Tuffah) (Set B)",
+    "answer": "apple",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_vocab_009_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Healthy Living",
+    "subtopic": "Exercise",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: تمارين (Tamarin) (Set B)",
+    "answer": "exercises",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "ar_vocab_010_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: سيارة (Sayyara) (Set B)",
+    "answer": "car",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_vocab_011_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Equality",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: مساواة (Musawaa) (Set B)",
+    "answer": "equality",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "ar_vocab_012_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Hobbies",
+    "subtopic": "Music",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: موسيقى (Musiqa) (Set B)",
+    "answer": "music",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ar_vocab_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Renewable Energy",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: طاقة متجددة (Taqa mutajaddida) (Set B)",
+    "answer": "renewable energy",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_vocab_014_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "House",
+    "subtopic": "Furniture",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: طاولة (Tawila) (Set B)",
+    "answer": "table",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "house"
+    ]
+  },
+  {
+    "id": "ar_vocab_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Global Issues",
+    "subtopic": "Refugees",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: لاجئ (Laji') (Set B)",
+    "answer": "refugee",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "ar_vocab_016_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: زي مدرسي (Zi madrasy) (Set B)",
+    "answer": "school uniform",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_vocab_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Customs & Festivals",
+    "subtopic": "Traditions",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: تقاليد (Taqalid) (Set B)",
+    "answer": "traditions",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "culture"
+    ]
+  },
+  {
+    "id": "ar_vocab_018_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Town",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: مستشفى (Mustashfa) (Set B)",
+    "answer": "hospital",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "town"
+    ]
+  },
+  {
+    "id": "ar_vocab_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel",
+    "subtopic": "Booking",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: تذكرة (Tadhkira) (Set B)",
+    "answer": "ticket",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "ar_vocab_020_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Health",
+    "subtopic": "Obesity",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: سمنة (Sumna) (Set B)",
+    "answer": "obesity",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  }
+]

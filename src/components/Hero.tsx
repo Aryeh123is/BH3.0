@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkles, Layers, LogIn, Trophy, Zap, Brain, TrendingUp, CheckCircle2, PlayCircle, Volume2, Target, BarChart3, Snowflake, Book, X, Headphones, PenTool, Mic, BookOpen } from 'lucide-react';
+import { Sparkles, Layers, LogIn, Trophy, Zap, Brain, TrendingUp, CheckCircle2, PlayCircle, Volume2, Target, BarChart3, Snowflake, Book, X, Headphones, PenTool, Mic, BookOpen, ChevronDown, ChevronUp, Star, Crown, ShieldCheck, Check } from 'lucide-react';
 import { User } from 'firebase/auth';
 import { hashDevString } from '../lib/utils';
+import { PricingSection } from './PricingSection';
+import { SubscriptionService } from '../services/monetization/subscriptionService';
 
 interface HeroProps {
   onStartSession: () => void;
@@ -17,13 +19,32 @@ interface HeroProps {
   onShowPro: () => void;
   devMode?: boolean;
   isPremium?: boolean;
+  currentTier?: string;
   reducedMotion?: boolean;
   vocabularyCount: number;
+  onNavigate?: (view: any) => void;
 }
 
-export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onStartTest, onStartSpeakingMode, language, onLanguageChange, user, onSignIn, onShowPro, devMode = false, isPremium = false, reducedMotion = false, vocabularyCount }: HeroProps) {
+export function Hero({ 
+  onStartSession, 
+  onViewDashboard, 
+  onStartFlashcards, 
+  onStartTest, 
+  onStartSpeakingMode, 
+  language, 
+  onLanguageChange, 
+  user, 
+  onSignIn, 
+  onShowPro, 
+  devMode = false, 
+  isPremium = false, 
+  currentTier = 'FREE',
+  reducedMotion = false, 
+  vocabularyCount,
+  onNavigate
+}: HeroProps) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [showSimulatorPromo, setShowSimulatorPromo] = useState(false);
+  const [viewFeatures, setViewFeatures] = useState(false);
 
   // Round down to the nearest 100 for a "nice" look
   const niceCount = Math.floor(vocabularyCount / 100) * 100;
@@ -31,6 +52,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
   const previewCards: Record<string, { front: string, back: string, label: string }> = {
     french: { front: 'le moyen orient', back: 'the Middle East', label: 'French (Edexcel)' },
     spanish: { front: 'el medio ambiente', back: 'the environment', label: 'Spanish (Edexcel)' },
+    arabic: { front: 'البيئة', back: 'the environment', label: 'Arabic (Edexcel)' },
     german: { front: 'die Abholzung', back: 'deforestation', label: 'German (AQA)' },
     biblical: { front: 'מֶלֶךְ', back: 'king', label: 'Biblical Hebrew (Edexcel)' },
     modern: { front: 'שָׁלוֹם', back: 'peace / hello', label: 'Modern Hebrew (AQA)' },
@@ -43,6 +65,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
       case 'modern': return 'Modern Hebrew';
       case 'french': return 'French';
       case 'spanish': return 'Spanish';
+      case 'arabic': return 'Arabic';
       case 'german': return 'German';
       default: return 'GCSE';
     }
@@ -61,12 +84,10 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
             transition={{ duration: 0.6 }}
             className="flex flex-col items-center"
           >
-            {(language === 'spanish' || language === 'french' || language === 'german') && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-bold mb-8 border border-indigo-100 dark:border-indigo-800/50">
-                <Sparkles className="w-4 h-4" />
-                <span>New: {language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'German'} GCSE Vocabulary Added!</span>
-              </div>
-            )}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full text-sm font-bold mb-8 border border-indigo-100 dark:border-indigo-800/50">
+              <Sparkles className="w-4 h-4" />
+              <span>New: {getLanguageDisplay(language)} GCSE Vocabulary Added!</span>
+            </div>
             
             <h1 className="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-6 tracking-tight leading-[1.1] max-w-4xl">
               Master <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">{getLanguageDisplay(language)} Vocabulary</span> with <span className="text-indigo-600 dark:text-indigo-400">Vocariox</span>
@@ -78,7 +99,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
             </div>
             
             <p className="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-10 max-w-2xl mx-auto font-bold leading-relaxed">
-              Over <span className="text-slate-900 dark:text-white font-black underline decoration-indigo-500/30">{niceCount.toLocaleString()}+ mandatory words</span> pulled directly from the official <span className="text-slate-900 dark:text-white font-black">Edexcel & AQA</span> specifications. 100% guaranteed to appear in your exams.
+              Over <span className="text-slate-900 dark:text-white font-black underline decoration-indigo-500/30">{niceCount.toLocaleString()}+ mandatory words</span> pulled directly from the official <span className="text-slate-900 dark:text-white font-black">{(language === 'biblical' || language === 'spanish' || language === 'french' || language === 'arabic') ? 'Edexcel' : (language === 'german' || language === 'modern') ? 'AQA' : 'Edexcel & AQA'}</span> specifications. 100% guaranteed to appear in your {getLanguageDisplay(language)} exams.
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-8">
@@ -91,10 +112,10 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
               </button>
               <button 
                 onClick={() => {
-                  if (((user?.email && hashDevString(user.email.toLowerCase()) === '7aa66867') || devMode) && onStartSpeakingMode) {
+                  if (((user?.email && hashDevString(user.email.toLowerCase()) === '71kqwe') || devMode) && onStartSpeakingMode) {
                     onStartSpeakingMode();
                   } else {
-                    setShowSimulatorPromo(true);
+                    onShowPro();
                   }
                 }}
                 className="w-full sm:w-auto px-8 py-4 bg-gradient-to-br from-slate-900 to-black dark:from-black dark:to-slate-900 border border-slate-800 hover:border-indigo-500/50 text-white font-black rounded-2xl transition-all shadow-xl shadow-slate-900/20 text-lg flex items-center justify-center gap-2 group relative overflow-hidden"
@@ -105,22 +126,17 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
                     AI EXAM SIMULATOR
                   </span>
-                  <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded-full border border-white/20 uppercase tracking-widest text-white/90">
-                    In Progress
-                  </span>
                 </span>
               </button>
-              {(language === 'spanish' || language === 'french' || language === 'german') && (
-                <button 
-                  onClick={() => {
-                    document.getElementById('topics-section')?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-black rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-600 dark:hover:border-indigo-500 transition-all active:scale-95 text-lg flex items-center justify-center gap-2"
-                >
-                  <Layers className="w-5 h-5" />
-                  Browse Topics
-                </button>
-              )}
+              <button 
+                onClick={() => {
+                  document.getElementById('topics-section')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="w-full sm:w-auto px-8 py-4 bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-black rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-indigo-600 dark:hover:border-indigo-500 transition-all active:scale-95 text-lg flex items-center justify-center gap-2"
+              >
+                <Layers className="w-5 h-5" />
+                Browse Topics
+              </button>
             </div>
 
             <p className="text-sm font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-16 flex items-center gap-2 justify-center">
@@ -154,65 +170,85 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
         </div>
       </section>
 
-      {/* TOPICS SECTION (For Spanish, French, German & Modern Hebrew) */}
-      {(language === 'spanish' || language === 'french' || language === 'german' || language === 'modern') && (
-        <section id="topics-section" className="py-20 px-6 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">Choose a Topic</h2>
-              <p className="text-slate-500 dark:text-slate-400 text-lg">Start learning instantly. No account needed.</p>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {language === 'modern' ? (
-                // Modern Hebrew Topics
-                [
-                  { title: 'Personal', icon: '👤', color: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400' },
-                  { title: 'Education', icon: '🎓', color: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400' },
-                  { title: 'Social', icon: '🤝', color: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
-                  { title: 'Travel', icon: '✈️', color: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-600 dark:text-purple-400' },
-                ].map((topic, i) => (
-                  <button 
-                    key={`modern-${i}`}
-                    onClick={() => onStartFlashcards(topic.title)}
-                    className="group p-6 bg-slate-50 dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-lg hover:-translate-y-1 text-left flex flex-col gap-4"
-                  >
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${topic.color}`}>
-                      {topic.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{topic.title}</h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Start learning →</p>
-                    </div>
-                  </button>
-                ))
-              ) : (
-                // Spanish, French & German Topics
-                [
-                  { title: 'Family & Friends', icon: '👨‍👩‍👧‍👦', color: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400' },
-                  { title: 'School & Study', icon: '🏫', color: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400' },
-                  { title: 'Food & Drink', icon: '🥘', color: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
-                  { title: 'Holidays & Travel', icon: '✈️', color: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-600 dark:text-purple-400' },
-                ].map((topic, i) => (
-                  <button 
-                    key={`lang-${i}`}
-                    onClick={() => onStartFlashcards(topic.title)}
-                    className="group p-6 bg-slate-50 dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-lg hover:-translate-y-1 text-left flex flex-col gap-4"
-                  >
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${topic.color}`}>
-                      {topic.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{topic.title}</h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Start learning →</p>
-                    </div>
-                  </button>
-                ))
-              )}
-            </div>
+      {/* TOPICS SECTION (For all languages) */}
+      <section id="topics-section" className="py-20 px-6 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-4">Choose a Topic</h2>
+            <p className="text-slate-500 dark:text-slate-400 text-lg">Start learning instantly. No account needed.</p>
           </div>
-        </section>
-      )}
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {language === 'biblical' ? (
+              // Biblical Hebrew Topics
+              [
+                { title: 'The World', icon: '🌍', color: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400' },
+                { title: 'Family & People', icon: '👥', color: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400' },
+                { title: 'Religion', icon: '📜', color: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-600 dark:text-purple-400' },
+                { title: 'Verbs & Actions', icon: '🏃', color: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
+              ].map((topic, i) => (
+                <button 
+                  key={`biblical-${i}`}
+                  onClick={() => onStartFlashcards(topic.title)}
+                  className="group p-6 bg-slate-50 dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-lg hover:-translate-y-1 text-left flex flex-col gap-4"
+                >
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${topic.color}`}>
+                    {topic.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{topic.title}</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Start learning →</p>
+                  </div>
+                </button>
+              ))
+            ) : language === 'modern' ? (
+              // Modern Hebrew Topics
+              [
+                { title: 'Personal', icon: '👤', color: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400' },
+                { title: 'Education', icon: '🎓', color: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400' },
+                { title: 'Social', icon: '🤝', color: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
+                { title: 'Travel', icon: '✈️', color: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-600 dark:text-purple-400' },
+              ].map((topic, i) => (
+                <button 
+                  key={`modern-${i}`}
+                  onClick={() => onStartFlashcards(topic.title)}
+                  className="group p-6 bg-slate-50 dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-lg hover:-translate-y-1 text-left flex flex-col gap-4"
+                >
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${topic.color}`}>
+                    {topic.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{topic.title}</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Start learning →</p>
+                  </div>
+                </button>
+              ))
+            ) : (
+              // General (Spanish, French, German, Arabic) Topics
+              [
+                { title: 'Family & Friends', icon: '👨‍👩‍👧‍👦', color: 'bg-blue-50 dark:bg-blue-900/20', text: 'text-blue-600 dark:text-blue-400' },
+                { title: 'School & Study', icon: '🏫', color: 'bg-emerald-50 dark:bg-emerald-900/20', text: 'text-emerald-600 dark:text-emerald-400' },
+                { title: 'Food & Drink', icon: '🥘', color: 'bg-orange-50 dark:bg-orange-900/20', text: 'text-orange-600 dark:text-orange-400' },
+                { title: 'Holidays & Travel', icon: '✈️', color: 'bg-purple-50 dark:bg-purple-900/20', text: 'text-purple-600 dark:text-purple-400' },
+              ].map((topic, i) => (
+                <button 
+                  key={`lang-${i}`}
+                  onClick={() => onStartFlashcards(topic.title)}
+                  className="group p-6 bg-slate-50 dark:bg-slate-800 rounded-[2rem] border border-slate-100 dark:border-slate-700 hover:border-indigo-500 dark:hover:border-indigo-500 transition-all hover:shadow-lg hover:-translate-y-1 text-left flex flex-col gap-4"
+                >
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl ${topic.color}`}>
+                    {topic.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{topic.title}</h3>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">Start learning →</p>
+                  </div>
+                </button>
+              ))
+            )}
+          </div>
+        </div>
+      </section>
 
       {/* CREDIBILITY & HOW IT WORKS */}
       <section className="py-20 px-6">
@@ -221,7 +257,7 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
             <h2 className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white mb-8">Built for GCSE Success</h2>
             <div className="space-y-6">
               {[
-                { icon: <Book className="w-6 h-6" />, title: 'Straight from the specification', desc: `Every single one of our ${niceCount.toLocaleString()}+ words is pulled directly from the Edexcel and AQA curriculums—guaranteed to appear in your exams.` },
+                { icon: <Book className="w-6 h-6" />, title: 'Straight from the specification', desc: `Every single one of our ${niceCount.toLocaleString()}+ words is pulled directly from the ${(language === 'biblical' || language === 'spanish' || language === 'french' || language === 'arabic') ? 'Edexcel' : (language === 'german' || language === 'modern') ? 'AQA' : 'Edexcel and AQA'} curriculums—guaranteed to appear in your ${getLanguageDisplay(language)} exams.` },
                 { icon: <Brain className="w-6 h-6" />, title: 'Learn faster with recursion', desc: 'Our smart AI algorithm identifies the high-yield keywords most likely to be tested on results day.' },
                 { icon: <Target className="w-6 h-6" />, title: 'Grade 9 Exam Mastery', desc: `Master the complete list of ${niceCount.toLocaleString()}+ mandatory keywords required for a top grade.` },
               ].map((item, i) => (
@@ -261,63 +297,15 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
         </div>
       </section>
 
-      {/* PREMIUM TEASER */}
-      <section className="py-20 px-6 bg-slate-900 text-white overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl pointer-events-none" />
-        
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black mb-6">Go further with Premium</h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">Unlock the ultimate toolkit to guarantee your target grade.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {[
-                { icon: <Brain className="w-5 h-5" />, text: 'Ultimate AI Exam Simulator' },
-                { icon: <Target className="w-5 h-5" />, text: language === 'biblical' ? 'Unseen Practice Simulator' : 'Listening, Reading, Writing & Speaking' },
-                { icon: <Volume2 className="w-5 h-5" />, text: `Native Audio pronunciation${(language === 'spanish' || language === 'french' || language === 'german') ? ` (${language === 'spanish' ? 'Spanish' : language === 'french' ? 'French' : 'German'})` : ''}` },
-                { icon: <Trophy className="w-5 h-5" />, text: 'Test mode (type answers)' },
-                { icon: <BarChart3 className="w-5 h-5" />, text: 'Advanced progress insights' },
-                { icon: <Snowflake className="w-5 h-5" />, text: 'Unlimited Streak freezes' },
-              ].map((feature, i) => (
-                <div key={`premium-feature-${i}`} className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 border border-white/10">
-                  <div className="text-indigo-400">{feature.icon}</div>
-                  <span className="font-medium text-sm">{feature.text}</span>
-                </div>
-              ))}
-            </div>
-            
-            <div className="bg-white/10 backdrop-blur-md p-8 rounded-[3rem] border border-indigo-400/30 text-center relative overflow-hidden group">
-              <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-indigo-400 to-transparent opacity-50" />
-              <div className="inline-block px-4 py-1.5 bg-red-500 text-white font-black text-sm rounded-full mb-6 shadow-lg shadow-red-500/20 animate-pulse uppercase tracking-widest">
-                50% Pre-Launch Discount
-              </div>
-              <div className="mb-2">
-                <span className="text-xl text-indigo-200 line-through mr-2 font-bold opacity-70">£9.99/yr</span>
-              </div>
-              <div className="flex justify-between items-end gap-2 mb-2">
-                <div className="flex items-end gap-2">
-                  <span className="text-6xl font-black text-white drop-shadow-md">£4.99</span>
-                  <span className="text-white/80 font-bold mb-2">/year</span>
-                </div>
-                <div className="text-right pb-1">
-                  <span className="text-indigo-200 text-sm font-bold block">or <span className="line-through opacity-70 font-normal">£3.99</span></span>
-                  <span className="text-white font-bold block">£1.99/mo</span>
-                </div>
-              </div>
-              <p className="text-indigo-100 mb-8 font-medium">Register interest now to claim your 50% early bird discount.</p>
-              <button 
-                onClick={onShowPro}
-                className="w-full py-4 bg-white text-indigo-600 hover:bg-slate-50 font-black rounded-2xl transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-white/20 text-lg shadow-lg"
-              >
-                Claim My Discount
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* PRICING SECTION - SUCCESS PATHWAYS */}
+      <PricingSection 
+        currentStatus={SubscriptionService.getStatus()} 
+        onUpdate={() => window.location.reload()} 
+        isLandingPage={true} 
+        devMode={devMode}
+        onSignIn={onSignIn}
+        onNavigate={onNavigate}
+      />
 
       {/* FINAL CTA */}
       <section className="py-24 px-6 text-center">
@@ -334,91 +322,6 @@ export function Hero({ onStartSession, onViewDashboard, onStartFlashcards, onSta
           </button>
         </div>
       </section>
-
-      {/* Simulator Promo Modal */}
-      <AnimatePresence>
-        {showSimulatorPromo && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-900/40 backdrop-blur-sm">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl w-full max-w-xl overflow-hidden border border-slate-200 dark:border-slate-800"
-            >
-              <div className="bg-gradient-to-br from-slate-900 to-black p-8 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 p-8 opacity-20 pointer-events-none translate-x-1/4 -translate-y-1/4 group-hover:scale-110 transition-transform duration-1000">
-                  <Brain className="w-64 h-64 text-indigo-500" />
-                </div>
-                <button
-                  onClick={() => setShowSimulatorPromo(false)}
-                  className="absolute top-4 right-4 p-2 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-                <div className="relative z-10 flex items-center gap-2 mb-4">
-                  <div className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-[10px] font-black uppercase tracking-widest border border-indigo-500/30 flex items-center gap-1.5">
-                    <Brain className="w-3 h-3" />
-                    AI Smart Technology
-                  </div>
-                </div>
-                <h2 className="relative z-10 text-3xl font-black text-white mb-2 tracking-tight">
-                  The Ultimate <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Exam Simulator</span>
-                </h2>
-                <p className="relative z-10 text-slate-400 font-bold max-w-sm">
-                  Experience the future of {language === 'biblical' ? 'Biblical Hebrew' : 'language'} revision. Coming soon to Premium!
-                </p>
-              </div>
-              <div className="p-8">
-                <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                  {language === 'biblical' ? (
-                    <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
-                      <BookOpen className="w-6 h-6 text-indigo-500 mb-2" />
-                      <h3 className="text-slate-900 dark:text-white font-black mb-1">Unseen Practice</h3>
-                      <p className="text-sm text-slate-500 dark:text-slate-400 font-bold">Tackle unseen texts with AI hints and instant feedback.</p>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
-                        <Headphones className="w-6 h-6 text-indigo-500 mb-2" />
-                        <h3 className="text-slate-900 dark:text-white font-black mb-1">Listening</h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 font-bold">AI native speaker audio with simulated exam questions.</p>
-                      </div>
-                      <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
-                        <BookOpen className="w-6 h-6 text-purple-500 mb-2" />
-                        <h3 className="text-slate-900 dark:text-white font-black mb-1">Reading</h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 font-bold">Mock exam passages graded instantly by our AI.</p>
-                      </div>
-                      <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
-                        <PenTool className="w-6 h-6 text-rose-500 mb-2" />
-                        <h3 className="text-slate-900 dark:text-white font-black mb-1">Writing</h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 font-bold">Immediate line-by-line mark schemes & tips.</p>
-                      </div>
-                      <div className="p-4 bg-slate-50 dark:bg-slate-800/50 rounded-2xl border border-slate-100 dark:border-slate-800">
-                        <Mic className="w-6 h-6 text-emerald-500 mb-2" />
-                        <h3 className="text-slate-900 dark:text-white font-black mb-1">Speaking</h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400 font-bold">Live roleplay and photocard discussion.</p>
-                      </div>
-                    </>
-                  )}
-                </div>
-                <div className="flex flex-col gap-3">
-                  <button
-                    onClick={() => {
-                      setShowSimulatorPromo(false);
-                      onShowPro();
-                    }}
-                    className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black transition-all flex items-center justify-center gap-2 shadow-xl shadow-indigo-600/20 active:scale-95"
-                  >
-                    <Sparkles className="w-5 h-5 fill-current" />
-                    Register Interest (50% Off Premium)
-                  </button>
-                  <p className="text-center text-xs text-slate-500 font-bold">Lock in your founder's discount now.</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
 
     </div>
   );

@@ -37,7 +37,7 @@ service cloud.firestore {
     }
 
     function isValidUser(data) {
-      return data.keys().hasOnly(['language', 'lastActive', 'role', 'streak', 'lastStreakUpdate', 'streakFreezes', 'totalLearningTime', 'displayName', 'deleted', 'deletedAt', 'isPremium', 'email', 'createdAt', 'reviewPromptShown']) &&
+      return data.keys().hasOnly(['language', 'lastActive', 'role', 'streak', 'lastStreakUpdate', 'streakFreezes', 'totalLearningTime', 'displayName', 'onboardingCompleted', 'deleted', 'deletedAt', 'isPremium', 'subscriptionTier', 'email', 'createdAt', 'reviewPromptShown', 'preferences', 'examCount', 'srsSettings', 'verified', 'admin', 'premium', 'plan', 'subscriptionStatus', 'stripeCustomerId', 'stripeSubscriptionId', 'currentPeriodEnd', 'updatedAt', 'activeSessionId', 'lastActiveAt', 'trial_used', 'trial_started_at', 'trial_ends_at', 'premium_source']) &&
              (!('language' in data) || data.language is string) &&
              (!('lastActive' in data) || data.lastActive is number) &&
              (!('streak' in data) || data.streak is number) &&
@@ -45,13 +45,64 @@ service cloud.firestore {
              (!('streakFreezes' in data) || data.streakFreezes is number) &&
              (!('totalLearningTime' in data) || data.totalLearningTime is number) &&
              (!('displayName' in data) || data.displayName is string) &&
+             (!('onboardingCompleted' in data) || data.onboardingCompleted is bool) &&
              (!('deleted' in data) || data.deleted is bool) &&
              (!('deletedAt' in data) || data.deletedAt is number) &&
              (!('isPremium' in data) || data.isPremium is bool) &&
+             (!('subscriptionTier' in data) || (data.subscriptionTier in ['FREE', 'PREMIUM'])) &&
              (!('email' in data) || data.email is string) &&
              (!('createdAt' in data) || data.createdAt is number) &&
              (!('reviewPromptShown' in data) || data.reviewPromptShown is bool) &&
-             (!('role' in data) || data.role is string);
+             (!('role' in data) || data.role is string) &&
+             (!('premium' in data) || data.premium is bool) &&
+             (!('plan' in data) || (data.plan in ['monthly', 'yearly', null])) &&
+             (!('subscriptionStatus' in data) || data.subscriptionStatus is string) &&
+             (!('stripeCustomerId' in data) || data.stripeCustomerId is string) &&
+             (!('activeSessionId' in data) || data.activeSessionId is string) &&
+             (!('lastActiveAt' in data) || data.lastActiveAt is string) &&
+             (!('stripeSubscriptionId' in data) || data.stripeSubscriptionId is string) &&
+             (!('trial_used' in data) || data.trial_used is bool) &&
+             (!('trial_started_at' in data) || data.trial_started_at is string) &&
+             (!('trial_ends_at' in data) || data.trial_ends_at is string) &&
+             (!('premium_source' in data) || data.premium_source is string);
+    }
+
+    function isValidSRSUpdate(userId, request, data) {
+      let authOk = request.auth != null && request.auth.uid == userId;
+
+      let hasRequiredFields =
+        data.keys().hasAll([
+          "nextReview",
+          "intervalDays",
+          "mastery",
+          "lastStudied",
+          "lastSyncId"
+        ]);
+
+      let validTypes =
+        data.nextReview is number &&
+        data.intervalDays is number &&
+        data.lastStudied is number &&
+        data.mastery in ["new", "learning", "mastered"] &&
+        data.lastSyncId is string;
+
+      let saneBounds =
+        data.intervalDays >= 0 &&
+        data.intervalDays <= 1000 &&
+        data.nextReview > 0;
+
+      let futureLimit =
+        data.nextReview < (request.time.toMillis() + 94608000000); // 3 years approx
+
+      let noDeleteAttack =
+        data.keys().hasAny(["nextReview", "intervalDays"]);
+
+      return authOk
+        && hasRequiredFields
+        && validTypes
+        && saneBounds
+        && futureLimit
+        && noDeleteAttack;
     }
 
     function isValidProgress(data) {
@@ -66,20 +117,15 @@ service cloud.firestore {
     }
 
     function isValidCustomDeck(data) {
-      return data.keys().hasAll(['title', 'words', 'createdAt', 'updatedAt']) &&
-             data.title is string &&
+      return data.title is string &&
              (!('description' in data) || data.description is string) &&
-             data.words is list &&
-             data.createdAt is number &&
-             data.updatedAt is number;
+             data.words is list;
     }
 
     function isValidSharedDeck(data) {
-      return data.keys().hasAll(['title', 'words', 'createdAt', 'authorId']) &&
-             data.title is string &&
+      return data.title is string &&
              (!('description' in data) || data.description is string) &&
              data.words is list &&
-             data.createdAt is number &&
              data.authorId is string;
     }
 
@@ -93,9 +139,79 @@ service cloud.firestore {
              data.createdAt is number;
     }
 
+    function isValidDeviceGroup(data) {
+      return data.keys().hasAll(['devices', 'updatedAt']) &&
+             data.devices is map &&
+             (data.updatedAt is timestamp || data.updatedAt is number);
+    }
+
+    function isValidActiveSession(data) {
+      return data.keys().hasAll(['sessionId', 'deviceId', 'lastActive']) &&
+             data.sessionId is string &&
+             data.deviceId is string &&
+             (data.lastActive is timestamp || data.lastActive is number);
+    }
+
+    function isValidPastPaper(data) {
+      return data.keys().hasAll(['paperId', 'examBoard', 'subject', 'tier', 'year', 'paperNumber', 'totalMarks', 'paperUrl', 'markSchemeUrl']) &&
+             data.paperId is string &&
+             data.examBoard is string &&
+             data.subject is string &&
+             (data.tier == 'Foundation' || data.tier == 'Higher') &&
+             data.year is number &&
+             data.paperNumber is number &&
+             data.totalMarks is number &&
+             data.paperUrl is string &&
+             data.markSchemeUrl is string;
+    }
+
+    function isValidGradeBoundaries(data) {
+      return data.keys().hasAll(['boundaryId', 'examBoard', 'subject', 'tier', 'year', 'boundaries']) &&
+             data.boundaryId is string &&
+             data.examBoard is string &&
+             data.subject is string &&
+             data.tier is string &&
+             data.year is number &&
+             data.boundaries is map;
+    }
+
+    function isValidUserPaperResult(data) {
+      return data.keys().hasAll(['userId', 'paperId', 'score', 'percentage', 'grade', 'timestamp']) &&
+             data.userId is string &&
+             data.paperId is string &&
+             data.score is number &&
+             data.percentage is number &&
+             data.grade is string &&
+             data.timestamp is number;
+    }
+
     // ===============================================================
     // Rules
     // ===============================================================
+
+    match /userDevices/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create, update: if isOwner(userId) && isValidDeviceGroup(request.resource.data);
+    }
+
+    match /activeSessions/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      
+      match /sessions/{deviceId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create, update: if isOwner(userId) && isValidActiveSession(request.resource.data);
+      }
+    }
+
+    match /pastPapers/{paperId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /gradeBoundaries/{boundaryId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
 
     match /shopContent/{docId} {
       allow read: if true;
@@ -117,18 +233,64 @@ service cloud.firestore {
     match /users/{userId} {
       allow read: if isOwner(userId) || isAdmin();
       allow create: if isOwner(userId) && isValidUser(request.resource.data) && (!('role' in request.resource.data) || isAdmin());
-      allow update: if isOwner(userId) && isValidUser(request.resource.data) && (request.resource.data.get('role', '') == resource.data.get('role', '') || isAdmin());
+      allow update: if isOwner(userId) && 
+                    isValidUser(request.resource.data) && 
+                    (request.resource.data.get('role', '') == resource.data.get('role', '') || isAdmin()) &&
+                    (
+                      isAdmin() || 
+                      // 1. Regular fields modification: No premium/billing or trial fields can be updated
+                      (
+                        request.resource.data.diff(resource.data).affectedKeys().intersection([
+                          'isPremium', 'subscriptionTier', 'premium', 'plan', 'subscriptionStatus', 
+                          'stripeCustomerId', 'stripeSubscriptionId', 'currentPeriodEnd',
+                          'trial_used', 'trial_started_at', 'trial_ends_at', 'premium_source'
+                        ].toSet()).size() == 0
+                      ) ||
+                      // 2. Start Trial Action: only permitted ONCE, requires email_verified, sets specific properties
+                      (
+                        request.auth.token.email_verified == true &&
+                        !resource.data.get('trial_used', false) &&
+                        request.resource.data.trial_used == true &&
+                        request.resource.data.premium_source == 'trial' &&
+                        request.resource.data.premium == true &&
+                        request.resource.data.isPremium == true &&
+                        request.resource.data.subscriptionTier == 'PREMIUM' &&
+                        request.resource.data.trial_started_at is string &&
+                        request.resource.data.trial_ends_at is string &&
+                        request.resource.data.diff(resource.data).affectedKeys().intersection([
+                          'plan', 'subscriptionStatus', 'stripeCustomerId', 'stripeSubscriptionId', 'currentPeriodEnd'
+                        ].toSet()).size() == 0
+                      )
+                    );
 
       match /progress/{wordId} {
         allow read: if isOwner(userId) || isAdmin();
-        allow create, update: if isOwner(userId) && isValidProgress(request.resource.data);
+        allow write: if isAdmin() || (isOwner(userId) && (
+                       isValidProgress(request.resource.data) ||
+                       isValidSRSUpdate(userId, request, request.resource.data)
+                     ));
+      }
+
+      match /paperResults/{paperId} {
+        allow read: if isOwner(userId) || isAdmin();
+        allow create, update: if isOwner(userId) && isValidUserPaperResult(request.resource.data);
         allow delete: if isOwner(userId) || isAdmin();
       }
 
       match /decks/{deckId} {
-        allow read: if isOwner(userId) || isAdmin();
-        allow create, update: if isOwner(userId) && isValidCustomDeck(request.resource.data);
-        allow delete: if isOwner(userId) || isAdmin();
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+
+      match /testHistory/{docId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+
+      match /analytics/{docId} {
+        allow read, write: if isOwner(userId) || isAdmin();
+      }
+
+      match /settings/{settingId} {
+        allow read, write: if isOwner(userId) || isAdmin();
       }
     }
 

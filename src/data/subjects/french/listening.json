@@ -1,0 +1,2010 @@
+[
+  {
+    "id": "fr_listening_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'ai nettoyé la cuisine après le dîner.' Question: What chore did Marie do?",
+    "answer": "cleaned the kitchen",
+    "explanation": "Marie mentions 'nettoyé la cuisine' which translates to cleaned the kitchen.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "fr_listening_002",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Problems",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'L'hôtel était très bruyant et la nourriture était horrible.' Question: What were the two problems with the hotel?",
+    "answer": "noisy and horrible food",
+    "acceptableAnswers": [
+      "it was noisy and food was bad",
+      "noisy, bad food",
+      "noise and bad food"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_003",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ma matière préférée est le dessin parce que cela me permet d'être créative.' Question: What is the speaker's favorite subject?",
+    "answer": "art",
+    "acceptableAnswers": [
+      "drawing",
+      "fine art"
+    ],
+    "explanation": "The speaker mentions 'le dessin' which is art/drawing.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_004",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Dans notre collège, il est interdit d'utiliser le portable en classe, ce que je trouve juste.' Question: What is the rule and what is the speaker's opinion?",
+    "answer": "phones are banned and they think it is fair",
+    "acceptableAnswers": [
+      "no phones in class and it is fair",
+      "mobile ban in class which is fair"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_005",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Je joue au basket le mardi soir avec mes amis.' Question: What sport does the speaker play on Tuesdays?",
+    "answer": "basketball",
+    "acceptableAnswers": [
+      "play basketball"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "sports"
+    ]
+  },
+  {
+    "id": "fr_listening_006",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Family",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'ai un frère aîné qui s'appelle Charles et il est très drôle.' Question: Describe Charles according to the speaker.",
+    "answer": "an older brother who is very funny",
+    "acceptableAnswers": [
+      "older brother, funny",
+      "older brother, humorous"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "fr_listening_007",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Chez moi, nous recyclons toutes les bouteilles en verre et le carton.' Question: What two items does the family recycle?",
+    "answer": "glass bottles and cardboard",
+    "acceptableAnswers": [
+      "glass and cardboard",
+      "bottles and cardboard"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_008",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Je passe deux heures par jour sur Instagram, je pense que c'est une perte de temps.' Question: What is the speaker's opinion about using Instagram?",
+    "answer": "it is a waste of time",
+    "acceptableAnswers": [
+      "waste of time",
+      "useless",
+      "losing time"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_009",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Future",
+    "subtopic": "Careers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Plus tard, je veux devenir infirmier pour aider les patients.' Question: What job does the speaker want to do in the future?",
+    "answer": "nurse",
+    "acceptableAnswers": [
+      "a nurse",
+      "male nurse"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_010",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Destination",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Cet été, je vais aller à la plage dans le sud de la France.' Question: Where is the speaker going this summer?",
+    "answer": "the beach in the south of France",
+    "acceptableAnswers": [
+      "beach, south of France",
+      "south France beach"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_011",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Je préfère aller à des concerts de rock parce que l'ambiance est superbe.' Question: Why does the speaker prefer rock concerts?",
+    "answer": "the atmosphere is superb",
+    "acceptableAnswers": [
+      "great atmosphere",
+      "best atmosphere",
+      "atmosphere is amazing"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "music"
+    ]
+  },
+  {
+    "id": "fr_listening_012",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je fais de la natation trois fois par semaine parce que cela me détend.' Question: How often and why does the speaker do swimming?",
+    "answer": "three times a week because it relaxes them",
+    "acceptableAnswers": [
+      "3 times a week, relaxing",
+      "three times weekly, for relaxation"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "fr_listening_013",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'La pollution de l'air urbain aggrave la santé des personnes âgées.' Question: Who is most affected by urban air pollution according to the speaker?",
+    "answer": "the elderly",
+    "acceptableAnswers": [
+      "old people",
+      "elderly people",
+      "older people"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_014",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Phones",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'ai acheté un nouveau portable hier parce que l'ancien ne fonctionnait plus.' Question: Why did the speaker buy a new phone?",
+    "answer": "the old one did not work",
+    "acceptableAnswers": [
+      "the old phone was broken",
+      "old one stopped working"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_015",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "University",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'J'espère étudier la médecine à Paris dans deux ans.' Question: What and where does the speaker hope to study?",
+    "answer": "medicine in Paris",
+    "acceptableAnswers": [
+      "medicine, Paris"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_016",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je porte une veste bleue inconfortable et une chemise blanche.' Question: What clothing items is the speaker wearing?",
+    "answer": "an uncomfortable blue jacket and a white shirt",
+    "acceptableAnswers": [
+      "blue jacket, white shirt",
+      "uncomfortable blue blazer and white shirt"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_017",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Accommodation",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Nous avons logé dans une auberge de jeunesse près du centre historique.' Question: What type of accommodation and where did they stay?",
+    "answer": "youth hostel near the historic center",
+    "acceptableAnswers": [
+      "hostel, near historic center",
+      "youth hostel, historic center"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_018",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'J'adore la quiche lorraine, mais mon frère préfère la salade.' Question: What food preferences are mentioned?",
+    "answer": "quiche lorraine for the speaker, salad for the brother",
+    "acceptableAnswers": [
+      "quiche and salad",
+      "quiche lorraine and salad"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "fr_listening_019",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Celebrations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Pour mon anniversaire, nous sommes allés manger dans un restaurant trois étoiles.' Question: How did the speaker celebrate their birthday?",
+    "answer": "eating out at a three-star restaurant",
+    "acceptableAnswers": [
+      "dining at a 3-star restaurant",
+      "going to a 3-star restaurant"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "fr_listening_020",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Environment",
+    "subtopic": "Local Area",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Je vis dans un quartier très bruyant avec beaucoup de circulation.' Question: Describe the speaker's neighborhood.",
+    "answer": "very noisy with lots of traffic",
+    "acceptableAnswers": [
+      "noisy, lots of traffic",
+      "noisy with traffic"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_021",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Internet",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'utilise internet pour télécharger de la musique et bavarder avec mes amis.' Question: What two things does the speaker use the internet for?",
+    "answer": "downloading music and chatting with friends",
+    "acceptableAnswers": [
+      "music and chatting with friends",
+      "downloading music, chat"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_022",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Jobs",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Je veux travailler comme bénévole à l'étranger l'année prochaine.' Question: What are the speaker's plans for next year?",
+    "answer": "work as a volunteer abroad",
+    "acceptableAnswers": [
+      "volunteer overseas",
+      "do volunteering abroad"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_023",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Je suis allé en voyage scolaire à Lyon et j'ai appris des choses incroyables sur l'histoire.' Question: Where did the speaker go and what did they learn?",
+    "answer": "Lyon and learned incredible things about history",
+    "acceptableAnswers": [
+      "Lyon, history",
+      "Lyon, learned history"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_024",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Il a fait très beau hier, mais aujourd'hui il pleut des cordes.' Question: Describe the weather yesterday and today.",
+    "answer": "sunny yesterday, pouring today",
+    "acceptableAnswers": [
+      "sunny yesterday, raining cats and dogs today",
+      "sun yesterday, rain today"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_025",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Je préfère regarder les films en version originale avec des sous-titres.' Question: How does the speaker prefer to watch movies?",
+    "answer": "in the original version with subtitles",
+    "acceptableAnswers": [
+      "with subtitles, original version",
+      "subtitled original version"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "cinema"
+    ]
+  },
+  {
+    "id": "fr_listening_026",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Relationships",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je m'entends très bien avec ma mère, mais mon père est plus strict.' Question: What is the relationship with the parents like?",
+    "answer": "gets on great with mother, father is stricter",
+    "acceptableAnswers": [
+      "good with mother, strict father",
+      "loves mother, strict father"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "fr_listening_027",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Le changement climatique menace la vie marine dans le nord.' Question: What is threatened by climate change according to the text?",
+    "answer": "marine life in the north",
+    "acceptableAnswers": [
+      "sea life in the north",
+      "ocean life"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_028",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Games",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je joue à des jeux vidéo avec mon frère parce que c'est passionnant.' Question: Who and why does the speaker play video games with?",
+    "answer": "with their brother because it is exciting",
+    "acceptableAnswers": [
+      "brother, exciting",
+      "brother, thrill"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_029",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Salary",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Un bon salaire est important, mais je préfère avoir un travail qui me passionne.' Question: What is more important than a good salary according to the speaker?",
+    "answer": "having a job they are passionate about",
+    "acceptableAnswers": [
+      "having a passionate job",
+      "doing something they love"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_030",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Mon professeur de sciences explique les choses avec beaucoup de clarté.' Question: Why does the speaker like the science teacher?",
+    "answer": "she explains things very clearly",
+    "acceptableAnswers": [
+      "explains clearly",
+      "good explanations"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_031",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Je préfère voyager en train car c'est plus écologique.' Question: Why does the speaker prefer to travel by train?",
+    "answer": "it is more environmentally friendly",
+    "acceptableAnswers": [
+      "more eco-friendly",
+      "better for env",
+      "green"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_032",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Eating Out",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Hier soir, nous avons mangé des crêpes traditionnelles dans un bistrot.' Question: What did they do yesterday?",
+    "answer": "ate traditional crêpes at a bistro",
+    "acceptableAnswers": [
+      "ate crepes",
+      "had traditional crepes"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "fr_listening_033",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Friends",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Mon meilleur ami est très compréhensif et m'écoute quand j'ai des problèmes.' Question: Describe the speaker's best friend.",
+    "answer": "very understanding and listens during problems",
+    "acceptableAnswers": [
+      "understanding and listens",
+      "supportive friend"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "friends"
+    ]
+  },
+  {
+    "id": "fr_listening_034",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Energy",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Éteindre les lumières inutiles aide à économiser l'énergie à la maison.' Question: What helps to save energy at home?",
+    "answer": "turning off unused lights",
+    "acceptableAnswers": [
+      "turning off lights",
+      "switching off unneeded lights"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_035",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Computers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je fais mes devoirs avec mon ordinateur portable dans ma chambre.' Question: Where and with what does the speaker do homework?",
+    "answer": "in their bedroom with their laptop",
+    "acceptableAnswers": [
+      "bedroom, laptop",
+      "laptop, bedroom"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_036",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Future",
+    "subtopic": "Ambition",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'espère acquérir de l'expérience professionnelle avant de décider de ma carrière.' Question: What does the speaker hope to do before deciding their career?",
+    "answer": "gain work experience",
+    "acceptableAnswers": [
+      "get a work experience",
+      "gain experience"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_037",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Clubs",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Je participe au club de théâtre scolaire parce que cela améliore ma confiance en moi.' Question: What club does the speaker participate in and why?",
+    "answer": "drama club because it improves confidence",
+    "acceptableAnswers": [
+      "theatre club, builds confidence",
+      "school drama, helps confidence"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_038",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'ai acheté beaucoup de souvenirs faits à la main au marché local.' Question: What did the speaker buy at the local market?",
+    "answer": "many handmade souvenirs",
+    "acceptableAnswers": [
+      "handmade gifts",
+      "souvenirs",
+      "crafts"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_039",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Je suis passionné par la photographie de nature car elle capture la beauté éphémère.' Question: What passion is mentioned and why?",
+    "answer": "nature photography because it captures fleeting beauty",
+    "acceptableAnswers": [
+      "nature photography, beauty",
+      "photography, nature beauty"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "fr_listening_040",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Pets",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'J'ai un chat noir très indépendant.' Question: What kind of pet does the speaker have?",
+    "answer": "a very independent black cat",
+    "acceptableAnswers": [
+      "black cat",
+      "independent cat"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "fr_listening_041",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Water",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Il faut économiser l'eau en fermant le robinet quand on se brosse les dents.' Question: How can we save water according to the user?",
+    "answer": "closing the tap when brushing teeth",
+    "acceptableAnswers": [
+      "turning off tap while brushing",
+      "shutting water when brushing teeth"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_042",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "E-books",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je préfère les livres numériques car ils ne pèsent rien.' Question: Why does the speaker prefer e-books?",
+    "answer": "they weigh nothing",
+    "acceptableAnswers": [
+      "lightweight",
+      "easy to carry",
+      "no weight"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_043",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Aspirations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'J'espère trouver un emploi stimulant dans le secteur financier.' Question: What kind of job and in which sector does the speaker hope to work?",
+    "answer": "a challenging job in the financial sector",
+    "acceptableAnswers": [
+      "challenging job, finance",
+      "finance job"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_044",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facility",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Notre bibliothèque scolaire vient d'installer de nouveaux ordinateurs.' Question: What was recently installed in the school library?",
+    "answer": "new computers",
+    "acceptableAnswers": [
+      "computers",
+      "new PCs"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_045",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Review",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'L'hôtel était luxueux, mais le service à la réception était horrible.' Question: What is the speaker's review of the hotel?",
+    "answer": "luxurious hotel, but reception service was dreadful",
+    "acceptableAnswers": [
+      "luxurious but bad reception",
+      "fancy but terrible service"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_046",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Arts",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Je suis fasciné par les galeries d'art contemporain le samedi.' Question: What does the speaker love to do on Saturdays?",
+    "answer": "visiting contemporary art galleries",
+    "acceptableAnswers": [
+      "visiting art galleries",
+      "go to art galleries"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "fr_listening_047",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Town",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Mon village natal est célèbre pour son ancien château médiéval.' Question: Why is the speaker's hometown famous?",
+    "answer": "its ancient medieval castle",
+    "acceptableAnswers": [
+      "medieval castle",
+      "old castle"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_048",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'On devrait interdire la circulation dans le centre historique pour réduire la pollution.' Question: What proposal is made to reduce smog in the historic center?",
+    "answer": "ban traffic in the historic center",
+    "acceptableAnswers": [
+      "forbid cars in central historic area",
+      "no traffic in city center"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_049",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "E-safety",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je ne partage pas mes mots de passe pour des raisons de sécurité.' Question: Why does the speaker not share password?",
+    "answer": "for security reasons",
+    "acceptableAnswers": [
+      "safe online",
+      "security",
+      "protect privacy"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_050",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Study",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'J'ai décidé d'étudier l'ingénierie informatique après avoir fait un atelier pratique.' Question: Why did the speaker decide to study computer engineering?",
+    "answer": "after doing a practical workshop",
+    "acceptableAnswers": [
+      "after a workshop",
+      "because of a coding workshop"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'ai nettoyé la cuisine après le dîner.' Question: What chore did Marie do? (Set B)",
+    "answer": "cleaned the kitchen",
+    "explanation": "Marie mentions 'nettoyé la cuisine' which translates to cleaned the kitchen.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "fr_listening_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Problems",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'L'hôtel était très bruyant et la nourriture était horrible.' Question: What were the two problems with the hotel? (Set B)",
+    "answer": "noisy and horrible food",
+    "acceptableAnswers": [
+      "it was noisy and food was bad",
+      "noisy, bad food",
+      "noise and bad food"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_003_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ma matière préférée est le dessin parce que cela me permet d'être créative.' Question: What is the speaker's favorite subject? (Set B)",
+    "answer": "art",
+    "acceptableAnswers": [
+      "drawing",
+      "fine art"
+    ],
+    "explanation": "The speaker mentions 'le dessin' which is art/drawing.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_004_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Dans notre collège, il est interdit d'utiliser le portable en classe, ce que je trouve juste.' Question: What is the rule and what is the speaker's opinion? (Set B)",
+    "answer": "phones are banned and they think it is fair",
+    "acceptableAnswers": [
+      "no phones in class and it is fair",
+      "mobile ban in class which is fair"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Je joue au basket le mardi soir avec mes amis.' Question: What sport does the speaker play on Tuesdays? (Set B)",
+    "answer": "basketball",
+    "acceptableAnswers": [
+      "play basketball"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "sports"
+    ]
+  },
+  {
+    "id": "fr_listening_006_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Family",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'ai un frère aîné qui s'appelle Charles et il est très drôle.' Question: Describe Charles according to the speaker. (Set B)",
+    "answer": "an older brother who is very funny",
+    "acceptableAnswers": [
+      "older brother, funny",
+      "older brother, humorous"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "fr_listening_007_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Chez moi, nous recyclons toutes les bouteilles en verre et le carton.' Question: What two items does the family recycle? (Set B)",
+    "answer": "glass bottles and cardboard",
+    "acceptableAnswers": [
+      "glass and cardboard",
+      "bottles and cardboard"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_008_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Je passe deux heures par jour sur Instagram, je pense que c'est une perte de temps.' Question: What is the speaker's opinion about using Instagram? (Set B)",
+    "answer": "it is a waste of time",
+    "acceptableAnswers": [
+      "waste of time",
+      "useless",
+      "losing time"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_009_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Future",
+    "subtopic": "Careers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Plus tard, je veux devenir infirmier pour aider les patients.' Question: What job does the speaker want to do in the future? (Set B)",
+    "answer": "nurse",
+    "acceptableAnswers": [
+      "a nurse",
+      "male nurse"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_010_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Destination",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Cet été, je vais aller à la plage dans le sud de la France.' Question: Where is the speaker going this summer? (Set B)",
+    "answer": "the beach in the south of France",
+    "acceptableAnswers": [
+      "beach, south of France",
+      "south France beach"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_011_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Je préfère aller à des concerts de rock parce que l'ambiance est superbe.' Question: Why does the speaker prefer rock concerts? (Set B)",
+    "answer": "the atmosphere is superb",
+    "acceptableAnswers": [
+      "great atmosphere",
+      "best atmosphere",
+      "atmosphere is amazing"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "music"
+    ]
+  },
+  {
+    "id": "fr_listening_012_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je fais de la natation trois fois par semaine parce que cela me détend.' Question: How often and why does the speaker do swimming? (Set B)",
+    "answer": "three times a week because it relaxes them",
+    "acceptableAnswers": [
+      "3 times a week, relaxing",
+      "three times weekly, for relaxation"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "fr_listening_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'La pollution de l'air urbain aggrave la santé des personnes âgées.' Question: Who is most affected by urban air pollution according to the speaker? (Set B)",
+    "answer": "the elderly",
+    "acceptableAnswers": [
+      "old people",
+      "elderly people",
+      "older people"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_014_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Phones",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'ai acheté un nouveau portable hier parce que l'ancien ne fonctionnait plus.' Question: Why did the speaker buy a new phone? (Set B)",
+    "answer": "the old one did not work",
+    "acceptableAnswers": [
+      "the old phone was broken",
+      "old one stopped working"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "University",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'J'espère étudier la médecine à Paris dans deux ans.' Question: What and where does the speaker hope to study? (Set B)",
+    "answer": "medicine in Paris",
+    "acceptableAnswers": [
+      "medicine, Paris"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_016_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je porte une veste bleue inconfortable et une chemise blanche.' Question: What clothing items is the speaker wearing? (Set B)",
+    "answer": "an uncomfortable blue jacket and a white shirt",
+    "acceptableAnswers": [
+      "blue jacket, white shirt",
+      "uncomfortable blue blazer and white shirt"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Accommodation",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Nous avons logé dans une auberge de jeunesse près du centre historique.' Question: What type of accommodation and where did they stay? (Set B)",
+    "answer": "youth hostel near the historic center",
+    "acceptableAnswers": [
+      "hostel, near historic center",
+      "youth hostel, historic center"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_018_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'J'adore la quiche lorraine, mais mon frère préfère la salade.' Question: What food preferences are mentioned? (Set B)",
+    "answer": "quiche lorraine for the speaker, salad for the brother",
+    "acceptableAnswers": [
+      "quiche and salad",
+      "quiche lorraine and salad"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "fr_listening_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Celebrations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Pour mon anniversaire, nous sommes allés manger dans un restaurant trois étoiles.' Question: How did the speaker celebrate their birthday? (Set B)",
+    "answer": "eating out at a three-star restaurant",
+    "acceptableAnswers": [
+      "dining at a 3-star restaurant",
+      "going to a 3-star restaurant"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "fr_listening_020_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Environment",
+    "subtopic": "Local Area",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Je vis dans un quartier très bruyant avec beaucoup de circulation.' Question: Describe the speaker's neighborhood. (Set B)",
+    "answer": "very noisy with lots of traffic",
+    "acceptableAnswers": [
+      "noisy, lots of traffic",
+      "noisy with traffic"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_021_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Internet",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'utilise internet pour télécharger de la musique et bavarder avec mes amis.' Question: What two things does the speaker use the internet for? (Set B)",
+    "answer": "downloading music and chatting with friends",
+    "acceptableAnswers": [
+      "music and chatting with friends",
+      "downloading music, chat"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_022_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Jobs",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Je veux travailler comme bénévole à l'étranger l'année prochaine.' Question: What are the speaker's plans for next year? (Set B)",
+    "answer": "work as a volunteer abroad",
+    "acceptableAnswers": [
+      "volunteer overseas",
+      "do volunteering abroad"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_023_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Je suis allé en voyage scolaire à Lyon et j'ai appris des choses incroyables sur l'histoire.' Question: Where did the speaker go and what did they learn? (Set B)",
+    "answer": "Lyon and learned incredible things about history",
+    "acceptableAnswers": [
+      "Lyon, history",
+      "Lyon, learned history"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_024_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Il a fait très beau hier, mais aujourd'hui il pleut des cordes.' Question: Describe the weather yesterday and today. (Set B)",
+    "answer": "sunny yesterday, pouring today",
+    "acceptableAnswers": [
+      "sunny yesterday, raining cats and dogs today",
+      "sun yesterday, rain today"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_025_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Je préfère regarder les films en version originale avec des sous-titres.' Question: How does the speaker prefer to watch movies? (Set B)",
+    "answer": "in the original version with subtitles",
+    "acceptableAnswers": [
+      "with subtitles, original version",
+      "subtitled original version"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "cinema"
+    ]
+  },
+  {
+    "id": "fr_listening_026_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Relationships",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je m'entends très bien avec ma mère, mais mon père est plus strict.' Question: What is the relationship with the parents like? (Set B)",
+    "answer": "gets on great with mother, father is stricter",
+    "acceptableAnswers": [
+      "good with mother, strict father",
+      "loves mother, strict father"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "fr_listening_027_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Le changement climatique menace la vie marine dans le nord.' Question: What is threatened by climate change according to the text? (Set B)",
+    "answer": "marine life in the north",
+    "acceptableAnswers": [
+      "sea life in the north",
+      "ocean life"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_028_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Games",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je joue à des jeux vidéo avec mon frère parce que c'est passionnant.' Question: Who and why does the speaker play video games with? (Set B)",
+    "answer": "with their brother because it is exciting",
+    "acceptableAnswers": [
+      "brother, exciting",
+      "brother, thrill"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_029_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Salary",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Un bon salaire est important, mais je préfère avoir un travail qui me passionne.' Question: What is more important than a good salary according to the speaker? (Set B)",
+    "answer": "having a job they are passionate about",
+    "acceptableAnswers": [
+      "having a passionate job",
+      "doing something they love"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_030_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Mon professeur de sciences explique les choses avec beaucoup de clarté.' Question: Why does the speaker like the science teacher? (Set B)",
+    "answer": "she explains things very clearly",
+    "acceptableAnswers": [
+      "explains clearly",
+      "good explanations"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_031_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Je préfère voyager en train car c'est plus écologique.' Question: Why does the speaker prefer to travel by train? (Set B)",
+    "answer": "it is more environmentally friendly",
+    "acceptableAnswers": [
+      "more eco-friendly",
+      "better for env",
+      "green"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_032_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Eating Out",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Hier soir, nous avons mangé des crêpes traditionnelles dans un bistrot.' Question: What did they do yesterday? (Set B)",
+    "answer": "ate traditional crêpes at a bistro",
+    "acceptableAnswers": [
+      "ate crepes",
+      "had traditional crepes"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "fr_listening_033_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Friends",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Mon meilleur ami est très compréhensif et m'écoute quand j'ai des problèmes.' Question: Describe the speaker's best friend. (Set B)",
+    "answer": "very understanding and listens during problems",
+    "acceptableAnswers": [
+      "understanding and listens",
+      "supportive friend"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "friends"
+    ]
+  },
+  {
+    "id": "fr_listening_034_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Energy",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Éteindre les lumières inutiles aide à économiser l'énergie à la maison.' Question: What helps to save energy at home? (Set B)",
+    "answer": "turning off unused lights",
+    "acceptableAnswers": [
+      "turning off lights",
+      "switching off unneeded lights"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_035_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Computers",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je fais mes devoirs avec mon ordinateur portable dans ma chambre.' Question: Where and with what does the speaker do homework? (Set B)",
+    "answer": "in their bedroom with their laptop",
+    "acceptableAnswers": [
+      "bedroom, laptop",
+      "laptop, bedroom"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_036_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Future",
+    "subtopic": "Ambition",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'espère acquérir de l'expérience professionnelle avant de décider de ma carrière.' Question: What does the speaker hope to do before deciding their career? (Set B)",
+    "answer": "gain work experience",
+    "acceptableAnswers": [
+      "get a work experience",
+      "gain experience"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_037_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Clubs",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Je participe au club de théâtre scolaire parce que cela améliore ma confiance en moi.' Question: What club does the speaker participate in and why? (Set B)",
+    "answer": "drama club because it improves confidence",
+    "acceptableAnswers": [
+      "theatre club, builds confidence",
+      "school drama, helps confidence"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_038_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'J'ai acheté beaucoup de souvenirs faits à la main au marché local.' Question: What did the speaker buy at the local market? (Set B)",
+    "answer": "many handmade souvenirs",
+    "acceptableAnswers": [
+      "handmade gifts",
+      "souvenirs",
+      "crafts"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_039_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Je suis passionné par la photographie de nature car elle capture la beauté éphémère.' Question: What passion is mentioned and why? (Set B)",
+    "answer": "nature photography because it captures fleeting beauty",
+    "acceptableAnswers": [
+      "nature photography, beauty",
+      "photography, nature beauty"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "fr_listening_040_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Pets",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'J'ai un chat noir très indépendant.' Question: What kind of pet does the speaker have? (Set B)",
+    "answer": "a very independent black cat",
+    "acceptableAnswers": [
+      "black cat",
+      "independent cat"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "fr_listening_041_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Water",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Il faut économiser l'eau en fermant le robinet quand on se brosse les dents.' Question: How can we save water according to the user? (Set B)",
+    "answer": "closing the tap when brushing teeth",
+    "acceptableAnswers": [
+      "turning off tap while brushing",
+      "shutting water when brushing teeth"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_042_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "E-books",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je préfère les livres numériques car ils ne pèsent rien.' Question: Why does the speaker prefer e-books? (Set B)",
+    "answer": "they weigh nothing",
+    "acceptableAnswers": [
+      "lightweight",
+      "easy to carry",
+      "no weight"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_043_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Aspirations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'J'espère trouver un emploi stimulant dans le secteur financier.' Question: What kind of job and in which sector does the speaker hope to work? (Set B)",
+    "answer": "a challenging job in the financial sector",
+    "acceptableAnswers": [
+      "challenging job, finance",
+      "finance job"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  },
+  {
+    "id": "fr_listening_044_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facility",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Notre bibliothèque scolaire vient d'installer de nouveaux ordinateurs.' Question: What was recently installed in the school library? (Set B)",
+    "answer": "new computers",
+    "acceptableAnswers": [
+      "computers",
+      "new PCs"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "fr_listening_045_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Review",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'L'hôtel était luxueux, mais le service à la réception était horrible.' Question: What is the speaker's review of the hotel? (Set B)",
+    "answer": "luxurious hotel, but reception service was dreadful",
+    "acceptableAnswers": [
+      "luxurious but bad reception",
+      "fancy but terrible service"
+    ],
+    "marks": 2,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_046_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Arts",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Je suis fasciné par les galeries d'art contemporain le samedi.' Question: What does the speaker love to do on Saturdays? (Set B)",
+    "answer": "visiting contemporary art galleries",
+    "acceptableAnswers": [
+      "visiting art galleries",
+      "go to art galleries"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "fr_listening_047_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Town",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Mon village natal est célèbre pour son ancien château médiéval.' Question: Why is the speaker's hometown famous? (Set B)",
+    "answer": "its ancient medieval castle",
+    "acceptableAnswers": [
+      "medieval castle",
+      "old castle"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "travel"
+    ]
+  },
+  {
+    "id": "fr_listening_048_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'On devrait interdire la circulation dans le centre historique pour réduire la pollution.' Question: What proposal is made to reduce smog in the historic center? (Set B)",
+    "answer": "ban traffic in the historic center",
+    "acceptableAnswers": [
+      "forbid cars in central historic area",
+      "no traffic in city center"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "fr_listening_049_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "E-safety",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Je ne partage pas mes mots de passe pour des raisons de sécurité.' Question: Why does the speaker not share password? (Set B)",
+    "answer": "for security reasons",
+    "acceptableAnswers": [
+      "safe online",
+      "security",
+      "protect privacy"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "fr_listening_050_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Study",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'J'ai décidé d'étudier l'ingénierie informatique après avoir fait un atelier pratique.' Question: Why did the speaker decide to study computer engineering? (Set B)",
+    "answer": "after doing a practical workshop",
+    "acceptableAnswers": [
+      "after a workshop",
+      "because of a coding workshop"
+    ],
+    "marks": 1,
+    "tags": [
+      "listening",
+      "careers"
+    ]
+  }
+]

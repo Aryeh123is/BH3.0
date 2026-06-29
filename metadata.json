@@ -1,5 +1,6 @@
 {
   "name": "Vocariox",
-  "description": "The ultimate vocabulary mastery platform for Biblical Hebrew, Modern Hebrew, and more. Featuring Vocariox Smart-SRS for intuitive progress tracking.",
-  "requestFramePermissions": []
+  "description": "A comprehensive GCSE intelligence platform featuring deterministic past paper grading, target grade tracking, and a rule-based progression engine. Includes official 2024, 2023, and 2020 Biblical Hebrew exam papers with advanced offline caching and persistence.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

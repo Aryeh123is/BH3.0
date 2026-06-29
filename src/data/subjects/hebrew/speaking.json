@@ -1,0 +1,1196 @@
+[
+  {
+    "id": "ra-he-1",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "passageText": "אני ומשפחתי גרים בכפר קטן, אם כי עלי לומר שזה לפעמים קצת משעמם לצעירים. אתמול הלכתי למרכז הספורט עם חבריי ואחר כך אכלנו ארוחת ערב במסעדה האהובה עלי. בעתיד, הייתי רוצה לגור בעיר גדולה כי יש יותר דברים לעשות.",
+    "followUpQuestionIds": [
+      "conv-he-1",
+      "conv-he-2"
+    ]
+  },
+  {
+    "id": "ra-he-2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "passageText": "יש לי הרבה חברים בבית הספר אבל החבר הכי טוב שלי קורא לו דן. אנחנו מכירים כבר עשר שנים ותמיד עוזרים אחד לשני בשיעורי הבית. בסוף השבוע האחרון החלטנו ללכת לקולנוע לראות סרט אימה, שהיה מאוד מרגש. אני מאמין שחברות היא בסיסית כדי להיות מאושר.",
+    "followUpQuestionIds": [
+      "conv-he-3",
+      "conv-he-4"
+    ]
+  },
+  {
+    "id": "ra-he-3",
+    "type": "read_aloud",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "passageText": "בבית הספר שלי הלימודים מתחילים בשמונה וחצי בבוקר. המקצוע האהוב עלי הוא אמנות כי הוא מאפשר לי להיות יצירתי ולהירגע קצת. עם זאת, אני בכלל לא אוהב פיזיקה כי זה נראה לי מסובך מדי. בשנה הבאה אני מקווה לקבל ציונים טובים בכל המבחנים שלי.",
+    "followUpQuestionIds": [
+      "conv-he-5",
+      "conv-he-6"
+    ]
+  },
+  {
+    "id": "ra-he-4",
+    "type": "read_aloud",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "passageText": "בדרך כלל אני הולך לחופשה בחוף הים עם הוריי במהלך חודש אוגוסט. מה שאני הכי אוהב זה לשחות בים ולהשתזף בשמש על החול. בשנה שעברה נסענו לאיטליה וביקרנו בהרבה מונומנטים היסטוריים ברומא. זו הייתה חוויה בלתי נשכחת וצילמתי המון תמונות יפות.",
+    "followUpQuestionIds": [
+      "conv-he-7",
+      "conv-he-8"
+    ]
+  },
+  {
+    "id": "ra-he-5",
+    "type": "read_aloud",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "passageText": "כשאסיים את לימודיי, אני רוצה לעבוד כמהנדס כי אני אוהב מתמטיקה וטכנולוגיה. אבא שלי הוא אדריכל והתשוקה שלו לעיצוב תמיד נתנה לי השראה. בקיץ האחרון עשיתי התמחות במשרד שלו ולמדתי המון דברים מעניינים על בנייה מודרנית.",
+    "followUpQuestionIds": [
+      "conv-he-9",
+      "conv-he-10"
+    ]
+  },
+  {
+    "id": "ra-he-6",
+    "type": "read_aloud",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "passageText": "אני מאוד מודאג משינוי האקלים כי זו בעיה עולמית שמשפיעה על כולנו. בבית שלי אנחנו תמיד ממחזרים נייר וזכוכית, ומנסים להפחית את צריכת הפלסטיק. בחודש הבא אני עומד להשתתף בקמפיין לניקוי חופים עם קבוצת המתנדבים המקומית שלי.",
+    "followUpQuestionIds": [
+      "conv-he-13",
+      "conv-he-14"
+    ]
+  },
+  {
+    "id": "ra-he-7",
+    "type": "read_aloud",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "passageText": "אני נהנה מאוד לנגן בגיטרה החשמלית שלי בשעות הפנאי. פעם בשבוע אני נפגש עם חברי הלהקה שלי במועדון המקומי כדי לעשות חזרות. בשנה שעברה השתתפנו בפסטיבל מוזיקה גדול וזכינו במקום השני. זו הייתה הרגשה מדהימה.",
+    "followUpQuestionIds": [
+      "conv-he-11",
+      "conv-he-12"
+    ]
+  },
+  {
+    "id": "ra-he-8",
+    "type": "read_aloud",
+    "themeId": "theme-7-technology",
+    "language": "Hebrew",
+    "passageText": "האינטרנט הוא כלי חשוב ביותר ללמידה וגם לפנאי בחיי היום-יום. עם זאת, יש לזכור כי שימוש ממושך במסכים עלול להזיק לבריאות העיניים ולמנוע פעילות ספורטיבית. אתמול החלטתי לכבות את הטלפון שלי למשך חמש שעות והרגשתי חופשי.",
+    "followUpQuestionIds": [
+      "conv-he-15",
+      "conv-he-16"
+    ]
+  },
+  {
+    "id": "rp-he-1",
+    "type": "roleplay",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "scenarioPrompt": "אתה מדבר עם שותף חילופי הסטודנטים שלך על המשפחה והחברים שלך.",
+    "studentRole": "אתה",
+    "examinerRole": "שותף חילופין",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "תאר איך נראה החבר הכי טוב שלך מבחינה חיצונית.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "הסבר מה עשית אתה וחבריך בסוף השבוע.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "ציין בעיה קטנה שהייתה לך עם המשפחה שלך.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "שאל שאלה על התוכניות של חברך.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-he-7",
+    "type": "roleplay",
+    "themeId": "theme-7-technology",
+    "language": "Hebrew",
+    "scenarioPrompt": "אתה קונה מחשב חדש בחנות אלקטרוניקה.",
+    "studentRole": "לקוח",
+    "examinerRole": "מוכר",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "ספר לו איזה סוג מחשב אתה מחפש ולמה תשתמש בו.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "הסבר מדוע אתה מעדיף טאבלט או מחשב נייד.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "ציין כמה כסף אתה רוצה להוציא.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "שאל שאלה על האחריות.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-he-8",
+    "type": "roleplay",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "scenarioPrompt": "יש לך ראיון לעבודת קיץ בבית מלון.",
+    "studentRole": "מועמד",
+    "examinerRole": "מנהל המלון",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "הצג את עצמך ואמור מדוע אתה רוצה את העבודה הזו.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "ציין את כישורי השפה שלך.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "הסבר איזה ניסיון עבודה היה לך בעבר.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "שאל שאלה על שעות העבודה.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-he-2",
+    "type": "roleplay",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "scenarioPrompt": "אתה רוצה להזמין חדר בבית מלון בחיפה.",
+    "studentRole": "אורח",
+    "examinerRole": "פקיד קבלה",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "ציין כמה לילות ברצונך להזמין חדר.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "הסבר אם אתה מעדיף נוף לים או לעיר.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "פרט מהי רמת המחירים המקובלת עליך.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "שאל אם ארוחת הבוקר כלולה במחיר.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "pc-he-8",
+    "type": "photo_card",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "imageUrl": "",
+    "imageUrls": [],
+    "studentPrompts": [
+      "תאר מה אתה רואה בתמונה."
+    ],
+    "examinerPrompts": [
+      "תאר מה אתה רואה בתמונה.",
+      "מהם היתרונות של עבודה במשרד?",
+      "איזה סוג עבודה היית רוצה שתהיה לך בעתיד?"
+    ],
+    "followUpQuestionIds": [
+      "conv-he-9",
+      "conv-he-10"
+    ]
+  },
+  {
+    "id": "pc-he-1",
+    "type": "photo_card",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "imageUrl": "https://images.unsplash.com/photo-1511895426328-dc8714191300",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1511895426328-dc8714191300"
+    ],
+    "studentPrompts": [
+      "תאר את התמונה."
+    ],
+    "examinerPrompts": [
+      "תאר את התמונה.",
+      "האם אתה חושב שלהתחתן היא מסורת חשובה בימינו?",
+      "מה תחגוג עם המשפחה שלך בשנה הבאה?"
+    ],
+    "followUpQuestionIds": [
+      "conv-he-1",
+      "conv-he-2",
+      "conv-he-3"
+    ]
+  },
+  {
+    "id": "pc-he-2",
+    "type": "photo_card",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "imageUrl": "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51"
+    ],
+    "studentPrompts": [
+      "מה אתה רואה בתמונה הזו?"
+    ],
+    "examinerPrompts": [
+      "מה אתה רואה בתמונה הזו?",
+      "מדוע חשוב למחזר פלסטיק בבית?",
+      "מה עשית לאחרונה למען איכות הסביבה?"
+    ],
+    "followUpQuestionIds": [
+      "conv-he-13",
+      "conv-he-14"
+    ]
+  },
+  {
+    "id": "conv-he-1",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "האם אתה מסתדר טוב עם המשפחה שלך?"
+  },
+  {
+    "id": "conv-he-2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "מה עשית בסוף השבוע האחרון עם המשפחה שלך?"
+  },
+  {
+    "id": "conv-he-3",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "איך נראה החבר הכי טוב שלך?"
+  },
+  {
+    "id": "conv-he-4",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "מה אתה מעדיף לעשות עם החברים שלך?"
+  },
+  {
+    "id": "conv-he-5",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "איזה מקצוע אתה הכי אוהב?"
+  },
+  {
+    "id": "conv-he-6",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "האם אתה לובש תלבושת אחידה?"
+  },
+  {
+    "id": "conv-he-7",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "לאן הלכת לחופשה בשנה שעברה?"
+  },
+  {
+    "id": "conv-he-8",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "האם אתה מעדיף חופשות בחוף הים או בעיר?"
+  },
+  {
+    "id": "conv-he-9",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "האם תרצה לעבוד בחו\"ל בעתיד?"
+  },
+  {
+    "id": "conv-he-10",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "מהן התוכניות שלך לאחרי המבחנים?"
+  },
+  {
+    "id": "conv-he-11",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "מה אתה עושה בדרך כלל בזמנך הפנוי?"
+  },
+  {
+    "id": "conv-he-12",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "האם אתה מעדיף לצפות בסרטים בבית או בקולנוע?"
+  },
+  {
+    "id": "conv-he-13",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "מהי הבעיה הסביבתית החמורה ביותר עבורך?"
+  },
+  {
+    "id": "conv-he-14",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "מה אתה עושה כדי לחסוך במים בבית שלך?"
+  },
+  {
+    "id": "conv-he-15",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Hebrew",
+    "questionText": "באיזו תדירות אתה משתמש ברשתות חברתיות?"
+  },
+  {
+    "id": "conv-he-16",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Hebrew",
+    "questionText": "האם אתה מעדיף לקרוא ספרים מודפסים או ספרים אלקטרוניים?"
+  },
+  {
+    "id": "conv-he-17",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "תאר את הבית שלך."
+  },
+  {
+    "id": "conv-he-18",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "מהו המאכל המועדף עליך ולמה?"
+  },
+  {
+    "id": "conv-he-19",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "מה דעתך על שיעורי הבית שאתה מקבל?"
+  },
+  {
+    "id": "conv-he-20",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "כיצד היית משפר את בית הספר שלך?"
+  },
+  {
+    "id": "conv-he-21",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "עם מי היית רוצה לנסוע לחופשה חלומית?"
+  },
+  {
+    "id": "conv-he-22",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "האם ביקרת פעם בירושלים?"
+  },
+  {
+    "id": "conv-he-23",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "האם אתה רוצה ללמוד באוניברסיטה?"
+  },
+  {
+    "id": "conv-he-24",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "איזה מקצוע תלמד בעתיד?"
+  },
+  {
+    "id": "conv-he-25",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "איזה סוג ספורט אתה הכי אוהב לראות בטלוויזיה?"
+  },
+  {
+    "id": "conv-he-26",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "האם אתה מנגן בכלי נגינה כלשהו?"
+  },
+  {
+    "id": "conv-he-27",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "האם יש מספיק פארקים ושטחים ירוקים בעיר שלך?"
+  },
+  {
+    "id": "conv-he-28",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "כיצד הממשלה יכולה לעזור בהגנה על איכות הסביבה?"
+  },
+  {
+    "id": "conv-he-29",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "האם יש לך חיית מחמד בבית?"
+  },
+  {
+    "id": "conv-he-30",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "כיצד אתה חוגג את יום ההולדת שלך בדרך כלל?"
+  },
+  {
+    "id": "conv-he-31",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "מהו החלק המלחיץ ביותר בבית הספר עבורך?"
+  },
+  {
+    "id": "conv-he-32",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "ספר לי על טיול בית ספר מעניין שהיה לך."
+  },
+  {
+    "id": "conv-he-33",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "לאן תרצה לנסוע בחופשת הקיץ הבאה שלך?"
+  },
+  {
+    "id": "conv-he-34",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "האם אי פעם חווית בעיה במהלך חופשה?"
+  },
+  {
+    "id": "conv-he-35",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "מהי משרת החלומות שלך ולמה?"
+  },
+  {
+    "id": "conv-he-36",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "האם אתה מעדיף לעבוד לבד או בקבוצה?"
+  },
+  {
+    "id": "conv-he-37",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "איזה ספר מעניין קראת לאחרונה?"
+  },
+  {
+    "id": "conv-he-38",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "ספר לי על קונצרט או הופעה שהלכת אליה לאחרונה."
+  },
+  {
+    "id": "conv-he-39",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "מדוע חשוב לחסוך בחשמל בבית?"
+  },
+  {
+    "id": "conv-he-40",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "האם אתה משתמש בתחבורה ציבורית כדי להפחית זיהום?"
+  },
+  {
+    "id": "ra-he-1_v2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "passageText": "אני ומשפחתי גרים בכפר קטן, אם כי עלי לומר שזה לפעמים קצת משעמם לצעירים. אתמול הלכתי למרכז הספורט עם חבריי ואחר כך אכלנו ארוחת ערב במסעדה האהובה עלי. בעתיד, הייתי רוצה לגור בעיר גדולה כי יש יותר דברים לעשות.",
+    "followUpQuestionIds": [
+      "conv-he-1",
+      "conv-he-2"
+    ]
+  },
+  {
+    "id": "ra-he-2_v2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "passageText": "יש לי הרבה חברים בבית הספר אבל החבר הכי טוב שלי קורא לו דן. אנחנו מכירים כבר עשר שנים ותמיד עוזרים אחד לשני בשיעורי הבית. בסוף השבוע האחרון החלטנו ללכת לקולנוע לראות סרט אימה, שהיה מאוד מרגש. אני מאמין שחברות היא בסיסית כדי להיות מאושר.",
+    "followUpQuestionIds": [
+      "conv-he-3",
+      "conv-he-4"
+    ]
+  },
+  {
+    "id": "ra-he-3_v2",
+    "type": "read_aloud",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "passageText": "בבית הספר שלי הלימודים מתחילים בשמונה וחצי בבוקר. המקצוע האהוב עלי הוא אמנות כי הוא מאפשר לי להיות יצירתי ולהירגע קצת. עם זאת, אני בכלל לא אוהב פיזיקה כי זה נראה לי מסובך מדי. בשנה הבאה אני מקווה לקבל ציונים טובים בכל המבחנים שלי.",
+    "followUpQuestionIds": [
+      "conv-he-5",
+      "conv-he-6"
+    ]
+  },
+  {
+    "id": "ra-he-4_v2",
+    "type": "read_aloud",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "passageText": "בדרך כלל אני הולך לחופשה בחוף הים עם הוריי במהלך חודש אוגוסט. מה שאני הכי אוהב זה לשחות בים ולהשתזף בשמש על החול. בשנה שעברה נסענו לאיטליה וביקרנו בהרבה מונומנטים היסטוריים ברומא. זו הייתה חוויה בלתי נשכחת וצילמתי המון תמונות יפות.",
+    "followUpQuestionIds": [
+      "conv-he-7",
+      "conv-he-8"
+    ]
+  },
+  {
+    "id": "ra-he-5_v2",
+    "type": "read_aloud",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "passageText": "כשאסיים את לימודיי, אני רוצה לעבוד כמהנדס כי אני אוהב מתמטיקה וטכנולוגיה. אבא שלי הוא אדריכל והתשוקה שלו לעיצוב תמיד נתנה לי השראה. בקיץ האחרון עשיתי התמחות במשרד שלו ולמדתי המון דברים מעניינים על בנייה מודרנית.",
+    "followUpQuestionIds": [
+      "conv-he-9",
+      "conv-he-10"
+    ]
+  },
+  {
+    "id": "ra-he-6_v2",
+    "type": "read_aloud",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "passageText": "אני מאוד מודאג משינוי האקלים כי זו בעיה עולמית שמשפיעה על כולנו. בבית שלי אנחנו תמיד ממחזרים נייר וזכוכית, ומנסים להפחית את צריכת הפלסטיק. בחודש הבא אני עומד להשתתף בקמפיין לניקוי חופים עם קבוצת המתנדבים המקומית שלי.",
+    "followUpQuestionIds": [
+      "conv-he-13",
+      "conv-he-14"
+    ]
+  },
+  {
+    "id": "ra-he-7_v2",
+    "type": "read_aloud",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "passageText": "אני נהנה מאוד לנגן בגיטרה החשמלית שלי בשעות הפנאי. פעם בשבוע אני נפגש עם חברי הלהקה שלי במועדון המקומי כדי לעשות חזרות. בשנה שעברה השתתפנו בפסטיבל מוזיקה גדול וזכינו במקום השני. זו הייתה הרגשה מדהימה.",
+    "followUpQuestionIds": [
+      "conv-he-11",
+      "conv-he-12"
+    ]
+  },
+  {
+    "id": "ra-he-8_v2",
+    "type": "read_aloud",
+    "themeId": "theme-7-technology",
+    "language": "Hebrew",
+    "passageText": "האינטרנט הוא כלי חשוב ביותר ללמידה וגם לפנאי בחיי היום-יום. עם זאת, יש לזכור כי שימוש ממושך במסכים עלול להזיק לבריאות העיניים ולמנוע פעילות ספורטיבית. אתמול החלטתי לכבות את הטלפון שלי למשך חמש שעות והרגשתי חופשי.",
+    "followUpQuestionIds": [
+      "conv-he-15",
+      "conv-he-16"
+    ]
+  },
+  {
+    "id": "rp-he-1_v2",
+    "type": "roleplay",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "scenarioPrompt": "אתה מדבר עם שותף חילופי הסטודנטים שלך על המשפחה והחברים שלך.",
+    "studentRole": "אתה",
+    "examinerRole": "שותף חילופין",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "תאר איך נראה החבר הכי טוב שלך מבחינה חיצונית.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "הסבר מה עשית אתה וחבריך בסוף השבוע.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "ציין בעיה קטנה שהייתה לך עם המשפחה שלך.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "שאל שאלה על התוכניות של חברך.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-he-7_v2",
+    "type": "roleplay",
+    "themeId": "theme-7-technology",
+    "language": "Hebrew",
+    "scenarioPrompt": "אתה קונה מחשב חדש בחנות אלקטרוניקה.",
+    "studentRole": "לקוח",
+    "examinerRole": "מוכר",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "ספר לו איזה סוג מחשב אתה מחפש ולמה תשתמש בו.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "הסבר מדוע אתה מעדיף טאבלט או מחשב נייד.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "ציין כמה כסף אתה רוצה להוציא.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "שאל שאלה על האחריות.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-he-8_v2",
+    "type": "roleplay",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "scenarioPrompt": "יש לך ראיון לעבודת קיץ בבית מלון.",
+    "studentRole": "מועמד",
+    "examinerRole": "מנהל המלון",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "הצג את עצמך ואמור מדוע אתה רוצה את העבודה הזו.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "ציין את כישורי השפה שלך.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "הסבר איזה ניסיון עבודה היה לך בעבר.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "שאל שאלה על שעות העבודה.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-he-2_v2",
+    "type": "roleplay",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "scenarioPrompt": "אתה רוצה להזמין חדר בבית מלון בחיפה.",
+    "studentRole": "אורח",
+    "examinerRole": "פקיד קבלה",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "ציין כמה לילות ברצונך להזמין חדר.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "הסבר אם אתה מעדיף נוף לים או לעיר.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "פרט מהי רמת המחירים המקובלת עליך.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "שאל אם ארוחת הבוקר כלולה במחיר.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "pc-he-8_v2",
+    "type": "photo_card",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "imageUrl": "",
+    "imageUrls": [],
+    "studentPrompts": [
+      "תאר מה אתה רואה בתמונה."
+    ],
+    "examinerPrompts": [
+      "תאר מה אתה רואה בתמונה.",
+      "מהם היתרונות של עבודה במשרד?",
+      "איזה סוג עבודה היית רוצה שתהיה לך בעתיד?"
+    ],
+    "followUpQuestionIds": [
+      "conv-he-9",
+      "conv-he-10"
+    ]
+  },
+  {
+    "id": "pc-he-1_v2",
+    "type": "photo_card",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "imageUrl": "https://images.unsplash.com/photo-1511895426328-dc8714191300",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1511895426328-dc8714191300"
+    ],
+    "studentPrompts": [
+      "תאר את התמונה."
+    ],
+    "examinerPrompts": [
+      "תאר את התמונה.",
+      "האם אתה חושב שלהתחתן היא מסורת חשובה בימינו?",
+      "מה תחגוג עם המשפחה שלך בשנה הבאה?"
+    ],
+    "followUpQuestionIds": [
+      "conv-he-1",
+      "conv-he-2",
+      "conv-he-3"
+    ]
+  },
+  {
+    "id": "pc-he-2_v2",
+    "type": "photo_card",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "imageUrl": "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51"
+    ],
+    "studentPrompts": [
+      "מה אתה רואה בתמונה הזו?"
+    ],
+    "examinerPrompts": [
+      "מה אתה רואה בתמונה הזו?",
+      "מדוע חשוב למחזר פלסטיק בבית?",
+      "מה עשית לאחרונה למען איכות הסביבה?"
+    ],
+    "followUpQuestionIds": [
+      "conv-he-13",
+      "conv-he-14"
+    ]
+  },
+  {
+    "id": "conv-he-1_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "האם אתה מסתדר טוב עם המשפחה שלך?"
+  },
+  {
+    "id": "conv-he-2_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "מה עשית בסוף השבוע האחרון עם המשפחה שלך?"
+  },
+  {
+    "id": "conv-he-3_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "איך נראה החבר הכי טוב שלך?"
+  },
+  {
+    "id": "conv-he-4_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "מה אתה מעדיף לעשות עם החברים שלך?"
+  },
+  {
+    "id": "conv-he-5_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "איזה מקצוע אתה הכי אוהב?"
+  },
+  {
+    "id": "conv-he-6_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "האם אתה לובש תלבושת אחידה?"
+  },
+  {
+    "id": "conv-he-7_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "לאן הלכת לחופשה בשנה שעברה?"
+  },
+  {
+    "id": "conv-he-8_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "האם אתה מעדיף חופשות בחוף הים או בעיר?"
+  },
+  {
+    "id": "conv-he-9_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "האם תרצה לעבוד בחו\"ל בעתיד?"
+  },
+  {
+    "id": "conv-he-10_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "מהן התוכניות שלך לאחרי המבחנים?"
+  },
+  {
+    "id": "conv-he-11_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "מה אתה עושה בדרך כלל בזמנך הפנוי?"
+  },
+  {
+    "id": "conv-he-12_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "האם אתה מעדיף לצפות בסרטים בבית או בקולנוע?"
+  },
+  {
+    "id": "conv-he-13_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "מהי הבעיה הסביבתית החמורה ביותר עבורך?"
+  },
+  {
+    "id": "conv-he-14_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "מה אתה עושה כדי לחסוך במים בבית שלך?"
+  },
+  {
+    "id": "conv-he-15_v2",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Hebrew",
+    "questionText": "באיזו תדירות אתה משתמש ברשתות חברתיות?"
+  },
+  {
+    "id": "conv-he-16_v2",
+    "type": "conversation_question",
+    "themeId": "theme-7-technology",
+    "language": "Hebrew",
+    "questionText": "האם אתה מעדיף לקרוא ספרים מודפסים או ספרים אלקטרוניים?"
+  },
+  {
+    "id": "conv-he-17_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "תאר את הבית שלך."
+  },
+  {
+    "id": "conv-he-18_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "מהו המאכל המועדף עליך ולמה?"
+  },
+  {
+    "id": "conv-he-19_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "מה דעתך על שיעורי הבית שאתה מקבל?"
+  },
+  {
+    "id": "conv-he-20_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "כיצד היית משפר את בית הספר שלך?"
+  },
+  {
+    "id": "conv-he-21_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "עם מי היית רוצה לנסוע לחופשה חלומית?"
+  },
+  {
+    "id": "conv-he-22_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "האם ביקרת פעם בירושלים?"
+  },
+  {
+    "id": "conv-he-23_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "האם אתה רוצה ללמוד באוניברסיטה?"
+  },
+  {
+    "id": "conv-he-24_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "איזה מקצוע תלמד בעתיד?"
+  },
+  {
+    "id": "conv-he-25_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "איזה סוג ספורט אתה הכי אוהב לראות בטלוויזיה?"
+  },
+  {
+    "id": "conv-he-26_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "האם אתה מנגן בכלי נגינה כלשהו?"
+  },
+  {
+    "id": "conv-he-27_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "האם יש מספיק פארקים ושטחים ירוקים בעיר שלך?"
+  },
+  {
+    "id": "conv-he-28_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "כיצד הממשלה יכולה לעזור בהגנה על איכות הסביבה?"
+  },
+  {
+    "id": "conv-he-29_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "האם יש לך חיית מחמד בבית?"
+  },
+  {
+    "id": "conv-he-30_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Hebrew",
+    "questionText": "כיצד אתה חוגג את יום ההולדת שלך בדרך כלל?"
+  },
+  {
+    "id": "conv-he-31_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "מהו החלק המלחיץ ביותר בבית הספר עבורך?"
+  },
+  {
+    "id": "conv-he-32_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Hebrew",
+    "questionText": "ספר לי על טיול בית ספר מעניין שהיה לך."
+  },
+  {
+    "id": "conv-he-33_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "לאן תרצה לנסוע בחופשת הקיץ הבאה שלך?"
+  },
+  {
+    "id": "conv-he-34_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Hebrew",
+    "questionText": "האם אי פעם חווית בעיה במהלך חופשה?"
+  },
+  {
+    "id": "conv-he-35_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "מהי משרת החלומות שלך ולמה?"
+  },
+  {
+    "id": "conv-he-36_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Hebrew",
+    "questionText": "האם אתה מעדיף לעבוד לבד או בקבוצה?"
+  },
+  {
+    "id": "conv-he-37_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "איזה ספר מעניין קראת לאחרונה?"
+  },
+  {
+    "id": "conv-he-38_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Hebrew",
+    "questionText": "ספר לי על קונצרט או הופעה שהלכת אליה לאחרונה."
+  },
+  {
+    "id": "conv-he-39_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "מדוע חשוב לחסוך בחשמל בבית?"
+  },
+  {
+    "id": "conv-he-40_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Hebrew",
+    "questionText": "האם אתה משתמש בתחבורה ציבורית כדי להפחית זיהום?"
+  }
+]

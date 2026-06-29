@@ -1,0 +1,2124 @@
+[
+  {
+    "id": "ge_reading_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich mag Geschichte sehr, weil es sehr interessant ist, aber ich mag Mathe nicht.' Question: Does the person like math?",
+    "answer": "no",
+    "explanation": "The text says 'ich mag Mathe nicht'.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_002",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'In Zukunft glaube ich, dass soziale Medien für junge Leute weniger wichtig sein werden.' Question: What does the author think about the future of social media?",
+    "answer": "less important",
+    "acceptableAnswers": [
+      "it will be less important",
+      "will be less important"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "ge_reading_003",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Ich spiele jeden Samstag Tennis, aber mein Bruder spielt lieber Basketball.' Question: Which sport does the speaker's brother prefer?",
+    "answer": "basketball",
+    "acceptableAnswers": [
+      "Basketball"
+    ],
+    "explanation": "The text states 'mein Bruder spielt lieber Basketball' (my brother prefers playing basketball).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "sports"
+    ]
+  },
+  {
+    "id": "ge_reading_004",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Obwohl die Flüge nach Italien teuer waren, hat sich die Reise gelohnt, da die historischen Sehenswürdigkeiten in Rom unbeschreiblich schön waren.' Question: Was the trip to Italy worth it despite the cost, and why?",
+    "answer": "yes; the historical sights in Rome were incredibly beautiful",
+    "acceptableAnswers": [
+      "yes, historical sights in Rome",
+      "yes, because of Rome's sights"
+    ],
+    "explanation": "The text says 'hat sich die Reise gelohnt' (the trip was worth it) because the sights were 'unbeschreiblich schön' (indescribably beautiful).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_reading_005",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich wohne mit meiner Mutter und meinem Stiefvater in Köln. Mein älterer Bruder studiert schon in Hamburg.' Question: Where does the speaker's older brother live/study?",
+    "answer": "Hamburg",
+    "acceptableAnswers": [
+      "hamburg",
+      "in Hamburg"
+    ],
+    "explanation": "The text states 'Mein älterer Bruder studiert schon in Hamburg'.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_reading_006",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Climate Change",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Umweltverschmutzung lässt sich nicht über Nacht lösen, doch wenn jeder Bürger den öffentlichen Verkehr nutzen würde, könnten wir CO2-Emissionen drastisch senken.' Question: What specific individual action is suggested to reduce CO2 emissions?",
+    "answer": "use public transport",
+    "acceptableAnswers": [
+      "using public transport",
+      "use public transportation"
+    ],
+    "explanation": "The text suggests 'wenn jeder Bürger den öffentlichen Verkehr nutzen würde' (if every citizen would use public transport).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_reading_007",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Unsere Schule hat eine große Bibliothek und drei moderne Computerräume, aber leider keine Sporthalle.' Question: Which facility is missing from the school?",
+    "answer": "sports hall",
+    "acceptableAnswers": [
+      "gym",
+      "a sports hall",
+      "a gym"
+    ],
+    "explanation": "The speaker mentions 'leider keine Sporthalle' (unfortunately no sports hall).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_008",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Als Kind wollte ich Tierarzt werden, aber jetzt interessiere ich mich mehr für Journalismus, weil ich gern schreibe.' Question: Contrast the speaker's childhood ambition with their current career interest.",
+    "answer": "wanted to be a vet; now wants to be a journalist",
+    "acceptableAnswers": [
+      "vet then, journalist now",
+      "veterinarian as child, journalist now"
+    ],
+    "explanation": "The speaker says 'Als Kind wollte ich Tierarzt werden' (As a child I wanted to be a vet) but is now interested in 'Journalismus' (journalism).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_009",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Zum Mittagessen trinke ich immer Wasser, aber zum Abendessen trinke ich lieber Apfelsaft.' Question: What does the speaker prefer to drink at dinner?",
+    "answer": "apple juice",
+    "acceptableAnswers": [
+      "apple juice",
+      "an apple juice"
+    ],
+    "explanation": "The text says 'zum Abendessen trinke ich lieber Apfelsaft' (for dinner I prefer to drink apple juice).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_reading_010",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Accommodation",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Obwohl das Hotel einen schönen Blick auf das Meer bot, waren die Zimmer unerträglich heiß, da es keine Klimaanlage gab.' Question: What was the main complaint about the hotel rooms, and why?",
+    "answer": "unbearably hot because there was no air conditioning",
+    "acceptableAnswers": [
+      "too hot, no air conditioning",
+      "unbearably hot, no AC"
+    ],
+    "explanation": "Rooms were 'unerträglich heiß' (unbearably hot) because 'es keine Klimaanlage gab' (there was no air conditioning).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "accommodation"
+    ]
+  },
+  {
+    "id": "ge_reading_011",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Unter der Woche stehe ich um sechs Uhr auf, aber am Wochenende schlafe ich oft bis neun Uhr.' Question: What time does the speaker get up on weekdays?",
+    "answer": "6:00 AM",
+    "acceptableAnswers": [
+      "6",
+      "6am",
+      "six",
+      "six o'clock"
+    ],
+    "explanation": "The speaker wakes up 'um sechs Uhr' (at six o'clock) on weekdays ('Unter der Woche').",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_reading_012",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Ich verbringe zu viel Zeit vor dem Bildschirm. Meine Mutter sagt, ich soll mehr Bücher lesen, aber E-Books sind einfach praktischer.' Question: Why does the speaker prefer E-Books despite their mother's advice?",
+    "answer": "they are more practical",
+    "acceptableAnswers": [
+      "practical",
+      "because they are more practical"
+    ],
+    "explanation": "The speaker mentions 'E-Books sind einfach praktischer' (E-books are simply more practical).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "technology"
+    ]
+  },
+  {
+    "id": "ge_reading_013",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich wasche nach dem Abendessen das Geschirr, während meine Schwester den Tisch deckt.' Question: What chore does the speaker's sister do?",
+    "answer": "sets the table",
+    "acceptableAnswers": [
+      "set the table",
+      "laying the table"
+    ],
+    "explanation": "The text says 'während meine Schwester den Tisch deckt' (while my sister sets/lays the table).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_reading_014",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Die meisten Schüler hassen die Uniform. Ich finde sie jedoch gut, da man sich morgens keine Gedanken über Kleidung machen muss.' Question: Why does the speaker support wearing a school uniform?",
+    "answer": "you do not have to worry about what to wear in the morning",
+    "acceptableAnswers": [
+      "no need to worry about clothes in morning",
+      "saves time thinking what to wear"
+    ],
+    "explanation": "The speaker likes it because 'man sich morgens keine Gedanken über Kleidung machen muss' (you don't have to worry/think about clothes in the morning).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_015",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'In meiner Freizeit lese ich gern Abenteuerromane, aber mein Lieblingshobby ist Malen.' Question: What is the speaker's favorite hobby?",
+    "answer": "painting",
+    "acceptableAnswers": [
+      "art",
+      "painting pictures"
+    ],
+    "explanation": "The speaker says 'mein Lieblingshobby ist Malen' (my favorite hobby is painting).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_reading_016",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Part-time Job",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Obwohl die Arbeit im Supermarkt anstrengend ist, hilft mir das Geld, mein erstes Auto zu finanzieren.' Question: What is the speaker using their supermarket earnings for?",
+    "answer": "to finance their first car",
+    "acceptableAnswers": [
+      "buy a car",
+      "pay for a car",
+      "first car"
+    ],
+    "explanation": "The money 'hilft mir, mein erstes Auto zu finanzieren' (helps me to finance my first car).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_017",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Wir fahren jedes Jahr nach Frankreich, da wir ein kleines Ferienhaus in der Normandie besitzen.' Question: Why does the speaker's family go to France every year?",
+    "answer": "they own a small holiday home in Normandy",
+    "acceptableAnswers": [
+      "they have a holiday house there",
+      "own a house in Normandy"
+    ],
+    "explanation": "They own 'ein kleines Ferienhaus in der Normandie' (a small holiday house in Normandy).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_reading_018",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Flussverschmutzung durch Plastikmüll gefährdet viele Fischarten. Die Regierung muss strengere Strafen einführen.' Question: What solution does the speaker suggest to protect fish from river pollution?",
+    "answer": "the government must introduce stricter penalties",
+    "acceptableAnswers": [
+      "stricter fines/penalties",
+      "stricter laws"
+    ],
+    "explanation": "The speaker states 'Die Regierung muss strengere Strafen einführen' (The government must introduce stricter penalties/punishments).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_reading_019",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich höre gern Popmusik, wenn ich meine Hausaufgaben mache, weil es mir beim Konzentrieren hilft.' Question: Why does the speaker listen to pop music while doing homework?",
+    "answer": "it helps them concentrate",
+    "acceptableAnswers": [
+      "helps to concentrate",
+      "helps concentration"
+    ],
+    "explanation": "The speaker states 'weil es mir beim Konzentrieren hilft' (because it helps me concentrate).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "music"
+    ]
+  },
+  {
+    "id": "ge_reading_020",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Relationships",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Mit meiner besten Freundin kann ich über alles reden. Sie hat mich noch nie im Stich gelassen, was mir enorm wichtig ist.' Question: What quality of the best friend does the speaker value most?",
+    "answer": "she has never let them down",
+    "acceptableAnswers": [
+      "never lets them down",
+      "reliability",
+      "loyalty"
+    ],
+    "explanation": "The speaker says 'Sie hat mich noch nie im Stich gelassen' (She has never let me down / abandoned me).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "friends"
+    ]
+  },
+  {
+    "id": "ge_reading_021",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Kaugummikauen ist im Klassenzimmer streng verboten. Wer erwischt wird, muss nachsitzen.' Question: What is the punishment for chewing gum in the classroom?",
+    "answer": "detention",
+    "acceptableAnswers": [
+      "after school detention",
+      "must do detention"
+    ],
+    "explanation": "Chewing gum is forbidden; those caught 'muss nachsitzen' (must do detention).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_022",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Dieser neue Actionfilm hat fantastische Spezialeffekte, aber die Handlung ist völlig unlogisch und langweilig.' Question: What is the speaker's positive and negative critique of the action film?",
+    "answer": "fantastic special effects but a completely illogical and boring plot",
+    "acceptableAnswers": [
+      "good effects, boring plot",
+      "great effects, illogical story"
+    ],
+    "explanation": "Positive: 'fantastische Spezialeffekte' (fantastic special effects); Negative: 'Handlung ist völlig unlogisch und langweilig' (plot is completely illogical and boring).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "cinema"
+    ]
+  },
+  {
+    "id": "ge_reading_023",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Weather",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Im Winter schneit es oft in Bayern, was perfekt für Wintersportler ist.' Question: Why is the winter weather in Bavaria perfect for sports enthusiasts?",
+    "answer": "it snows often",
+    "acceptableAnswers": [
+      "snow",
+      "it snows",
+      "there is lots of snow"
+    ],
+    "explanation": "The text says 'Im Winter schneit es oft' (In winter it snows often), which is perfect for winter sports.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "weather"
+    ]
+  },
+  {
+    "id": "ge_reading_024",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "University",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Ich möchte an der Humboldt-Universität Physik studieren, weil sie einen hervorragenden Ruf im wissenschaftlichen Bereich genießt.' Question: Why does the speaker want to study physics at Humboldt University?",
+    "answer": "it enjoys an excellent reputation in the scientific field",
+    "acceptableAnswers": [
+      "excellent science reputation",
+      "it has a great reputation"
+    ],
+    "explanation": "The university 'genießt einen hervorragenden Ruf im wissenschaftlichen Bereich' (enjoys an excellent reputation in the scientific field).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_025",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Weekend",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Am Sonntag gehe ich meistens mit meiner Familie spazieren und danach essen wir Kuchen.' Question: What do they do after their walk on Sundays?",
+    "answer": "eat cake",
+    "acceptableAnswers": [
+      "have cake",
+      "eat some cake"
+    ],
+    "explanation": "The text says 'danach essen wir Kuchen' (afterwards we eat cake).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_reading_026",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Der kleine Buchladen an der Ecke überlebt nur, weil er einen persönlichen Kundenservice anbietet, der den Online-Riesen fehlt.' Question: Why is the small corner bookshop able to survive against online competitors?",
+    "answer": "it offers a personal customer service",
+    "acceptableAnswers": [
+      "personal customer service",
+      "friendly service",
+      "personal service"
+    ],
+    "explanation": "It survives because of 'persönlichen Kundenservice' (personal customer service).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ge_reading_027",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Unser Biologielehrer ist sehr geduldig, aber er spricht manchmal zu leise.' Question: What is the complaint about the biology teacher?",
+    "answer": "he speaks too quietly sometimes",
+    "acceptableAnswers": [
+      "speaks too softly",
+      "speaks too quiet",
+      "too quiet"
+    ],
+    "explanation": "The text says 'er spricht manchmal zu leise' (he speaks too quietly sometimes).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_028",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Festivals",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Das Oktoberfest zieht jährlich Millionen Besucher aus der ganzen Welt an, was die Hotels extrem teuer macht.' Question: What is the negative consequence of Oktoberfest on local tourism?",
+    "answer": "hotels become extremely expensive",
+    "acceptableAnswers": [
+      "hotels get expensive",
+      "hotel prices rise"
+    ],
+    "explanation": "The event makes 'die Hotels extrem teuer' (the hotels extremely expensive).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "festivals"
+    ]
+  },
+  {
+    "id": "ge_reading_029",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich fahre lieber mit der U-Bahn als mit dem Bus, weil es viel schneller ist.' Question: Why does the speaker prefer the underground to the bus?",
+    "answer": "it is much faster",
+    "acceptableAnswers": [
+      "it's faster",
+      "faster"
+    ],
+    "explanation": "The underground is preferred 'weil es viel schneller ist' (because it is much faster).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "transport"
+    ]
+  },
+  {
+    "id": "ge_reading_030",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Conservation",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Der Schutz unserer Wälder ist überlebenswichtig, um das Artensterben aufzuhalten. Wir müssen Holzprodukte bewusster konsumieren.' Question: What solution is proposed to help halt the extinction of species in forests?",
+    "answer": "consume wood products more consciously",
+    "acceptableAnswers": [
+      "buy wood products consciously",
+      "use less wood products"
+    ],
+    "explanation": "The text suggests 'Wir müssen Holzprodukte bewusster konsumieren' (We must consume wood products more consciously).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_reading_031",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich koche gern Pizza für meine Freunde, weil man die Zutaten einfach anpassen kann.' Question: Why does the speaker like to cook pizza for friends?",
+    "answer": "you can easily adapt the ingredients",
+    "acceptableAnswers": [
+      "easy to change toppings",
+      "easy to adapt ingredients",
+      "can choose ingredients"
+    ],
+    "explanation": "The speaker says 'weil man die Zutaten einfach anpassen kann' (because you can easily adapt the ingredients).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_reading_032",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Der Schüleraustausch in die Schweiz war unvergesslich. Wir haben täglich Deutsch gesprochen und die Alpen besichtigt.' Question: Name two activities the students did during the Swiss exchange.",
+    "answer": "spoke German daily and visited the Alps",
+    "acceptableAnswers": [
+      "practised German, visited Alps",
+      "spoke German, saw the Alps"
+    ],
+    "explanation": "They 'täglich Deutsch gesprochen' (spoke German daily) and 'die Alpen besichtigt' (visited/sighted the Alps).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_033",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Hobbies",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Mein Vater fotografiert gern Vögel im Garten, während meine Mutter lieber im Gewächshaus arbeitet.' Question: What is the mother's hobby?",
+    "answer": "working in the greenhouse",
+    "acceptableAnswers": [
+      "gardening",
+      "greenhouse work"
+    ],
+    "explanation": "The mother prefers to 'im Gewächshaus arbeiten' (work in the greenhouse).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "ge_reading_034",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Ich will später im Ausland leben, um eine neue Kultur kennenzulernen und meine Sprachkenntnisse zu perfektionieren.' Question: Name two goals the speaker hopes to achieve by living abroad.",
+    "answer": "to experience a new culture and perfect their language skills",
+    "acceptableAnswers": [
+      "learn new culture, perfect languages",
+      "experience new culture, improve languages"
+    ],
+    "explanation": "The speaker wants 'eine neue Kultur kennenzulernen' (to get to know a new culture) and 'meine Sprachkenntnisse zu perfektionieren' (to perfect my language skills).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_035",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Directions",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Das Rathaus liegt direkt neben dem großen Park. Man kann es nicht übersehen, da es ein rotes Dach hat.' Question: How can you identify the Town Hall according to the text?",
+    "answer": "it has a red roof",
+    "acceptableAnswers": [
+      "by its red roof",
+      "red roof"
+    ],
+    "explanation": "The text says 'da es ein rotes Dach hat' (because it has a red roof).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "directions"
+    ]
+  },
+  {
+    "id": "ge_reading_036",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Durch das Pfandsystem für Plastikflaschen in Deutschland konnte die Rücklaufquote extrem gesteigert werden.' Question: What system in Germany has boosted plastic bottle return rates?",
+    "answer": "the deposit system",
+    "acceptableAnswers": [
+      "pfand system",
+      "deposit return system",
+      "the Pfand system"
+    ],
+    "explanation": "The success is due to 'das Pfandsystem' (the bottle deposit system).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_reading_037",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Samstags ist der Markt sehr voll. Ich kaufe dort frisches Obst und Gemüse direkt von den Bauern.' Question: What items does the speaker purchase at the Saturday market?",
+    "answer": "fresh fruit and vegetables",
+    "acceptableAnswers": [
+      "fruit and veg",
+      "fresh fruit and veg",
+      "fruit, vegetables"
+    ],
+    "explanation": "The speaker buys 'frisches Obst und Gemüse' (fresh fruit and vegetables).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ge_reading_038",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Mein Großvater erzählt oft von seiner Kindheit in Berlin. Obwohl es eine schwere Zeit war, lächelt er immer, wenn er sich erinnert.' Question: How does the grandfather feel when remembering his childhood in Berlin?",
+    "answer": "he always smiles",
+    "acceptableAnswers": [
+      "happy",
+      "he smiles",
+      "smiling"
+    ],
+    "explanation": "The text says 'lächelt er immer, wenn er sich erinnert' (he always smiles when he remembers).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_reading_039",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'In unserer Schule dauert jede Stunde fünfundvierzig Minuten. Wir haben täglich sechs Stunden.' Question: How long is each lesson at this school?",
+    "answer": "45 minutes",
+    "acceptableAnswers": [
+      "45 mins",
+      "forty-five minutes",
+      "45"
+    ],
+    "explanation": "Each lesson lasts 'fünfundvierzig Minuten' (45 minutes).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_040",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Soziale Netzwerke können süchtig machen. Jugendliche sollten die Bildschirmzeit begrenzen, um reale Freundschaften zu pflegen.' Question: Why should young people limit their screen time according to the author?",
+    "answer": "to cultivate real-world friendships",
+    "acceptableAnswers": [
+      "foster real friendships",
+      "keep real friendships",
+      "make real friends"
+    ],
+    "explanation": "The text says they should do it 'um reale Freundschaften zu pflegen' (to cultivate real-world friendships).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "technology"
+    ]
+  },
+  {
+    "id": "ge_reading_041",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Die Züge in Deutschland sind oft verspätet, was für Pendler sehr stressig sein kann.' Question: Who is particularly stressed by train delays in Germany?",
+    "answer": "commuters",
+    "acceptableAnswers": [
+      "commuters",
+      "people travelling to work",
+      "passengers"
+    ],
+    "explanation": "The delays are stressful for 'Pendler' (commuters).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_reading_042",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Als Anwalt muss man extrem fleißig sein und stundenlang Akten lesen, doch das hohe Ansehen des Berufs entschädigt für den Stress.' Question: What compensates for the stress of being a lawyer?",
+    "answer": "the high prestige of the profession",
+    "acceptableAnswers": [
+      "high status",
+      "high reputation of the job",
+      "the high prestige"
+    ],
+    "explanation": "The stress is compensated by 'das hohe Ansehen des Berufs' (the high prestige/status of the profession).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_043",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'In Deutschland isst man abends traditionell Brot mit Wurst und Käse. Das nennt man Abendbrot.' Question: What food makes up the traditional German Abendbrot?",
+    "answer": "bread with sausage and cheese",
+    "acceptableAnswers": [
+      "bread, sausage and cheese",
+      "bread, meat and cheese"
+    ],
+    "explanation": "The text describes Abendbrot as 'Brot mit Wurst und Käse' (bread with sausage and cheese).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_reading_044",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Altpapier zu recyceln schützt die Wälder. Jede Tonne Recyclingpapier spart etwa siebzehn Bäume.' Question: How many trees does recycling one ton of paper save?",
+    "answer": "17",
+    "acceptableAnswers": [
+      "seventeen",
+      "17 trees"
+    ],
+    "explanation": "The text states 'spart etwa siebzehn Bäume' (saves about seventeen trees).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_reading_045",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Das neue Labor hat die besten Geräte für Experimente, was den Chemieunterricht viel spannender macht.' Question: What subject has become more exciting thanks to the new lab equipment?",
+    "answer": "chemistry",
+    "acceptableAnswers": [
+      "chemistry lessons",
+      "Chemistry"
+    ],
+    "explanation": "The lab makes 'Chemieunterricht' (chemistry lessons) much more exciting.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_046",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Um gesund zu bleiben, trinke ich täglich zwei Liter Wasser und gehe früh ins Bett, obwohl ich gern länger fernsehen würde.' Question: Name two healthy habits the speaker practices despite temptation.",
+    "answer": "drinks two litres of water daily and goes to bed early",
+    "acceptableAnswers": [
+      "drinks 2L water, goes to bed early",
+      "drinks water, early sleep"
+    ],
+    "explanation": "The speaker practices 'täglich zwei Liter Wasser' (two litres of water daily) and 'gehe früh ins Bett' (goes to bed early).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_reading_047",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Mein Bruder sammelt seit fünf Jahren Briefmarken aus aller Welt. Er hat schon über tausend Stück.' Question: What does the speaker's brother collect, and for how long?",
+    "answer": "stamps; for five years",
+    "acceptableAnswers": [
+      "stamps for 5 years",
+      "postage stamps, five years"
+    ],
+    "explanation": "The brother collects 'Briefmarken' (stamps) 'seit fünf Jahren' (for five years).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "ge_reading_048",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Um den Massentourismus zu meiden, reisen wir dieses Jahr in ein kleines, abgelegenes Bergdorf.' Question: Why is the speaker's family traveling to a remote mountain village this year?",
+    "answer": "to avoid mass tourism",
+    "acceptableAnswers": [
+      "avoid mass tourism",
+      "avoid crowds of tourists"
+    ],
+    "explanation": "The travel is 'Um den Massentourismus zu meiden' (to avoid mass tourism).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_reading_049",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Geschichte finde ich langweilig, aber Fremdsprachen machen mir großen Spaß.' Question: What is the speaker's attitude towards history versus modern languages?",
+    "answer": "history is boring, but foreign languages are great fun",
+    "acceptableAnswers": [
+      "history is boring, languages are fun",
+      "dislikes history, likes languages"
+    ],
+    "explanation": "The speaker finds history 'langweilig' (boring) but foreign languages 'machen mir großen Spaß' (are great fun).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_050",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Ich hoffe, nach dem Studium ein eigenes Start-up-Unternehmen im Bereich erneuerbare Energien zu gründen.' Question: In what field does the speaker want to launch their start-up?",
+    "answer": "renewable energy",
+    "acceptableAnswers": [
+      "erneuerbare energien",
+      "green energy",
+      "renewable energies"
+    ],
+    "explanation": "The speaker hopes to launch a start-up in the field of 'erneuerbare Energien' (renewable energy).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich mag Geschichte sehr, weil es sehr interessant ist, aber ich mag Mathe nicht.' Question: Does the person like math? (Set B)",
+    "answer": "no",
+    "explanation": "The text says 'ich mag Mathe nicht'.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'In Zukunft glaube ich, dass soziale Medien für junge Leute weniger wichtig sein werden.' Question: What does the author think about the future of social media? (Set B)",
+    "answer": "less important",
+    "acceptableAnswers": [
+      "it will be less important",
+      "will be less important"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "ge_reading_003_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Ich spiele jeden Samstag Tennis, aber mein Bruder spielt lieber Basketball.' Question: Which sport does the speaker's brother prefer? (Set B)",
+    "answer": "basketball",
+    "acceptableAnswers": [
+      "Basketball"
+    ],
+    "explanation": "The text states 'mein Bruder spielt lieber Basketball' (my brother prefers playing basketball).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "sports"
+    ]
+  },
+  {
+    "id": "ge_reading_004_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Obwohl die Flüge nach Italien teuer waren, hat sich die Reise gelohnt, da die historischen Sehenswürdigkeiten in Rom unbeschreiblich schön waren.' Question: Was the trip to Italy worth it despite the cost, and why? (Set B)",
+    "answer": "yes; the historical sights in Rome were incredibly beautiful",
+    "acceptableAnswers": [
+      "yes, historical sights in Rome",
+      "yes, because of Rome's sights"
+    ],
+    "explanation": "The text says 'hat sich die Reise gelohnt' (the trip was worth it) because the sights were 'unbeschreiblich schön' (indescribably beautiful).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_reading_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich wohne mit meiner Mutter und meinem Stiefvater in Köln. Mein älterer Bruder studiert schon in Hamburg.' Question: Where does the speaker's older brother live/study? (Set B)",
+    "answer": "Hamburg",
+    "acceptableAnswers": [
+      "hamburg",
+      "in Hamburg"
+    ],
+    "explanation": "The text states 'Mein älterer Bruder studiert schon in Hamburg'.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_reading_006_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Climate Change",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Umweltverschmutzung lässt sich nicht über Nacht lösen, doch wenn jeder Bürger den öffentlichen Verkehr nutzen würde, könnten wir CO2-Emissionen drastisch senken.' Question: What specific individual action is suggested to reduce CO2 emissions? (Set B)",
+    "answer": "use public transport",
+    "acceptableAnswers": [
+      "using public transport",
+      "use public transportation"
+    ],
+    "explanation": "The text suggests 'wenn jeder Bürger den öffentlichen Verkehr nutzen würde' (if every citizen would use public transport).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_reading_007_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Unsere Schule hat eine große Bibliothek und drei moderne Computerräume, aber leider keine Sporthalle.' Question: Which facility is missing from the school? (Set B)",
+    "answer": "sports hall",
+    "acceptableAnswers": [
+      "gym",
+      "a sports hall",
+      "a gym"
+    ],
+    "explanation": "The speaker mentions 'leider keine Sporthalle' (unfortunately no sports hall).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_008_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Als Kind wollte ich Tierarzt werden, aber jetzt interessiere ich mich mehr für Journalismus, weil ich gern schreibe.' Question: Contrast the speaker's childhood ambition with their current career interest. (Set B)",
+    "answer": "wanted to be a vet; now wants to be a journalist",
+    "acceptableAnswers": [
+      "vet then, journalist now",
+      "veterinarian as child, journalist now"
+    ],
+    "explanation": "The speaker says 'Als Kind wollte ich Tierarzt werden' (As a child I wanted to be a vet) but is now interested in 'Journalismus' (journalism).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_009_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Zum Mittagessen trinke ich immer Wasser, aber zum Abendessen trinke ich lieber Apfelsaft.' Question: What does the speaker prefer to drink at dinner? (Set B)",
+    "answer": "apple juice",
+    "acceptableAnswers": [
+      "apple juice",
+      "an apple juice"
+    ],
+    "explanation": "The text says 'zum Abendessen trinke ich lieber Apfelsaft' (for dinner I prefer to drink apple juice).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_reading_010_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Accommodation",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Obwohl das Hotel einen schönen Blick auf das Meer bot, waren die Zimmer unerträglich heiß, da es keine Klimaanlage gab.' Question: What was the main complaint about the hotel rooms, and why? (Set B)",
+    "answer": "unbearably hot because there was no air conditioning",
+    "acceptableAnswers": [
+      "too hot, no air conditioning",
+      "unbearably hot, no AC"
+    ],
+    "explanation": "Rooms were 'unerträglich heiß' (unbearably hot) because 'es keine Klimaanlage gab' (there was no air conditioning).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "accommodation"
+    ]
+  },
+  {
+    "id": "ge_reading_011_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Unter der Woche stehe ich um sechs Uhr auf, aber am Wochenende schlafe ich oft bis neun Uhr.' Question: What time does the speaker get up on weekdays? (Set B)",
+    "answer": "6:00 AM",
+    "acceptableAnswers": [
+      "6",
+      "6am",
+      "six",
+      "six o'clock"
+    ],
+    "explanation": "The speaker wakes up 'um sechs Uhr' (at six o'clock) on weekdays ('Unter der Woche').",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_reading_012_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Ich verbringe zu viel Zeit vor dem Bildschirm. Meine Mutter sagt, ich soll mehr Bücher lesen, aber E-Books sind einfach praktischer.' Question: Why does the speaker prefer E-Books despite their mother's advice? (Set B)",
+    "answer": "they are more practical",
+    "acceptableAnswers": [
+      "practical",
+      "because they are more practical"
+    ],
+    "explanation": "The speaker mentions 'E-Books sind einfach praktischer' (E-books are simply more practical).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "technology"
+    ]
+  },
+  {
+    "id": "ge_reading_013_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich wasche nach dem Abendessen das Geschirr, während meine Schwester den Tisch deckt.' Question: What chore does the speaker's sister do? (Set B)",
+    "answer": "sets the table",
+    "acceptableAnswers": [
+      "set the table",
+      "laying the table"
+    ],
+    "explanation": "The text says 'während meine Schwester den Tisch deckt' (while my sister sets/lays the table).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_reading_014_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Die meisten Schüler hassen die Uniform. Ich finde sie jedoch gut, da man sich morgens keine Gedanken über Kleidung machen muss.' Question: Why does the speaker support wearing a school uniform? (Set B)",
+    "answer": "you do not have to worry about what to wear in the morning",
+    "acceptableAnswers": [
+      "no need to worry about clothes in morning",
+      "saves time thinking what to wear"
+    ],
+    "explanation": "The speaker likes it because 'man sich morgens keine Gedanken über Kleidung machen muss' (you don't have to worry/think about clothes in the morning).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_015_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'In meiner Freizeit lese ich gern Abenteuerromane, aber mein Lieblingshobby ist Malen.' Question: What is the speaker's favorite hobby? (Set B)",
+    "answer": "painting",
+    "acceptableAnswers": [
+      "art",
+      "painting pictures"
+    ],
+    "explanation": "The speaker says 'mein Lieblingshobby ist Malen' (my favorite hobby is painting).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_reading_016_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Part-time Job",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Obwohl die Arbeit im Supermarkt anstrengend ist, hilft mir das Geld, mein erstes Auto zu finanzieren.' Question: What is the speaker using their supermarket earnings for? (Set B)",
+    "answer": "to finance their first car",
+    "acceptableAnswers": [
+      "buy a car",
+      "pay for a car",
+      "first car"
+    ],
+    "explanation": "The money 'hilft mir, mein erstes Auto zu finanzieren' (helps me to finance my first car).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Wir fahren jedes Jahr nach Frankreich, da wir ein kleines Ferienhaus in der Normandie besitzen.' Question: Why does the speaker's family go to France every year? (Set B)",
+    "answer": "they own a small holiday home in Normandy",
+    "acceptableAnswers": [
+      "they have a holiday house there",
+      "own a house in Normandy"
+    ],
+    "explanation": "They own 'ein kleines Ferienhaus in der Normandie' (a small holiday house in Normandy).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_reading_018_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Flussverschmutzung durch Plastikmüll gefährdet viele Fischarten. Die Regierung muss strengere Strafen einführen.' Question: What solution does the speaker suggest to protect fish from river pollution? (Set B)",
+    "answer": "the government must introduce stricter penalties",
+    "acceptableAnswers": [
+      "stricter fines/penalties",
+      "stricter laws"
+    ],
+    "explanation": "The speaker states 'Die Regierung muss strengere Strafen einführen' (The government must introduce stricter penalties/punishments).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_reading_019_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich höre gern Popmusik, wenn ich meine Hausaufgaben mache, weil es mir beim Konzentrieren hilft.' Question: Why does the speaker listen to pop music while doing homework? (Set B)",
+    "answer": "it helps them concentrate",
+    "acceptableAnswers": [
+      "helps to concentrate",
+      "helps concentration"
+    ],
+    "explanation": "The speaker states 'weil es mir beim Konzentrieren hilft' (because it helps me concentrate).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "music"
+    ]
+  },
+  {
+    "id": "ge_reading_020_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Relationships",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Mit meiner besten Freundin kann ich über alles reden. Sie hat mich noch nie im Stich gelassen, was mir enorm wichtig ist.' Question: What quality of the best friend does the speaker value most? (Set B)",
+    "answer": "she has never let them down",
+    "acceptableAnswers": [
+      "never lets them down",
+      "reliability",
+      "loyalty"
+    ],
+    "explanation": "The speaker says 'Sie hat mich noch nie im Stich gelassen' (She has never let me down / abandoned me).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "friends"
+    ]
+  },
+  {
+    "id": "ge_reading_021_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Kaugummikauen ist im Klassenzimmer streng verboten. Wer erwischt wird, muss nachsitzen.' Question: What is the punishment for chewing gum in the classroom? (Set B)",
+    "answer": "detention",
+    "acceptableAnswers": [
+      "after school detention",
+      "must do detention"
+    ],
+    "explanation": "Chewing gum is forbidden; those caught 'muss nachsitzen' (must do detention).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_022_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Dieser neue Actionfilm hat fantastische Spezialeffekte, aber die Handlung ist völlig unlogisch und langweilig.' Question: What is the speaker's positive and negative critique of the action film? (Set B)",
+    "answer": "fantastic special effects but a completely illogical and boring plot",
+    "acceptableAnswers": [
+      "good effects, boring plot",
+      "great effects, illogical story"
+    ],
+    "explanation": "Positive: 'fantastische Spezialeffekte' (fantastic special effects); Negative: 'Handlung ist völlig unlogisch und langweilig' (plot is completely illogical and boring).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "cinema"
+    ]
+  },
+  {
+    "id": "ge_reading_023_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Weather",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Im Winter schneit es oft in Bayern, was perfekt für Wintersportler ist.' Question: Why is the winter weather in Bavaria perfect for sports enthusiasts? (Set B)",
+    "answer": "it snows often",
+    "acceptableAnswers": [
+      "snow",
+      "it snows",
+      "there is lots of snow"
+    ],
+    "explanation": "The text says 'Im Winter schneit es oft' (In winter it snows often), which is perfect for winter sports.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "weather"
+    ]
+  },
+  {
+    "id": "ge_reading_024_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "University",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Ich möchte an der Humboldt-Universität Physik studieren, weil sie einen hervorragenden Ruf im wissenschaftlichen Bereich genießt.' Question: Why does the speaker want to study physics at Humboldt University? (Set B)",
+    "answer": "it enjoys an excellent reputation in the scientific field",
+    "acceptableAnswers": [
+      "excellent science reputation",
+      "it has a great reputation"
+    ],
+    "explanation": "The university 'genießt einen hervorragenden Ruf im wissenschaftlichen Bereich' (enjoys an excellent reputation in the scientific field).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_025_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Weekend",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Am Sonntag gehe ich meistens mit meiner Familie spazieren und danach essen wir Kuchen.' Question: What do they do after their walk on Sundays? (Set B)",
+    "answer": "eat cake",
+    "acceptableAnswers": [
+      "have cake",
+      "eat some cake"
+    ],
+    "explanation": "The text says 'danach essen wir Kuchen' (afterwards we eat cake).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_reading_026_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Der kleine Buchladen an der Ecke überlebt nur, weil er einen persönlichen Kundenservice anbietet, der den Online-Riesen fehlt.' Question: Why is the small corner bookshop able to survive against online competitors? (Set B)",
+    "answer": "it offers a personal customer service",
+    "acceptableAnswers": [
+      "personal customer service",
+      "friendly service",
+      "personal service"
+    ],
+    "explanation": "It survives because of 'persönlichen Kundenservice' (personal customer service).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ge_reading_027_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Unser Biologielehrer ist sehr geduldig, aber er spricht manchmal zu leise.' Question: What is the complaint about the biology teacher? (Set B)",
+    "answer": "he speaks too quietly sometimes",
+    "acceptableAnswers": [
+      "speaks too softly",
+      "speaks too quiet",
+      "too quiet"
+    ],
+    "explanation": "The text says 'er spricht manchmal zu leise' (he speaks too quietly sometimes).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_028_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Festivals",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Das Oktoberfest zieht jährlich Millionen Besucher aus der ganzen Welt an, was die Hotels extrem teuer macht.' Question: What is the negative consequence of Oktoberfest on local tourism? (Set B)",
+    "answer": "hotels become extremely expensive",
+    "acceptableAnswers": [
+      "hotels get expensive",
+      "hotel prices rise"
+    ],
+    "explanation": "The event makes 'die Hotels extrem teuer' (the hotels extremely expensive).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "festivals"
+    ]
+  },
+  {
+    "id": "ge_reading_029_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich fahre lieber mit der U-Bahn als mit dem Bus, weil es viel schneller ist.' Question: Why does the speaker prefer the underground to the bus? (Set B)",
+    "answer": "it is much faster",
+    "acceptableAnswers": [
+      "it's faster",
+      "faster"
+    ],
+    "explanation": "The underground is preferred 'weil es viel schneller ist' (because it is much faster).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "transport"
+    ]
+  },
+  {
+    "id": "ge_reading_030_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Conservation",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Der Schutz unserer Wälder ist überlebenswichtig, um das Artensterben aufzuhalten. Wir müssen Holzprodukte bewusster konsumieren.' Question: What solution is proposed to help halt the extinction of species in forests? (Set B)",
+    "answer": "consume wood products more consciously",
+    "acceptableAnswers": [
+      "buy wood products consciously",
+      "use less wood products"
+    ],
+    "explanation": "The text suggests 'Wir müssen Holzprodukte bewusster konsumieren' (We must consume wood products more consciously).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_reading_031_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Ich koche gern Pizza für meine Freunde, weil man die Zutaten einfach anpassen kann.' Question: Why does the speaker like to cook pizza for friends? (Set B)",
+    "answer": "you can easily adapt the ingredients",
+    "acceptableAnswers": [
+      "easy to change toppings",
+      "easy to adapt ingredients",
+      "can choose ingredients"
+    ],
+    "explanation": "The speaker says 'weil man die Zutaten einfach anpassen kann' (because you can easily adapt the ingredients).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_reading_032_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Der Schüleraustausch in die Schweiz war unvergesslich. Wir haben täglich Deutsch gesprochen und die Alpen besichtigt.' Question: Name two activities the students did during the Swiss exchange. (Set B)",
+    "answer": "spoke German daily and visited the Alps",
+    "acceptableAnswers": [
+      "practised German, visited Alps",
+      "spoke German, saw the Alps"
+    ],
+    "explanation": "They 'täglich Deutsch gesprochen' (spoke German daily) and 'die Alpen besichtigt' (visited/sighted the Alps).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_033_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Hobbies",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Mein Vater fotografiert gern Vögel im Garten, während meine Mutter lieber im Gewächshaus arbeitet.' Question: What is the mother's hobby? (Set B)",
+    "answer": "working in the greenhouse",
+    "acceptableAnswers": [
+      "gardening",
+      "greenhouse work"
+    ],
+    "explanation": "The mother prefers to 'im Gewächshaus arbeiten' (work in the greenhouse).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "ge_reading_034_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Ich will später im Ausland leben, um eine neue Kultur kennenzulernen und meine Sprachkenntnisse zu perfektionieren.' Question: Name two goals the speaker hopes to achieve by living abroad. (Set B)",
+    "answer": "to experience a new culture and perfect their language skills",
+    "acceptableAnswers": [
+      "learn new culture, perfect languages",
+      "experience new culture, improve languages"
+    ],
+    "explanation": "The speaker wants 'eine neue Kultur kennenzulernen' (to get to know a new culture) and 'meine Sprachkenntnisse zu perfektionieren' (to perfect my language skills).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_035_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Directions",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Das Rathaus liegt direkt neben dem großen Park. Man kann es nicht übersehen, da es ein rotes Dach hat.' Question: How can you identify the Town Hall according to the text? (Set B)",
+    "answer": "it has a red roof",
+    "acceptableAnswers": [
+      "by its red roof",
+      "red roof"
+    ],
+    "explanation": "The text says 'da es ein rotes Dach hat' (because it has a red roof).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "directions"
+    ]
+  },
+  {
+    "id": "ge_reading_036_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Durch das Pfandsystem für Plastikflaschen in Deutschland konnte die Rücklaufquote extrem gesteigert werden.' Question: What system in Germany has boosted plastic bottle return rates? (Set B)",
+    "answer": "the deposit system",
+    "acceptableAnswers": [
+      "pfand system",
+      "deposit return system",
+      "the Pfand system"
+    ],
+    "explanation": "The success is due to 'das Pfandsystem' (the bottle deposit system).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_reading_037_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Samstags ist der Markt sehr voll. Ich kaufe dort frisches Obst und Gemüse direkt von den Bauern.' Question: What items does the speaker purchase at the Saturday market? (Set B)",
+    "answer": "fresh fruit and vegetables",
+    "acceptableAnswers": [
+      "fruit and veg",
+      "fresh fruit and veg",
+      "fruit, vegetables"
+    ],
+    "explanation": "The speaker buys 'frisches Obst und Gemüse' (fresh fruit and vegetables).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ge_reading_038_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Mein Großvater erzählt oft von seiner Kindheit in Berlin. Obwohl es eine schwere Zeit war, lächelt er immer, wenn er sich erinnert.' Question: How does the grandfather feel when remembering his childhood in Berlin? (Set B)",
+    "answer": "he always smiles",
+    "acceptableAnswers": [
+      "happy",
+      "he smiles",
+      "smiling"
+    ],
+    "explanation": "The text says 'lächelt er immer, wenn er sich erinnert' (he always smiles when he remembers).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_reading_039_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'In unserer Schule dauert jede Stunde fünfundvierzig Minuten. Wir haben täglich sechs Stunden.' Question: How long is each lesson at this school? (Set B)",
+    "answer": "45 minutes",
+    "acceptableAnswers": [
+      "45 mins",
+      "forty-five minutes",
+      "45"
+    ],
+    "explanation": "Each lesson lasts 'fünfundvierzig Minuten' (45 minutes).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_040_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Soziale Netzwerke können süchtig machen. Jugendliche sollten die Bildschirmzeit begrenzen, um reale Freundschaften zu pflegen.' Question: Why should young people limit their screen time according to the author? (Set B)",
+    "answer": "to cultivate real-world friendships",
+    "acceptableAnswers": [
+      "foster real friendships",
+      "keep real friendships",
+      "make real friends"
+    ],
+    "explanation": "The text says they should do it 'um reale Freundschaften zu pflegen' (to cultivate real-world friendships).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "technology"
+    ]
+  },
+  {
+    "id": "ge_reading_041_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Die Züge in Deutschland sind oft verspätet, was für Pendler sehr stressig sein kann.' Question: Who is particularly stressed by train delays in Germany? (Set B)",
+    "answer": "commuters",
+    "acceptableAnswers": [
+      "commuters",
+      "people travelling to work",
+      "passengers"
+    ],
+    "explanation": "The delays are stressful for 'Pendler' (commuters).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_reading_042_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Als Anwalt muss man extrem fleißig sein und stundenlang Akten lesen, doch das hohe Ansehen des Berufs entschädigt für den Stress.' Question: What compensates for the stress of being a lawyer? (Set B)",
+    "answer": "the high prestige of the profession",
+    "acceptableAnswers": [
+      "high status",
+      "high reputation of the job",
+      "the high prestige"
+    ],
+    "explanation": "The stress is compensated by 'das hohe Ansehen des Berufs' (the high prestige/status of the profession).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_reading_043_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'In Deutschland isst man abends traditionell Brot mit Wurst und Käse. Das nennt man Abendbrot.' Question: What food makes up the traditional German Abendbrot? (Set B)",
+    "answer": "bread with sausage and cheese",
+    "acceptableAnswers": [
+      "bread, sausage and cheese",
+      "bread, meat and cheese"
+    ],
+    "explanation": "The text describes Abendbrot as 'Brot mit Wurst und Käse' (bread with sausage and cheese).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_reading_044_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Altpapier zu recyceln schützt die Wälder. Jede Tonne Recyclingpapier spart etwa siebzehn Bäume.' Question: How many trees does recycling one ton of paper save? (Set B)",
+    "answer": "17",
+    "acceptableAnswers": [
+      "seventeen",
+      "17 trees"
+    ],
+    "explanation": "The text states 'spart etwa siebzehn Bäume' (saves about seventeen trees).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_reading_045_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Das neue Labor hat die besten Geräte für Experimente, was den Chemieunterricht viel spannender macht.' Question: What subject has become more exciting thanks to the new lab equipment? (Set B)",
+    "answer": "chemistry",
+    "acceptableAnswers": [
+      "chemistry lessons",
+      "Chemistry"
+    ],
+    "explanation": "The lab makes 'Chemieunterricht' (chemistry lessons) much more exciting.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_046_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Um gesund zu bleiben, trinke ich täglich zwei Liter Wasser und gehe früh ins Bett, obwohl ich gern länger fernsehen würde.' Question: Name two healthy habits the speaker practices despite temptation. (Set B)",
+    "answer": "drinks two litres of water daily and goes to bed early",
+    "acceptableAnswers": [
+      "drinks 2L water, goes to bed early",
+      "drinks water, early sleep"
+    ],
+    "explanation": "The speaker practices 'täglich zwei Liter Wasser' (two litres of water daily) and 'gehe früh ins Bett' (goes to bed early).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_reading_047_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Mein Bruder sammelt seit fünf Jahren Briefmarken aus aller Welt. Er hat schon über tausend Stück.' Question: What does the speaker's brother collect, and for how long? (Set B)",
+    "answer": "stamps; for five years",
+    "acceptableAnswers": [
+      "stamps for 5 years",
+      "postage stamps, five years"
+    ],
+    "explanation": "The brother collects 'Briefmarken' (stamps) 'seit fünf Jahren' (for five years).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "ge_reading_048_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Um den Massentourismus zu meiden, reisen wir dieses Jahr in ein kleines, abgelegenes Bergdorf.' Question: Why is the speaker's family traveling to a remote mountain village this year? (Set B)",
+    "answer": "to avoid mass tourism",
+    "acceptableAnswers": [
+      "avoid mass tourism",
+      "avoid crowds of tourists"
+    ],
+    "explanation": "The travel is 'Um den Massentourismus zu meiden' (to avoid mass tourism).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_reading_049_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Geschichte finde ich langweilig, aber Fremdsprachen machen mir großen Spaß.' Question: What is the speaker's attitude towards history versus modern languages? (Set B)",
+    "answer": "history is boring, but foreign languages are great fun",
+    "acceptableAnswers": [
+      "history is boring, languages are fun",
+      "dislikes history, likes languages"
+    ],
+    "explanation": "The speaker finds history 'langweilig' (boring) but foreign languages 'machen mir großen Spaß' (are great fun).",
+    "marks": 2,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_reading_050_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Ich hoffe, nach dem Studium ein eigenes Start-up-Unternehmen im Bereich erneuerbare Energien zu gründen.' Question: In what field does the speaker want to launch their start-up? (Set B)",
+    "answer": "renewable energy",
+    "acceptableAnswers": [
+      "erneuerbare energien",
+      "green energy",
+      "renewable energies"
+    ],
+    "explanation": "The speaker hopes to launch a start-up in the field of 'erneuerbare Energien' (renewable energy).",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "future"
+    ]
+  }
+]

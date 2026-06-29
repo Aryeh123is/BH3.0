@@ -1,0 +1,1740 @@
+[
+  {
+    "id": "es_grammar_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Present Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Conjugate 'comer' (to eat) for 'yo' in the present tense.",
+    "answer": "como",
+    "explanation": "Comer is a regular -er verb. For 'yo', you drop the -er and add -o.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "present"
+    ]
+  },
+  {
+    "id": "es_grammar_002",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete the sentence with the correct form of 'ser': Es importante que tú ______ feliz.",
+    "answer": "seas",
+    "explanation": "After 'Es importante que', the subjunctive mood is required.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_003",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Articles",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Which definite article goes with 'mano'?",
+    "answer": "la",
+    "explanation": "Although it ends in -o, 'mano' is feminine: la mano.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "es_grammar_004",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Preterite Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'hablar' for 'nosotros' in the preterite tense.",
+    "answer": "hablamos",
+    "explanation": "The 'nosotros' form of -ar verbs is the same in present and preterite.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "preterite"
+    ]
+  },
+  {
+    "id": "es_grammar_005",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Direct Object Pronouns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Replace the direct object with a pronoun in 'Compro el libro' (I buy the book).",
+    "answer": "lo compro",
+    "explanation": "'El libro' is singular masculine, so it is replaced by 'lo', which goes before the conjugated verb.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "es_grammar_006",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'the intelligent girls' into Spanish.",
+    "answer": "las chicas inteligentes",
+    "acceptableAnswers": [
+      "las niñas inteligentes",
+      "las jóvenes inteligentes"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "es_grammar_007",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'hacer' for 'él' in the future simple tense.",
+    "answer": "hará",
+    "explanation": "Hacer has an irregular future stem: har-. The ending for él is -á.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "es_grammar_008",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Possessives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'my parents' into Spanish.",
+    "answer": "mis padres",
+    "acceptableAnswers": [
+      "mis papás"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "es_grammar_009",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperfect Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with the imperfect subjunctive: Si yo ______ (tener) dinero, compraría un coche.",
+    "answer": "tuviera",
+    "acceptableAnswers": [
+      "tuviese"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_010",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Ser vs Estar",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Complete with ser or estar: París ______ en Francia.",
+    "answer": "está",
+    "explanation": "Estar is used for location, even of permanent places like cities.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "es_grammar_011",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Conditional Tense",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Conjugate 'poder' for 'nosotros' in the conditional tense.",
+    "answer": "podríamos",
+    "explanation": "Poder has an irregular conditional stem: podr-. The nosotros ending is -íamos.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "conditional"
+    ]
+  },
+  {
+    "id": "es_grammar_012",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Plurals",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "What is the plural form of the noun 'lápiz'?",
+    "answer": "lápices",
+    "explanation": "Nouns ending in -z change the -z to -c before adding -es.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "es_grammar_013",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Perfect Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'abrir' (past participle) to complete: Yo he ______ la ventana.",
+    "answer": "abierto",
+    "explanation": "Abrir has an irregular past participle: abierto.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "es_grammar_014",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Comparatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'Juan is taller than Carlos' into Spanish.",
+    "answer": "Juan es más alto que Carlos",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "es_grammar_015",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperfect Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'ir' for 'nosotros' in the imperfect tense.",
+    "answer": "íbamos",
+    "explanation": "Ir is irregular in the imperfect. The nosotros form is íbamos (needs an accent).",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "imperfect"
+    ]
+  },
+  {
+    "id": "es_grammar_016",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Gustar",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I like books' into Spanish.",
+    "answer": "me gustan los libros",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "gustar"
+    ]
+  },
+  {
+    "id": "es_grammar_017",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete the sentence with correct subjunctive form: Cuando nosotros ______ (llegar) a casa, cenaremos.",
+    "answer": "lleguemos",
+    "explanation": "'Cuando' introducing a future action requires the subjunctive.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_018",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Por vs Para",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Which preposition means 'in order to'?",
+    "answer": "para",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "es_grammar_019",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pluperfect Tense",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Conjugate 'escribir' for 'yo' in the pluperfect tense (had written).",
+    "answer": "había escrito",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "es_grammar_020",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Form the adverb from 'rápido' (fast).",
+    "answer": "rápidamente",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "es_grammar_021",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Negatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I don't eat anything' into Spanish.",
+    "answer": "no como nada",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "negatives"
+    ]
+  },
+  {
+    "id": "es_grammar_022",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Passive Voice",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'The book was written by Cervantes' into Spanish.",
+    "answer": "el libro fue escrito por Cervantes",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "passive"
+    ]
+  },
+  {
+    "id": "es_grammar_023",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Preterite vs Imperfect",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Complete with preterite or imperfect: Mientras yo _____ (estudiar), sonó el teléfono.",
+    "answer": "estudiaba",
+    "explanation": "An ongoing activity interrupted by another needs imperfect.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "es_grammar_024",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Numbers",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate the number 'hundred' into Spanish.",
+    "answer": "cien",
+    "acceptableAnswers": [
+      "ciento"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "es_grammar_025",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Gerund",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Form the gerund (present participle) for 'decir' (to say).",
+    "answer": "diciendo",
+    "explanation": "Decir has an irregular e-to-i spelling shift in the gerund.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "gerund"
+    ]
+  },
+  {
+    "id": "es_grammar_026",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Relative Pronoun",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Which relative pronoun means 'the one who/which' (f, sing)?",
+    "answer": "la que",
+    "acceptableAnswers": [
+      "la cual"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "es_grammar_027",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Radical Changing Verbs",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'querer' for 'tú' in the present tense.",
+    "answer": "quieres",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "es_grammar_028",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Preterite Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'ir' for 'tú' in the preterite tense.",
+    "answer": "fuiste",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "preterite"
+    ]
+  },
+  {
+    "id": "es_grammar_029",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Reflexives",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Translate 'I wash myself' into Spanish.",
+    "answer": "me lavo",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "reflexives"
+    ]
+  },
+  {
+    "id": "es_grammar_030",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'frequently' into Spanish.",
+    "answer": "frecuentemente",
+    "acceptableAnswers": [
+      "con frecuencia"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "es_grammar_031",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Time",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "How do you say 'it is half past two' in Spanish?",
+    "answer": "son las dos y media",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "time"
+    ]
+  },
+  {
+    "id": "es_grammar_032",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperative",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'Do not smoke!' (sing informal negative command) into Spanish.",
+    "answer": "no fumes",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "es_grammar_033",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Preterite Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'tener' for 'yo' in the preterite tense.",
+    "answer": "tuve",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "preterite"
+    ]
+  },
+  {
+    "id": "es_grammar_034",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Days",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'Wednesday' into Spanish.",
+    "answer": "miércoles",
+    "acceptableAnswers": [
+      "el miércoles"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "es_grammar_035",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with the correct subjunctive: Espero que nosotros ______ (poder) ir.",
+    "answer": "podamos",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_036",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I am going to play' into Spanish.",
+    "answer": "voy a jugar",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "es_grammar_037",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Superlatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'The best class is Spanish class' into Spanish.",
+    "answer": "la mejor clase es la de español",
+    "acceptableAnswers": [
+      "la mejor clase es la clase de español",
+      "la de español es la mejor clase"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "es_grammar_038",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Preterite",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'hacer' for 'él' in the preterite tense.",
+    "answer": "hizo",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "preterite"
+    ]
+  },
+  {
+    "id": "es_grammar_039",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adjective Positions",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'a great country' (using gran/grande) into Spanish.",
+    "answer": "un gran país",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "es_grammar_040",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Which preposition means 'behind' in Spanish?",
+    "answer": "detrás de",
+    "acceptableAnswers": [
+      "detrás"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "es_grammar_041",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Relative Pronouns",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'The girl whose dog is small' into Spanish.",
+    "answer": "la chica cuyo perro es pequeño",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "es_grammar_042",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'It is cold' into Spanish.",
+    "answer": "hace frío",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "weather"
+    ]
+  },
+  {
+    "id": "es_grammar_043",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with subjunctive: No creo que él ______ (saber) la verdad.",
+    "answer": "sepa",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_044",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Articles",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'the waters' into Spanish (referring to 'agua' in plural).",
+    "answer": "las aguas",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "es_grammar_045",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Participle",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "What is the past participle of 'volver' (to return)?",
+    "answer": "vuelto",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "es_grammar_046",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive Imperfect",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Conjugate 'hacer' for 'yo' in the imperfect subjunctive.",
+    "answer": "hiciera",
+    "acceptableAnswers": [
+      "hiciese"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_047",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "What is the feminine singular form of 'trabajador'?",
+    "answer": "trabajadora",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "es_grammar_048",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'Tell me!' (sing informal command) into Spanish.",
+    "answer": "¡dime!",
+    "acceptableAnswers": [
+      "dime"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "es_grammar_049",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Complete with the correct pronoun: No ______ (to them) digas eso.",
+    "answer": "les",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "es_grammar_050",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete the sentence with past subjunctive: Si yo ______ (saber) eso antes, habría venido.",
+    "answer": "hubiera sabido",
+    "acceptableAnswers": [
+      "hubiese sabido"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Present Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Conjugate 'comer' (to eat) for 'yo' in the present tense. (Set B)",
+    "answer": "como",
+    "explanation": "Comer is a regular -er verb. For 'yo', you drop the -er and add -o.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "present"
+    ]
+  },
+  {
+    "id": "es_grammar_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete the sentence with the correct form of 'ser': Es importante que tú ______ feliz. (Set B)",
+    "answer": "seas",
+    "explanation": "After 'Es importante que', the subjunctive mood is required.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_003_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Articles",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Which definite article goes with 'mano'? (Set B)",
+    "answer": "la",
+    "explanation": "Although it ends in -o, 'mano' is feminine: la mano.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "es_grammar_004_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Preterite Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'hablar' for 'nosotros' in the preterite tense. (Set B)",
+    "answer": "hablamos",
+    "explanation": "The 'nosotros' form of -ar verbs is the same in present and preterite.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "preterite"
+    ]
+  },
+  {
+    "id": "es_grammar_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Direct Object Pronouns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Replace the direct object with a pronoun in 'Compro el libro' (I buy the book). (Set B)",
+    "answer": "lo compro",
+    "explanation": "'El libro' is singular masculine, so it is replaced by 'lo', which goes before the conjugated verb.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "es_grammar_006_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'the intelligent girls' into Spanish. (Set B)",
+    "answer": "las chicas inteligentes",
+    "acceptableAnswers": [
+      "las niñas inteligentes",
+      "las jóvenes inteligentes"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "es_grammar_007_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'hacer' for 'él' in the future simple tense. (Set B)",
+    "answer": "hará",
+    "explanation": "Hacer has an irregular future stem: har-. The ending for él is -á.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "es_grammar_008_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Possessives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'my parents' into Spanish. (Set B)",
+    "answer": "mis padres",
+    "acceptableAnswers": [
+      "mis papás"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "es_grammar_009_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperfect Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with the imperfect subjunctive: Si yo ______ (tener) dinero, compraría un coche. (Set B)",
+    "answer": "tuviera",
+    "acceptableAnswers": [
+      "tuviese"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_010_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Ser vs Estar",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Complete with ser or estar: París ______ en Francia. (Set B)",
+    "answer": "está",
+    "explanation": "Estar is used for location, even of permanent places like cities.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "es_grammar_011_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Conditional Tense",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Conjugate 'poder' for 'nosotros' in the conditional tense. (Set B)",
+    "answer": "podríamos",
+    "explanation": "Poder has an irregular conditional stem: podr-. The nosotros ending is -íamos.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "conditional"
+    ]
+  },
+  {
+    "id": "es_grammar_012_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Plurals",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "What is the plural form of the noun 'lápiz'? (Set B)",
+    "answer": "lápices",
+    "explanation": "Nouns ending in -z change the -z to -c before adding -es.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "es_grammar_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Perfect Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'abrir' (past participle) to complete: Yo he ______ la ventana. (Set B)",
+    "answer": "abierto",
+    "explanation": "Abrir has an irregular past participle: abierto.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "es_grammar_014_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Comparatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'Juan is taller than Carlos' into Spanish. (Set B)",
+    "answer": "Juan es más alto que Carlos",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "es_grammar_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperfect Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'ir' for 'nosotros' in the imperfect tense. (Set B)",
+    "answer": "íbamos",
+    "explanation": "Ir is irregular in the imperfect. The nosotros form is íbamos (needs an accent).",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "imperfect"
+    ]
+  },
+  {
+    "id": "es_grammar_016_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Gustar",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I like books' into Spanish. (Set B)",
+    "answer": "me gustan los libros",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "gustar"
+    ]
+  },
+  {
+    "id": "es_grammar_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete the sentence with correct subjunctive form: Cuando nosotros ______ (llegar) a casa, cenaremos. (Set B)",
+    "answer": "lleguemos",
+    "explanation": "'Cuando' introducing a future action requires the subjunctive.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_018_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Por vs Para",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Which preposition means 'in order to'? (Set B)",
+    "answer": "para",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "es_grammar_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pluperfect Tense",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Conjugate 'escribir' for 'yo' in the pluperfect tense (had written). (Set B)",
+    "answer": "había escrito",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "es_grammar_020_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Form the adverb from 'rápido' (fast). (Set B)",
+    "answer": "rápidamente",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "es_grammar_021_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Negatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I don't eat anything' into Spanish. (Set B)",
+    "answer": "no como nada",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "negatives"
+    ]
+  },
+  {
+    "id": "es_grammar_022_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Passive Voice",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'The book was written by Cervantes' into Spanish. (Set B)",
+    "answer": "el libro fue escrito por Cervantes",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "passive"
+    ]
+  },
+  {
+    "id": "es_grammar_023_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Preterite vs Imperfect",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Complete with preterite or imperfect: Mientras yo _____ (estudiar), sonó el teléfono. (Set B)",
+    "answer": "estudiaba",
+    "explanation": "An ongoing activity interrupted by another needs imperfect.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "es_grammar_024_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Numbers",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate the number 'hundred' into Spanish. (Set B)",
+    "answer": "cien",
+    "acceptableAnswers": [
+      "ciento"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "es_grammar_025_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Gerund",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Form the gerund (present participle) for 'decir' (to say). (Set B)",
+    "answer": "diciendo",
+    "explanation": "Decir has an irregular e-to-i spelling shift in the gerund.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "gerund"
+    ]
+  },
+  {
+    "id": "es_grammar_026_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Relative Pronoun",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Which relative pronoun means 'the one who/which' (f, sing)? (Set B)",
+    "answer": "la que",
+    "acceptableAnswers": [
+      "la cual"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "es_grammar_027_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Radical Changing Verbs",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'querer' for 'tú' in the present tense. (Set B)",
+    "answer": "quieres",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "es_grammar_028_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Preterite Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'ir' for 'tú' in the preterite tense. (Set B)",
+    "answer": "fuiste",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "preterite"
+    ]
+  },
+  {
+    "id": "es_grammar_029_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Reflexives",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Translate 'I wash myself' into Spanish. (Set B)",
+    "answer": "me lavo",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "reflexives"
+    ]
+  },
+  {
+    "id": "es_grammar_030_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'frequently' into Spanish. (Set B)",
+    "answer": "frecuentemente",
+    "acceptableAnswers": [
+      "con frecuencia"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "es_grammar_031_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Time",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "How do you say 'it is half past two' in Spanish? (Set B)",
+    "answer": "son las dos y media",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "time"
+    ]
+  },
+  {
+    "id": "es_grammar_032_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperative",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'Do not smoke!' (sing informal negative command) into Spanish. (Set B)",
+    "answer": "no fumes",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "es_grammar_033_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Preterite Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'tener' for 'yo' in the preterite tense. (Set B)",
+    "answer": "tuve",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "preterite"
+    ]
+  },
+  {
+    "id": "es_grammar_034_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Days",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'Wednesday' into Spanish. (Set B)",
+    "answer": "miércoles",
+    "acceptableAnswers": [
+      "el miércoles"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "es_grammar_035_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with the correct subjunctive: Espero que nosotros ______ (poder) ir. (Set B)",
+    "answer": "podamos",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_036_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I am going to play' into Spanish. (Set B)",
+    "answer": "voy a jugar",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "es_grammar_037_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Superlatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'The best class is Spanish class' into Spanish. (Set B)",
+    "answer": "la mejor clase es la de español",
+    "acceptableAnswers": [
+      "la mejor clase es la clase de español",
+      "la de español es la mejor clase"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "es_grammar_038_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Preterite",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'hacer' for 'él' in the preterite tense. (Set B)",
+    "answer": "hizo",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "preterite"
+    ]
+  },
+  {
+    "id": "es_grammar_039_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adjective Positions",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'a great country' (using gran/grande) into Spanish. (Set B)",
+    "answer": "un gran país",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "es_grammar_040_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Which preposition means 'behind' in Spanish? (Set B)",
+    "answer": "detrás de",
+    "acceptableAnswers": [
+      "detrás"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "es_grammar_041_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Relative Pronouns",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'The girl whose dog is small' into Spanish. (Set B)",
+    "answer": "la chica cuyo perro es pequeño",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "es_grammar_042_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'It is cold' into Spanish. (Set B)",
+    "answer": "hace frío",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "weather"
+    ]
+  },
+  {
+    "id": "es_grammar_043_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with subjunctive: No creo que él ______ (saber) la verdad. (Set B)",
+    "answer": "sepa",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_044_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Articles",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'the waters' into Spanish (referring to 'agua' in plural). (Set B)",
+    "answer": "las aguas",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "es_grammar_045_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Participle",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "What is the past participle of 'volver' (to return)? (Set B)",
+    "answer": "vuelto",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "es_grammar_046_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive Imperfect",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Conjugate 'hacer' for 'yo' in the imperfect subjunctive. (Set B)",
+    "answer": "hiciera",
+    "acceptableAnswers": [
+      "hiciese"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "es_grammar_047_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "What is the feminine singular form of 'trabajador'? (Set B)",
+    "answer": "trabajadora",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "es_grammar_048_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'Tell me!' (sing informal command) into Spanish. (Set B)",
+    "answer": "¡dime!",
+    "acceptableAnswers": [
+      "dime"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "es_grammar_049_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Complete with the correct pronoun: No ______ (to them) digas eso. (Set B)",
+    "answer": "les",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "es_grammar_050_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete the sentence with past subjunctive: Si yo ______ (saber) eso antes, habría venido. (Set B)",
+    "answer": "hubiera sabido",
+    "acceptableAnswers": [
+      "hubiese sabido"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  }
+]

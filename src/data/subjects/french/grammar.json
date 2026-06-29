@@ -1,0 +1,1706 @@
+[
+  {
+    "id": "fr_grammar_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Present Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Conjugate 'manger' (to eat) for 'nous' in the present tense.",
+    "answer": "mangeons",
+    "explanation": "Manger is an -er verb. For 'nous', we add -eons instead of -ons to preserve the soft 'g' sound.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "present"
+    ]
+  },
+  {
+    "id": "fr_grammar_002",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete the sentence with the correct subjunctive form of 'être': Il faut que tu ______ heureux.",
+    "answer": "sois",
+    "explanation": "After 'Il faut que', the subjunctive mood is required. The 'tu' form of être in subjunctive is 'sois'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "fr_grammar_003",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Articles",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Which definite article goes with 'carte'?",
+    "answer": "la",
+    "explanation": "'Carte' is feminine, so the definite article is 'la'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_004",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Passé Composé",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'parler' for 'nous' in the passé composé (using 'avoir').",
+    "answer": "avons parlé",
+    "explanation": "The passé composé of parler is formed with the auxiliary verb 'avoir' and the past participle 'parlé'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_005",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Direct Object Pronouns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Replace the direct object with a pronoun in 'Je regarde le film' (I watch the movie).",
+    "answer": "je lo regarde",
+    "acceptableAnswers": [
+      "je le regarde"
+    ],
+    "explanation": "'Le film' is masculine singular, so it is replaced by 'le', which goes before the verb.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_006",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'the intelligent girls' into French.",
+    "answer": "les filles intelligentes",
+    "acceptableAnswers": [
+      "les jeunes filles intelligentes"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "fr_grammar_007",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'faire' for 'il' in the future simple tense.",
+    "answer": "fera",
+    "explanation": "Faire has an irregular future simple stem: fer-. The ending for 'il' is -a.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "fr_grammar_008",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Possessives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'my parents' into French.",
+    "answer": "mes parents",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "fr_grammar_009",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Conditional Clause",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete the 'si' clause: Si j'______ (avoir) de l'argent, j'achèterais une voiture.",
+    "answer": "avais",
+    "explanation": "A conditional sentence with the conditional tense in the main clause requires the imperfect tense in the 'si' clause.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "conditional"
+    ]
+  },
+  {
+    "id": "fr_grammar_010",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "C'est vs Il est",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Complete the sentence: ______ un bon médecin.",
+    "answer": "c'est",
+    "explanation": "We use 'c'est' before an article and a modified noun.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_011",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Conditional Tense",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Conjugate 'pouvoir' for 'nous' in the conditional simple tense.",
+    "answer": "pourrions",
+    "explanation": "Pouvoir has an irregular conditional root: pourr-. The ending for nous is -ions.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "conditional"
+    ]
+  },
+  {
+    "id": "fr_grammar_012",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Plurals",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "What is the plural form of the noun 'cadeau'?",
+    "answer": "cadeaux",
+    "explanation": "Nouns ending in -eau add -x to form the plural.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_013",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Passé Composé agreement",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Complete the sentence with correct past participle agreement: Elles sont ______ (partir) hier.",
+    "answer": "parties",
+    "explanation": "With the auxiliary 'être', the past participle agrees in gender and number with the subject (Elles - feminine plural).",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_014",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Comparatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'Jean is taller than Charles' into French.",
+    "answer": "Jean es plus grand que Charles",
+    "acceptableAnswers": [
+      "Jean est plus grand que Charles"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "fr_grammar_015",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperfect Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'aller' for 'nous' in the imperfect (imparfait) tense.",
+    "answer": "allions",
+    "explanation": "The imperfect stem of aller is 'all-'. The ending for nous is -ions.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "imperfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_016",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Opinions",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I like books' into French.",
+    "answer": "j'aime les livres",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "fr_grammar_017",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with correct subjunctive: Bien qu'il ______ (faire) froid, nous sortons.",
+    "answer": "fasse",
+    "explanation": "'Bien que' requires the subjunctive mood. The subjunctive of faire for il is fasse.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "fr_grammar_018",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Which pronoun represents quantity 'some' (of it/them)?",
+    "answer": "en",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_019",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pluperfect Tense",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Conjugate 'écrire' for 'je' in the pluperfect (plus-que-parfait) tense (had written).",
+    "answer": "avais écrit",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_020",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Form the adverb from 'rapide' (fast).",
+    "answer": "rapidement",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_021",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Negatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I don't eat anything' into French.",
+    "answer": "je ne mange rien",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "negatives"
+    ]
+  },
+  {
+    "id": "fr_grammar_022",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Passive Voice",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'The book was written by Victor Hugo' into French.",
+    "answer": "le livre a été écrit par Victor Hugo",
+    "acceptableAnswers": [
+      "le livre fut écrit par Victor Hugo"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "passive"
+    ]
+  },
+  {
+    "id": "fr_grammar_023",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Passé Composé vs Imparfait",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Complete with appropriate tense: Pendant que je ______ (étudier), le téléphone a sonné.",
+    "answer": "étudiais",
+    "explanation": "An ongoing activity in progress in the past uses imparfait.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_024",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Numbers",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate the number 'hundred' into French.",
+    "answer": "cent",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "fr_grammar_025",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Gerund",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Complete the gerund form: En ______ (parler) avec lui, j'ai tout compris.",
+    "answer": "parlant",
+    "explanation": "The gerund is formed by taking the 'nous' present stem and adding -ant, preceded by 'en'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "gerund"
+    ]
+  },
+  {
+    "id": "fr_grammar_026",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Relative Pronoun",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Which relative pronoun translates to 'whose' or 'of which'?",
+    "answer": "dont",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_027",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Irregular Verbs",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'vouloir' for 'tu' in the present tense.",
+    "answer": "veux",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_028",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Past Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'aller' for 'tu' in passé composé (masculine form).",
+    "answer": "es allé",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_029",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Reflexives",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Translate 'I wash myself' into French.",
+    "answer": "je me lave",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "reflexives"
+    ]
+  },
+  {
+    "id": "fr_grammar_030",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'frequently' into French.",
+    "answer": "fréquemment",
+    "acceptableAnswers": [
+      "souvent"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_031",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Time",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "How do you say 'it is half past two' in French?",
+    "answer": "il est deux heures et demie",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "time"
+    ]
+  },
+  {
+    "id": "fr_grammar_032",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperative",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'Do not smoke!' (sing informal negative command) into French.",
+    "answer": "ne fume pas",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "fr_grammar_033",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'avoir' for 'j'' in the imperfect (imparfait) tense.",
+    "answer": "avais",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "imperfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_034",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Days",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'Wednesday' into French.",
+    "answer": "mercredi",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "fr_grammar_035",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with the correct subjunctive: Je doute que nous ______ (pouvoir) le faire.",
+    "answer": "puissions",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "fr_grammar_036",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I am going to play' into French.",
+    "answer": "je vais jouer",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "fr_grammar_037",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Superlatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'The best class is the French class' into French.",
+    "answer": "le meilleur cours est le cours de français",
+    "acceptableAnswers": [
+      "la meilleure classe est la classe de français"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "fr_grammar_038",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Past Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'faire' for 'il' in passé composé.",
+    "answer": "a fait",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_039",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adjective Position",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'a beautiful country' into French.",
+    "answer": "un beau pays",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "fr_grammar_040",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Which preposition means 'behind' in French?",
+    "answer": "derrière",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "fr_grammar_041",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Relative Pronoun",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'The girl whom I see' into French.",
+    "answer": "la fille que je vois",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_042",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'It is cold' into French.",
+    "answer": "il fait froid",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "weather"
+    ]
+  },
+  {
+    "id": "fr_grammar_043",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with subjunctive: Je ne pense pas qu'il ______ (savoir) la vérité.",
+    "answer": "sache",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "fr_grammar_044",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Articles",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "What is the plural of 'le hibou'?",
+    "answer": "les hiboux",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_045",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Participle",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "What is the past participle of 'prendre' (to take)?",
+    "answer": "pris",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_046",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Conditional clauses",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete 'si' clause: Si nous ______ (savoir) cela, nous ne serions pas venus.",
+    "answer": "avions su",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_047",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "What is the feminine singular form of 'travailleur'?",
+    "answer": "travailleuse",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "fr_grammar_048",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'Tell me!' (sing informal command) into French.",
+    "answer": "dis-moi !",
+    "acceptableAnswers": [
+      "dis-moi"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "fr_grammar_049",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Complete with correct pronoun: Je ______ (to them) ai donné le livre.",
+    "answer": "leur",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_050",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Prénoms",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'Which book are you talking about?' (using 'dont') into French.",
+    "answer": "de quel livre parles-tu ?",
+    "acceptableAnswers": [
+      "de quel livre est-ce que tu parles ?"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "fr_grammar_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Present Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Conjugate 'manger' (to eat) for 'nous' in the present tense. (Set B)",
+    "answer": "mangeons",
+    "explanation": "Manger is an -er verb. For 'nous', we add -eons instead of -ons to preserve the soft 'g' sound.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "present"
+    ]
+  },
+  {
+    "id": "fr_grammar_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete the sentence with the correct subjunctive form of 'être': Il faut que tu ______ heureux. (Set B)",
+    "answer": "sois",
+    "explanation": "After 'Il faut que', the subjunctive mood is required. The 'tu' form of être in subjunctive is 'sois'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "fr_grammar_003_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Articles",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Which definite article goes with 'carte'? (Set B)",
+    "answer": "la",
+    "explanation": "'Carte' is feminine, so the definite article is 'la'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_004_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Passé Composé",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'parler' for 'nous' in the passé composé (using 'avoir'). (Set B)",
+    "answer": "avons parlé",
+    "explanation": "The passé composé of parler is formed with the auxiliary verb 'avoir' and the past participle 'parlé'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Direct Object Pronouns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Replace the direct object with a pronoun in 'Je regarde le film' (I watch the movie). (Set B)",
+    "answer": "je lo regarde",
+    "acceptableAnswers": [
+      "je le regarde"
+    ],
+    "explanation": "'Le film' is masculine singular, so it is replaced by 'le', which goes before the verb.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_006_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'the intelligent girls' into French. (Set B)",
+    "answer": "les filles intelligentes",
+    "acceptableAnswers": [
+      "les jeunes filles intelligentes"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "fr_grammar_007_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'faire' for 'il' in the future simple tense. (Set B)",
+    "answer": "fera",
+    "explanation": "Faire has an irregular future simple stem: fer-. The ending for 'il' is -a.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "fr_grammar_008_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Possessives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'my parents' into French. (Set B)",
+    "answer": "mes parents",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "fr_grammar_009_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Conditional Clause",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete the 'si' clause: Si j'______ (avoir) de l'argent, j'achèterais une voiture. (Set B)",
+    "answer": "avais",
+    "explanation": "A conditional sentence with the conditional tense in the main clause requires the imperfect tense in the 'si' clause.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "conditional"
+    ]
+  },
+  {
+    "id": "fr_grammar_010_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "C'est vs Il est",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Complete the sentence: ______ un bon médecin. (Set B)",
+    "answer": "c'est",
+    "explanation": "We use 'c'est' before an article and a modified noun.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_011_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Conditional Tense",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Conjugate 'pouvoir' for 'nous' in the conditional simple tense. (Set B)",
+    "answer": "pourrions",
+    "explanation": "Pouvoir has an irregular conditional root: pourr-. The ending for nous is -ions.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "conditional"
+    ]
+  },
+  {
+    "id": "fr_grammar_012_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Plurals",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "What is the plural form of the noun 'cadeau'? (Set B)",
+    "answer": "cadeaux",
+    "explanation": "Nouns ending in -eau add -x to form the plural.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Passé Composé agreement",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Complete the sentence with correct past participle agreement: Elles sont ______ (partir) hier. (Set B)",
+    "answer": "parties",
+    "explanation": "With the auxiliary 'être', the past participle agrees in gender and number with the subject (Elles - feminine plural).",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_014_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Comparatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'Jean is taller than Charles' into French. (Set B)",
+    "answer": "Jean es plus grand que Charles",
+    "acceptableAnswers": [
+      "Jean est plus grand que Charles"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "fr_grammar_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperfect Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'aller' for 'nous' in the imperfect (imparfait) tense. (Set B)",
+    "answer": "allions",
+    "explanation": "The imperfect stem of aller is 'all-'. The ending for nous is -ions.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "imperfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_016_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Opinions",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I like books' into French. (Set B)",
+    "answer": "j'aime les livres",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "fr_grammar_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with correct subjunctive: Bien qu'il ______ (faire) froid, nous sortons. (Set B)",
+    "answer": "fasse",
+    "explanation": "'Bien que' requires the subjunctive mood. The subjunctive of faire for il is fasse.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "fr_grammar_018_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Which pronoun represents quantity 'some' (of it/them)? (Set B)",
+    "answer": "en",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pluperfect Tense",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Conjugate 'écrire' for 'je' in the pluperfect (plus-que-parfait) tense (had written). (Set B)",
+    "answer": "avais écrit",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_020_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Form the adverb from 'rapide' (fast). (Set B)",
+    "answer": "rapidement",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_021_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Negatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I don't eat anything' into French. (Set B)",
+    "answer": "je ne mange rien",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "negatives"
+    ]
+  },
+  {
+    "id": "fr_grammar_022_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Passive Voice",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'The book was written by Victor Hugo' into French. (Set B)",
+    "answer": "le livre a été écrit par Victor Hugo",
+    "acceptableAnswers": [
+      "le livre fut écrit par Victor Hugo"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "passive"
+    ]
+  },
+  {
+    "id": "fr_grammar_023_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Passé Composé vs Imparfait",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Complete with appropriate tense: Pendant que je ______ (étudier), le téléphone a sonné. (Set B)",
+    "answer": "étudiais",
+    "explanation": "An ongoing activity in progress in the past uses imparfait.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_024_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Numbers",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate the number 'hundred' into French. (Set B)",
+    "answer": "cent",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "fr_grammar_025_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Gerund",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Complete the gerund form: En ______ (parler) avec lui, j'ai tout compris. (Set B)",
+    "answer": "parlant",
+    "explanation": "The gerund is formed by taking the 'nous' present stem and adding -ant, preceded by 'en'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "gerund"
+    ]
+  },
+  {
+    "id": "fr_grammar_026_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Relative Pronoun",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Which relative pronoun translates to 'whose' or 'of which'? (Set B)",
+    "answer": "dont",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_027_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Irregular Verbs",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'vouloir' for 'tu' in the present tense. (Set B)",
+    "answer": "veux",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_028_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Past Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'aller' for 'tu' in passé composé (masculine form). (Set B)",
+    "answer": "es allé",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_029_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Reflexives",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Translate 'I wash myself' into French. (Set B)",
+    "answer": "je me lave",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "reflexives"
+    ]
+  },
+  {
+    "id": "fr_grammar_030_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'frequently' into French. (Set B)",
+    "answer": "fréquemment",
+    "acceptableAnswers": [
+      "souvent"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_031_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Time",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "How do you say 'it is half past two' in French? (Set B)",
+    "answer": "il est deux heures et demie",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "time"
+    ]
+  },
+  {
+    "id": "fr_grammar_032_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperative",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'Do not smoke!' (sing informal negative command) into French. (Set B)",
+    "answer": "ne fume pas",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "fr_grammar_033_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'avoir' for 'j'' in the imperfect (imparfait) tense. (Set B)",
+    "answer": "avais",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "imperfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_034_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Days",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'Wednesday' into French. (Set B)",
+    "answer": "mercredi",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "fr_grammar_035_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with the correct subjunctive: Je doute que nous ______ (pouvoir) le faire. (Set B)",
+    "answer": "puissions",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "fr_grammar_036_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I am going to play' into French. (Set B)",
+    "answer": "je vais jouer",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "fr_grammar_037_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Superlatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'The best class is the French class' into French. (Set B)",
+    "answer": "le meilleur cours est le cours de français",
+    "acceptableAnswers": [
+      "la meilleure classe est la classe de français"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "fr_grammar_038_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Past Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'faire' for 'il' in passé composé. (Set B)",
+    "answer": "a fait",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "perfect"
+    ]
+  },
+  {
+    "id": "fr_grammar_039_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adjective Position",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'a beautiful country' into French. (Set B)",
+    "answer": "un beau pays",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "fr_grammar_040_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Which preposition means 'behind' in French? (Set B)",
+    "answer": "derrière",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "fr_grammar_041_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Relative Pronoun",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'The girl whom I see' into French. (Set B)",
+    "answer": "la fille que je vois",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_042_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'It is cold' into French. (Set B)",
+    "answer": "il fait froid",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "weather"
+    ]
+  },
+  {
+    "id": "fr_grammar_043_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Subjunctive",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete with subjunctive: Je ne pense pas qu'il ______ (savoir) la vérité. (Set B)",
+    "answer": "sache",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "subjunctive"
+    ]
+  },
+  {
+    "id": "fr_grammar_044_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Articles",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "What is the plural of 'le hibou'? (Set B)",
+    "answer": "les hiboux",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_045_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Participle",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "What is the past participle of 'prendre' (to take)? (Set B)",
+    "answer": "pris",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_046_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Conditional clauses",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Complete 'si' clause: Si nous ______ (savoir) cela, nous ne serions pas venus. (Set B)",
+    "answer": "avions su",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "fr_grammar_047_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "What is the feminine singular form of 'travailleur'? (Set B)",
+    "answer": "travailleuse",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "fr_grammar_048_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'Tell me!' (sing informal command) into French. (Set B)",
+    "answer": "dis-moi !",
+    "acceptableAnswers": [
+      "dis-moi"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "fr_grammar_049_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Complete with correct pronoun: Je ______ (to them) ai donné le livre. (Set B)",
+    "answer": "leur",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "fr_grammar_050_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Prénoms",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'Which book are you talking about?' (using 'dont') into French. (Set B)",
+    "answer": "de quel livre parles-tu ?",
+    "acceptableAnswers": [
+      "de quel livre est-ce que tu parles ?"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  }
+]

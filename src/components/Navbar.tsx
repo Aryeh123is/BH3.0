@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles, Flame, Snowflake, ChevronDown, Check, LayoutDashboard, BookOpen } from 'lucide-react';
+import { LogIn, LogOut, User as UserIcon, Moon, Sun, Sparkles, Flame, Snowflake, ChevronDown, Check, LayoutDashboard, BookOpen, Clock } from 'lucide-react';
 import { User } from 'firebase/auth';
 
 interface NavbarProps {
-  onNavigate: (view: 'home' | 'dashboard' | 'test' | 'shop' | 'pastPapers') => void;
+  onNavigate: (view: any) => void;
   language: string;
   onLanguageChange: (lang: string) => void;
   user: User | null;
@@ -17,9 +17,10 @@ interface NavbarProps {
   devMode?: boolean;
   isPremium?: boolean;
   onShowSettings: () => void;
+  isMobile?: boolean;
 }
 
-export function Navbar({ onNavigate, language, onLanguageChange, user, userProfile, onSignIn, onSignOut, onShowPro, theme, onToggleTheme, devMode = false, isPremium = false, onShowSettings }: NavbarProps) {
+export function Navbar({ onNavigate, language, onLanguageChange, user, userProfile, onSignIn, onSignOut, onShowPro, theme, onToggleTheme, devMode = false, isPremium = false, onShowSettings, isMobile = false }: NavbarProps) {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const langMenuRef = useRef<HTMLDivElement>(null);
 
@@ -37,11 +38,12 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
     { id: 'french', label: 'French (Edexcel)', icon: <img src="https://flagcdn.com/w40/fr.png" alt="FR" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
     { id: 'german', label: 'German (AQA)', icon: <img src="https://flagcdn.com/w40/de.png" alt="DE" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
     { id: 'spanish', label: 'Spanish (Edexcel)', icon: <img src="https://flagcdn.com/w40/es.png" alt="ES" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
+    { id: 'arabic', label: 'Arabic (Edexcel)', icon: <img src="https://flagcdn.com/w40/sa.png" alt="AR" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
     { id: 'modern', label: 'Modern Hebrew (AQA)', icon: <img src="https://flagcdn.com/w40/il.png" alt="IL" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" /> },
     { id: 'biblical', label: 'Biblical Hebrew (Edexcel)', icon: '📜' },
   ];
 
-  if (language !== 'spanish' && language !== 'biblical' && language !== 'modern' && language !== 'french' && language !== 'german') {
+  if (language !== 'spanish' && language !== 'biblical' && language !== 'modern' && language !== 'french' && language !== 'german' && language !== 'arabic') {
     languages.push({ id: language, label: 'Custom Deck', icon: '📁' });
   }
 
@@ -64,13 +66,15 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
                language === 'modern' ? 'MH' : 
                language === 'spanish' ? 'ES' : 
                language === 'french' ? 'FR' : 
-               language === 'german' ? 'DE' : 'Custom'}
+               language === 'german' ? 'DE' : 
+               language === 'arabic' ? 'AR' : 'Custom'}
             </span>
             <span className="text-primary hidden sm:inline">Keywords</span>
             <span className="sm:hidden flex items-center">
               {language === 'french' && <img src="https://flagcdn.com/w40/fr.png" alt="FR" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
               {language === 'spanish' && <img src="https://flagcdn.com/w40/es.png" alt="ES" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
               {language === 'german' && <img src="https://flagcdn.com/w40/de.png" alt="DE" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
+              {language === 'arabic' && <img src="https://flagcdn.com/w40/sa.png" alt="AR" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
               {language === 'modern' && <img src="https://flagcdn.com/w40/il.png" alt="IL" className="w-5 h-3.5 object-cover rounded-sm" referrerPolicy="no-referrer" />}
               {language === 'biblical' && <span className="text-base leading-none">📜</span>}
             </span>
@@ -136,41 +140,31 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
           animate={{ opacity: 1, x: 0 }}
           className="flex items-center gap-1.5 sm:gap-3 md:gap-4 shrink-0"
         >
-          {!isPremium && (
-            <button 
-              onClick={onShowPro}
-              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-xs font-bold rounded-lg hover:from-indigo-600 hover:to-purple-700 transition-all shadow-md shadow-indigo-500/20"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Pro</span>
-            </button>
-          )}
-
-          {isPremium && (
-            <div className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-amber-500 to-orange-600 text-white text-xs font-bold rounded-lg shadow-md shadow-amber-500/20" title="Premium Active">
-              <Sparkles className="w-3.5 h-3.5" />
-            </div>
-          )}
-
-          {user || devMode ? (
+          {(user || devMode) && !isMobile ? (
             <div className="hidden md:flex items-center gap-4">
               <button 
-                onClick={() => onNavigate('test')}
-                className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors"
-                title="Test Mode"
+                onClick={() => onNavigate('examSimulator')}
+                className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                title="Exam Hub"
               >
-                Test Mode
+                Exam Hub
               </button>
-              {devMode && (
-                <button 
-                  onClick={() => onNavigate('pastPapers')}
-                  className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-1.5"
-                  title="Past Papers"
-                >
-                  <BookOpen className="w-4 h-4" />
-                  Past Papers
-                </button>
-              )}
+              <button 
+                onClick={() => onNavigate('examCountdown')}
+                className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1.5"
+                title="Exam Countdown"
+              >
+                <Clock className="w-4 h-4 text-orange-500" />
+                Countdown
+              </button>
+              <button 
+                onClick={() => onNavigate('pastPapers')}
+                className="text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-primary transition-colors flex items-center gap-1.5"
+                title="Past Papers"
+              >
+                <BookOpen className="w-4 h-4" />
+                Past Papers
+              </button>
             </div>
           ) : null}
           
@@ -183,16 +177,18 @@ export function Navbar({ onNavigate, language, onLanguageChange, user, userProfi
                 </div>
               </div>
               
-              <button 
-                onClick={() => onNavigate('dashboard')}
-                className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
-                title="Dashboard"
-              >
-                <LayoutDashboard className="w-4 h-4 text-indigo-500" />
-                <span className="text-xs font-bold text-slate-600 dark:text-slate-300 hidden sm:inline">
-                  Dashboard
-                </span>
-              </button>
+              {!isMobile && (
+                <button 
+                  onClick={() => onNavigate('dashboard')}
+                  className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full border border-slate-100 dark:border-slate-700 transition-colors"
+                  title="Dashboard"
+                >
+                  <LayoutDashboard className="w-4 h-4 text-indigo-500" />
+                  <span className="text-xs font-bold text-slate-600 dark:text-slate-300 hidden sm:inline">
+                    Dashboard
+                  </span>
+                </button>
+              )}
               
               <button 
                 onClick={onSignOut}

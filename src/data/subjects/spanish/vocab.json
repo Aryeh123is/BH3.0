@@ -1,0 +1,710 @@
+[
+  {
+    "id": "es_vocab_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Food",
+    "subtopic": "Fruit",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: manzana",
+    "answer": "apple",
+    "acceptableAnswers": [
+      "an apple"
+    ],
+    "explanation": "Manzana means apple in Spanish.",
+    "image": "/images/spanish/food/apple.jpg",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "food",
+      "fruit"
+    ]
+  },
+  {
+    "id": "es_vocab_002",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Relationships",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: hermano",
+    "answer": "brother",
+    "acceptableAnswers": [
+      "a brother"
+    ],
+    "explanation": "Hermano means brother in Spanish.",
+    "image": "/images/spanish/family/brother.jpg",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "es_vocab_003",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Issues",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: el calentamiento global",
+    "answer": "global warming",
+    "explanation": "Calentamiento global is the standard term for global warming.",
+    "image": "/images/common/earth.jpg",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_vocab_004",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: tren",
+    "answer": "train",
+    "explanation": "Tren is the Spanish word for train.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_vocab_005",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: el desempleo",
+    "answer": "unemployment",
+    "explanation": "Desempleo refers to the state of being unemployed.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "es_vocab_006",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Life",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: leer",
+    "answer": "to read",
+    "acceptableAnswers": [
+      "reading"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "es_vocab_007",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "House",
+    "subtopic": "Furniture",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: la mesa",
+    "answer": "table",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "house"
+    ]
+  },
+  {
+    "id": "es_vocab_008",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: las redes sociales",
+    "answer": "social media",
+    "acceptableAnswers": [
+      "social networks"
+    ],
+    "explanation": "Literally 'social networks'.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_vocab_009",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: el medio ambiente",
+    "answer": "the environment",
+    "explanation": "Commonly used in environmental discussions.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_vocab_010",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: las matemáticas",
+    "answer": "maths",
+    "acceptableAnswers": [
+      "mathematics"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "es_vocab_011",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Future Plans",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: el éxito",
+    "answer": "success",
+    "explanation": "Careful: 'éxito' is success, 'salida' is exit (false friend).",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "es_vocab_012",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Healthy Living",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: la salud",
+    "answer": "health",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "es_vocab_013",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Poverty",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: la pobreza",
+    "answer": "poverty",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "es_vocab_014",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Customs & Festivals",
+    "subtopic": "Spain",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: Navidad",
+    "answer": "Christmas",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "culture"
+    ]
+  },
+  {
+    "id": "es_vocab_015",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: la contaminación",
+    "answer": "pollution",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_vocab_016",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Free Time",
+    "subtopic": "Sports",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: el baloncesto",
+    "answer": "basketball",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "sports"
+    ]
+  },
+  {
+    "id": "es_vocab_017",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: las reglas",
+    "answer": "rules",
+    "acceptableAnswers": [
+      "regulations"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "es_vocab_018",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Personal Info",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: apellido",
+    "answer": "surname",
+    "acceptableAnswers": [
+      "last name"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "identity"
+    ]
+  },
+  {
+    "id": "es_vocab_019",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Healthy Living",
+    "subtopic": "Addictions",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: el tabaquismo",
+    "answer": "smoking",
+    "explanation": "Refers to the habit or addiction to tobacco.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "es_vocab_020",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Accommodation",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: el albergue",
+    "answer": "hostel",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "holidays"
+    ]
+  },
+  {
+    "id": "es_vocab_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Food",
+    "subtopic": "Fruit",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: manzana (Set B)",
+    "answer": "apple",
+    "acceptableAnswers": [
+      "an apple"
+    ],
+    "explanation": "Manzana means apple in Spanish.",
+    "image": "/images/spanish/food/apple.jpg",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "food",
+      "fruit"
+    ]
+  },
+  {
+    "id": "es_vocab_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Relationships",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: hermano (Set B)",
+    "answer": "brother",
+    "acceptableAnswers": [
+      "a brother"
+    ],
+    "explanation": "Hermano means brother in Spanish.",
+    "image": "/images/spanish/family/brother.jpg",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "es_vocab_003_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Issues",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: el calentamiento global (Set B)",
+    "answer": "global warming",
+    "explanation": "Calentamiento global is the standard term for global warming.",
+    "image": "/images/common/earth.jpg",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_vocab_004_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: tren (Set B)",
+    "answer": "train",
+    "explanation": "Tren is the Spanish word for train.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_vocab_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: el desempleo (Set B)",
+    "answer": "unemployment",
+    "explanation": "Desempleo refers to the state of being unemployed.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "es_vocab_006_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Life",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: leer (Set B)",
+    "answer": "to read",
+    "acceptableAnswers": [
+      "reading"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "es_vocab_007_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "House",
+    "subtopic": "Furniture",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: la mesa (Set B)",
+    "answer": "table",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "house"
+    ]
+  },
+  {
+    "id": "es_vocab_008_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: las redes sociales (Set B)",
+    "answer": "social media",
+    "acceptableAnswers": [
+      "social networks"
+    ],
+    "explanation": "Literally 'social networks'.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_vocab_009_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: el medio ambiente (Set B)",
+    "answer": "the environment",
+    "explanation": "Commonly used in environmental discussions.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_vocab_010_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: las matemáticas (Set B)",
+    "answer": "maths",
+    "acceptableAnswers": [
+      "mathematics"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "es_vocab_011_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Future Plans",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: el éxito (Set B)",
+    "answer": "success",
+    "explanation": "Careful: 'éxito' is success, 'salida' is exit (false friend).",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "es_vocab_012_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Healthy Living",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: la salud (Set B)",
+    "answer": "health",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "es_vocab_013_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Poverty",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: la pobreza (Set B)",
+    "answer": "poverty",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "es_vocab_014_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Customs & Festivals",
+    "subtopic": "Spain",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: Navidad (Set B)",
+    "answer": "Christmas",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "culture"
+    ]
+  },
+  {
+    "id": "es_vocab_015_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: la contaminación (Set B)",
+    "answer": "pollution",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_vocab_016_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Free Time",
+    "subtopic": "Sports",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: el baloncesto (Set B)",
+    "answer": "basketball",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "sports"
+    ]
+  },
+  {
+    "id": "es_vocab_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: las reglas (Set B)",
+    "answer": "rules",
+    "acceptableAnswers": [
+      "regulations"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "es_vocab_018_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Personal Info",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: apellido (Set B)",
+    "answer": "surname",
+    "acceptableAnswers": [
+      "last name"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "identity"
+    ]
+  },
+  {
+    "id": "es_vocab_019_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Healthy Living",
+    "subtopic": "Addictions",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: el tabaquismo (Set B)",
+    "answer": "smoking",
+    "explanation": "Refers to the habit or addiction to tobacco.",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "es_vocab_020_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Accommodation",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: el albergue (Set B)",
+    "answer": "hostel",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "holidays"
+    ]
+  }
+]

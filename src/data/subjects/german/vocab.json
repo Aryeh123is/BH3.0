@@ -1,0 +1,700 @@
+[
+  {
+    "id": "ge_vocab_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: das Flugzeug",
+    "answer": "airplane",
+    "acceptableAnswers": [
+      "plane"
+    ],
+    "explanation": "Flugzeug is a compound noun: Flug (flight) + Zeug (thing).",
+    "image": "/images/german/travel/plane.jpg",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_vocab_002",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Relationships",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: mein Bruder",
+    "answer": "my brother",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_vocab_003",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Warming",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: die Erderwärmung",
+    "answer": "global warming",
+    "acceptableAnswers": [
+      "global heating"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_vocab_004",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: das Handy",
+    "answer": "mobile phone",
+    "acceptableAnswers": [
+      "cellphone",
+      "mobile"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "tech"
+    ]
+  },
+  {
+    "id": "ge_vocab_005",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: die Arbeitslosigkeit",
+    "answer": "unemployment",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "ge_vocab_006",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: Erdkunde",
+    "answer": "Geography",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_vocab_007",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Healthy Living",
+    "subtopic": "Fitness",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: sich fit halten",
+    "answer": "to stay fit",
+    "acceptableAnswers": [
+      "to keep fit"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "ge_vocab_008",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Food",
+    "subtopic": "Drinks",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: Sprudelwasser",
+    "answer": "sparkling water",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_vocab_009",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Poverty",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: die Armut",
+    "answer": "poverty",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "ge_vocab_010",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Accommodation",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: die Jugendherberge",
+    "answer": "youth hostel",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_vocab_011",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Free Time",
+    "subtopic": "Festivals",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: die Veranstaltung",
+    "answer": "event",
+    "acceptableAnswers": [
+      "performance",
+      "show"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_vocab_012",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Town",
+    "subtopic": "Shops",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: die Metzgerei",
+    "answer": "butcher's shop",
+    "acceptableAnswers": [
+      "butchers"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "town"
+    ]
+  },
+  {
+    "id": "ge_vocab_013",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: Müll trennen",
+    "answer": "to sort rubbish",
+    "acceptableAnswers": [
+      "to separate trash"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_vocab_014",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: Briefmarken sammeln",
+    "answer": "to collect stamps",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_vocab_015",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Training",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: die Lehre",
+    "answer": "apprenticeship",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "ge_vocab_016",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "House",
+    "subtopic": "Garden",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: der Rasenmäher",
+    "answer": "lawnmower",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "house"
+    ]
+  },
+  {
+    "id": "ge_vocab_017",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Exams",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: die Klassenarbeit",
+    "answer": "class test",
+    "acceptableAnswers": [
+      "test",
+      "exam"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_vocab_018",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Household Chores",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: den Tisch decken",
+    "answer": "to set the table",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "daily"
+    ]
+  },
+  {
+    "id": "ge_vocab_019",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel",
+    "subtopic": "Problems",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: Verspätung haben",
+    "answer": "to be delayed",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_vocab_020",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "University",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: einen Studienplatz bekommen",
+    "answer": "to get a university place",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_vocab_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: das Flugzeug (Set B)",
+    "answer": "airplane",
+    "acceptableAnswers": [
+      "plane"
+    ],
+    "explanation": "Flugzeug is a compound noun: Flug (flight) + Zeug (thing).",
+    "image": "/images/german/travel/plane.jpg",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_vocab_002_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Family",
+    "subtopic": "Relationships",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: mein Bruder (Set B)",
+    "answer": "my brother",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_vocab_003_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Warming",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: die Erderwärmung (Set B)",
+    "answer": "global warming",
+    "acceptableAnswers": [
+      "global heating"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_vocab_004_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: das Handy (Set B)",
+    "answer": "mobile phone",
+    "acceptableAnswers": [
+      "cellphone",
+      "mobile"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "tech"
+    ]
+  },
+  {
+    "id": "ge_vocab_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: die Arbeitslosigkeit (Set B)",
+    "answer": "unemployment",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "ge_vocab_006_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: Erdkunde (Set B)",
+    "answer": "Geography",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_vocab_007_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Healthy Living",
+    "subtopic": "Fitness",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: sich fit halten (Set B)",
+    "answer": "to stay fit",
+    "acceptableAnswers": [
+      "to keep fit"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "health"
+    ]
+  },
+  {
+    "id": "ge_vocab_008_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Food",
+    "subtopic": "Drinks",
+    "difficulty": 1,
+    "type": "vocab",
+    "question": "Translate: Sprudelwasser (Set B)",
+    "answer": "sparkling water",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_vocab_009_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Social Issues",
+    "subtopic": "Poverty",
+    "difficulty": 5,
+    "type": "vocab",
+    "question": "Translate: die Armut (Set B)",
+    "answer": "poverty",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "social"
+    ]
+  },
+  {
+    "id": "ge_vocab_010_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Accommodation",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: die Jugendherberge (Set B)",
+    "answer": "youth hostel",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_vocab_011_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Free Time",
+    "subtopic": "Festivals",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: die Veranstaltung (Set B)",
+    "answer": "event",
+    "acceptableAnswers": [
+      "performance",
+      "show"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_vocab_012_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Town",
+    "subtopic": "Shops",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: die Metzgerei (Set B)",
+    "answer": "butcher's shop",
+    "acceptableAnswers": [
+      "butchers"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "town"
+    ]
+  },
+  {
+    "id": "ge_vocab_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: Müll trennen (Set B)",
+    "answer": "to sort rubbish",
+    "acceptableAnswers": [
+      "to separate trash"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_vocab_014_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: Briefmarken sammeln (Set B)",
+    "answer": "to collect stamps",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_vocab_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Work",
+    "subtopic": "Training",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: die Lehre (Set B)",
+    "answer": "apprenticeship",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "work"
+    ]
+  },
+  {
+    "id": "ge_vocab_016_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "House",
+    "subtopic": "Garden",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: der Rasenmäher (Set B)",
+    "answer": "lawnmower",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "house"
+    ]
+  },
+  {
+    "id": "ge_vocab_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Exams",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: die Klassenarbeit (Set B)",
+    "answer": "class test",
+    "acceptableAnswers": [
+      "test",
+      "exam"
+    ],
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_vocab_018_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Household Chores",
+    "difficulty": 2,
+    "type": "vocab",
+    "question": "Translate: den Tisch decken (Set B)",
+    "answer": "to set the table",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "daily"
+    ]
+  },
+  {
+    "id": "ge_vocab_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel",
+    "subtopic": "Problems",
+    "difficulty": 3,
+    "type": "vocab",
+    "question": "Translate: Verspätung haben (Set B)",
+    "answer": "to be delayed",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "travel"
+    ]
+  },
+  {
+    "id": "ge_vocab_020_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "University",
+    "difficulty": 4,
+    "type": "vocab",
+    "question": "Translate: einen Studienplatz bekommen (Set B)",
+    "answer": "to get a university place",
+    "marks": 1,
+    "tags": [
+      "vocab",
+      "future"
+    ]
+  }
+]

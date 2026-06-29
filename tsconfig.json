@@ -22,5 +22,6 @@
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
-  }
+  },
+  "exclude": ["src/functions", "node_modules"]
 }

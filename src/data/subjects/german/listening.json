@@ -1,0 +1,2148 @@
+[
+  {
+    "id": "ge_listening_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich muss jeden Tag mein Zimmer aufräumen.' Question: What chore does the speaker have to do every day?",
+    "answer": "tidy their room",
+    "acceptableAnswers": [
+      "clean their room",
+      "clean the room",
+      "tidy the room"
+    ],
+    "explanation": "The speaker says 'mein Zimmer aufräumen', which means to tidy/clean their room.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_listening_002",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'In unserer Schule sind Handys streng verboten. Ich finde das unfair, weil wir sie im Unterricht für Recherche benutzen könnten.' Question: What is the rule about mobile phones, and why does the speaker disagree?",
+    "answer": "phones are banned; they could be used for research",
+    "acceptableAnswers": [
+      "phones are forbidden; they are useful for research",
+      "phones are not allowed; they can do research with them"
+    ],
+    "explanation": "Handys sind 'streng verboten' (strictly forbidden), and they could use them in class for 'Recherche' (research).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_003",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'In meiner Freizeit spiele ich gern Fußball mit meinen Freunden im Park.' Question: Where does the speaker play football?",
+    "answer": "in the park",
+    "acceptableAnswers": [
+      "park",
+      "at the park"
+    ],
+    "explanation": "The speaker mentions 'im Park', meaning in the park.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_listening_004",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Ich verstehe mich gut mit meinem Vater, weil er immer geduldig ist, aber meine Schwester ärgert mich oft.' Question: Why does the speaker get on well with their father?",
+    "answer": "he is always patient",
+    "acceptableAnswers": [
+      "he is patient",
+      "because he is patient"
+    ],
+    "explanation": "The speaker says 'weil er immer geduldig ist' (because he is always patient).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_listening_005",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Letzten Sommer bin ich nach Spanien geflogen. Das Wetter war fantastisch!' Question: Where did the speaker go last summer?",
+    "answer": "Spain",
+    "acceptableAnswers": [
+      "spain",
+      "to Spain"
+    ],
+    "explanation": "The speaker flew to 'Spanien' (Spain).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ge_listening_006",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Obwohl meine Mutter möchte, dass ich Medizin studiere, werde ich eine Ausbildung als Automechaniker machen.' Question: What career does the speaker plan to pursue, despite their mother's wishes?",
+    "answer": "car mechanic",
+    "acceptableAnswers": [
+      "mechanic",
+      "auto mechanic"
+    ],
+    "explanation": "The speaker plans an apprenticeship as an 'Automechaniker' (car mechanic) despite mother wanting them to study medicine.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_007",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Zum Frühstück esse ich meistens Müsli mit Milch und trinke einen Orangensaft.' Question: What does the speaker usually drink for breakfast?",
+    "answer": "orange juice",
+    "acceptableAnswers": [
+      "orange juice",
+      "an orange juice"
+    ],
+    "explanation": "The speaker drinks 'Orangensaft' (orange juice).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_listening_008",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Wir müssen mehr Plastik recyceln, um unsere Ozeane zu retten. Zu viele Tiere sterben wegen unseres Mülls.' Question: Why must we recycle more plastic according to the speaker?",
+    "answer": "to save our oceans",
+    "acceptableAnswers": [
+      "save the oceans",
+      "save oceans",
+      "protect oceans"
+    ],
+    "explanation": "The speaker mentions 'um unsere Ozeane zu retten' (to save our oceans).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_listening_009",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Erdkunde ist mein Lieblingsfach, weil der Lehrer sehr lustig ist, aber Physik ist mir zu schwer.' Question: Why does the speaker like geography?",
+    "answer": "the teacher is very funny",
+    "acceptableAnswers": [
+      "funny teacher",
+      "because the teacher is funny"
+    ],
+    "explanation": "The speaker says Erdkunde (geography) is their favorite subject 'weil der Lehrer sehr lustig ist' (because the teacher is very funny).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_010",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Accommodation",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Die Jugendherberge war zwar billig, aber die Duschen waren schmutzig und das WLAN hat überhaupt nicht funktioniert.' Question: What were the two complaints about the youth hostel?",
+    "answer": "dirty showers and no working Wi-Fi",
+    "acceptableAnswers": [
+      "dirty showers and Wi-Fi did not work",
+      "showers were dirty, wifi did not work"
+    ],
+    "explanation": "The speaker mentions 'Duschen waren schmutzig' (showers were dirty) and 'WLAN hat überhaupt nicht funktioniert' (Wi-Fi didn't work at all).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "accommodation"
+    ]
+  },
+  {
+    "id": "ge_listening_011",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Festivals",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Weihnachten ist mein Lieblingsfest, weil die ganze Familie zusammenkommt.' Question: Why is Christmas the speaker's favorite festival?",
+    "answer": "the whole family comes together",
+    "acceptableAnswers": [
+      "family comes together",
+      "because the family gathers"
+    ],
+    "explanation": "The speaker states 'weil die ganze Familie zusammenkommt' (because the whole family comes together).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "festivals"
+    ]
+  },
+  {
+    "id": "ge_listening_012",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Ich benutze mein Tablet hauptsächlich, um Filme zu streamen, aber mein Bruder spielt nur Videospiele.' Question: What does the speaker mainly use their tablet for?",
+    "answer": "streaming movies",
+    "acceptableAnswers": [
+      "stream movies",
+      "watching movies",
+      "stream films"
+    ],
+    "explanation": "The speaker says 'hauptsächlich, um Filme zu streamen' (mainly to stream movies).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "technology"
+    ]
+  },
+  {
+    "id": "ge_listening_013",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Die Schule beginnt um acht Uhr, also muss ich um sieben Uhr aufstehen.' Question: What time does school start?",
+    "answer": "8:00 AM",
+    "acceptableAnswers": [
+      "8",
+      "8am",
+      "eight",
+      "eight o'clock"
+    ],
+    "explanation": "The speaker says 'Die Schule beginnt um acht Uhr' (School begins at 8 o'clock).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_listening_014",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Unsere Schuluniform ist extrem unpraktisch. Im Winter ist der Mantel zu dünn, und im Sommer schwitzen wir in den schwarzen Hosen.' Question: What is the speaker's double complaint about the winter and summer uniform?",
+    "answer": "coat is too thin in winter; black trousers are too hot in summer",
+    "acceptableAnswers": [
+      "coat too thin, trousers too hot",
+      "too cold in winter coat, too hot in summer pants"
+    ],
+    "explanation": "The speaker says 'Mantel zu dünn' (coat too thin) in winter and 'schwitzen wir in den schwarzen Hosen' (we sweat in the black trousers) in summer.",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_015",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Gestern habe ich eine Komödie im Kino gesehen. Ich habe viel gelacht, obwohl das Ende traurig war.' Question: What genre of film did the speaker watch yesterday?",
+    "answer": "comedy",
+    "acceptableAnswers": [
+      "a comedy"
+    ],
+    "explanation": "The speaker watched a 'Komödie' (comedy).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "cinema"
+    ]
+  },
+  {
+    "id": "ge_listening_016",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "University",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Nach dem Abitur möchte ich ein Jahr lang im Ausland arbeiten, bevor ich mein Geschichtsstudium in Berlin beginne.' Question: What does the speaker plan to do immediately after their Abitur exams?",
+    "answer": "work abroad for a year",
+    "acceptableAnswers": [
+      "work abroad",
+      "work in another country",
+      "work overseas for a year"
+    ],
+    "explanation": "The speaker wants to 'ein Jahr lang im Ausland arbeiten' (work abroad for a year) before studying history.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_017",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Weather",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Morgen wird es in Berlin stark regnen, aber am Wochenende soll die Sonne wieder scheinen.' Question: What will the weather be like in Berlin tomorrow?",
+    "answer": "rainy",
+    "acceptableAnswers": [
+      "heavy rain",
+      "raining",
+      "rain"
+    ],
+    "explanation": "The speaker states 'Morgen wird es in Berlin stark regnen' (Tomorrow it will rain heavily in Berlin).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "weather"
+    ]
+  },
+  {
+    "id": "ge_listening_018",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Climate Change",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Wir müssen weniger Energie verbrauchen. Ich schalte immer das Licht aus, wenn ich das Zimmer verlasse.' Question: What action does the speaker personally take to save energy?",
+    "answer": "turns off the light when leaving the room",
+    "acceptableAnswers": [
+      "turns off lights",
+      "switches off lights"
+    ],
+    "explanation": "The speaker says 'Ich schalte immer das Licht aus, wenn ich das Zimmer verlasse' (I always turn off the light when I leave the room).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_listening_019",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Jeden Samstag spiele ich Tennis. Ich finde es toll, weil es mich fit hält.' Question: Why does the speaker play tennis every Saturday?",
+    "answer": "it keeps them fit",
+    "acceptableAnswers": [
+      "keeps fit",
+      "keeps them healthy",
+      "to stay fit"
+    ],
+    "explanation": "The speaker plays tennis because 'es mich fit hält' (it keeps me fit).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "sports"
+    ]
+  },
+  {
+    "id": "ge_listening_020",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Friends",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Mein bester Freund Paul hat immer Zeit für mich. Er ist extrem zuverlässig, im Gegensatz zu meinen anderen Mitschülern.' Question: What character trait makes Paul a good friend according to the speaker?",
+    "answer": "extremely reliable",
+    "acceptableAnswers": [
+      "reliable",
+      "trustworthy",
+      "he is reliable"
+    ],
+    "explanation": "The speaker says Paul is 'extrem zuverlässig' (extremely reliable).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "friends"
+    ]
+  },
+  {
+    "id": "ge_listening_021",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Letzte Woche haben wir ein Museum in München besucht. Es war sehr interessant, aber die Busfahrt war extrem langweilig.' Question: What is the speaker's complaint about the school trip last week?",
+    "answer": "the bus ride was extremely boring",
+    "acceptableAnswers": [
+      "bus ride was boring",
+      "bus journey was boring",
+      "boring bus trip"
+    ],
+    "explanation": "The speaker complained that 'die Busfahrt war extrem langweilig' (the bus ride was extremely boring).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_022",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Klassische Musik entspannt mich, während lauter Rock mich nur nervös macht. Deshalb höre ich abends meistens Mozart.' Question: Why does the speaker listen to Mozart in the evening?",
+    "answer": "classical music relaxes them",
+    "acceptableAnswers": [
+      "it is relaxing",
+      "it relaxes them",
+      "to relax"
+    ],
+    "explanation": "The speaker says 'Klassische Musik entspannt mich' (classical music relaxes me).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "music"
+    ]
+  },
+  {
+    "id": "ge_listening_023",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich fahre jeden Tag mit dem Rad zur Schule, weil es umweltfreundlich ist.' Question: How does the speaker travel to school?",
+    "answer": "by bicycle",
+    "acceptableAnswers": [
+      "by bike",
+      "bike",
+      "bicycle",
+      "cycling"
+    ],
+    "explanation": "The speaker goes 'mit dem Rad' (by bicycle).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "transport"
+    ]
+  },
+  {
+    "id": "ge_listening_024",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Es ist mein Traum, eines Tages mein eigenes Restaurant zu eröffnen. Ich will der Chefkoch sein!' Question: What is the speaker's dream career goal?",
+    "answer": "to open their own restaurant as head chef",
+    "acceptableAnswers": [
+      "open a restaurant",
+      "own a restaurant",
+      "be a chef in their own restaurant"
+    ],
+    "explanation": "The speaker dreams of 'mein eigenes Restaurant zu eröffnen' (opening my own restaurant) and being the 'Chefkoch' (head chef).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_025",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Weekend",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Am Samstag schlafe ich normalerweise bis zehn Uhr aus.' Question: What does the speaker normally do on Saturdays?",
+    "answer": "sleep in until 10:00 AM",
+    "acceptableAnswers": [
+      "sleep in",
+      "sleep late",
+      "sleep until 10"
+    ],
+    "explanation": "The speaker says 'schlafe ich normalerweise bis zehn Uhr aus' (usually sleep in until 10 o'clock).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_listening_026",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Restaurants",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Der Service in diesem neuen Restaurant war katastrophal. Wir mussten eine Stunde auf unser Essen warten, und die Suppe war kalt.' Question: What are the two specific complaints about the restaurant service and food?",
+    "answer": "had to wait an hour for food; the soup was cold",
+    "acceptableAnswers": [
+      "waited 1 hour, cold soup",
+      "long wait, cold soup"
+    ],
+    "explanation": "The speaker complained that they waited 'eine Stunde' (one hour) and the 'Suppe war kalt' (soup was cold).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_listening_027",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Unsere Schule hat ein neues Hallenbad. Ich finde es toll, weil wir jetzt im Winter schwimmen können.' Question: What new facility does the school have?",
+    "answer": "indoor swimming pool",
+    "acceptableAnswers": [
+      "swimming pool",
+      "indoor pool",
+      "pool"
+    ],
+    "explanation": "The speaker mentions a 'neues Hallenbad' (new indoor swimming pool).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_028",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Celebrations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Letztes Wochenende haben wir den siebzigsten Geburtstag meiner Großmutter gefeiert. Es gab eine riesige Torte!' Question: Whose milestone celebration took place last weekend?",
+    "answer": "grandmother's 70th birthday",
+    "acceptableAnswers": [
+      "grandma's 70th birthday",
+      "grandmother's birthday"
+    ],
+    "explanation": "The speaker celebrated 'den siebzigsten Geburtstag meiner Großmutter' (the 70th birthday of my grandmother).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_listening_029",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich fahre lieber in die Berge als an den Strand, weil ich gern wandere.' Question: Why does the speaker prefer the mountains to the beach?",
+    "answer": "they like hiking",
+    "acceptableAnswers": [
+      "likes hiking",
+      "enjoys hiking",
+      "because they like hiking"
+    ],
+    "explanation": "The speaker says 'weil ich gern wandere' (because I like hiking).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ge_listening_030",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Social Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Obdachlosigkeit ist ein wachsendes Problem in unserer Stadt. Wir sollten den lokalen Suppenküchen helfen.' Question: What major social problem does the speaker identify in their town?",
+    "answer": "homelessness",
+    "acceptableAnswers": [
+      "homeless people",
+      "being homeless"
+    ],
+    "explanation": "The speaker mentions 'Obdachlosigkeit' (homelessness).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "social"
+    ]
+  },
+  {
+    "id": "ge_listening_031",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich kaufe meine Kleidung meistens online, weil es billiger ist als im Einkaufszentrum.' Question: Why does the speaker prefer to buy clothes online?",
+    "answer": "it is cheaper than the shopping centre",
+    "acceptableAnswers": [
+      "cheaper",
+      "it is cheaper",
+      "cheaper than shopping malls"
+    ],
+    "explanation": "The speaker shopping online 'weil es billiger ist' (because it is cheaper) than in the mall.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ge_listening_032",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Unsere Mathelehrerin erklärt alles sehr klar, aber sie gibt uns zu viele Hausaufgaben.' Question: What is the speaker's positive and negative feedback about the maths teacher?",
+    "answer": "explains clearly but gives too much homework",
+    "acceptableAnswers": [
+      "explains well, too much homework",
+      "clear explanations, too much homework"
+    ],
+    "explanation": "The teacher 'erklärt alles sehr klar' (explains clearly) but 'gibt uns zu viele Hausaufgaben' (gives us too much homework).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "teachers"
+    ]
+  },
+  {
+    "id": "ge_listening_033",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Pets",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Ich habe einen kleinen Hund namens Bello. Er ist sehr verspielt.' Question: What pet does the speaker have?",
+    "answer": "a small dog",
+    "acceptableAnswers": [
+      "dog",
+      "a dog"
+    ],
+    "explanation": "The speaker mentions 'einen kleinen Hund' (a small dog).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "pets"
+    ]
+  },
+  {
+    "id": "ge_listening_034",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Part-time Job",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Samstags arbeite ich in einem Supermarkt, um mein Taschengeld aufzubessern.' Question: Why does the speaker work in a supermarket on Saturdays?",
+    "answer": "to earn extra pocket money",
+    "acceptableAnswers": [
+      "earn money",
+      "improve pocket money",
+      "pocket money"
+    ],
+    "explanation": "The speaker works 'um mein Taschengeld aufzubessern' (to supplement/earn extra pocket money).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_035",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Directions",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Gehen Sie geradeaus und dann die zweite Straße links. Der Bahnhof ist gegenüber der Post.' Question: Where is the railway station located?",
+    "answer": "opposite the post office",
+    "acceptableAnswers": [
+      "opposite post office",
+      "by the post office"
+    ],
+    "explanation": "The speaker says 'Der Bahnhof ist gegenüber der Post' (The train station is opposite the post office).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "directions"
+    ]
+  },
+  {
+    "id": "ge_listening_036",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Die globale Erwärmung führt zu extremen Wetterbedingungen. Wir spüren das schon jetzt im Tourismussektor.' Question: Which sector is already feeling the impact of global warming according to the speaker?",
+    "answer": "tourism sector",
+    "acceptableAnswers": [
+      "tourism",
+      "tourist sector"
+    ],
+    "explanation": "The speaker mentions 'Tourismussektor' (tourism sector).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_listening_037",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich lese gern Kriminalromane am Abend vor dem Schlafen.' Question: What type of books does the speaker read in the evening?",
+    "answer": "detective novels",
+    "acceptableAnswers": [
+      "crime novels",
+      "crime stories",
+      "thrillers"
+    ],
+    "explanation": "The speaker reads 'Kriminalromane' (crime/detective novels).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_listening_038",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Normalerweise jogge ich morgens vor dem Frühstück, aber im Winter ist es mir draußen einfach zu kalt.' Question: Why does the speaker stop jogging in the winter mornings?",
+    "answer": "it is too cold outside",
+    "acceptableAnswers": [
+      "too cold",
+      "cold weather",
+      "it's too cold"
+    ],
+    "explanation": "The speaker says 'im Winter ist es mir draußen einfach zu kalt' (in winter it is simply too cold outside).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_listening_039",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Wir müssen eine blaue Jacke und eine graue Hose tragen.' Question: What colour trousers must the speaker wear?",
+    "answer": "grey",
+    "acceptableAnswers": [
+      "gray"
+    ],
+    "explanation": "The speaker mentions 'eine graue Hose' (grey trousers).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "uniform"
+    ]
+  },
+  {
+    "id": "ge_listening_040",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Künstliche Intelligenz wird die Arbeitswelt komplett verändern. Manche Berufe werden ganz verschwinden.' Question: What major prediction does the speaker make about AI in the workplace?",
+    "answer": "some jobs will completely disappear",
+    "acceptableAnswers": [
+      "jobs will disappear",
+      "some professions will disappear"
+    ],
+    "explanation": "The speaker predicts 'Manche Berufe werden ganz verschwinden' (some jobs will completely disappear).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "ge_listening_041",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Wir haben ein kleines Ferienhaus in Frankreich gemietet. Es war sehr gemütlich.' Question: What type of holiday accommodation did they rent?",
+    "answer": "holiday home",
+    "acceptableAnswers": [
+      "holiday cottage",
+      "small holiday house",
+      "holiday house",
+      "ferienhaus"
+    ],
+    "explanation": "The speaker rented 'ein kleines Ferienhaus' (a small holiday house/home).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ge_listening_042",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Ich will Umweltingenieur werden, um innovative Lösungen für den Klimaschutz zu entwickeln.' Question: What is the speaker's specific career aim and motivation?",
+    "answer": "environmental engineer, to develop climate protection solutions",
+    "acceptableAnswers": [
+      "environmental engineer, save environment",
+      "environmental engineer, fight climate change"
+    ],
+    "explanation": "The speaker wants to be an 'Umweltingenieur' (environmental engineer) to develop solutions for 'Klimaschutz' (climate protection).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_043",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich esse kein Fleisch, weil ich Vegetarier bin, aber Fisch esse ich manchmal.' Question: What diet does the speaker follow, and what is the exception?",
+    "answer": "vegetarian; eats fish sometimes",
+    "acceptableAnswers": [
+      "vegetarian, sometimes fish",
+      "no meat, but eats fish"
+    ],
+    "explanation": "The speaker is a 'Vegetarier' (vegetarian) but eats 'Fisch' (fish) sometimes.",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_listening_044",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Die Luftverschmutzung in Großstädten ist schrecklich für Kinder mit Asthma. Wir brauchen autofreie Zonen.' Question: According to the speaker, who is particularly affected by air pollution in big cities?",
+    "answer": "children with asthma",
+    "acceptableAnswers": [
+      "asthmatic children",
+      "kids with asthma"
+    ],
+    "explanation": "The speaker says air pollution 'ist schrecklich für Kinder mit Asthma' (is terrible for children with asthma).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "pollution"
+    ]
+  },
+  {
+    "id": "ge_listening_045",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'In der Mittagspause esse ich in der Kantine und plaudere mit meinen Schulkameraden.' Question: What two things does the speaker do during lunchtime?",
+    "answer": "eats in the canteen and chats with schoolmates",
+    "acceptableAnswers": [
+      "eats in canteen, talks to friends",
+      "has lunch, talks to schoolmates"
+    ],
+    "explanation": "The speaker 'esse in der Kantine' (eats in the canteen) and 'plaudere mit meinen Schulkameraden' (chats with my schoolmates).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_046",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Meine Großeltern wohnen jetzt bei uns, weil sie alt sind und Hilfe brauchen.' Question: Why do the speaker's grandparents live with them now?",
+    "answer": "they are old and need help",
+    "acceptableAnswers": [
+      "old and need help",
+      "because they need assistance",
+      "they are elderly and need support"
+    ],
+    "explanation": "The grandparents live there 'weil sie alt sind und Hilfe brauchen' (because they are old and need help).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_listening_047",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Fotografie ist meine Leidenschaft. Ich nehme meine Kamera überallhin mit.' Question: What is the speaker's passion?",
+    "answer": "photography",
+    "acceptableAnswers": [
+      "photos",
+      "taking photos"
+    ],
+    "explanation": "The speaker states 'Fotografie ist meine Leidenschaft' (Photography is my passion).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_listening_048",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Anstatt im Sommer zu verreisen, verbringen wir dieses Jahr einen Balkonurlaub zu Hause.' Question: What type of holiday is the speaker planning this year?",
+    "answer": "a staycation at home",
+    "acceptableAnswers": [
+      "staying at home",
+      "holiday at home",
+      "staycation"
+    ],
+    "explanation": "The speaker plans a 'Balkonurlaub zu Hause' (balcony holiday at home / staycation).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ge_listening_049",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Englisch ist nützlich, aber Mathe finde ich extrem langweilig.' Question: Contrast the speaker's opinion on English and maths.",
+    "answer": "English is useful, maths is extremely boring",
+    "acceptableAnswers": [
+      "English useful, maths boring",
+      "useful english, boring maths"
+    ],
+    "explanation": "The speaker says 'Englisch ist nützlich' (English is useful) but 'Mathe finde ich extrem langweilig' (I find maths extremely boring).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_050",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Obwohl die Bezahlung niedrig ist, arbeite ich gern als Erzieher, weil die Arbeit mit Kindern sehr erfüllend ist.' Question: Why does the speaker like working as an educator despite the low pay?",
+    "answer": "working with children is very fulfilling",
+    "acceptableAnswers": [
+      "working with children is fulfilling",
+      "work with kids is rewarding"
+    ],
+    "explanation": "The speaker says 'weil die Arbeit mit Kindern sehr erfüllend ist' (because working with children is very fulfilling).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich muss jeden Tag mein Zimmer aufräumen.' Question: What chore does the speaker have to do every day? (Set B)",
+    "answer": "tidy their room",
+    "acceptableAnswers": [
+      "clean their room",
+      "clean the room",
+      "tidy the room"
+    ],
+    "explanation": "The speaker says 'mein Zimmer aufräumen', which means to tidy/clean their room.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_listening_002_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'In unserer Schule sind Handys streng verboten. Ich finde das unfair, weil wir sie im Unterricht für Recherche benutzen könnten.' Question: What is the rule about mobile phones, and why does the speaker disagree? (Set B)",
+    "answer": "phones are banned; they could be used for research",
+    "acceptableAnswers": [
+      "phones are forbidden; they are useful for research",
+      "phones are not allowed; they can do research with them"
+    ],
+    "explanation": "Handys sind 'streng verboten' (strictly forbidden), and they could use them in class for 'Recherche' (research).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_003_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'In meiner Freizeit spiele ich gern Fußball mit meinen Freunden im Park.' Question: Where does the speaker play football? (Set B)",
+    "answer": "in the park",
+    "acceptableAnswers": [
+      "park",
+      "at the park"
+    ],
+    "explanation": "The speaker mentions 'im Park', meaning in the park.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_listening_004_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Ich verstehe mich gut mit meinem Vater, weil er immer geduldig ist, aber meine Schwester ärgert mich oft.' Question: Why does the speaker get on well with their father? (Set B)",
+    "answer": "he is always patient",
+    "acceptableAnswers": [
+      "he is patient",
+      "because he is patient"
+    ],
+    "explanation": "The speaker says 'weil er immer geduldig ist' (because he is always patient).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_listening_005_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Letzten Sommer bin ich nach Spanien geflogen. Das Wetter war fantastisch!' Question: Where did the speaker go last summer? (Set B)",
+    "answer": "Spain",
+    "acceptableAnswers": [
+      "spain",
+      "to Spain"
+    ],
+    "explanation": "The speaker flew to 'Spanien' (Spain).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ge_listening_006_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Obwohl meine Mutter möchte, dass ich Medizin studiere, werde ich eine Ausbildung als Automechaniker machen.' Question: What career does the speaker plan to pursue, despite their mother's wishes? (Set B)",
+    "answer": "car mechanic",
+    "acceptableAnswers": [
+      "mechanic",
+      "auto mechanic"
+    ],
+    "explanation": "The speaker plans an apprenticeship as an 'Automechaniker' (car mechanic) despite mother wanting them to study medicine.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_007_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Zum Frühstück esse ich meistens Müsli mit Milch und trinke einen Orangensaft.' Question: What does the speaker usually drink for breakfast? (Set B)",
+    "answer": "orange juice",
+    "acceptableAnswers": [
+      "orange juice",
+      "an orange juice"
+    ],
+    "explanation": "The speaker drinks 'Orangensaft' (orange juice).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_listening_008_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Wir müssen mehr Plastik recyceln, um unsere Ozeane zu retten. Zu viele Tiere sterben wegen unseres Mülls.' Question: Why must we recycle more plastic according to the speaker? (Set B)",
+    "answer": "to save our oceans",
+    "acceptableAnswers": [
+      "save the oceans",
+      "save oceans",
+      "protect oceans"
+    ],
+    "explanation": "The speaker mentions 'um unsere Ozeane zu retten' (to save our oceans).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_listening_009_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Erdkunde ist mein Lieblingsfach, weil der Lehrer sehr lustig ist, aber Physik ist mir zu schwer.' Question: Why does the speaker like geography? (Set B)",
+    "answer": "the teacher is very funny",
+    "acceptableAnswers": [
+      "funny teacher",
+      "because the teacher is funny"
+    ],
+    "explanation": "The speaker says Erdkunde (geography) is their favorite subject 'weil der Lehrer sehr lustig ist' (because the teacher is very funny).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_010_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Accommodation",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Die Jugendherberge war zwar billig, aber die Duschen waren schmutzig und das WLAN hat überhaupt nicht funktioniert.' Question: What were the two complaints about the youth hostel? (Set B)",
+    "answer": "dirty showers and no working Wi-Fi",
+    "acceptableAnswers": [
+      "dirty showers and Wi-Fi did not work",
+      "showers were dirty, wifi did not work"
+    ],
+    "explanation": "The speaker mentions 'Duschen waren schmutzig' (showers were dirty) and 'WLAN hat überhaupt nicht funktioniert' (Wi-Fi didn't work at all).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "accommodation"
+    ]
+  },
+  {
+    "id": "ge_listening_011_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Festivals",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Weihnachten ist mein Lieblingsfest, weil die ganze Familie zusammenkommt.' Question: Why is Christmas the speaker's favorite festival? (Set B)",
+    "answer": "the whole family comes together",
+    "acceptableAnswers": [
+      "family comes together",
+      "because the family gathers"
+    ],
+    "explanation": "The speaker states 'weil die ganze Familie zusammenkommt' (because the whole family comes together).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "festivals"
+    ]
+  },
+  {
+    "id": "ge_listening_012_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Ich benutze mein Tablet hauptsächlich, um Filme zu streamen, aber mein Bruder spielt nur Videospiele.' Question: What does the speaker mainly use their tablet for? (Set B)",
+    "answer": "streaming movies",
+    "acceptableAnswers": [
+      "stream movies",
+      "watching movies",
+      "stream films"
+    ],
+    "explanation": "The speaker says 'hauptsächlich, um Filme zu streamen' (mainly to stream movies).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "technology"
+    ]
+  },
+  {
+    "id": "ge_listening_013_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Die Schule beginnt um acht Uhr, also muss ich um sieben Uhr aufstehen.' Question: What time does school start? (Set B)",
+    "answer": "8:00 AM",
+    "acceptableAnswers": [
+      "8",
+      "8am",
+      "eight",
+      "eight o'clock"
+    ],
+    "explanation": "The speaker says 'Die Schule beginnt um acht Uhr' (School begins at 8 o'clock).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_listening_014_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Unsere Schuluniform ist extrem unpraktisch. Im Winter ist der Mantel zu dünn, und im Sommer schwitzen wir in den schwarzen Hosen.' Question: What is the speaker's double complaint about the winter and summer uniform? (Set B)",
+    "answer": "coat is too thin in winter; black trousers are too hot in summer",
+    "acceptableAnswers": [
+      "coat too thin, trousers too hot",
+      "too cold in winter coat, too hot in summer pants"
+    ],
+    "explanation": "The speaker says 'Mantel zu dünn' (coat too thin) in winter and 'schwitzen wir in den schwarzen Hosen' (we sweat in the black trousers) in summer.",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_015_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Gestern habe ich eine Komödie im Kino gesehen. Ich habe viel gelacht, obwohl das Ende traurig war.' Question: What genre of film did the speaker watch yesterday? (Set B)",
+    "answer": "comedy",
+    "acceptableAnswers": [
+      "a comedy"
+    ],
+    "explanation": "The speaker watched a 'Komödie' (comedy).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "cinema"
+    ]
+  },
+  {
+    "id": "ge_listening_016_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "University",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Nach dem Abitur möchte ich ein Jahr lang im Ausland arbeiten, bevor ich mein Geschichtsstudium in Berlin beginne.' Question: What does the speaker plan to do immediately after their Abitur exams? (Set B)",
+    "answer": "work abroad for a year",
+    "acceptableAnswers": [
+      "work abroad",
+      "work in another country",
+      "work overseas for a year"
+    ],
+    "explanation": "The speaker wants to 'ein Jahr lang im Ausland arbeiten' (work abroad for a year) before studying history.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Weather",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Morgen wird es in Berlin stark regnen, aber am Wochenende soll die Sonne wieder scheinen.' Question: What will the weather be like in Berlin tomorrow? (Set B)",
+    "answer": "rainy",
+    "acceptableAnswers": [
+      "heavy rain",
+      "raining",
+      "rain"
+    ],
+    "explanation": "The speaker states 'Morgen wird es in Berlin stark regnen' (Tomorrow it will rain heavily in Berlin).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "weather"
+    ]
+  },
+  {
+    "id": "ge_listening_018_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Climate Change",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Wir müssen weniger Energie verbrauchen. Ich schalte immer das Licht aus, wenn ich das Zimmer verlasse.' Question: What action does the speaker personally take to save energy? (Set B)",
+    "answer": "turns off the light when leaving the room",
+    "acceptableAnswers": [
+      "turns off lights",
+      "switches off lights"
+    ],
+    "explanation": "The speaker says 'Ich schalte immer das Licht aus, wenn ich das Zimmer verlasse' (I always turn off the light when I leave the room).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_listening_019_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Jeden Samstag spiele ich Tennis. Ich finde es toll, weil es mich fit hält.' Question: Why does the speaker play tennis every Saturday? (Set B)",
+    "answer": "it keeps them fit",
+    "acceptableAnswers": [
+      "keeps fit",
+      "keeps them healthy",
+      "to stay fit"
+    ],
+    "explanation": "The speaker plays tennis because 'es mich fit hält' (it keeps me fit).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "sports"
+    ]
+  },
+  {
+    "id": "ge_listening_020_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Friends",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Mein bester Freund Paul hat immer Zeit für mich. Er ist extrem zuverlässig, im Gegensatz zu meinen anderen Mitschülern.' Question: What character trait makes Paul a good friend according to the speaker? (Set B)",
+    "answer": "extremely reliable",
+    "acceptableAnswers": [
+      "reliable",
+      "trustworthy",
+      "he is reliable"
+    ],
+    "explanation": "The speaker says Paul is 'extrem zuverlässig' (extremely reliable).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "friends"
+    ]
+  },
+  {
+    "id": "ge_listening_021_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Letzte Woche haben wir ein Museum in München besucht. Es war sehr interessant, aber die Busfahrt war extrem langweilig.' Question: What is the speaker's complaint about the school trip last week? (Set B)",
+    "answer": "the bus ride was extremely boring",
+    "acceptableAnswers": [
+      "bus ride was boring",
+      "bus journey was boring",
+      "boring bus trip"
+    ],
+    "explanation": "The speaker complained that 'die Busfahrt war extrem langweilig' (the bus ride was extremely boring).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_022_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Klassische Musik entspannt mich, während lauter Rock mich nur nervös macht. Deshalb höre ich abends meistens Mozart.' Question: Why does the speaker listen to Mozart in the evening? (Set B)",
+    "answer": "classical music relaxes them",
+    "acceptableAnswers": [
+      "it is relaxing",
+      "it relaxes them",
+      "to relax"
+    ],
+    "explanation": "The speaker says 'Klassische Musik entspannt mich' (classical music relaxes me).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "music"
+    ]
+  },
+  {
+    "id": "ge_listening_023_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich fahre jeden Tag mit dem Rad zur Schule, weil es umweltfreundlich ist.' Question: How does the speaker travel to school? (Set B)",
+    "answer": "by bicycle",
+    "acceptableAnswers": [
+      "by bike",
+      "bike",
+      "bicycle",
+      "cycling"
+    ],
+    "explanation": "The speaker goes 'mit dem Rad' (by bicycle).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "transport"
+    ]
+  },
+  {
+    "id": "ge_listening_024_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Es ist mein Traum, eines Tages mein eigenes Restaurant zu eröffnen. Ich will der Chefkoch sein!' Question: What is the speaker's dream career goal? (Set B)",
+    "answer": "to open their own restaurant as head chef",
+    "acceptableAnswers": [
+      "open a restaurant",
+      "own a restaurant",
+      "be a chef in their own restaurant"
+    ],
+    "explanation": "The speaker dreams of 'mein eigenes Restaurant zu eröffnen' (opening my own restaurant) and being the 'Chefkoch' (head chef).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_025_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Weekend",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Am Samstag schlafe ich normalerweise bis zehn Uhr aus.' Question: What does the speaker normally do on Saturdays? (Set B)",
+    "answer": "sleep in until 10:00 AM",
+    "acceptableAnswers": [
+      "sleep in",
+      "sleep late",
+      "sleep until 10"
+    ],
+    "explanation": "The speaker says 'schlafe ich normalerweise bis zehn Uhr aus' (usually sleep in until 10 o'clock).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_listening_026_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Restaurants",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Der Service in diesem neuen Restaurant war katastrophal. Wir mussten eine Stunde auf unser Essen warten, und die Suppe war kalt.' Question: What are the two specific complaints about the restaurant service and food? (Set B)",
+    "answer": "had to wait an hour for food; the soup was cold",
+    "acceptableAnswers": [
+      "waited 1 hour, cold soup",
+      "long wait, cold soup"
+    ],
+    "explanation": "The speaker complained that they waited 'eine Stunde' (one hour) and the 'Suppe war kalt' (soup was cold).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_listening_027_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Unsere Schule hat ein neues Hallenbad. Ich finde es toll, weil wir jetzt im Winter schwimmen können.' Question: What new facility does the school have? (Set B)",
+    "answer": "indoor swimming pool",
+    "acceptableAnswers": [
+      "swimming pool",
+      "indoor pool",
+      "pool"
+    ],
+    "explanation": "The speaker mentions a 'neues Hallenbad' (new indoor swimming pool).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_028_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Celebrations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Letztes Wochenende haben wir den siebzigsten Geburtstag meiner Großmutter gefeiert. Es gab eine riesige Torte!' Question: Whose milestone celebration took place last weekend? (Set B)",
+    "answer": "grandmother's 70th birthday",
+    "acceptableAnswers": [
+      "grandma's 70th birthday",
+      "grandmother's birthday"
+    ],
+    "explanation": "The speaker celebrated 'den siebzigsten Geburtstag meiner Großmutter' (the 70th birthday of my grandmother).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_listening_029_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich fahre lieber in die Berge als an den Strand, weil ich gern wandere.' Question: Why does the speaker prefer the mountains to the beach? (Set B)",
+    "answer": "they like hiking",
+    "acceptableAnswers": [
+      "likes hiking",
+      "enjoys hiking",
+      "because they like hiking"
+    ],
+    "explanation": "The speaker says 'weil ich gern wandere' (because I like hiking).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ge_listening_030_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Social Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Obdachlosigkeit ist ein wachsendes Problem in unserer Stadt. Wir sollten den lokalen Suppenküchen helfen.' Question: What major social problem does the speaker identify in their town? (Set B)",
+    "answer": "homelessness",
+    "acceptableAnswers": [
+      "homeless people",
+      "being homeless"
+    ],
+    "explanation": "The speaker mentions 'Obdachlosigkeit' (homelessness).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "social"
+    ]
+  },
+  {
+    "id": "ge_listening_031_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich kaufe meine Kleidung meistens online, weil es billiger ist als im Einkaufszentrum.' Question: Why does the speaker prefer to buy clothes online? (Set B)",
+    "answer": "it is cheaper than the shopping centre",
+    "acceptableAnswers": [
+      "cheaper",
+      "it is cheaper",
+      "cheaper than shopping malls"
+    ],
+    "explanation": "The speaker shopping online 'weil es billiger ist' (because it is cheaper) than in the mall.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ge_listening_032_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Unsere Mathelehrerin erklärt alles sehr klar, aber sie gibt uns zu viele Hausaufgaben.' Question: What is the speaker's positive and negative feedback about the maths teacher? (Set B)",
+    "answer": "explains clearly but gives too much homework",
+    "acceptableAnswers": [
+      "explains well, too much homework",
+      "clear explanations, too much homework"
+    ],
+    "explanation": "The teacher 'erklärt alles sehr klar' (explains clearly) but 'gibt uns zu viele Hausaufgaben' (gives us too much homework).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "teachers"
+    ]
+  },
+  {
+    "id": "ge_listening_033_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Pets",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'Ich habe einen kleinen Hund namens Bello. Er ist sehr verspielt.' Question: What pet does the speaker have? (Set B)",
+    "answer": "a small dog",
+    "acceptableAnswers": [
+      "dog",
+      "a dog"
+    ],
+    "explanation": "The speaker mentions 'einen kleinen Hund' (a small dog).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "pets"
+    ]
+  },
+  {
+    "id": "ge_listening_034_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Part-time Job",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Samstags arbeite ich in einem Supermarkt, um mein Taschengeld aufzubessern.' Question: Why does the speaker work in a supermarket on Saturdays? (Set B)",
+    "answer": "to earn extra pocket money",
+    "acceptableAnswers": [
+      "earn money",
+      "improve pocket money",
+      "pocket money"
+    ],
+    "explanation": "The speaker works 'um mein Taschengeld aufzubessern' (to supplement/earn extra pocket money).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_035_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Directions",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Gehen Sie geradeaus und dann die zweite Straße links. Der Bahnhof ist gegenüber der Post.' Question: Where is the railway station located? (Set B)",
+    "answer": "opposite the post office",
+    "acceptableAnswers": [
+      "opposite post office",
+      "by the post office"
+    ],
+    "explanation": "The speaker says 'Der Bahnhof ist gegenüber der Post' (The train station is opposite the post office).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "directions"
+    ]
+  },
+  {
+    "id": "ge_listening_036_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Die globale Erwärmung führt zu extremen Wetterbedingungen. Wir spüren das schon jetzt im Tourismussektor.' Question: Which sector is already feeling the impact of global warming according to the speaker? (Set B)",
+    "answer": "tourism sector",
+    "acceptableAnswers": [
+      "tourism",
+      "tourist sector"
+    ],
+    "explanation": "The speaker mentions 'Tourismussektor' (tourism sector).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ge_listening_037_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich lese gern Kriminalromane am Abend vor dem Schlafen.' Question: What type of books does the speaker read in the evening? (Set B)",
+    "answer": "detective novels",
+    "acceptableAnswers": [
+      "crime novels",
+      "crime stories",
+      "thrillers"
+    ],
+    "explanation": "The speaker reads 'Kriminalromane' (crime/detective novels).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_listening_038_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Normalerweise jogge ich morgens vor dem Frühstück, aber im Winter ist es mir draußen einfach zu kalt.' Question: Why does the speaker stop jogging in the winter mornings? (Set B)",
+    "answer": "it is too cold outside",
+    "acceptableAnswers": [
+      "too cold",
+      "cold weather",
+      "it's too cold"
+    ],
+    "explanation": "The speaker says 'im Winter ist es mir draußen einfach zu kalt' (in winter it is simply too cold outside).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ge_listening_039_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Wir müssen eine blaue Jacke und eine graue Hose tragen.' Question: What colour trousers must the speaker wear? (Set B)",
+    "answer": "grey",
+    "acceptableAnswers": [
+      "gray"
+    ],
+    "explanation": "The speaker mentions 'eine graue Hose' (grey trousers).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "uniform"
+    ]
+  },
+  {
+    "id": "ge_listening_040_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Künstliche Intelligenz wird die Arbeitswelt komplett verändern. Manche Berufe werden ganz verschwinden.' Question: What major prediction does the speaker make about AI in the workplace? (Set B)",
+    "answer": "some jobs will completely disappear",
+    "acceptableAnswers": [
+      "jobs will disappear",
+      "some professions will disappear"
+    ],
+    "explanation": "The speaker predicts 'Manche Berufe werden ganz verschwinden' (some jobs will completely disappear).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "ge_listening_041_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'Wir haben ein kleines Ferienhaus in Frankreich gemietet. Es war sehr gemütlich.' Question: What type of holiday accommodation did they rent? (Set B)",
+    "answer": "holiday home",
+    "acceptableAnswers": [
+      "holiday cottage",
+      "small holiday house",
+      "holiday house",
+      "ferienhaus"
+    ],
+    "explanation": "The speaker rented 'ein kleines Ferienhaus' (a small holiday house/home).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ge_listening_042_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Ich will Umweltingenieur werden, um innovative Lösungen für den Klimaschutz zu entwickeln.' Question: What is the speaker's specific career aim and motivation? (Set B)",
+    "answer": "environmental engineer, to develop climate protection solutions",
+    "acceptableAnswers": [
+      "environmental engineer, save environment",
+      "environmental engineer, fight climate change"
+    ],
+    "explanation": "The speaker wants to be an 'Umweltingenieur' (environmental engineer) to develop solutions for 'Klimaschutz' (climate protection).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ge_listening_043_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Ich esse kein Fleisch, weil ich Vegetarier bin, aber Fisch esse ich manchmal.' Question: What diet does the speaker follow, and what is the exception? (Set B)",
+    "answer": "vegetarian; eats fish sometimes",
+    "acceptableAnswers": [
+      "vegetarian, sometimes fish",
+      "no meat, but eats fish"
+    ],
+    "explanation": "The speaker is a 'Vegetarier' (vegetarian) but eats 'Fisch' (fish) sometimes.",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ge_listening_044_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Die Luftverschmutzung in Großstädten ist schrecklich für Kinder mit Asthma. Wir brauchen autofreie Zonen.' Question: According to the speaker, who is particularly affected by air pollution in big cities? (Set B)",
+    "answer": "children with asthma",
+    "acceptableAnswers": [
+      "asthmatic children",
+      "kids with asthma"
+    ],
+    "explanation": "The speaker says air pollution 'ist schrecklich für Kinder mit Asthma' (is terrible for children with asthma).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "pollution"
+    ]
+  },
+  {
+    "id": "ge_listening_045_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'In der Mittagspause esse ich in der Kantine und plaudere mit meinen Schulkameraden.' Question: What two things does the speaker do during lunchtime? (Set B)",
+    "answer": "eats in the canteen and chats with schoolmates",
+    "acceptableAnswers": [
+      "eats in canteen, talks to friends",
+      "has lunch, talks to schoolmates"
+    ],
+    "explanation": "The speaker 'esse in der Kantine' (eats in the canteen) and 'plaudere mit meinen Schulkameraden' (chats with my schoolmates).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_046_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Meine Großeltern wohnen jetzt bei uns, weil sie alt sind und Hilfe brauchen.' Question: Why do the speaker's grandparents live with them now? (Set B)",
+    "answer": "they are old and need help",
+    "acceptableAnswers": [
+      "old and need help",
+      "because they need assistance",
+      "they are elderly and need support"
+    ],
+    "explanation": "The grandparents live there 'weil sie alt sind und Hilfe brauchen' (because they are old and need help).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ge_listening_047_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Fotografie ist meine Leidenschaft. Ich nehme meine Kamera überallhin mit.' Question: What is the speaker's passion? (Set B)",
+    "answer": "photography",
+    "acceptableAnswers": [
+      "photos",
+      "taking photos"
+    ],
+    "explanation": "The speaker states 'Fotografie ist meine Leidenschaft' (Photography is my passion).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ge_listening_048_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'Anstatt im Sommer zu verreisen, verbringen wir dieses Jahr einen Balkonurlaub zu Hause.' Question: What type of holiday is the speaker planning this year? (Set B)",
+    "answer": "a staycation at home",
+    "acceptableAnswers": [
+      "staying at home",
+      "holiday at home",
+      "staycation"
+    ],
+    "explanation": "The speaker plans a 'Balkonurlaub zu Hause' (balcony holiday at home / staycation).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ge_listening_049_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'Englisch ist nützlich, aber Mathe finde ich extrem langweilig.' Question: Contrast the speaker's opinion on English and maths. (Set B)",
+    "answer": "English is useful, maths is extremely boring",
+    "acceptableAnswers": [
+      "English useful, maths boring",
+      "useful english, boring maths"
+    ],
+    "explanation": "The speaker says 'Englisch ist nützlich' (English is useful) but 'Mathe finde ich extrem langweilig' (I find maths extremely boring).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ge_listening_050_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'Obwohl die Bezahlung niedrig ist, arbeite ich gern als Erzieher, weil die Arbeit mit Kindern sehr erfüllend ist.' Question: Why does the speaker like working as an educator despite the low pay? (Set B)",
+    "answer": "working with children is very fulfilling",
+    "acceptableAnswers": [
+      "working with children is fulfilling",
+      "work with kids is rewarding"
+    ],
+    "explanation": "The speaker says 'weil die Arbeit mit Kindern sehr erfüllend ist' (because working with children is very fulfilling).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  }
+]

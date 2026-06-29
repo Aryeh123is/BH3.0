@@ -1,0 +1,2034 @@
+[
+  {
+    "id": "es_reading_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Me gusta mucho la historia porque es muy interesante, pero no me gustan las matemáticas.' Question: Does the person like math?",
+    "answer": "no",
+    "explanation": "The text says 'no me gustan las matemáticas'.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_002",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'En el futuro, creo que las redes sociales serán menos importantes para los jóvenes.' Question: What does the author think about the future of social media?",
+    "answer": "serán menos importantes",
+    "acceptableAnswers": [
+      "less important",
+      "will be less important"
+    ],
+    "explanation": "The text explicitly mentions they will be 'menos importantes'.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_003",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'El año pasado fui a España en avión, pero fue un desastre porque el vuelo se retrasó cinco horas. El próximo año prefiero ir en tren.' Question: Why was the flight a disaster?",
+    "answer": "it was delayed",
+    "acceptableAnswers": [
+      "it was delayed five hours",
+      "delayed",
+      "the flight was delayed"
+    ],
+    "explanation": "The text says 'el vuelo se retrasó cinco horas'.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_004",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Warming",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Si no cambiamos nuestra manera de vivir, el planeta sufrirá consecuencias irreparables.' Question: What will happen if we don't change our way of living?",
+    "answer": "the planet will suffer irreparable consequences",
+    "acceptableAnswers": [
+      "irreparable consequences",
+      "planet will suffer",
+      "the planet will suffer"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_005",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Routine",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Empiezo las clases a las nueve en punto de la mañana.' Question: What time do lessons start?",
+    "answer": "9:00 am",
+    "acceptableAnswers": [
+      "9 am",
+      "nine o'clock",
+      "nine am"
+    ],
+    "explanation": "The text says 'a las nueve en punto de la mañana' which is 9 o'clock in the morning.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_006",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Family",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Mi primo Pablo es pelirrojo, sincero y muy alto.' Question: Describe Pablo's hair type.",
+    "answer": "red hair",
+    "acceptableAnswers": [
+      "red",
+      "ginger",
+      "red-haired"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "es_reading_007",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Ayer fuimos al centro para comer comida italiana, pero el restaurante estaba cerrado. Así que terminamos comiendo hamburguesas.' Question: What kind of food did they end up eating?",
+    "answer": "burgers",
+    "acceptableAnswers": [
+      "hamburgers",
+      "hamburger"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "es_reading_008",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Activities",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Durante las vacaciones suelo nadar en la piscina del hotel.' Question: Where does the speaker swim?",
+    "answer": "hotel pool",
+    "acceptableAnswers": [
+      "the hotel pool",
+      "hotel swimming pool"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_009",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Reciclar vidrio reduce la cantidad de basura que va al vertedero.' Question: What is the benefit of recycling glass?",
+    "answer": "it reduces garbage going to the landfill",
+    "acceptableAnswers": [
+      "reduces waste going to landfills",
+      "less rubbish in landfill"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_010",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Usage",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Prefiero usar una tableta portátil para leer libros digitales.' Question: What device does the speaker prefer to read digital books?",
+    "answer": "a tablet",
+    "acceptableAnswers": [
+      "portable tablet",
+      "tablet device"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_011",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Future",
+    "subtopic": "Ambitions",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Quiero trabajar como peluquera de mayor porque mi tía posee un salón.' Question: Why does the speaker want to be a hairdresser?",
+    "answer": "her aunt owns a salon",
+    "acceptableAnswers": [
+      "aunt owns a beauty salon",
+      "aunt is a salon owner"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_012",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Aunque nuestro director es exigente, ha traído muchas mejoras en equipamiento.' Question: What is the opinion about the headteacher?",
+    "answer": "demanding but has brought equipment improvements",
+    "acceptableAnswers": [
+      "strict but improved equipment",
+      "demanding but introduced new equipment"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_013",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Reviews",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'La habitación era bastante espaciosa, pero el aire acondicionado no enfriaba bien.' Question: What was the complain about the room?",
+    "answer": "air conditioning did not cool well",
+    "acceptableAnswers": [
+      "broken AC",
+      "bad air con",
+      "air conditioning was not working properly"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_014",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Me apasiona escuchar música pop clásica de los años ochenta.' Question: What type of music does the speaker listen to?",
+    "answer": "classic 80s pop music",
+    "acceptableAnswers": [
+      "80s pop",
+      "classic pop from the 1980s"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "music"
+    ]
+  },
+  {
+    "id": "es_reading_015",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Friends",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Elena es alguien en quien realmente puedo confiar por completo.' Question: What quality of Elena is highlighted?",
+    "answer": "trustworthy",
+    "acceptableAnswers": [
+      "you can trust her completely",
+      "extremely reliable",
+      "trustworthiness"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "friends"
+    ]
+  },
+  {
+    "id": "es_reading_016",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Environment",
+    "subtopic": "Local Area",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Nuestro pueblo tiene un parque fluvial muy limpio donde jugamos.' Question: What clean feature does the town have?",
+    "answer": "river park",
+    "acceptableAnswers": [
+      "a river park",
+      "clean river park"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_017",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Subí tres fotos de mi gato nuevo a las redes sociales.' Question: What photos did the person upload?",
+    "answer": "photos of their new cat",
+    "acceptableAnswers": [
+      "three pictures of new cat",
+      "cat pictures",
+      "3 photos of new cat"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_018",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Salary",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Tener un empleo que pague bien es la prioridad para mí.' Question: What is the speaker's main work priority?",
+    "answer": "having a well-paying job",
+    "acceptableAnswers": [
+      "good salary",
+      "earning high pay",
+      "well paid job"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_019",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Exams",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'El agobio de los exámenes me provoca insomnio cada junio.' Question: What negative impact does exam pressure have on the speaker?",
+    "answer": "causes insomnia every June",
+    "acceptableAnswers": [
+      "insomnia",
+      "sleeplessness",
+      "stops them sleeping"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_020",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Nevó ayer muchísimo y tuvimos que quedarnos en la cabaña.' Question: Why did they stay in the cabin?",
+    "answer": "it snowed heavily",
+    "acceptableAnswers": [
+      "heavy snow",
+      "it snowed a lot"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_021",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Las palomitas de este cine son saladas y no me gustan nada.' Question: What is the complaint about the movie theatre?",
+    "answer": "the popcorn is salty and they do not like it",
+    "acceptableAnswers": [
+      "salty popcorn",
+      "popcorn is too salty"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "cinema"
+    ]
+  },
+  {
+    "id": "es_reading_022",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Home",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Comparto una habitación cómoda con mi hermano gemelo.' Question: Who does the speaker share a room with?",
+    "answer": "twin brother",
+    "acceptableAnswers": [
+      "their twin brother",
+      "twin"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "es_reading_023",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Saving energy",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Instalar paneles solares domésticos reducirá la factura de gas.' Question: What is the main predicted benefit of home solar panels?",
+    "answer": "reducing the gas bill",
+    "acceptableAnswers": [
+      "lower gas bill",
+      "reduces gas costs"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_024",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "E-books",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'La pantalla táctil de este libro electrónico está agrietada.' Question: What is wrong with the customer's e-book reader?",
+    "answer": "the touchscreen is cracked",
+    "acceptableAnswers": [
+      "cracked screen",
+      "lens or screen cracked"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_025",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Plans",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Pienso pedir una beca para hacer estudios de posgrado.' Question: What is the speaker planning to apply for?",
+    "answer": "a scholarship for postgraduate studies",
+    "acceptableAnswers": [
+      "a grant for postgrad studies",
+      "scholarship for postgrad"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_026",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Excursions",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'La excursión de geografía al parque nacional fue agotadora.' Question: Describe the geography field trip.",
+    "answer": "exhausting",
+    "acceptableAnswers": [
+      "tiring",
+      "very tiring",
+      "wearisome"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_027",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Destination",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Pasé quince días de acampada en los Pirineos aragoneses.' Question: Where did they go camping?",
+    "answer": "Aragonese Pyrenees",
+    "acceptableAnswers": [
+      "Pyrenees",
+      "the Pyrenees mountains"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_028",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Saturdays",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Los sábados suelo hacer senderismo en las laderas locales.' Question: What hobby does the speaker do on Saturdays?",
+    "answer": "hiking on local slopes",
+    "acceptableAnswers": [
+      "hiking",
+      "trekking"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "es_reading_029",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Festivals",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'La cabalgata municipal convocó a miles de entusiastas.' Question: What event gathered thousands of enthusiasts?",
+    "answer": "municipal parade",
+    "acceptableAnswers": [
+      "town parade",
+      "local parade",
+      "cavalcade"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_030",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Environment",
+    "subtopic": "Litter",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Arrojar basura al suelo ensucia las calles del pueblo.' Question: What is mentioned as a cause of dirty streets?",
+    "answer": "throwing litter on the ground",
+    "acceptableAnswers": [
+      "dropping garbage",
+      "throwing rubbish on floors"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_031",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Games",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Mis padres limitan el acceso a mi consola por las noches.' Question: What action do parents take in the evening?",
+    "answer": "limit access to the game console",
+    "acceptableAnswers": [
+      "limit console usage",
+      "block games console access"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_032",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Jobs",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Hacer prácticas comerciales te dará una gran ventaja competitiva.' Question: What is recommended to gain a competitive advantage?",
+    "answer": "doing business work experience",
+    "acceptableAnswers": [
+      "unpaid work placements",
+      "commercial internships",
+      "business internships"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_033",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Está severamente castigado copiar en los exámenes finales.' Question: What is strictly punished at school?",
+    "answer": "copying in final exams",
+    "acceptableAnswers": [
+      "cheating in final exams",
+      "coping in finals"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_034",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Food",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'En el restaurante probé unos calamares deliciosos.' Question: What did the customer eat?",
+    "answer": "calamari",
+    "acceptableAnswers": [
+      "squid",
+      "delicious squid"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "es_reading_035",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Healthy eating",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Suprimir los refrescos azucarados previene problemas dentales.' Question: What health benefit is mentioned?",
+    "answer": "preventing dental problems",
+    "acceptableAnswers": [
+      "protecting teeth",
+      "fewer cavities",
+      "prevents tooth problems"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "es_reading_036",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Relationships",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Considero que la lealtad es crucial en una amistad.' Question: What value is noted as crucial in friendship?",
+    "answer": "loyalty",
+    "acceptableAnswers": [
+      "being loyal",
+      "faithful"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "friends"
+    ]
+  },
+  {
+    "id": "es_reading_037",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Wildfire",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Los incendios forestales del sur arrasaron hectáreas nativas.' Question: What natural disaster happened in the south?",
+    "answer": "forest fires",
+    "acceptableAnswers": [
+      "wildfires",
+      "forest wildfires"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_038",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Phones",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Apago las notificaciones del móvil durante las horas de estudio.' Question: What does the student do with their phone while studying?",
+    "answer": "turns off notifications",
+    "acceptableAnswers": [
+      "mutes phone alerts",
+      "turns off mobile alerts"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_039",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Options",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Me siento indeciso con respecto a las asignaturas optativas.' Question: Why is the student anxious?",
+    "answer": "undecided about elective subjects",
+    "acceptableAnswers": [
+      "doesn't know which options to choose",
+      "unresolved optional studies"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_040",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Es obligatorio llevar corbata verde en nuestro instituto.' Question: Is a necktie mandatory?",
+    "answer": "yes, a green necktie",
+    "acceptableAnswers": [
+      "yes",
+      "yes a green tie",
+      "yes green tie"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_041",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Prices",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'El precio del billete de ida y vuelta era prohibitivo.' Question: What is said about the return ticket price?",
+    "answer": "prohibitive",
+    "acceptableAnswers": [
+      "too expensive",
+      "very costly",
+      "extremely expensive"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_042",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Concerts",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Las entradas para el festival se agotaron en cuestión de minutos.' Question: What happened to the festival tickets?",
+    "answer": "sold out in minutes",
+    "acceptableAnswers": [
+      "they were sold out quickly",
+      "sold out"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "music"
+    ]
+  },
+  {
+    "id": "es_reading_043",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Towns",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Mi pueblo carece de suficientes áreas de entretenimiento joven.' Question: What is the main drawback of the town?",
+    "answer": "lacks search/entertainment facilities for youth",
+    "acceptableAnswers": [
+      "no youth entertainment",
+      "lacks youth leisure areas"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_044",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Transport",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Subvencionar el transporte público facilitaría una menor dependencia de turismos.' Question: What idea is proposed to lower car dependence?",
+    "answer": "subsidising public transport",
+    "acceptableAnswers": [
+      "subsidise buses and trains",
+      "make public transit free or cheaper"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_045",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Safety",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'No debes colgar tu dirección domiciliaria en perfiles públicos.' Question: What warning is given?",
+    "answer": "do not post your home address on public profiles",
+    "acceptableAnswers": [
+      "don't post your address",
+      "keep home address private"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_046",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Unemployment",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'El paro entre jóvenes graduados sigue inquietando al gobierno central.' Question: Who does youth unemployment mainly worry?",
+    "answer": "the central government",
+    "acceptableAnswers": [
+      "government",
+      "governments"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_047",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Lunchtime",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Suelo comer un bocadillo de jamón durante el recreo.' Question: What does the pupil eat during break?",
+    "answer": "ham sandwich",
+    "acceptableAnswers": [
+      "a ham sandwich",
+      "bocadillo with ham"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_048",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Discomforts",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'El retraso imprevisto interrumpió nuestras vacaciones por completo.' Question: What interrupted their holiday?",
+    "answer": "the unforeseen delay",
+    "acceptableAnswers": [
+      "an unexpected delay",
+      "the delay"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_049",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Reading",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Leo novelas policíacas porque me encantan los misterios.' Question: Why does the speaker read crime novels?",
+    "answer": "loves mysteries",
+    "acceptableAnswers": [
+      "because they love mystery",
+      "likes mysteries"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "es_reading_050",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Green spaces",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Es esencial proteger las cordilleras nativas del desarrollo urbanístico.' Question: What must be protected from urban development?",
+    "answer": "native mountain ranges",
+    "acceptableAnswers": [
+      "native ranges",
+      "mountain areas",
+      "mountains"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Me gusta mucho la historia porque es muy interesante, pero no me gustan las matemáticas.' Question: Does the person like math? (Set B)",
+    "answer": "no",
+    "explanation": "The text says 'no me gustan las matemáticas'.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'En el futuro, creo que las redes sociales serán menos importantes para los jóvenes.' Question: What does the author think about the future of social media? (Set B)",
+    "answer": "serán menos importantes",
+    "acceptableAnswers": [
+      "less important",
+      "will be less important"
+    ],
+    "explanation": "The text explicitly mentions they will be 'menos importantes'.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_003_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Transport",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'El año pasado fui a España en avión, pero fue un desastre porque el vuelo se retrasó cinco horas. El próximo año prefiero ir en tren.' Question: Why was the flight a disaster? (Set B)",
+    "answer": "it was delayed",
+    "acceptableAnswers": [
+      "it was delayed five hours",
+      "delayed",
+      "the flight was delayed"
+    ],
+    "explanation": "The text says 'el vuelo se retrasó cinco horas'.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_004_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Warming",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Si no cambiamos nuestra manera de vivir, el planeta sufrirá consecuencias irreparables.' Question: What will happen if we don't change our way of living? (Set B)",
+    "answer": "the planet will suffer irreparable consequences",
+    "acceptableAnswers": [
+      "irreparable consequences",
+      "planet will suffer",
+      "the planet will suffer"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Routine",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Empiezo las clases a las nueve en punto de la mañana.' Question: What time do lessons start? (Set B)",
+    "answer": "9:00 am",
+    "acceptableAnswers": [
+      "9 am",
+      "nine o'clock",
+      "nine am"
+    ],
+    "explanation": "The text says 'a las nueve en punto de la mañana' which is 9 o'clock in the morning.",
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_006_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Family",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Mi primo Pablo es pelirrojo, sincero y muy alto.' Question: Describe Pablo's hair type. (Set B)",
+    "answer": "red hair",
+    "acceptableAnswers": [
+      "red",
+      "ginger",
+      "red-haired"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "es_reading_007_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Ayer fuimos al centro para comer comida italiana, pero el restaurante estaba cerrado. Así que terminamos comiendo hamburguesas.' Question: What kind of food did they end up eating? (Set B)",
+    "answer": "burgers",
+    "acceptableAnswers": [
+      "hamburgers",
+      "hamburger"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "es_reading_008_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Activities",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Durante las vacaciones suelo nadar en la piscina del hotel.' Question: Where does the speaker swim? (Set B)",
+    "answer": "hotel pool",
+    "acceptableAnswers": [
+      "the hotel pool",
+      "hotel swimming pool"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_009_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Reciclar vidrio reduce la cantidad de basura que va al vertedero.' Question: What is the benefit of recycling glass? (Set B)",
+    "answer": "it reduces garbage going to the landfill",
+    "acceptableAnswers": [
+      "reduces waste going to landfills",
+      "less rubbish in landfill"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_010_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Usage",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Prefiero usar una tableta portátil para leer libros digitales.' Question: What device does the speaker prefer to read digital books? (Set B)",
+    "answer": "a tablet",
+    "acceptableAnswers": [
+      "portable tablet",
+      "tablet device"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_011_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Future",
+    "subtopic": "Ambitions",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Quiero trabajar como peluquera de mayor porque mi tía posee un salón.' Question: Why does the speaker want to be a hairdresser? (Set B)",
+    "answer": "her aunt owns a salon",
+    "acceptableAnswers": [
+      "aunt owns a beauty salon",
+      "aunt is a salon owner"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_012_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Aunque nuestro director es exigente, ha traído muchas mejoras en equipamiento.' Question: What is the opinion about the headteacher? (Set B)",
+    "answer": "demanding but has brought equipment improvements",
+    "acceptableAnswers": [
+      "strict but improved equipment",
+      "demanding but introduced new equipment"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Reviews",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'La habitación era bastante espaciosa, pero el aire acondicionado no enfriaba bien.' Question: What was the complain about the room? (Set B)",
+    "answer": "air conditioning did not cool well",
+    "acceptableAnswers": [
+      "broken AC",
+      "bad air con",
+      "air conditioning was not working properly"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_014_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Me apasiona escuchar música pop clásica de los años ochenta.' Question: What type of music does the speaker listen to? (Set B)",
+    "answer": "classic 80s pop music",
+    "acceptableAnswers": [
+      "80s pop",
+      "classic pop from the 1980s"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "music"
+    ]
+  },
+  {
+    "id": "es_reading_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Friends",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Elena es alguien en quien realmente puedo confiar por completo.' Question: What quality of Elena is highlighted? (Set B)",
+    "answer": "trustworthy",
+    "acceptableAnswers": [
+      "you can trust her completely",
+      "extremely reliable",
+      "trustworthiness"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "friends"
+    ]
+  },
+  {
+    "id": "es_reading_016_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Environment",
+    "subtopic": "Local Area",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Nuestro pueblo tiene un parque fluvial muy limpio donde jugamos.' Question: What clean feature does the town have? (Set B)",
+    "answer": "river park",
+    "acceptableAnswers": [
+      "a river park",
+      "clean river park"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Social Media",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Subí tres fotos de mi gato nuevo a las redes sociales.' Question: What photos did the person upload? (Set B)",
+    "answer": "photos of their new cat",
+    "acceptableAnswers": [
+      "three pictures of new cat",
+      "cat pictures",
+      "3 photos of new cat"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_018_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Salary",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Tener un empleo que pague bien es la prioridad para mí.' Question: What is the speaker's main work priority? (Set B)",
+    "answer": "having a well-paying job",
+    "acceptableAnswers": [
+      "good salary",
+      "earning high pay",
+      "well paid job"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Exams",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'El agobio de los exámenes me provoca insomnio cada junio.' Question: What negative impact does exam pressure have on the speaker? (Set B)",
+    "answer": "causes insomnia every June",
+    "acceptableAnswers": [
+      "insomnia",
+      "sleeplessness",
+      "stops them sleeping"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_020_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Nevó ayer muchísimo y tuvimos que quedarnos en la cabaña.' Question: Why did they stay in the cabin? (Set B)",
+    "answer": "it snowed heavily",
+    "acceptableAnswers": [
+      "heavy snow",
+      "it snowed a lot"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_021_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Las palomitas de este cine son saladas y no me gustan nada.' Question: What is the complaint about the movie theatre? (Set B)",
+    "answer": "the popcorn is salty and they do not like it",
+    "acceptableAnswers": [
+      "salty popcorn",
+      "popcorn is too salty"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "cinema"
+    ]
+  },
+  {
+    "id": "es_reading_022_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Home",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Comparto una habitación cómoda con mi hermano gemelo.' Question: Who does the speaker share a room with? (Set B)",
+    "answer": "twin brother",
+    "acceptableAnswers": [
+      "their twin brother",
+      "twin"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "family"
+    ]
+  },
+  {
+    "id": "es_reading_023_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Saving energy",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Instalar paneles solares domésticos reducirá la factura de gas.' Question: What is the main predicted benefit of home solar panels? (Set B)",
+    "answer": "reducing the gas bill",
+    "acceptableAnswers": [
+      "lower gas bill",
+      "reduces gas costs"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_024_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "E-books",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'La pantalla táctil de este libro electrónico está agrietada.' Question: What is wrong with the customer's e-book reader? (Set B)",
+    "answer": "the touchscreen is cracked",
+    "acceptableAnswers": [
+      "cracked screen",
+      "lens or screen cracked"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_025_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Plans",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Pienso pedir una beca para hacer estudios de posgrado.' Question: What is the speaker planning to apply for? (Set B)",
+    "answer": "a scholarship for postgraduate studies",
+    "acceptableAnswers": [
+      "a grant for postgrad studies",
+      "scholarship for postgrad"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_026_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Excursions",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'La excursión de geografía al parque nacional fue agotadora.' Question: Describe the geography field trip. (Set B)",
+    "answer": "exhausting",
+    "acceptableAnswers": [
+      "tiring",
+      "very tiring",
+      "wearisome"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_027_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Destination",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Pasé quince días de acampada en los Pirineos aragoneses.' Question: Where did they go camping? (Set B)",
+    "answer": "Aragonese Pyrenees",
+    "acceptableAnswers": [
+      "Pyrenees",
+      "the Pyrenees mountains"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_028_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Saturdays",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Los sábados suelo hacer senderismo en las laderas locales.' Question: What hobby does the speaker do on Saturdays? (Set B)",
+    "answer": "hiking on local slopes",
+    "acceptableAnswers": [
+      "hiking",
+      "trekking"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "es_reading_029_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Festivals",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'La cabalgata municipal convocó a miles de entusiastas.' Question: What event gathered thousands of enthusiasts? (Set B)",
+    "answer": "municipal parade",
+    "acceptableAnswers": [
+      "town parade",
+      "local parade",
+      "cavalcade"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_030_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Environment",
+    "subtopic": "Litter",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Arrojar basura al suelo ensucia las calles del pueblo.' Question: What is mentioned as a cause of dirty streets? (Set B)",
+    "answer": "throwing litter on the ground",
+    "acceptableAnswers": [
+      "dropping garbage",
+      "throwing rubbish on floors"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_031_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Games",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Mis padres limitan el acceso a mi consola por las noches.' Question: What action do parents take in the evening? (Set B)",
+    "answer": "limit access to the game console",
+    "acceptableAnswers": [
+      "limit console usage",
+      "block games console access"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_032_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Jobs",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Hacer prácticas comerciales te dará una gran ventaja competitiva.' Question: What is recommended to gain a competitive advantage? (Set B)",
+    "answer": "doing business work experience",
+    "acceptableAnswers": [
+      "unpaid work placements",
+      "commercial internships",
+      "business internships"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_033_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Está severamente castigado copiar en los exámenes finales.' Question: What is strictly punished at school? (Set B)",
+    "answer": "copying in final exams",
+    "acceptableAnswers": [
+      "cheating in final exams",
+      "coping in finals"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_034_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Food",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'En el restaurante probé unos calamares deliciosos.' Question: What did the customer eat? (Set B)",
+    "answer": "calamari",
+    "acceptableAnswers": [
+      "squid",
+      "delicious squid"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "es_reading_035_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Healthy eating",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Suprimir los refrescos azucarados previene problemas dentales.' Question: What health benefit is mentioned? (Set B)",
+    "answer": "preventing dental problems",
+    "acceptableAnswers": [
+      "protecting teeth",
+      "fewer cavities",
+      "prevents tooth problems"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "food"
+    ]
+  },
+  {
+    "id": "es_reading_036_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Identity",
+    "subtopic": "Relationships",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Considero que la lealtad es crucial en una amistad.' Question: What value is noted as crucial in friendship? (Set B)",
+    "answer": "loyalty",
+    "acceptableAnswers": [
+      "being loyal",
+      "faithful"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "friends"
+    ]
+  },
+  {
+    "id": "es_reading_037_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Wildfire",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'Los incendios forestales del sur arrasaron hectáreas nativas.' Question: What natural disaster happened in the south? (Set B)",
+    "answer": "forest fires",
+    "acceptableAnswers": [
+      "wildfires",
+      "forest wildfires"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_038_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Phones",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Apago las notificaciones del móvil durante las horas de estudio.' Question: What does the student do with their phone while studying? (Set B)",
+    "answer": "turns off notifications",
+    "acceptableAnswers": [
+      "mutes phone alerts",
+      "turns off mobile alerts"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_039_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Options",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Me siento indeciso con respecto a las asignaturas optativas.' Question: Why is the student anxious? (Set B)",
+    "answer": "undecided about elective subjects",
+    "acceptableAnswers": [
+      "doesn't know which options to choose",
+      "unresolved optional studies"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_040_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Es obligatorio llevar corbata verde en nuestro instituto.' Question: Is a necktie mandatory? (Set B)",
+    "answer": "yes, a green necktie",
+    "acceptableAnswers": [
+      "yes",
+      "yes a green tie",
+      "yes green tie"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_041_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Holidays",
+    "subtopic": "Prices",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'El precio del billete de ida y vuelta era prohibitivo.' Question: What is said about the return ticket price? (Set B)",
+    "answer": "prohibitive",
+    "acceptableAnswers": [
+      "too expensive",
+      "very costly",
+      "extremely expensive"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_042_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Concerts",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Las entradas para el festival se agotaron en cuestión de minutos.' Question: What happened to the festival tickets? (Set B)",
+    "answer": "sold out in minutes",
+    "acceptableAnswers": [
+      "they were sold out quickly",
+      "sold out"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "music"
+    ]
+  },
+  {
+    "id": "es_reading_043_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity",
+    "subtopic": "Towns",
+    "difficulty": 3,
+    "type": "reading",
+    "question": "Read: 'Mi pueblo carece de suficientes áreas de entretenimiento joven.' Question: What is the main drawback of the town? (Set B)",
+    "answer": "lacks search/entertainment facilities for youth",
+    "acceptableAnswers": [
+      "no youth entertainment",
+      "lacks youth leisure areas"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_044_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Transport",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Subvencionar el transporte público facilitaría una menor dependencia de turismos.' Question: What idea is proposed to lower car dependence? (Set B)",
+    "answer": "subsidising public transport",
+    "acceptableAnswers": [
+      "subsidise buses and trains",
+      "make public transit free or cheaper"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  },
+  {
+    "id": "es_reading_045_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Technology",
+    "subtopic": "Safety",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'No debes colgar tu dirección domiciliaria en perfiles públicos.' Question: What warning is given? (Set B)",
+    "answer": "do not post your home address on public profiles",
+    "acceptableAnswers": [
+      "don't post your address",
+      "keep home address private"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "tech"
+    ]
+  },
+  {
+    "id": "es_reading_046_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Future",
+    "subtopic": "Unemployment",
+    "difficulty": 5,
+    "type": "reading",
+    "question": "Read: 'El paro entre jóvenes graduados sigue inquietando al gobierno central.' Question: Who does youth unemployment mainly worry? (Set B)",
+    "answer": "the central government",
+    "acceptableAnswers": [
+      "government",
+      "governments"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "careers"
+    ]
+  },
+  {
+    "id": "es_reading_047_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Lunchtime",
+    "difficulty": 1,
+    "type": "reading",
+    "question": "Read: 'Suelo comer un bocadillo de jamón durante el recreo.' Question: What does the pupil eat during break? (Set B)",
+    "answer": "ham sandwich",
+    "acceptableAnswers": [
+      "a ham sandwich",
+      "bocadillo with ham"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "school"
+    ]
+  },
+  {
+    "id": "es_reading_048_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Holidays",
+    "subtopic": "Discomforts",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'El retraso imprevisto interrumpió nuestras vacaciones por completo.' Question: What interrupted their holiday? (Set B)",
+    "answer": "the unforeseen delay",
+    "acceptableAnswers": [
+      "an unexpected delay",
+      "the delay"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "travel"
+    ]
+  },
+  {
+    "id": "es_reading_049_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Reading",
+    "difficulty": 2,
+    "type": "reading",
+    "question": "Read: 'Leo novelas policíacas porque me encantan los misterios.' Question: Why does the speaker read crime novels? (Set B)",
+    "answer": "loves mysteries",
+    "acceptableAnswers": [
+      "because they love mystery",
+      "likes mysteries"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "hobbies"
+    ]
+  },
+  {
+    "id": "es_reading_050_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Green spaces",
+    "difficulty": 4,
+    "type": "reading",
+    "question": "Read: 'Es esencial proteger las cordilleras nativas del desarrollo urbanístico.' Question: What must be protected from urban development? (Set B)",
+    "answer": "native mountain ranges",
+    "acceptableAnswers": [
+      "native ranges",
+      "mountain areas",
+      "mountains"
+    ],
+    "marks": 1,
+    "tags": [
+      "reading",
+      "environment"
+    ]
+  }
+]

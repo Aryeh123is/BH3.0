@@ -25,9 +25,10 @@ interface TestModeProps {
   onExit: () => void;
   language: string;
   devMode?: boolean;
+  onTestComplete?: (result: TestResult) => void;
 }
 
-interface TestResult {
+export interface TestResult {
   date: number;
   score: number;
   total: number;
@@ -38,7 +39,7 @@ interface TestResult {
 
 type TestStep = 'setup' | 'testing' | 'results' | 'history';
 
-export function TestMode({ vocabulary, onExit, language, devMode = false }: TestModeProps) {
+export function TestMode({ vocabulary, onExit, language, devMode = false, onTestComplete }: TestModeProps) {
   const [step, setStep] = useState<TestStep>('setup');
   const [testCount, setTestCount] = useState<number>(Math.min(20, vocabulary.length));
   const [selectedTypes, setSelectedTypes] = useState<QuestionType[]>(['written', 'matching', 'true-false']);
@@ -52,6 +53,15 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
     const saved = safeLocalStorage.getItem(`bh-test-history-${language}`);
     return saved ? JSON.parse(saved) : [];
   });
+
+  useEffect(() => {
+    const sync = () => {
+      const saved = safeLocalStorage.getItem(`bh-test-history-${language}`);
+      if (saved) setTestHistory(JSON.parse(saved));
+    };
+    window.addEventListener('bh-testhistory-sync', sync);
+    return () => window.removeEventListener('bh-testhistory-sync', sync);
+  }, [language]);
 
   // Matching state
   const [matchingPairs, setMatchingPairs] = useState<{ id: string, word: string, translation: string }[]>([]);
@@ -160,6 +170,11 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
     if (!devMode) {
       safeLocalStorage.setItem(`bh-test-history-${language}`, JSON.stringify(newHistory));
     }
+    
+    if (onTestComplete) {
+      onTestComplete(result);
+    }
+    
     setStep('results');
   };
 
@@ -279,9 +294,9 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
                   className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-primary"
                 />
                 <div className="grid grid-cols-4 gap-3">
-                  {Array.from(new Set([10, 25, 50, vocabulary.length])).sort((a,b) => a-b).map((count, i) => (
+                  {Array.from(new Set([10, 25, 50, vocabulary.length])).sort((a,b) => a-b).map((count) => (
                     <button
-                      key={`test-count-${count}-${i}`}
+                      key={`test-count-${count}`}
                       onClick={() => setTestCount(count)}
                       className={`py-3 rounded-xl text-sm font-bold transition-all ${
                         testCount === count 
@@ -446,7 +461,7 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
               <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                 {correctAnswers.map((q, i) => (
                   <div key={`correct-${q.word.id}-${i}`} className="p-4 bg-green-50 dark:bg-green-900/10 rounded-2xl flex items-center justify-between">
-                    <div className="font-bold text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>{getForeignWord(q.word, language)}</div>
+                    <div className="font-bold text-slate-900 dark:text-white" dir={['spanish', 'french', 'german'].includes(language) ? 'ltr' : 'rtl'}>{getForeignWord(q.word, language)}</div>
                     <div className="text-sm text-green-600 font-medium">{q.word.english}</div>
                   </div>
                 ))}
@@ -460,7 +475,7 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
               <div className="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                 {incorrectAnswers.map((q, i) => (
                   <div key={`missed-${q.word.id}-${i}`} className="p-4 bg-red-50 dark:bg-red-900/10 rounded-2xl flex items-center justify-between">
-                    <div className="font-bold text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>{getForeignWord(q.word, language)}</div>
+                    <div className="font-bold text-slate-900 dark:text-white" dir={['spanish', 'french', 'german'].includes(language) ? 'ltr' : 'rtl'}>{getForeignWord(q.word, language)}</div>
                     <div className="text-sm text-red-600 font-medium">{q.word.english}</div>
                   </div>
                 ))}
@@ -524,7 +539,7 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
 
       <AnimatePresence mode="wait">
         <motion.div
-          key={`${questions[currentIndex]?.word.id}-${currentIndex}`}
+          key={`question-${questions[currentIndex]?.word.id}`}
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
@@ -547,7 +562,7 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
           {currentQuestion.type === 'written' && (
             <div className="text-center">
               <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Translate this word</div>
-              <div className="text-6xl font-black mb-12 text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
+              <div className="text-6xl font-black mb-12 text-slate-900 dark:text-white" dir={['spanish', 'french', 'german'].includes(language) ? 'ltr' : 'rtl'}>
                 {getForeignWord(currentQuestion.word, language)}
               </div>
               <input
@@ -576,7 +591,7 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
           {currentQuestion.type === 'true-false' && (
             <div className="text-center">
               <div className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">Is this translation correct?</div>
-              <div className="text-6xl font-black mb-4 text-slate-900 dark:text-white" dir={language === 'spanish' || language === 'french' ? 'ltr' : 'rtl'}>
+              <div className="text-6xl font-black mb-4 text-slate-900 dark:text-white" dir={['spanish', 'french', 'german'].includes(language) ? 'ltr' : 'rtl'}>
                 {getForeignWord(currentQuestion.word, language)}
               </div>
               <div className="text-2xl font-bold text-primary mb-12 italic">
@@ -626,7 +641,7 @@ export function TestMode({ vocabulary, onExit, language, devMode = false }: Test
                           ? 'bg-primary text-white border-primary shadow-lg scale-105'
                           : 'bg-slate-50 dark:bg-slate-800 border-transparent hover:bg-slate-100'
                       }`}
-                      dir={language === 'spanish' ? 'ltr' : 'rtl'}
+                      dir={['spanish', 'french', 'german'].includes(language) ? 'ltr' : 'rtl'}
                     >
                       {pair.word}
                     </button>

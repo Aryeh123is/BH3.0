@@ -1,0 +1,662 @@
+[
+  {
+    "id": "ra-ar-1",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "passageText": "أسكن مع عائلتي في قرية صغيرة، رغم أنني يجب أن أقول إنها مملة أحيانًا للشباب. أمس ذهبت إلى المركز الرياضي مع أصدقائي ثم تناولنا العشاء في مطعمي المفضل. في المستقبل، أود العيش في مدينة كبيرة لأن هناك المزيد من الأشياء للقيام بها.",
+    "followUpQuestionIds": [
+      "conv-ar-1",
+      "conv-ar-2"
+    ]
+  },
+  {
+    "id": "ra-ar-2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "passageText": "لدي الكثير من الأصدقاء في المدرسة ولكن صديقي المفضل اسمه أحمد. نعرف بعضنا البعض منذ عشر سنوات ونساعد بعضنا البعض دائمًا في الواجبات المدرسية. في عطلة نهاية الأسبوع الماضي، قررنا الذهاب إلى السينما لمشاهدة فيلم رعب، وكان ذلك مثيرًا للغاية. أعتقد أن الصداقة أساسية للسعادة.",
+    "followUpQuestionIds": [
+      "conv-ar-3",
+      "conv-ar-4"
+    ]
+  },
+  {
+    "id": "ra-ar-3",
+    "type": "read_aloud",
+    "themeId": "theme-3-school",
+    "language": "Arabic",
+    "passageText": "في مدرستي، تبدأ الدروس في الساعة الثامنة والنصف صباحًا. مادتي المفضلة هي الرسم لأنها تسمح لي بأن أكون مبدعًا وأسترخي قليلًا. ومع ذلك، لا أحب الفيزياء أبدًا لأنها تبدو معقدة للغاية بالنسبة لي. في العام المقبل، آمل أن أحصل على درجات جيدة في جميع امتحاناتي.",
+    "followUpQuestionIds": [
+      "conv-ar-5",
+      "conv-ar-6"
+    ]
+  },
+  {
+    "id": "ra-ar-4",
+    "type": "read_aloud",
+    "themeId": "theme-6-travel",
+    "language": "Arabic",
+    "passageText": "عادة ما أذهب في عطلة إلى الساحل مع والديّ خلال شهر أغسطس. أكثر ما أحبه هو السباحة في البحر والاستلقاء تحت الشمس على الرمال. في العام الماضي ذهبنا إلى إيطاليا وزرنا العديد من المعالم التاريخية في روما. لقد كانت تجربة لا تُنسى والتقطت الكثير من الصور الرائعة.",
+    "followUpQuestionIds": [
+      "conv-ar-7",
+      "conv-ar-8"
+    ]
+  },
+  {
+    "id": "ra-ar-5",
+    "type": "read_aloud",
+    "themeId": "theme-4-future-plans",
+    "language": "Arabic",
+    "passageText": "عندما أنتهي من دراستي، أريد العمل كمهندس لأنني أحب الرياضيات والتكنولوجيا. والدي مهندس معماري وقد ألهمني شغفه بالتصميم دائمًا. في الصيف الماضي، قمت بفترة تدريب في مكتبه وتعلمت الكثير من الأشياء المثيرة للاهتمام حول البناء الحديث.",
+    "followUpQuestionIds": [
+      "conv-ar-9",
+      "conv-ar-10"
+    ]
+  },
+  {
+    "id": "ra-ar-6",
+    "type": "read_aloud",
+    "themeId": "theme-5-environment",
+    "language": "Arabic",
+    "passageText": "أشعر بالقلق الشديد بشأن تغير المناخ لأنه مشكلة عالمية تؤثر علينا جميعًا. في منزلي، نقوم دائمًا بإعادة تدوير الورق والزجاج، ونحاول تقليل استهلاك البلاستيك. في الشهر المقبل، سأشارك في حملة لتنظيف الشواطئ مع مجموعة المتطوعين المحليين.",
+    "followUpQuestionIds": [
+      "conv-ar-13",
+      "conv-ar-14"
+    ]
+  },
+  {
+    "id": "rp-ar-1",
+    "type": "roleplay",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "scenarioPrompt": "أنت تتحدث مع زميلك في التبادل الطلابي عن عائلتك وأصدقائك.",
+    "studentRole": "أنت",
+    "examinerRole": "زميل التبادل",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "صف كيف يبدو صديقك المفضل جسديًا.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "اشرح ماذا فعلت أنت وأصدقاؤك في عطلة نهاية الأسبوع.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "اذكر مشكلة صغيرة واجهتها مع عائلتك.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "اسأل سؤالاً عن خطط صديقك.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-ar-7",
+    "type": "roleplay",
+    "themeId": "theme-7-technology",
+    "language": "Arabic",
+    "scenarioPrompt": "أنت تشتري حاسوبًا جديدًا من متجر الإلكترونيات.",
+    "studentRole": "زبون",
+    "examinerRole": "بائع",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "أخبره عن نوع الحاسوب الذي تبحث عنه ولماذا ستستخدمه.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "اشرح لماذا تفضل الحاسوب اللوحي أو الحاسوب المحمول.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "اذكر مقدار المال الذي تريد إنفاقه.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "اسأل سؤالاً عن الضمان.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-ar-8",
+    "type": "roleplay",
+    "themeId": "theme-4-future-plans",
+    "language": "Arabic",
+    "scenarioPrompt": "لديك مقابلة لوظيفة صيفية في فندق.",
+    "studentRole": "مرشح",
+    "examinerRole": "مدير الفندق",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "قدم نفسك وقل لماذا تريد هذا العمل.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "اذكر مهاراتك اللغوية.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "اشرح ما هي الخبرة العملية التي خضتها من قبل.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "اسأل سؤالاً عن ساعات العمل.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "pc-ar-8",
+    "type": "photo_card",
+    "themeId": "theme-4-future-plans",
+    "language": "Arabic",
+    "imageUrl": "",
+    "imageUrls": [],
+    "studentPrompts": [
+      "صف ما تراه في الصورة."
+    ],
+    "examinerPrompts": [
+      "صف ما تراه في الصورة.",
+      "ما هي مزايا العمل في المكتب؟",
+      "ما هو نوع العمل الذي ترغب في الحصول عليه في المستقبل؟"
+    ],
+    "followUpQuestionIds": [
+      "conv-ar-9",
+      "conv-ar-10"
+    ]
+  },
+  {
+    "id": "pc-ar-1",
+    "type": "photo_card",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "imageUrl": "https://images.unsplash.com/photo-1511895426328-dc8714191300",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1511895426328-dc8714191300"
+    ],
+    "studentPrompts": [
+      "صف الصورة."
+    ],
+    "examinerPrompts": [
+      "صف الصورة.",
+      "هل تعتقد أن الزواج تقليد مهم في هذه الأيام؟",
+      "ماذا ستحتفل مع عائلتك في العام المقبل؟"
+    ],
+    "followUpQuestionIds": [
+      "conv-ar-1",
+      "conv-ar-2",
+      "conv-ar-3"
+    ]
+  },
+  {
+    "id": "conv-ar-11",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Arabic",
+    "questionText": "ماذا تفعل عادة في وقت فراغك؟"
+  },
+  {
+    "id": "conv-ar-12",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Arabic",
+    "questionText": "هل تفضل مشاهدة الأفلام في المنزل أم في السينما؟"
+  },
+  {
+    "id": "conv-ar-13",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Arabic",
+    "questionText": "ما هي أخطر مشكلة بيئية بالنسبة لك؟"
+  },
+  {
+    "id": "conv-ar-14",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Arabic",
+    "questionText": "ماذا تفعل لتوفير المياه في منزلك؟"
+  },
+  {
+    "id": "conv-ar-1",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "questionText": "هل تتماشى جيدًا مع عائلتك؟"
+  },
+  {
+    "id": "conv-ar-2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "questionText": "ماذا فعلت في عطلة نهاية الأسبوع الماضي مع عائلتك؟"
+  },
+  {
+    "id": "conv-ar-3",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "questionText": "كيف يبدو صديقك المفضل؟"
+  },
+  {
+    "id": "conv-ar-4",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "questionText": "ماذا تفضل أن تفعل مع أصدقائك؟"
+  },
+  {
+    "id": "conv-ar-5",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Arabic",
+    "questionText": "ما هي مادتك المفضلة؟"
+  },
+  {
+    "id": "conv-ar-6",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Arabic",
+    "questionText": "هل ترتدي الزي المدرسي؟"
+  },
+  {
+    "id": "conv-ar-7",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Arabic",
+    "questionText": "أين ذهبت في عطلة العام الماضي؟"
+  },
+  {
+    "id": "conv-ar-8",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Arabic",
+    "questionText": "هل تفضل العطلات على الشاطئ أم في المدينة؟"
+  },
+  {
+    "id": "conv-ar-9",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Arabic",
+    "questionText": "هل ترغب في العمل في الخارج في المستقبل؟"
+  },
+  {
+    "id": "conv-ar-10",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Arabic",
+    "questionText": "ما هي خططك لبعد الامتحانات؟"
+  },
+  {
+    "id": "ra-ar-1_v2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "passageText": "أسكن مع عائلتي في قرية صغيرة، رغم أنني يجب أن أقول إنها مملة أحيانًا للشباب. أمس ذهبت إلى المركز الرياضي مع أصدقائي ثم تناولنا العشاء في مطعمي المفضل. في المستقبل، أود العيش في مدينة كبيرة لأن هناك المزيد من الأشياء للقيام بها.",
+    "followUpQuestionIds": [
+      "conv-ar-1",
+      "conv-ar-2"
+    ]
+  },
+  {
+    "id": "ra-ar-2_v2",
+    "type": "read_aloud",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "passageText": "لدي الكثير من الأصدقاء في المدرسة ولكن صديقي المفضل اسمه أحمد. نعرف بعضنا البعض منذ عشر سنوات ونساعد بعضنا البعض دائمًا في الواجبات المدرسية. في عطلة نهاية الأسبوع الماضي، قررنا الذهاب إلى السينما لمشاهدة فيلم رعب، وكان ذلك مثيرًا للغاية. أعتقد أن الصداقة أساسية للسعادة.",
+    "followUpQuestionIds": [
+      "conv-ar-3",
+      "conv-ar-4"
+    ]
+  },
+  {
+    "id": "ra-ar-3_v2",
+    "type": "read_aloud",
+    "themeId": "theme-3-school",
+    "language": "Arabic",
+    "passageText": "في مدرستي، تبدأ الدروس في الساعة الثامنة والنصف صباحًا. مادتي المفضلة هي الرسم لأنها تسمح لي بأن أكون مبدعًا وأسترخي قليلًا. ومع ذلك، لا أحب الفيزياء أبدًا لأنها تبدو معقدة للغاية بالنسبة لي. في العام المقبل، آمل أن أحصل على درجات جيدة في جميع امتحاناتي.",
+    "followUpQuestionIds": [
+      "conv-ar-5",
+      "conv-ar-6"
+    ]
+  },
+  {
+    "id": "ra-ar-4_v2",
+    "type": "read_aloud",
+    "themeId": "theme-6-travel",
+    "language": "Arabic",
+    "passageText": "عادة ما أذهب في عطلة إلى الساحل مع والديّ خلال شهر أغسطس. أكثر ما أحبه هو السباحة في البحر والاستلقاء تحت الشمس على الرمال. في العام الماضي ذهبنا إلى إيطاليا وزرنا العديد من المعالم التاريخية في روما. لقد كانت تجربة لا تُنسى والتقطت الكثير من الصور الرائعة.",
+    "followUpQuestionIds": [
+      "conv-ar-7",
+      "conv-ar-8"
+    ]
+  },
+  {
+    "id": "ra-ar-5_v2",
+    "type": "read_aloud",
+    "themeId": "theme-4-future-plans",
+    "language": "Arabic",
+    "passageText": "عندما أنتهي من دراستي، أريد العمل كمهندس لأنني أحب الرياضيات والتكنولوجيا. والدي مهندس معماري وقد ألهمني شغفه بالتصميم دائمًا. في الصيف الماضي، قمت بفترة تدريب في مكتبه وتعلمت الكثير من الأشياء المثيرة للاهتمام حول البناء الحديث.",
+    "followUpQuestionIds": [
+      "conv-ar-9",
+      "conv-ar-10"
+    ]
+  },
+  {
+    "id": "ra-ar-6_v2",
+    "type": "read_aloud",
+    "themeId": "theme-5-environment",
+    "language": "Arabic",
+    "passageText": "أشعر بالقلق الشديد بشأن تغير المناخ لأنه مشكلة عالمية تؤثر علينا جميعًا. في منزلي، نقوم دائمًا بإعادة تدوير الورق والزجاج، ونحاول تقليل استهلاك البلاستيك. في الشهر المقبل، سأشارك في حملة لتنظيف الشواطئ مع مجموعة المتطوعين المحليين.",
+    "followUpQuestionIds": [
+      "conv-ar-13",
+      "conv-ar-14"
+    ]
+  },
+  {
+    "id": "rp-ar-1_v2",
+    "type": "roleplay",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "scenarioPrompt": "أنت تتحدث مع زميلك في التبادل الطلابي عن عائلتك وأصدقائك.",
+    "studentRole": "أنت",
+    "examinerRole": "زميل التبادل",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "صف كيف يبدو صديقك المفضل جسديًا.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "اشرح ماذا فعلت أنت وأصدقاؤك في عطلة نهاية الأسبوع.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "اذكر مشكلة صغيرة واجهتها مع عائلتك.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "اسأل سؤالاً عن خطط صديقك.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-ar-7_v2",
+    "type": "roleplay",
+    "themeId": "theme-7-technology",
+    "language": "Arabic",
+    "scenarioPrompt": "أنت تشتري حاسوبًا جديدًا من متجر الإلكترونيات.",
+    "studentRole": "زبون",
+    "examinerRole": "بائع",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "أخبره عن نوع الحاسوب الذي تبحث عنه ولماذا ستستخدمه.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "اشرح لماذا تفضل الحاسوب اللوحي أو الحاسوب المحمول.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "اذكر مقدار المال الذي تريد إنفاقه.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "اسأل سؤالاً عن الضمان.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "rp-ar-8_v2",
+    "type": "roleplay",
+    "themeId": "theme-4-future-plans",
+    "language": "Arabic",
+    "scenarioPrompt": "لديك مقابلة لوظيفة صيفية في فندق.",
+    "studentRole": "مرشح",
+    "examinerRole": "مدير الفندق",
+    "prompts": [
+      {
+        "id": "p1",
+        "text": "قدم نفسك وقل لماذا تريد هذا العمل.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p2",
+        "text": "اذكر مهاراتك اللغوية.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p3",
+        "text": "!",
+        "isUnpredictable": true,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p4",
+        "text": "اشرح ما هي الخبرة العملية التي خضتها من قبل.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": false
+      },
+      {
+        "id": "p5",
+        "text": "اسأل سؤالاً عن ساعات العمل.",
+        "isUnpredictable": false,
+        "isQuestionToExaminer": true
+      }
+    ]
+  },
+  {
+    "id": "pc-ar-8_v2",
+    "type": "photo_card",
+    "themeId": "theme-4-future-plans",
+    "language": "Arabic",
+    "imageUrl": "",
+    "imageUrls": [],
+    "studentPrompts": [
+      "صف ما تراه في الصورة."
+    ],
+    "examinerPrompts": [
+      "صف ما تراه في الصورة.",
+      "ما هي مزايا العمل في المكتب؟",
+      "ما هو نوع العمل الذي ترغب في الحصول عليه في المستقبل؟"
+    ],
+    "followUpQuestionIds": [
+      "conv-ar-9",
+      "conv-ar-10"
+    ]
+  },
+  {
+    "id": "pc-ar-1_v2",
+    "type": "photo_card",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "imageUrl": "https://images.unsplash.com/photo-1511895426328-dc8714191300",
+    "imageUrls": [
+      "https://images.unsplash.com/photo-1511895426328-dc8714191300"
+    ],
+    "studentPrompts": [
+      "صف الصورة."
+    ],
+    "examinerPrompts": [
+      "صف الصورة.",
+      "هل تعتقد أن الزواج تقليد مهم في هذه الأيام؟",
+      "ماذا ستحتفل مع عائلتك في العام المقبل؟"
+    ],
+    "followUpQuestionIds": [
+      "conv-ar-1",
+      "conv-ar-2",
+      "conv-ar-3"
+    ]
+  },
+  {
+    "id": "conv-ar-11_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Arabic",
+    "questionText": "ماذا تفعل عادة في وقت فراغك؟"
+  },
+  {
+    "id": "conv-ar-12_v2",
+    "type": "conversation_question",
+    "themeId": "theme-2-leisure",
+    "language": "Arabic",
+    "questionText": "هل تفضل مشاهدة الأفلام في المنزل أم في السينما؟"
+  },
+  {
+    "id": "conv-ar-13_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Arabic",
+    "questionText": "ما هي أخطر مشكلة بيئية بالنسبة لك؟"
+  },
+  {
+    "id": "conv-ar-14_v2",
+    "type": "conversation_question",
+    "themeId": "theme-5-environment",
+    "language": "Arabic",
+    "questionText": "ماذا تفعل لتوفير المياه في منزلك؟"
+  },
+  {
+    "id": "conv-ar-1_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "questionText": "هل تتماشى جيدًا مع عائلتك؟"
+  },
+  {
+    "id": "conv-ar-2_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "questionText": "ماذا فعلت في عطلة نهاية الأسبوع الماضي مع عائلتك؟"
+  },
+  {
+    "id": "conv-ar-3_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "questionText": "كيف يبدو صديقك المفضل؟"
+  },
+  {
+    "id": "conv-ar-4_v2",
+    "type": "conversation_question",
+    "themeId": "theme-1-my-personal-world",
+    "language": "Arabic",
+    "questionText": "ماذا تفضل أن تفعل مع أصدقائك؟"
+  },
+  {
+    "id": "conv-ar-5_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Arabic",
+    "questionText": "ما هي مادتك المفضلة؟"
+  },
+  {
+    "id": "conv-ar-6_v2",
+    "type": "conversation_question",
+    "themeId": "theme-3-school",
+    "language": "Arabic",
+    "questionText": "هل ترتدي الزي المدرسي؟"
+  },
+  {
+    "id": "conv-ar-7_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Arabic",
+    "questionText": "أين ذهبت في عطلة العام الماضي؟"
+  },
+  {
+    "id": "conv-ar-8_v2",
+    "type": "conversation_question",
+    "themeId": "theme-6-travel",
+    "language": "Arabic",
+    "questionText": "هل تفضل العطلات على الشاطئ أم في المدينة؟"
+  },
+  {
+    "id": "conv-ar-9_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Arabic",
+    "questionText": "هل ترغب في العمل في الخارج في المستقبل؟"
+  },
+  {
+    "id": "conv-ar-10_v2",
+    "type": "conversation_question",
+    "themeId": "theme-4-future-plans",
+    "language": "Arabic",
+    "questionText": "ما هي خططك لبعد الامتحانات؟"
+  }
+]

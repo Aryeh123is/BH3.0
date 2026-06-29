@@ -1,0 +1,2148 @@
+[
+  {
+    "id": "ar_listening_001",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'يجب عليّ أن أنظف غرفتي كل يوم.' Question: What chore does the speaker have to do every day?",
+    "answer": "clean their room",
+    "acceptableAnswers": [
+      "tidy their room",
+      "clean the room",
+      "tidy the room"
+    ],
+    "explanation": "The speaker says 'أنظف غرفتي' (clean my room) 'كل يوم' (every day).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_listening_002",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'الهواتف المحمولة ممنوعة تماماً في مدرستنا. أعتقد أن هذا غير عادل لأننا يمكن أن نستخدمها في البحث.' Question: What is the rule about mobile phones, and why does the speaker disagree?",
+    "answer": "phones are banned; they could be used for research",
+    "acceptableAnswers": [
+      "phones are forbidden; they are useful for research",
+      "phones are not allowed; they can do research with them"
+    ],
+    "explanation": "Phones are 'ممنوعة تماماً' (strictly forbidden), and they could use them for 'البحث' (research).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_003",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'في وقت فراغي، أحب أن ألعب كرة القدم مع أصدقائي في الحديقة.' Question: Where does the speaker play football?",
+    "answer": "in the park",
+    "acceptableAnswers": [
+      "park",
+      "at the park",
+      "in the garden"
+    ],
+    "explanation": "The speaker mentions 'في الحديقة', meaning in the park/garden.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ar_listening_004",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'أنا أتفاهم جيداً مع والدي لأنه صبور دائماً، لكن أختي تزعجني غالباً.' Question: Why does the speaker get on well with their father?",
+    "answer": "he is always patient",
+    "acceptableAnswers": [
+      "he is patient",
+      "because he is patient"
+    ],
+    "explanation": "The speaker says 'لأنه صبور دائماً' (because he is always patient).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_listening_005",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'في الصيف الماضي، سافرت إلى مصر بالطائرة. كان الطقس رائعاً!' Question: Where did the speaker travel last summer?",
+    "answer": "Egypt",
+    "acceptableAnswers": [
+      "egypt",
+      "to Egypt"
+    ],
+    "explanation": "The speaker traveled to 'مصر' (Egypt).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ar_listening_006",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'على الرغم من أن والدتي تريدني أن أدرس الطب، إلا أنني سأتدرب كمهندس ميكانيكي.' Question: What career does the speaker plan to pursue, despite their mother's wishes?",
+    "answer": "mechanical engineer",
+    "acceptableAnswers": [
+      "engineer",
+      "mechanic"
+    ],
+    "explanation": "The speaker plans to train as a 'مهندس ميكانيكي' (mechanical engineer) despite mother wanting them to study medicine ('دراسة الطب').",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_007",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'لتناول الفطور، أتناول الحبوب مع الحليب وأشرب عصير البرتقال.' Question: What does the speaker drink for breakfast?",
+    "answer": "orange juice",
+    "acceptableAnswers": [
+      "orange juice",
+      "an orange juice"
+    ],
+    "explanation": "The speaker drinks 'عصير البرتقال' (orange juice).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_listening_008",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'يجب علينا إعادة تدوير البلاستيك لإنقاذ المحيطات. تموت كائنات كثيرة بسبب التلوث.' Question: Why must we recycle plastic according to the speaker?",
+    "answer": "to save the oceans",
+    "acceptableAnswers": [
+      "save oceans",
+      "save the ocean",
+      "protect oceans"
+    ],
+    "explanation": "The speaker says they must recycle 'لإنقاذ المحيطات' (to save the oceans).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_listening_009",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'الجغرافيا هي مادتي المفضلة لأن المعلم مضحك جداً، لكن الفيزياء صعبة.' Question: Why does the speaker like geography?",
+    "answer": "the teacher is very funny",
+    "acceptableAnswers": [
+      "funny teacher",
+      "because the teacher is funny"
+    ],
+    "explanation": "The speaker likes geography because 'المعلم مضحك جداً' (the teacher is very funny).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_010",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Accommodation",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'كان بيت الشباب رخيصاً، لكن الحمامات كانت متسخة والإنترنت لم يكن يعمل على الإطلاق.' Question: What were the two complaints about the youth hostel?",
+    "answer": "dirty bathrooms and no working internet",
+    "acceptableAnswers": [
+      "dirty showers and internet did not work",
+      "bathrooms were dirty, wifi did not work"
+    ],
+    "explanation": "The speaker mentions 'الحمامات كانت متسخة' (bathrooms were dirty) and 'الإنترنت لم يكن يعمل' (internet didn't work).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "accommodation"
+    ]
+  },
+  {
+    "id": "ar_listening_011",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Festivals",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'عيد الفطر هو عيدي المفضل لأن العائلة بأكملها تجتمع معاً.' Question: Why is Eid al-Fitr the speaker's favorite festival?",
+    "answer": "the whole family gathers together",
+    "acceptableAnswers": [
+      "family comes together",
+      "because the family gathers"
+    ],
+    "explanation": "The speaker states 'العائلة بأكملها تجتمع معاً' (the whole family gathers together).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "festivals"
+    ]
+  },
+  {
+    "id": "ar_listening_012",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'أستخدم جهازي اللوحي بشكل أساسي لمشاهدة الأفلام، بينما أخي يلعب الألعاب فقط.' Question: What does the speaker mainly use their tablet for?",
+    "answer": "watching movies",
+    "acceptableAnswers": [
+      "stream movies",
+      "watching films",
+      "stream films"
+    ],
+    "explanation": "The speaker uses it 'لمشاهدة الأفلام' (for watching/streaming movies).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "technology"
+    ]
+  },
+  {
+    "id": "ar_listening_013",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'تبدأ المدرسة في الساعة الثامنة صباحاً، لذلك يجب عليّ الاستيقاظ في السابعة.' Question: What time does school start?",
+    "answer": "8:00 AM",
+    "acceptableAnswers": [
+      "8",
+      "8am",
+      "eight",
+      "eight o'clock"
+    ],
+    "explanation": "The speaker says 'تبدأ المدرسة في الساعة الثامنة' (School starts at eight o'clock).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_listening_014",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'زينا المدرسي غير مريح على الإطلاق. في الشتاء المعطف خفيف جداً، وفي الصيف نتعرق في السراويل السوداء.' Question: What is the speaker's double complaint about the winter and summer uniform?",
+    "answer": "coat is too thin in winter; black trousers are too hot in summer",
+    "acceptableAnswers": [
+      "coat too thin, trousers too hot",
+      "too cold in winter coat, too hot in summer pants"
+    ],
+    "explanation": "In winter the coat is 'خفيف جداً' (too thin/light), and in summer they sweat in 'السراويل السوداء' (black trousers).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_015",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'شاهدت البارحة فيلماً كوميدياً في السينما وضحت كثيراً.' Question: What genre of film did the speaker watch yesterday?",
+    "answer": "comedy",
+    "acceptableAnswers": [
+      "a comedy"
+    ],
+    "explanation": "The speaker watched a 'فيلم كوميدي' (comedy film).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "cinema"
+    ]
+  },
+  {
+    "id": "ar_listening_016",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "University",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'بعد انتهاء المدرسة الثانوية، أرغب في العمل بالخارج لمدة عام قبل أن أبدأ دراسة التاريخ في لندن.' Question: What does the speaker plan to do immediately after secondary school?",
+    "answer": "work abroad for a year",
+    "acceptableAnswers": [
+      "work abroad",
+      "work in another country",
+      "work overseas for a year"
+    ],
+    "explanation": "The speaker wants to 'العمل بالخارج لمدة عام' (work abroad for a year) before studying history.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_017",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Weather",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'غداً ستمطر بغزارة في لندن، ولكن في عطلة نهاية الأسبوع ستشرق الشمس.' Question: What will the weather be like in London tomorrow?",
+    "answer": "rainy",
+    "acceptableAnswers": [
+      "heavy rain",
+      "raining",
+      "rain"
+    ],
+    "explanation": "The speaker states 'غداً ستمطر بغزارة' (tomorrow it will rain heavily).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "weather"
+    ]
+  },
+  {
+    "id": "ar_listening_018",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Climate Change",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'يجب علينا تقليل استهلاك الطاقة. أنا دائماً أطفئ الأنوار عند مغادرة الغرفة.' Question: What action does the speaker personally take to save energy?",
+    "answer": "turns off the light when leaving the room",
+    "acceptableAnswers": [
+      "turns off lights",
+      "switches off lights"
+    ],
+    "explanation": "The speaker says 'أنا دائماً أطفئ الأنوار عند مغادرة الغرفة' (I always turn off the lights when leaving the room).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_listening_019",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'كل يوم سبت ألعب التنس. هذا رائع لأنه يحافظ على لياقتي البدنية.' Question: Why does the speaker play tennis every Saturday?",
+    "answer": "it keeps them fit",
+    "acceptableAnswers": [
+      "keeps fit",
+      "keeps them healthy",
+      "to stay fit"
+    ],
+    "explanation": "The speaker plays tennis because 'يحافظ على لياقتي البدنية' (it keeps my physical fitness/keeps me fit).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "sports"
+    ]
+  },
+  {
+    "id": "ar_listening_020",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Friends",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'صديقي المفضل طارق لديه دائماً وقت لمساعدتي. إنه موثوق للغاية.' Question: What character trait makes Tariq a good friend according to the speaker?",
+    "answer": "extremely reliable",
+    "acceptableAnswers": [
+      "reliable",
+      "trustworthy",
+      "he is reliable"
+    ],
+    "explanation": "The speaker says Tariq is 'موثوق للغاية' (extremely reliable/trustworthy).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "friends"
+    ]
+  },
+  {
+    "id": "ar_listening_021",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'الأسبوع الماضي زرنا متحفاً في القاهرة. كان ممتعاً جداً، لكن رحلة الحافلة كانت مملة للغاية.' Question: What is the speaker's complaint about the school trip last week?",
+    "answer": "the bus ride was extremely boring",
+    "acceptableAnswers": [
+      "bus ride was boring",
+      "bus journey was boring",
+      "boring bus trip"
+    ],
+    "explanation": "The speaker complained that 'رحلة الحافلة كانت مملة للغاية' (the bus ride was extremely boring).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_022",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'الموسيقى الكلاسيكية تريحني، في حين أن موسيقى الروك الصاخبة تجعلني متوتراً.' Question: Contrast the speaker's reaction to classical music versus rock music.",
+    "answer": "classical music relaxes them, while loud rock makes them nervous",
+    "acceptableAnswers": [
+      "classical is relaxing, rock is stressful",
+      "classical relaxes, rock makes nervous"
+    ],
+    "explanation": "Classical music 'تريحني' (relaxes me) while loud rock 'تجعلني متوتراً' (makes me nervous/anxious).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "music"
+    ]
+  },
+  {
+    "id": "ar_listening_023",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'أذهب إلى المدرسة بالدراجة كل يوم لأنها صديقة للبيئة.' Question: How does the speaker travel to school?",
+    "answer": "by bicycle",
+    "acceptableAnswers": [
+      "by bike",
+      "bike",
+      "bicycle",
+      "cycling"
+    ],
+    "explanation": "The speaker goes to school 'بالدراجة' (by bicycle).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "transport"
+    ]
+  },
+  {
+    "id": "ar_listening_024",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'حلمي هو أن أفتح مطعمي الخاص يوماً ما وأكون الطاهي الرئيسي فيه.' Question: What is the speaker's dream career goal?",
+    "answer": "to open their own restaurant as head chef",
+    "acceptableAnswers": [
+      "open a restaurant",
+      "own a restaurant",
+      "be a chef in their own restaurant"
+    ],
+    "explanation": "The speaker dreams of 'أفتح مطعمي الخاص' (opening my own restaurant) and being the 'الطاهي الرئيسي' (head chef).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_025",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Weekend",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'يوم السبت، عادةً ما أنام حتى الساعة العاشرة صباحاً.' Question: What does the speaker normally do on Saturdays?",
+    "answer": "sleep in until 10:00 AM",
+    "acceptableAnswers": [
+      "sleep in",
+      "sleep late",
+      "sleep until 10"
+    ],
+    "explanation": "The speaker sleeps 'حتى الساعة العاشرة' (until ten o'clock).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_listening_026",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Restaurants",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'كانت الخدمة في هذا المطعم الجديد سيئة جداً. انتظرنا ساعة كاملة، وكان الحساء بارداً.' Question: What are the two specific complaints about the restaurant service and food?",
+    "answer": "waited a whole hour; the soup was cold",
+    "acceptableAnswers": [
+      "waited 1 hour, cold soup",
+      "long wait, cold soup"
+    ],
+    "explanation": "They waited 'ساعة كاملة' (a whole hour) and the soup ('الحساء') was 'بارداً' (cold).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_listening_027",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'مدرستنا لديها مسبح جديد داخلي. هذا رائع لأننا نستطيع السباحة في الشتاء.' Question: What new facility does the school have?",
+    "answer": "indoor swimming pool",
+    "acceptableAnswers": [
+      "swimming pool",
+      "indoor pool",
+      "pool"
+    ],
+    "explanation": "The speaker mentions a 'مسبح جديد داخلي' (new indoor swimming pool).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_028",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Celebrations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'في نهاية الأسبوع الماضي احتفلنا بعيد ميلاد جدتي السبعين. كانت هناك كعكة ضخمة!' Question: Whose milestone celebration took place last weekend?",
+    "answer": "grandmother's 70th birthday",
+    "acceptableAnswers": [
+      "grandma's 70th birthday",
+      "grandmother's birthday"
+    ],
+    "explanation": "The speaker celebrated 'عيد ميلاد جدتي السبعين' (the seventieth birthday of my grandmother).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_listening_029",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'أفضل الذهاب إلى الجبال بدلاً من الشاطئ لأنني أحب المشي لمسافات طويلة.' Question: Why does the speaker prefer the mountains to the beach?",
+    "answer": "they like hiking",
+    "acceptableAnswers": [
+      "likes hiking",
+      "enjoys hiking",
+      "because they like hiking"
+    ],
+    "explanation": "The speaker says 'لأنني أحب المشي لمسافات طويلة' (because I love long walks/hiking).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ar_listening_030",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Social Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'التشرد مشكلة متزايدة في مدينتنا. يجب علينا مساعدة ملاجئ المحتاجين المحلية.' Question: What major social problem does the speaker identify in their town?",
+    "answer": "homelessness",
+    "acceptableAnswers": [
+      "homeless people",
+      "being homeless"
+    ],
+    "explanation": "The speaker mentions 'التشرد' (homelessness) as a growing problem.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "social"
+    ]
+  },
+  {
+    "id": "ar_listening_031",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'أشتري ملابسي غالباً عبر الإنترنت لأنها أرخص من مركز التسوق.' Question: Why does the speaker prefer to buy clothes online?",
+    "answer": "it is cheaper than the shopping centre",
+    "acceptableAnswers": [
+      "cheaper",
+      "it is cheaper",
+      "cheaper than shopping malls"
+    ],
+    "explanation": "The speaker shops online because 'أرخص من مركز التسوق' (cheaper than the shopping center/mall).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ar_listening_032",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'معلمة الرياضيات تشرح كل شيء بوضوح، لكنها تعطينا الكثير من الواجبات المنزلية.' Question: What is the speaker's positive and negative feedback about the maths teacher?",
+    "answer": "explains clearly but gives too much homework",
+    "acceptableAnswers": [
+      "explains well, too much homework",
+      "clear explanations, too much homework"
+    ],
+    "explanation": "The teacher 'تشرح كل شيء بوضوح' (explains everything clearly) but 'تعطينا الكثير من الواجبات' (gives us a lot of homework).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "teachers"
+    ]
+  },
+  {
+    "id": "ar_listening_033",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Pets",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'لدي كلب صغير اسمه بيلو. إنه يحب اللعب كثيراً.' Question: What pet does the speaker have?",
+    "answer": "a small dog",
+    "acceptableAnswers": [
+      "dog",
+      "a dog"
+    ],
+    "explanation": "The speaker mentions 'كلب صغير' (a small dog).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "pets"
+    ]
+  },
+  {
+    "id": "ar_listening_034",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Part-time Job",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'أعمل يوم السبت في السوبرماركت لزيادة مصروفي الجيب.' Question: Why does the speaker work in a supermarket on Saturdays?",
+    "answer": "to earn extra pocket money",
+    "acceptableAnswers": [
+      "earn money",
+      "increase pocket money",
+      "pocket money"
+    ],
+    "explanation": "The speaker works 'لزيادة مصروفي الجيب' (to increase my pocket money).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_035",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Directions",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'اذهب مستقيماً ثم انعطف يساراً عند الشارع الثاني. المحطة مقابل مكتب البريد.' Question: Where is the railway station located?",
+    "answer": "opposite the post office",
+    "acceptableAnswers": [
+      "opposite post office",
+      "by the post office"
+    ],
+    "explanation": "The speaker says 'المحطة مقابل مكتب البريد' (The station is opposite the post office).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "directions"
+    ]
+  },
+  {
+    "id": "ar_listening_036",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'الاحتباس الحراري يؤدي إلى تقلبات جوية شديدة. نحن نشعر بذلك الآن في قطاع السياحة.' Question: Which sector is already feeling the impact of global warming according to the speaker?",
+    "answer": "tourism sector",
+    "acceptableAnswers": [
+      "tourism",
+      "tourist sector"
+    ],
+    "explanation": "The speaker mentions 'قطاع السياحة' (tourism sector).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_listening_037",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'أحب قراءة الروايات البوليسية في المساء قبل النوم.' Question: What type of books does the speaker read in the evening?",
+    "answer": "detective novels",
+    "acceptableAnswers": [
+      "crime novels",
+      "crime stories",
+      "thrillers"
+    ],
+    "explanation": "The speaker reads 'الروايات البوليسية' (detective/crime novels).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ar_listening_038",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'عادةً ما أمارس رياضة الجري في الصباح، لكن في الشتاء يكون الطقس بارداً جداً في الخارج.' Question: Why does the speaker stop jogging in the winter mornings?",
+    "answer": "it is too cold outside",
+    "acceptableAnswers": [
+      "too cold",
+      "cold weather",
+      "it's too cold"
+    ],
+    "explanation": "The speaker says 'في الشتاء يكون الطقس بارداً جداً في الخارج' (in winter it is too cold outside).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_listening_039",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'يجب علينا ارتداء سترة زرقاء وسروال رمادي.' Question: What colour trousers must the speaker wear?",
+    "answer": "grey",
+    "acceptableAnswers": [
+      "gray"
+    ],
+    "explanation": "The speaker mentions 'سروال رمادي' (grey trousers).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "uniform"
+    ]
+  },
+  {
+    "id": "ar_listening_040",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'الذكاء الاصطناعي سيغير سوق العمل تماماً. بعض الوظائف ستختفي كلياً.' Question: What major prediction does the speaker make about AI in the workplace?",
+    "answer": "some jobs will completely disappear",
+    "acceptableAnswers": [
+      "jobs will disappear",
+      "some professions will disappear"
+    ],
+    "explanation": "The speaker predicts 'بعض الوظائف ستختفي كلياً' (some jobs will completely disappear).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "ar_listening_041",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'استأجرنا بيتاً صغيراً لقضاء العطلة في ريف فرنسا. كان مريحاً جداً.' Question: What type of holiday accommodation did they rent?",
+    "answer": "holiday home",
+    "acceptableAnswers": [
+      "holiday cottage",
+      "small holiday house",
+      "holiday house",
+      "ferienhaus"
+    ],
+    "explanation": "The speaker rented 'بيتاً صغيراً لقضاء العطلة' (a small house for spending the holiday).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ar_listening_042",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'أريد أن أصبح مهندساً بيئياً لتطوير حلول مبتكرة لحماية المناخ.' Question: What is the speaker's specific career aim and motivation?",
+    "answer": "environmental engineer, to develop climate protection solutions",
+    "acceptableAnswers": [
+      "environmental engineer, save environment",
+      "environmental engineer, fight climate change"
+    ],
+    "explanation": "The speaker wants to be an 'مهندساً بيئياً' (environmental engineer) to develop solutions for 'حماية المناخ' (climate protection).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_043",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'أنا لا آكل اللحوم لأنني نباتي، لكني آكل السمك أحياناً.' Question: What diet does the speaker follow, and what is the exception?",
+    "answer": "vegetarian; eats fish sometimes",
+    "acceptableAnswers": [
+      "vegetarian, sometimes fish",
+      "no meat, but eats fish"
+    ],
+    "explanation": "The speaker is a 'نباتي' (vegetarian) but eats 'السمك' (fish) sometimes.",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_listening_044",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'تلوث الهواء في المدن الكبرى أمر فظيع للأطفال المصابين بالربو.' Question: According to the speaker, who is particularly affected by air pollution in big cities?",
+    "answer": "children with asthma",
+    "acceptableAnswers": [
+      "asthmatic children",
+      "kids with asthma"
+    ],
+    "explanation": "The speaker says air pollution is terrible 'للأطفال المصابين بالربو' (for children with asthma).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "pollution"
+    ]
+  },
+  {
+    "id": "ar_listening_045",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'في استراحة الغداء، آكل في المقصف وأتحدث مع زملائي في الدراسة.' Question: What two things does the speaker do during lunchtime?",
+    "answer": "eats in the canteen and chats with schoolmates",
+    "acceptableAnswers": [
+      "eats in canteen, talks to friends",
+      "has lunch, talks to schoolmates"
+    ],
+    "explanation": "The speaker eats in the 'المقصف' (canteen) and talks with 'زملائي' (my schoolmates).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_046",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'أجدادي يعيشون معنا الآن لأنهم كبار في السن ويحتاجون إلى المساعدة.' Question: Why do the speaker's grandparents live with them now?",
+    "answer": "they are old and need help",
+    "acceptableAnswers": [
+      "old and need help",
+      "because they need assistance",
+      "they are elderly and need support"
+    ],
+    "explanation": "The grandparents live there because 'كبار في السن ويحتاجون إلى المساعدة' (old and need help).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_listening_047",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'التصوير الفوتوغرافي هو شغفي. آخذ كاميرتي في كل مكان.' Question: What is the speaker's passion?",
+    "answer": "photography",
+    "acceptableAnswers": [
+      "photos",
+      "taking photos"
+    ],
+    "explanation": "The speaker states 'التصوير الفوتوغرافي هو شغفي' (Photography is my passion).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ar_listening_048",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'بدلاً من السفر هذا الصيف، سنقضي إجازة في المنزل.' Question: What type of holiday is the speaker planning this year?",
+    "answer": "a staycation at home",
+    "acceptableAnswers": [
+      "staying at home",
+      "holiday at home",
+      "staycation"
+    ],
+    "explanation": "The speaker plans a holiday 'في المنزل' (at home / staycation).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ar_listening_049",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'اللغة الإنجليزية مفيدة، لكني أجد الرياضيات مملة للغاية.' Question: Contrast the speaker's opinion on English and maths.",
+    "answer": "English is useful, maths is extremely boring",
+    "acceptableAnswers": [
+      "English useful, maths boring",
+      "useful english, boring maths"
+    ],
+    "explanation": "The speaker says 'اللغة الإنجليزية مفيدة' (English is useful) but 'الرياضيات مملة للغاية' (maths is extremely boring).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_050",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'على الرغم من أن الراتب منخفض، إلا أنني أحب العمل كمربٍّ لأن العمل مع الأطفال مرضٍ للغاية.' Question: Why does the speaker like working as an educator despite the low pay?",
+    "answer": "working with children is very fulfilling",
+    "acceptableAnswers": [
+      "working with children is fulfilling",
+      "work with kids is rewarding"
+    ],
+    "explanation": "The speaker loves the work 'لأن العمل مع الأطفال مرضٍ للغاية' (because working with children is very fulfilling/satisfying).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_001_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Chores",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'يجب عليّ أن أنظف غرفتي كل يوم.' Question: What chore does the speaker have to do every day? (Set B)",
+    "answer": "clean their room",
+    "acceptableAnswers": [
+      "tidy their room",
+      "clean the room",
+      "tidy the room"
+    ],
+    "explanation": "The speaker says 'أنظف غرفتي' (clean my room) 'كل يوم' (every day).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_listening_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Rules",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'الهواتف المحمولة ممنوعة تماماً في مدرستنا. أعتقد أن هذا غير عادل لأننا يمكن أن نستخدمها في البحث.' Question: What is the rule about mobile phones, and why does the speaker disagree? (Set B)",
+    "answer": "phones are banned; they could be used for research",
+    "acceptableAnswers": [
+      "phones are forbidden; they are useful for research",
+      "phones are not allowed; they can do research with them"
+    ],
+    "explanation": "Phones are 'ممنوعة تماماً' (strictly forbidden), and they could use them for 'البحث' (research).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_003_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'في وقت فراغي، أحب أن ألعب كرة القدم مع أصدقائي في الحديقة.' Question: Where does the speaker play football? (Set B)",
+    "answer": "in the park",
+    "acceptableAnswers": [
+      "park",
+      "at the park",
+      "in the garden"
+    ],
+    "explanation": "The speaker mentions 'في الحديقة', meaning in the park/garden.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ar_listening_004_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'أنا أتفاهم جيداً مع والدي لأنه صبور دائماً، لكن أختي تزعجني غالباً.' Question: Why does the speaker get on well with their father? (Set B)",
+    "answer": "he is always patient",
+    "acceptableAnswers": [
+      "he is patient",
+      "because he is patient"
+    ],
+    "explanation": "The speaker says 'لأنه صبور دائماً' (because he is always patient).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_listening_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'في الصيف الماضي، سافرت إلى مصر بالطائرة. كان الطقس رائعاً!' Question: Where did the speaker travel last summer? (Set B)",
+    "answer": "Egypt",
+    "acceptableAnswers": [
+      "egypt",
+      "to Egypt"
+    ],
+    "explanation": "The speaker traveled to 'مصر' (Egypt).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ar_listening_006_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'على الرغم من أن والدتي تريدني أن أدرس الطب، إلا أنني سأتدرب كمهندس ميكانيكي.' Question: What career does the speaker plan to pursue, despite their mother's wishes? (Set B)",
+    "answer": "mechanical engineer",
+    "acceptableAnswers": [
+      "engineer",
+      "mechanic"
+    ],
+    "explanation": "The speaker plans to train as a 'مهندس ميكانيكي' (mechanical engineer) despite mother wanting them to study medicine ('دراسة الطب').",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_007_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'لتناول الفطور، أتناول الحبوب مع الحليب وأشرب عصير البرتقال.' Question: What does the speaker drink for breakfast? (Set B)",
+    "answer": "orange juice",
+    "acceptableAnswers": [
+      "orange juice",
+      "an orange juice"
+    ],
+    "explanation": "The speaker drinks 'عصير البرتقال' (orange juice).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_listening_008_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Recycling",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'يجب علينا إعادة تدوير البلاستيك لإنقاذ المحيطات. تموت كائنات كثيرة بسبب التلوث.' Question: Why must we recycle plastic according to the speaker? (Set B)",
+    "answer": "to save the oceans",
+    "acceptableAnswers": [
+      "save oceans",
+      "save the ocean",
+      "protect oceans"
+    ],
+    "explanation": "The speaker says they must recycle 'لإنقاذ المحيطات' (to save the oceans).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_listening_009_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'الجغرافيا هي مادتي المفضلة لأن المعلم مضحك جداً، لكن الفيزياء صعبة.' Question: Why does the speaker like geography? (Set B)",
+    "answer": "the teacher is very funny",
+    "acceptableAnswers": [
+      "funny teacher",
+      "because the teacher is funny"
+    ],
+    "explanation": "The speaker likes geography because 'المعلم مضحك جداً' (the teacher is very funny).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_010_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Accommodation",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'كان بيت الشباب رخيصاً، لكن الحمامات كانت متسخة والإنترنت لم يكن يعمل على الإطلاق.' Question: What were the two complaints about the youth hostel? (Set B)",
+    "answer": "dirty bathrooms and no working internet",
+    "acceptableAnswers": [
+      "dirty showers and internet did not work",
+      "bathrooms were dirty, wifi did not work"
+    ],
+    "explanation": "The speaker mentions 'الحمامات كانت متسخة' (bathrooms were dirty) and 'الإنترنت لم يكن يعمل' (internet didn't work).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "accommodation"
+    ]
+  },
+  {
+    "id": "ar_listening_011_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Festivals",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'عيد الفطر هو عيدي المفضل لأن العائلة بأكملها تجتمع معاً.' Question: Why is Eid al-Fitr the speaker's favorite festival? (Set B)",
+    "answer": "the whole family gathers together",
+    "acceptableAnswers": [
+      "family comes together",
+      "because the family gathers"
+    ],
+    "explanation": "The speaker states 'العائلة بأكملها تجتمع معاً' (the whole family gathers together).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "festivals"
+    ]
+  },
+  {
+    "id": "ar_listening_012_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'أستخدم جهازي اللوحي بشكل أساسي لمشاهدة الأفلام، بينما أخي يلعب الألعاب فقط.' Question: What does the speaker mainly use their tablet for? (Set B)",
+    "answer": "watching movies",
+    "acceptableAnswers": [
+      "stream movies",
+      "watching films",
+      "stream films"
+    ],
+    "explanation": "The speaker uses it 'لمشاهدة الأفلام' (for watching/streaming movies).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "technology"
+    ]
+  },
+  {
+    "id": "ar_listening_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'تبدأ المدرسة في الساعة الثامنة صباحاً، لذلك يجب عليّ الاستيقاظ في السابعة.' Question: What time does school start? (Set B)",
+    "answer": "8:00 AM",
+    "acceptableAnswers": [
+      "8",
+      "8am",
+      "eight",
+      "eight o'clock"
+    ],
+    "explanation": "The speaker says 'تبدأ المدرسة في الساعة الثامنة' (School starts at eight o'clock).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_listening_014_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'زينا المدرسي غير مريح على الإطلاق. في الشتاء المعطف خفيف جداً، وفي الصيف نتعرق في السراويل السوداء.' Question: What is the speaker's double complaint about the winter and summer uniform? (Set B)",
+    "answer": "coat is too thin in winter; black trousers are too hot in summer",
+    "acceptableAnswers": [
+      "coat too thin, trousers too hot",
+      "too cold in winter coat, too hot in summer pants"
+    ],
+    "explanation": "In winter the coat is 'خفيف جداً' (too thin/light), and in summer they sweat in 'السراويل السوداء' (black trousers).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Cinema",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'شاهدت البارحة فيلماً كوميدياً في السينما وضحت كثيراً.' Question: What genre of film did the speaker watch yesterday? (Set B)",
+    "answer": "comedy",
+    "acceptableAnswers": [
+      "a comedy"
+    ],
+    "explanation": "The speaker watched a 'فيلم كوميدي' (comedy film).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "cinema"
+    ]
+  },
+  {
+    "id": "ar_listening_016_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "University",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'بعد انتهاء المدرسة الثانوية، أرغب في العمل بالخارج لمدة عام قبل أن أبدأ دراسة التاريخ في لندن.' Question: What does the speaker plan to do immediately after secondary school? (Set B)",
+    "answer": "work abroad for a year",
+    "acceptableAnswers": [
+      "work abroad",
+      "work in another country",
+      "work overseas for a year"
+    ],
+    "explanation": "The speaker wants to 'العمل بالخارج لمدة عام' (work abroad for a year) before studying history.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Weather",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'غداً ستمطر بغزارة في لندن، ولكن في عطلة نهاية الأسبوع ستشرق الشمس.' Question: What will the weather be like in London tomorrow? (Set B)",
+    "answer": "rainy",
+    "acceptableAnswers": [
+      "heavy rain",
+      "raining",
+      "rain"
+    ],
+    "explanation": "The speaker states 'غداً ستمطر بغزارة' (tomorrow it will rain heavily).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "weather"
+    ]
+  },
+  {
+    "id": "ar_listening_018_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Climate Change",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'يجب علينا تقليل استهلاك الطاقة. أنا دائماً أطفئ الأنوار عند مغادرة الغرفة.' Question: What action does the speaker personally take to save energy? (Set B)",
+    "answer": "turns off the light when leaving the room",
+    "acceptableAnswers": [
+      "turns off lights",
+      "switches off lights"
+    ],
+    "explanation": "The speaker says 'أنا دائماً أطفئ الأنوار عند مغادرة الغرفة' (I always turn off the lights when leaving the room).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_listening_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Sports",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'كل يوم سبت ألعب التنس. هذا رائع لأنه يحافظ على لياقتي البدنية.' Question: Why does the speaker play tennis every Saturday? (Set B)",
+    "answer": "it keeps them fit",
+    "acceptableAnswers": [
+      "keeps fit",
+      "keeps them healthy",
+      "to stay fit"
+    ],
+    "explanation": "The speaker plays tennis because 'يحافظ على لياقتي البدنية' (it keeps my physical fitness/keeps me fit).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "sports"
+    ]
+  },
+  {
+    "id": "ar_listening_020_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Friends",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'صديقي المفضل طارق لديه دائماً وقت لمساعدتي. إنه موثوق للغاية.' Question: What character trait makes Tariq a good friend according to the speaker? (Set B)",
+    "answer": "extremely reliable",
+    "acceptableAnswers": [
+      "reliable",
+      "trustworthy",
+      "he is reliable"
+    ],
+    "explanation": "The speaker says Tariq is 'موثوق للغاية' (extremely reliable/trustworthy).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "friends"
+    ]
+  },
+  {
+    "id": "ar_listening_021_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Trips",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'الأسبوع الماضي زرنا متحفاً في القاهرة. كان ممتعاً جداً، لكن رحلة الحافلة كانت مملة للغاية.' Question: What is the speaker's complaint about the school trip last week? (Set B)",
+    "answer": "the bus ride was extremely boring",
+    "acceptableAnswers": [
+      "bus ride was boring",
+      "bus journey was boring",
+      "boring bus trip"
+    ],
+    "explanation": "The speaker complained that 'رحلة الحافلة كانت مملة للغاية' (the bus ride was extremely boring).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_022_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Music",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'الموسيقى الكلاسيكية تريحني، في حين أن موسيقى الروك الصاخبة تجعلني متوتراً.' Question: Contrast the speaker's reaction to classical music versus rock music. (Set B)",
+    "answer": "classical music relaxes them, while loud rock makes them nervous",
+    "acceptableAnswers": [
+      "classical is relaxing, rock is stressful",
+      "classical relaxes, rock makes nervous"
+    ],
+    "explanation": "Classical music 'تريحني' (relaxes me) while loud rock 'تجعلني متوتراً' (makes me nervous/anxious).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "music"
+    ]
+  },
+  {
+    "id": "ar_listening_023_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Transport",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'أذهب إلى المدرسة بالدراجة كل يوم لأنها صديقة للبيئة.' Question: How does the speaker travel to school? (Set B)",
+    "answer": "by bicycle",
+    "acceptableAnswers": [
+      "by bike",
+      "bike",
+      "bicycle",
+      "cycling"
+    ],
+    "explanation": "The speaker goes to school 'بالدراجة' (by bicycle).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "transport"
+    ]
+  },
+  {
+    "id": "ar_listening_024_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'حلمي هو أن أفتح مطعمي الخاص يوماً ما وأكون الطاهي الرئيسي فيه.' Question: What is the speaker's dream career goal? (Set B)",
+    "answer": "to open their own restaurant as head chef",
+    "acceptableAnswers": [
+      "open a restaurant",
+      "own a restaurant",
+      "be a chef in their own restaurant"
+    ],
+    "explanation": "The speaker dreams of 'أفتح مطعمي الخاص' (opening my own restaurant) and being the 'الطاهي الرئيسي' (head chef).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_025_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Daily Routine",
+    "subtopic": "Weekend",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'يوم السبت، عادةً ما أنام حتى الساعة العاشرة صباحاً.' Question: What does the speaker normally do on Saturdays? (Set B)",
+    "answer": "sleep in until 10:00 AM",
+    "acceptableAnswers": [
+      "sleep in",
+      "sleep late",
+      "sleep until 10"
+    ],
+    "explanation": "The speaker sleeps 'حتى الساعة العاشرة' (until ten o'clock).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_listening_026_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Restaurants",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'كانت الخدمة في هذا المطعم الجديد سيئة جداً. انتظرنا ساعة كاملة، وكان الحساء بارداً.' Question: What are the two specific complaints about the restaurant service and food? (Set B)",
+    "answer": "waited a whole hour; the soup was cold",
+    "acceptableAnswers": [
+      "waited 1 hour, cold soup",
+      "long wait, cold soup"
+    ],
+    "explanation": "They waited 'ساعة كاملة' (a whole hour) and the soup ('الحساء') was 'بارداً' (cold).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_listening_027_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Facilities",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'مدرستنا لديها مسبح جديد داخلي. هذا رائع لأننا نستطيع السباحة في الشتاء.' Question: What new facility does the school have? (Set B)",
+    "answer": "indoor swimming pool",
+    "acceptableAnswers": [
+      "swimming pool",
+      "indoor pool",
+      "pool"
+    ],
+    "explanation": "The speaker mentions a 'مسبح جديد داخلي' (new indoor swimming pool).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_028_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Celebrations",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'في نهاية الأسبوع الماضي احتفلنا بعيد ميلاد جدتي السبعين. كانت هناك كعكة ضخمة!' Question: Whose milestone celebration took place last weekend? (Set B)",
+    "answer": "grandmother's 70th birthday",
+    "acceptableAnswers": [
+      "grandma's 70th birthday",
+      "grandmother's birthday"
+    ],
+    "explanation": "The speaker celebrated 'عيد ميلاد جدتي السبعين' (the seventieth birthday of my grandmother).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_listening_029_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'أفضل الذهاب إلى الجبال بدلاً من الشاطئ لأنني أحب المشي لمسافات طويلة.' Question: Why does the speaker prefer the mountains to the beach? (Set B)",
+    "answer": "they like hiking",
+    "acceptableAnswers": [
+      "likes hiking",
+      "enjoys hiking",
+      "because they like hiking"
+    ],
+    "explanation": "The speaker says 'لأنني أحب المشي لمسافات طويلة' (because I love long walks/hiking).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ar_listening_030_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Social Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'التشرد مشكلة متزايدة في مدينتنا. يجب علينا مساعدة ملاجئ المحتاجين المحلية.' Question: What major social problem does the speaker identify in their town? (Set B)",
+    "answer": "homelessness",
+    "acceptableAnswers": [
+      "homeless people",
+      "being homeless"
+    ],
+    "explanation": "The speaker mentions 'التشرد' (homelessness) as a growing problem.",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "social"
+    ]
+  },
+  {
+    "id": "ar_listening_031_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Shopping",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'أشتري ملابسي غالباً عبر الإنترنت لأنها أرخص من مركز التسوق.' Question: Why does the speaker prefer to buy clothes online? (Set B)",
+    "answer": "it is cheaper than the shopping centre",
+    "acceptableAnswers": [
+      "cheaper",
+      "it is cheaper",
+      "cheaper than shopping malls"
+    ],
+    "explanation": "The speaker shops online because 'أرخص من مركز التسوق' (cheaper than the shopping center/mall).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "shopping"
+    ]
+  },
+  {
+    "id": "ar_listening_032_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "School",
+    "subtopic": "Teachers",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'معلمة الرياضيات تشرح كل شيء بوضوح، لكنها تعطينا الكثير من الواجبات المنزلية.' Question: What is the speaker's positive and negative feedback about the maths teacher? (Set B)",
+    "answer": "explains clearly but gives too much homework",
+    "acceptableAnswers": [
+      "explains well, too much homework",
+      "clear explanations, too much homework"
+    ],
+    "explanation": "The teacher 'تشرح كل شيء بوضوح' (explains everything clearly) but 'تعطينا الكثير من الواجبات' (gives us a lot of homework).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "teachers"
+    ]
+  },
+  {
+    "id": "ar_listening_033_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Identity and culture",
+    "subtopic": "Pets",
+    "difficulty": 1,
+    "type": "listening",
+    "question": "Transcript: 'لدي كلب صغير اسمه بيلو. إنه يحب اللعب كثيراً.' Question: What pet does the speaker have? (Set B)",
+    "answer": "a small dog",
+    "acceptableAnswers": [
+      "dog",
+      "a dog"
+    ],
+    "explanation": "The speaker mentions 'كلب صغير' (a small dog).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "pets"
+    ]
+  },
+  {
+    "id": "ar_listening_034_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Part-time Job",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'أعمل يوم السبت في السوبرماركت لزيادة مصروفي الجيب.' Question: Why does the speaker work in a supermarket on Saturdays? (Set B)",
+    "answer": "to earn extra pocket money",
+    "acceptableAnswers": [
+      "earn money",
+      "increase pocket money",
+      "pocket money"
+    ],
+    "explanation": "The speaker works 'لزيادة مصروفي الجيب' (to increase my pocket money).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_035_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Directions",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'اذهب مستقيماً ثم انعطف يساراً عند الشارع الثاني. المحطة مقابل مكتب البريد.' Question: Where is the railway station located? (Set B)",
+    "answer": "opposite the post office",
+    "acceptableAnswers": [
+      "opposite post office",
+      "by the post office"
+    ],
+    "explanation": "The speaker says 'المحطة مقابل مكتب البريد' (The station is opposite the post office).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "directions"
+    ]
+  },
+  {
+    "id": "ar_listening_036_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Global Issues",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'الاحتباس الحراري يؤدي إلى تقلبات جوية شديدة. نحن نشعر بذلك الآن في قطاع السياحة.' Question: Which sector is already feeling the impact of global warming according to the speaker? (Set B)",
+    "answer": "tourism sector",
+    "acceptableAnswers": [
+      "tourism",
+      "tourist sector"
+    ],
+    "explanation": "The speaker mentions 'قطاع السياحة' (tourism sector).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "environment"
+    ]
+  },
+  {
+    "id": "ar_listening_037_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'أحب قراءة الروايات البوليسية في المساء قبل النوم.' Question: What type of books does the speaker read in the evening? (Set B)",
+    "answer": "detective novels",
+    "acceptableAnswers": [
+      "crime novels",
+      "crime stories",
+      "thrillers"
+    ],
+    "explanation": "The speaker reads 'الروايات البوليسية' (detective/crime novels).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ar_listening_038_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Routine",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'عادةً ما أمارس رياضة الجري في الصباح، لكن في الشتاء يكون الطقس بارداً جداً في الخارج.' Question: Why does the speaker stop jogging in the winter mornings? (Set B)",
+    "answer": "it is too cold outside",
+    "acceptableAnswers": [
+      "too cold",
+      "cold weather",
+      "it's too cold"
+    ],
+    "explanation": "The speaker says 'في الشتاء يكون الطقس بارداً جداً في الخارج' (in winter it is too cold outside).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "routine"
+    ]
+  },
+  {
+    "id": "ar_listening_039_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Uniform",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'يجب علينا ارتداء سترة زرقاء وسروال رمادي.' Question: What colour trousers must the speaker wear? (Set B)",
+    "answer": "grey",
+    "acceptableAnswers": [
+      "gray"
+    ],
+    "explanation": "The speaker mentions 'سروال رمادي' (grey trousers).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "uniform"
+    ]
+  },
+  {
+    "id": "ar_listening_040_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Leisure",
+    "subtopic": "Technology",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'الذكاء الاصطناعي سيغير سوق العمل تماماً. بعض الوظائف ستختفي كلياً.' Question: What major prediction does the speaker make about AI in the workplace? (Set B)",
+    "answer": "some jobs will completely disappear",
+    "acceptableAnswers": [
+      "jobs will disappear",
+      "some professions will disappear"
+    ],
+    "explanation": "The speaker predicts 'بعض الوظائف ستختفي كلياً' (some jobs will completely disappear).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "tech"
+    ]
+  },
+  {
+    "id": "ar_listening_041_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 3,
+    "type": "listening",
+    "question": "Transcript: 'استأجرنا بيتاً صغيراً لقضاء العطلة في ريف فرنسا. كان مريحاً جداً.' Question: What type of holiday accommodation did they rent? (Set B)",
+    "answer": "holiday home",
+    "acceptableAnswers": [
+      "holiday cottage",
+      "small holiday house",
+      "holiday house",
+      "ferienhaus"
+    ],
+    "explanation": "The speaker rented 'بيتاً صغيراً لقضاء العطلة' (a small house for spending the holiday).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ar_listening_042_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Ambitions",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'أريد أن أصبح مهندساً بيئياً لتطوير حلول مبتكرة لحماية المناخ.' Question: What is the speaker's specific career aim and motivation? (Set B)",
+    "answer": "environmental engineer, to develop climate protection solutions",
+    "acceptableAnswers": [
+      "environmental engineer, save environment",
+      "environmental engineer, fight climate change"
+    ],
+    "explanation": "The speaker wants to be an 'مهندساً بيئياً' (environmental engineer) to develop solutions for 'حماية المناخ' (climate protection).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  },
+  {
+    "id": "ar_listening_043_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Food",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'أنا لا آكل اللحوم لأنني نباتي، لكني آكل السمك أحياناً.' Question: What diet does the speaker follow, and what is the exception? (Set B)",
+    "answer": "vegetarian; eats fish sometimes",
+    "acceptableAnswers": [
+      "vegetarian, sometimes fish",
+      "no meat, but eats fish"
+    ],
+    "explanation": "The speaker is a 'نباتي' (vegetarian) but eats 'السمك' (fish) sometimes.",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "food"
+    ]
+  },
+  {
+    "id": "ar_listening_044_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Environment",
+    "subtopic": "Pollution",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'تلوث الهواء في المدن الكبرى أمر فظيع للأطفال المصابين بالربو.' Question: According to the speaker, who is particularly affected by air pollution in big cities? (Set B)",
+    "answer": "children with asthma",
+    "acceptableAnswers": [
+      "asthmatic children",
+      "kids with asthma"
+    ],
+    "explanation": "The speaker says air pollution is terrible 'للأطفال المصابين بالربو' (for children with asthma).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "pollution"
+    ]
+  },
+  {
+    "id": "ar_listening_045_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "School Day",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'في استراحة الغداء، آكل في المقصف وأتحدث مع زملائي في الدراسة.' Question: What two things does the speaker do during lunchtime? (Set B)",
+    "answer": "eats in the canteen and chats with schoolmates",
+    "acceptableAnswers": [
+      "eats in canteen, talks to friends",
+      "has lunch, talks to schoolmates"
+    ],
+    "explanation": "The speaker eats in the 'المقصف' (canteen) and talks with 'زملائي' (my schoolmates).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_046_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Identity and culture",
+    "subtopic": "Family",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'أجدادي يعيشون معنا الآن لأنهم كبار في السن ويحتاجون إلى المساعدة.' Question: Why do the speaker's grandparents live with them now? (Set B)",
+    "answer": "they are old and need help",
+    "acceptableAnswers": [
+      "old and need help",
+      "because they need assistance",
+      "they are elderly and need support"
+    ],
+    "explanation": "The grandparents live there because 'كبار في السن ويحتاجون إلى المساعدة' (old and need help).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "family"
+    ]
+  },
+  {
+    "id": "ar_listening_047_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Leisure",
+    "subtopic": "Hobbies",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'التصوير الفوتوغرافي هو شغفي. آخذ كاميرتي في كل مكان.' Question: What is the speaker's passion? (Set B)",
+    "answer": "photography",
+    "acceptableAnswers": [
+      "photos",
+      "taking photos"
+    ],
+    "explanation": "The speaker states 'التصوير الفوتوغرافي هو شغفي' (Photography is my passion).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "leisure"
+    ]
+  },
+  {
+    "id": "ar_listening_048_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Travel & Tourism",
+    "subtopic": "Holidays",
+    "difficulty": 4,
+    "type": "listening",
+    "question": "Transcript: 'بدلاً من السفر هذا الصيف، سنقضي إجازة في المنزل.' Question: What type of holiday is the speaker planning this year? (Set B)",
+    "answer": "a staycation at home",
+    "acceptableAnswers": [
+      "staying at home",
+      "holiday at home",
+      "staycation"
+    ],
+    "explanation": "The speaker plans a holiday 'في المنزل' (at home / staycation).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "holidays"
+    ]
+  },
+  {
+    "id": "ar_listening_049_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "School",
+    "subtopic": "Subjects",
+    "difficulty": 2,
+    "type": "listening",
+    "question": "Transcript: 'اللغة الإنجليزية مفيدة، لكني أجد الرياضيات مملة للغاية.' Question: Contrast the speaker's opinion on English and maths. (Set B)",
+    "answer": "English is useful, maths is extremely boring",
+    "acceptableAnswers": [
+      "English useful, maths boring",
+      "useful english, boring maths"
+    ],
+    "explanation": "The speaker says 'اللغة الإنجليزية مفيدة' (English is useful) but 'الرياضيات مملة للغاية' (maths is extremely boring).",
+    "marks": 2,
+    "tags": [
+      "listening",
+      "school"
+    ]
+  },
+  {
+    "id": "ar_listening_050_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Future Plans",
+    "subtopic": "Careers",
+    "difficulty": 5,
+    "type": "listening",
+    "question": "Transcript: 'على الرغم من أن الراتب منخفض، إلا أنني أحب العمل كمربٍّ لأن العمل مع الأطفال مرضٍ للغاية.' Question: Why does the speaker like working as an educator despite the low pay? (Set B)",
+    "answer": "working with children is very fulfilling",
+    "acceptableAnswers": [
+      "working with children is fulfilling",
+      "work with kids is rewarding"
+    ],
+    "explanation": "The speaker loves the work 'لأن العمل مع الأطفال مرضٍ للغاية' (because working with children is very fulfilling/satisfying).",
+    "marks": 1,
+    "tags": [
+      "listening",
+      "future"
+    ]
+  }
+]

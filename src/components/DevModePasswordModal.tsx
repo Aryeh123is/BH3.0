@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Lock, X } from 'lucide-react';
+import { Lock, X, Eye, EyeOff } from 'lucide-react';
 import { hashDevString } from '../lib/utils';
 
 interface DevModePasswordModalProps {
@@ -9,11 +9,12 @@ interface DevModePasswordModalProps {
 
 export function DevModePasswordModal({ onClose, onSubmit }: DevModePasswordModalProps) {
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (hashDevString(password.trim()) === '19a8b66') {
+    if (hashDevString(password.trim().toLowerCase()) === '16r1ob1') {
       onSubmit(password);
     } else {
       setError(true);
@@ -45,17 +46,26 @@ export function DevModePasswordModal({ onClose, onSubmit }: DevModePasswordModal
               <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">
                 Enter Password
               </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setError(false);
-                }}
-                className={`w-full px-4 py-3 bg-slate-50 dark:bg-slate-800 border ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 dark:border-slate-700 focus:border-indigo-500 focus:ring-indigo-500/20'} rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none focus:ring-4 transition-all`}
-                placeholder="Password"
-                autoFocus
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setError(false);
+                  }}
+                  className={`w-full pl-4 pr-12 py-3 bg-slate-50 dark:bg-slate-800 border ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500/20' : 'border-slate-200 dark:border-slate-700 focus:border-indigo-500 focus:ring-indigo-500/20'} rounded-xl text-slate-900 dark:text-white font-medium focus:outline-none focus:ring-4 transition-all`}
+                  placeholder="Password"
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
               {error && (
                 <p className="text-red-500 text-sm font-medium mt-2">Incorrect password</p>
               )}

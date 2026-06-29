@@ -1,0 +1,1742 @@
+[
+  {
+    "id": "he_grammar_001",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Present Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Conjugate 'לכתוב' (to write) for 'אני' (singular masculine) in the present tense.",
+    "answer": "כותב",
+    "explanation": "The present tense masculine singular of לכתוב is כותב.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "present"
+    ]
+  },
+  {
+    "id": "he_grammar_002",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'לדבר' (to speak) for 'אנחנו' in the past (עבר) tense.",
+    "answer": "דיברנו",
+    "explanation": "In Pi'el billing, past tense for אנחנו ends in -נו: דיברנו.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "past"
+    ]
+  },
+  {
+    "id": "he_grammar_003",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Articles",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Which Hebrew prefix acts as the definite article 'the'?",
+    "answer": "ה",
+    "explanation": "The prefix ה- is used for definite articles in Hebrew.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "he_grammar_004",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'ללכת' (to go) for 'הוא' in the future (עתיד) simple tense.",
+    "answer": "ילך",
+    "explanation": "The future tense prefix for הוא is י-. 'ילך' is the future of ללכת.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "he_grammar_005",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'to her' (using preposition ל-) into Hebrew.",
+    "answer": "אליה",
+    "acceptableAnswers": [
+      "לה"
+    ],
+    "explanation": "The preposition ל- combined with third person feminine singular is 'לה' or 'אליה'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "he_grammar_006",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'the intelligent girls' into Hebrew (fem plural).",
+    "answer": "הילדות החכמות",
+    "acceptableAnswers": [
+      "הבנות החכמות"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "he_grammar_007",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Possessives",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Translate 'my house' using the possessive suffix (shel-suffix or suffix on Noun bayit) into Hebrew.",
+    "answer": "הבית שלי",
+    "acceptableAnswers": [
+      "ביתי"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "possessives"
+    ]
+  },
+  {
+    "id": "he_grammar_008",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'her parents' into Hebrew.",
+    "answer": "ההורים שלה",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_009",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Conditional Clause",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Which Hebrew word means 'if' when introducing counterfactual/hypothetical conditions (e.g., 'If I were rich')?",
+    "answer": "אילו",
+    "acceptableAnswers": [
+      "לו",
+      "אם"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_010",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Complete with correct preposition: פריז נמצאת ______ צרפת (Paris is in France).",
+    "answer": "ב",
+    "explanation": "The prefix ב- means 'in'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "he_grammar_011",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Direct Object",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Which word is the Hebrew definite direct object marker?",
+    "answer": "את",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_012",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Plurals",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "What is the plural form of the noun 'שולחן' (table - masculine noun with irregular plural ending)?",
+    "answer": "שולחנות",
+    "explanation": "Although 'שולחן' is masculine, its plural ending is irregular -ות: שולחנות.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "he_grammar_013",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Demonstrative Pronoun",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "What is the Hebrew plural demonstrative pronoun meaning 'these'?",
+    "answer": "אלה",
+    "acceptableAnswers": [
+      "אלו"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "he_grammar_014",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Comparatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'Dan is taller than Ron' into Hebrew.",
+    "answer": "דן גבוה יותר מרק",
+    "acceptableAnswers": [
+      "דן גבוה יותר מרון"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "he_grammar_015",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Tense irregulars",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'להיות' (to be) for 'אני' in the past (עבר) tense.",
+    "answer": "הייתי",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "past"
+    ]
+  },
+  {
+    "id": "he_grammar_016",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Like/Love",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I like books' (masculine singular speaker) into Hebrew.",
+    "answer": "אני אוהב ספרים",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_017",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Prepositons",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'with them' into Hebrew.",
+    "answer": "איתם",
+    "acceptableAnswers": [
+      "עמם",
+      "איתן"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "he_grammar_018",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Connectors",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Which Hebrew word means 'because of'?",
+    "answer": "בגלל",
+    "acceptableAnswers": [
+      "בגלל ש-"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_019",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Numbers",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'five girls' into Hebrew (remember gender agreement with numbers!).",
+    "answer": "חמש ילדות",
+    "acceptableAnswers": [
+      "חמש בנות"
+    ],
+    "explanation": "Girls are feminine, so the feminine form of five 'חמש' is used.",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_020",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'quickly' into Hebrew.",
+    "answer": "מהר",
+    "acceptableAnswers": [
+      "במהירות"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "he_grammar_021",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Negatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I do not want anything' (masculine singular) into Hebrew.",
+    "answer": "אני לא רוצה כלום",
+    "acceptableAnswers": [
+      "אני לא רוצה שום דבר"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "negatives"
+    ]
+  },
+  {
+    "id": "he_grammar_022",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Direct Object Pronoun",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'I saw him' into Hebrew.",
+    "answer": "ראיתי אותו",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "he_grammar_023",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Verb Patterns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "What is the name of the passive Hebrew verb pattern (binyan) corresponding to Pa'al?",
+    "answer": "נפעל",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "he_grammar_024",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Numbers",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate the number 'hundred' into Hebrew.",
+    "answer": "מאה",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_025",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Infinitive",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "What is the infinitive form of the verb 'שומע' (to hear)?",
+    "answer": "לשמוע",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "he_grammar_026",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Which Hebrew relative pronoun prefix translates to 'that/who/which'?",
+    "answer": "ש",
+    "acceptableAnswers": [
+      "ש-",
+      "אשר"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "he_grammar_027",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Irregular Verbs",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'לרצות' (to want) for 'אתה' in the present tense.",
+    "answer": "רוצה",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "he_grammar_028",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'ללכת' (to go) for 'אני' in future tense.",
+    "answer": "אלך",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "he_grammar_029",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Reflexives",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Translate 'I wash myself' (masculine singular speaker) into Hebrew using reflexive 'להתרחץ'.",
+    "answer": "אני מתרחץ",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_030",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'slowly' into Hebrew.",
+    "answer": "לאט",
+    "acceptableAnswers": [
+      "באיטיות"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "he_grammar_031",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Time",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "How do you say 'it is half past two' in Hebrew?",
+    "answer": "שתיים וחצי",
+    "acceptableAnswers": [
+      "השעה שתיים וחצי"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "time"
+    ]
+  },
+  {
+    "id": "he_grammar_032",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'Do not smoke!' (sing masculine informal negative command) into Hebrew.",
+    "answer": "אל תעשן",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "he_grammar_033",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Verb conjugation",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'לדעת' (to know) for 'הם' in the past (עבר) tense.",
+    "answer": "ידעו",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "past"
+    ]
+  },
+  {
+    "id": "he_grammar_034",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Days",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'Wednesday' into Hebrew.",
+    "answer": "יום רביעי",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_035",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Nouns Construct State",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Combine 'בית' (house) and 'ספר' (book) using the Hebrew construct state (סמיכות) to mean 'school'.",
+    "answer": "בית ספר",
+    "acceptableAnswers": [
+      "בית-ספר"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "he_grammar_036",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I will play' (masculine singular speaker) into Hebrew (future of 'לשחק').",
+    "answer": "אשחק",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "he_grammar_037",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Superlatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'the best student' (masculine singular) into Hebrew.",
+    "answer": "התלמיד הכי טוב",
+    "acceptableAnswers": [
+      "התלמיד הטוב ביותר"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "he_grammar_038",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Past Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'לעשות' (to do/make) for 'הוא' in the past (עבר) tense.",
+    "answer": "עשה",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "past"
+    ]
+  },
+  {
+    "id": "he_grammar_039",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adjective Position",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'a large country' into Hebrew (remember noun-adjective position and gender agreement!).",
+    "answer": "מדינה גדולה",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "he_grammar_040",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Which Hebrew preposition word means 'behind'?",
+    "answer": "מאחורי",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "he_grammar_041",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'whom' or 'who' as direct object into Hebrew (e.g., 'The girl whom I saw').",
+    "answer": "שאותה",
+    "acceptableAnswers": [
+      "אשר אותה",
+      "שראיתי אותה"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "he_grammar_042",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'It is cold' into Hebrew.",
+    "answer": "קר",
+    "acceptableAnswers": [
+      "קר בחוץ"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "weather"
+    ]
+  },
+  {
+    "id": "he_grammar_043",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'about us' (using preposition על-) into Hebrew.",
+    "answer": "עלינו",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "he_grammar_044",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Plurals",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "What is the plural of 'עיר' (city - feminine noun with irregular masculine ending)?",
+    "answer": "ערים",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "he_grammar_045",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Participle",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "What is the passive construct (past participle) form of 'לשבור' (to break) meaning 'broken' (masculine singular)?",
+    "answer": "שבור",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "he_grammar_046",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Construct State Plural",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Form the construct state plural (סמיכות) of 'בתי' (houses of) to say 'schools' (houses of book).",
+    "answer": "בתי ספר",
+    "acceptableAnswers": [
+      "בתי-ספר"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "he_grammar_047",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Complete the adjective agreement: המכונית היא ______ (מהיר - fast).",
+    "answer": "מהירה",
+    "explanation": "Car (מכונית) is feminine singular, so the adjective must be feminine singular: מהירה.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "he_grammar_048",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Conjugate 'לדעת' (to know) for 'אנחנו' in the future (עתיד) tense.",
+    "answer": "נדע",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "he_grammar_049",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Demonstratives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "What is the Hebrew feminine plural demonstrative pronoun meaning 'those'?",
+    "answer": "ההן",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "he_grammar_050",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperatives",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate the feminine singular imperative command 'Listen!' (from 'להקשיב') into Hebrew.",
+    "answer": "הקשיבי",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "he_grammar_001_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Present Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Conjugate 'לכתוב' (to write) for 'אני' (singular masculine) in the present tense. (Set B)",
+    "answer": "כותב",
+    "explanation": "The present tense masculine singular of לכתוב is כותב.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "present"
+    ]
+  },
+  {
+    "id": "he_grammar_002_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'לדבר' (to speak) for 'אנחנו' in the past (עבר) tense. (Set B)",
+    "answer": "דיברנו",
+    "explanation": "In Pi'el billing, past tense for אנחנו ends in -נו: דיברנו.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "past"
+    ]
+  },
+  {
+    "id": "he_grammar_003_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Articles",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Which Hebrew prefix acts as the definite article 'the'? (Set B)",
+    "answer": "ה",
+    "explanation": "The prefix ה- is used for definite articles in Hebrew.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "he_grammar_004_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'ללכת' (to go) for 'הוא' in the future (עתיד) simple tense. (Set B)",
+    "answer": "ילך",
+    "explanation": "The future tense prefix for הוא is י-. 'ילך' is the future of ללכת.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "he_grammar_005_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'to her' (using preposition ל-) into Hebrew. (Set B)",
+    "answer": "אליה",
+    "acceptableAnswers": [
+      "לה"
+    ],
+    "explanation": "The preposition ל- combined with third person feminine singular is 'לה' or 'אליה'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "he_grammar_006_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'the intelligent girls' into Hebrew (fem plural). (Set B)",
+    "answer": "הילדות החכמות",
+    "acceptableAnswers": [
+      "הבנות החכמות"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "he_grammar_007_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Possessives",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Translate 'my house' using the possessive suffix (shel-suffix or suffix on Noun bayit) into Hebrew. (Set B)",
+    "answer": "הבית שלי",
+    "acceptableAnswers": [
+      "ביתי"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "possessives"
+    ]
+  },
+  {
+    "id": "he_grammar_008_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'her parents' into Hebrew. (Set B)",
+    "answer": "ההורים שלה",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_009_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Conditional Clause",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Which Hebrew word means 'if' when introducing counterfactual/hypothetical conditions (e.g., 'If I were rich')? (Set B)",
+    "answer": "אילו",
+    "acceptableAnswers": [
+      "לו",
+      "אם"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_010_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Complete with correct preposition: פריז נמצאת ______ צרפת (Paris is in France). (Set B)",
+    "answer": "ב",
+    "explanation": "The prefix ב- means 'in'.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "he_grammar_011_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Direct Object",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Which word is the Hebrew definite direct object marker? (Set B)",
+    "answer": "את",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_012_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Plurals",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "What is the plural form of the noun 'שולחן' (table - masculine noun with irregular plural ending)? (Set B)",
+    "answer": "שולחנות",
+    "explanation": "Although 'שולחן' is masculine, its plural ending is irregular -ות: שולחנות.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "he_grammar_013_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Demonstrative Pronoun",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "What is the Hebrew plural demonstrative pronoun meaning 'these'? (Set B)",
+    "answer": "אלה",
+    "acceptableAnswers": [
+      "אלו"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "he_grammar_014_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Comparatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'Dan is taller than Ron' into Hebrew. (Set B)",
+    "answer": "דן גבוה יותר מרק",
+    "acceptableAnswers": [
+      "דן גבוה יותר מרון"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "he_grammar_015_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Tense irregulars",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'להיות' (to be) for 'אני' in the past (עבר) tense. (Set B)",
+    "answer": "הייתי",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "past"
+    ]
+  },
+  {
+    "id": "he_grammar_016_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Like/Love",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I like books' (masculine singular speaker) into Hebrew. (Set B)",
+    "answer": "אני אוהב ספרים",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_017_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Prepositons",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'with them' into Hebrew. (Set B)",
+    "answer": "איתם",
+    "acceptableAnswers": [
+      "עמם",
+      "איתן"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "he_grammar_018_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Connectors",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Which Hebrew word means 'because of'? (Set B)",
+    "answer": "בגלל",
+    "acceptableAnswers": [
+      "בגלל ש-"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_019_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Numbers",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'five girls' into Hebrew (remember gender agreement with numbers!). (Set B)",
+    "answer": "חמש ילדות",
+    "acceptableAnswers": [
+      "חמש בנות"
+    ],
+    "explanation": "Girls are feminine, so the feminine form of five 'חמש' is used.",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_020_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'quickly' into Hebrew. (Set B)",
+    "answer": "מהר",
+    "acceptableAnswers": [
+      "במהירות"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "he_grammar_021_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Negatives",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I do not want anything' (masculine singular) into Hebrew. (Set B)",
+    "answer": "אני לא רוצה כלום",
+    "acceptableAnswers": [
+      "אני לא רוצה שום דבר"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "negatives"
+    ]
+  },
+  {
+    "id": "he_grammar_022_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Direct Object Pronoun",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'I saw him' into Hebrew. (Set B)",
+    "answer": "ראיתי אותו",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "he_grammar_023_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Verb Patterns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "What is the name of the passive Hebrew verb pattern (binyan) corresponding to Pa'al? (Set B)",
+    "answer": "נפעל",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "he_grammar_024_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Numbers",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate the number 'hundred' into Hebrew. (Set B)",
+    "answer": "מאה",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_025_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Infinitive",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "What is the infinitive form of the verb 'שומע' (to hear)? (Set B)",
+    "answer": "לשמוע",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "he_grammar_026_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Which Hebrew relative pronoun prefix translates to 'that/who/which'? (Set B)",
+    "answer": "ש",
+    "acceptableAnswers": [
+      "ש-",
+      "אשר"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "he_grammar_027_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Irregular Verbs",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'לרצות' (to want) for 'אתה' in the present tense. (Set B)",
+    "answer": "רוצה",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "he_grammar_028_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'ללכת' (to go) for 'אני' in future tense. (Set B)",
+    "answer": "אלך",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "he_grammar_029_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Reflexives",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Translate 'I wash myself' (masculine singular speaker) into Hebrew using reflexive 'להתרחץ'. (Set B)",
+    "answer": "אני מתרחץ",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_030_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adverbs",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'slowly' into Hebrew. (Set B)",
+    "answer": "לאט",
+    "acceptableAnswers": [
+      "באיטיות"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adverbs"
+    ]
+  },
+  {
+    "id": "he_grammar_031_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Time",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "How do you say 'it is half past two' in Hebrew? (Set B)",
+    "answer": "שתיים וחצי",
+    "acceptableAnswers": [
+      "השעה שתיים וחצי"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "time"
+    ]
+  },
+  {
+    "id": "he_grammar_032_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'Do not smoke!' (sing masculine informal negative command) into Hebrew. (Set B)",
+    "answer": "אל תעשן",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  },
+  {
+    "id": "he_grammar_033_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Verb conjugation",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'לדעת' (to know) for 'הם' in the past (עבר) tense. (Set B)",
+    "answer": "ידעו",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "past"
+    ]
+  },
+  {
+    "id": "he_grammar_034_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Days",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'Wednesday' into Hebrew. (Set B)",
+    "answer": "יום רביעי",
+    "marks": 1,
+    "tags": [
+      "grammar"
+    ]
+  },
+  {
+    "id": "he_grammar_035_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Nouns Construct State",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Combine 'בית' (house) and 'ספר' (book) using the Hebrew construct state (סמיכות) to mean 'school'. (Set B)",
+    "answer": "בית ספר",
+    "acceptableAnswers": [
+      "בית-ספר"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "he_grammar_036_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Translate 'I will play' (masculine singular speaker) into Hebrew (future of 'לשחק'). (Set B)",
+    "answer": "אשחק",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "he_grammar_037_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Superlatives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'the best student' (masculine singular) into Hebrew. (Set B)",
+    "answer": "התלמיד הכי טוב",
+    "acceptableAnswers": [
+      "התלמיד הטוב ביותר"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "comparatives"
+    ]
+  },
+  {
+    "id": "he_grammar_038_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Past Tense",
+    "difficulty": 3,
+    "type": "grammar",
+    "question": "Conjugate 'לעשות' (to do/make) for 'הוא' in the past (עבר) tense. (Set B)",
+    "answer": "עשה",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "past"
+    ]
+  },
+  {
+    "id": "he_grammar_039_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Adjective Position",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Translate 'a large country' into Hebrew (remember noun-adjective position and gender agreement!). (Set B)",
+    "answer": "מדינה גדולה",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "he_grammar_040_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "Which Hebrew preposition word means 'behind'? (Set B)",
+    "answer": "מאחורי",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "he_grammar_041_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Pronouns",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'whom' or 'who' as direct object into Hebrew (e.g., 'The girl whom I saw'). (Set B)",
+    "answer": "שאותה",
+    "acceptableAnswers": [
+      "אשר אותה",
+      "שראיתי אותה"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "he_grammar_042_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Weather",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Translate 'It is cold' into Hebrew. (Set B)",
+    "answer": "קר",
+    "acceptableAnswers": [
+      "קר בחוץ"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "weather"
+    ]
+  },
+  {
+    "id": "he_grammar_043_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Prepositions",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate 'about us' (using preposition על-) into Hebrew. (Set B)",
+    "answer": "עלינו",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "prepositions"
+    ]
+  },
+  {
+    "id": "he_grammar_044_v2",
+    "examBoard": "AQA",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Plurals",
+    "difficulty": 2,
+    "type": "grammar",
+    "question": "What is the plural of 'עיר' (city - feminine noun with irregular masculine ending)? (Set B)",
+    "answer": "ערים",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "he_grammar_045_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Past Participle",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "What is the passive construct (past participle) form of 'לשבור' (to break) meaning 'broken' (masculine singular)? (Set B)",
+    "answer": "שבור",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs"
+    ]
+  },
+  {
+    "id": "he_grammar_046_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Construct State Plural",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Form the construct state plural (סמיכות) of 'בתי' (houses of) to say 'schools' (houses of book). (Set B)",
+    "answer": "בתי ספר",
+    "acceptableAnswers": [
+      "בתי-ספר"
+    ],
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "nouns"
+    ]
+  },
+  {
+    "id": "he_grammar_047_v2",
+    "examBoard": "Edexcel",
+    "tier": "Foundation",
+    "topic": "Grammar",
+    "subtopic": "Adjectives",
+    "difficulty": 1,
+    "type": "grammar",
+    "question": "Complete the adjective agreement: המכונית היא ______ (מהיר - fast). (Set B)",
+    "answer": "מהירה",
+    "explanation": "Car (מכונית) is feminine singular, so the adjective must be feminine singular: מהירה.",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "adjectives"
+    ]
+  },
+  {
+    "id": "he_grammar_048_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Future Tense",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "Conjugate 'לדעת' (to know) for 'אנחנו' in the future (עתיד) tense. (Set B)",
+    "answer": "נדע",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "verbs",
+      "future"
+    ]
+  },
+  {
+    "id": "he_grammar_049_v2",
+    "examBoard": "Edexcel",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Demonstratives",
+    "difficulty": 4,
+    "type": "grammar",
+    "question": "What is the Hebrew feminine plural demonstrative pronoun meaning 'those'? (Set B)",
+    "answer": "ההן",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "pronouns"
+    ]
+  },
+  {
+    "id": "he_grammar_050_v2",
+    "examBoard": "AQA",
+    "tier": "Higher",
+    "topic": "Grammar",
+    "subtopic": "Imperatives",
+    "difficulty": 5,
+    "type": "grammar",
+    "question": "Translate the feminine singular imperative command 'Listen!' (from 'להקשיב') into Hebrew. (Set B)",
+    "answer": "הקשיבי",
+    "marks": 1,
+    "tags": [
+      "grammar",
+      "imperative"
+    ]
+  }
+]

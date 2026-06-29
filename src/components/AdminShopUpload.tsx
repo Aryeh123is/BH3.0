@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { db, collection, addDoc } from '../firebase';
-import { X, Save, Shield, AlertTriangle } from 'lucide-react';
+import { X, Save, Shield, AlertTriangle, Eye, EyeOff } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { hashDevString } from '../lib/utils';
 
 interface AdminShopUploadProps {
   onClose: () => void;
@@ -10,6 +11,7 @@ interface AdminShopUploadProps {
 
 export function AdminShopUpload({ onClose, onSuccess }: AdminShopUploadProps) {
   const [adminCode, setAdminCode] = useState('');
+  const [showAdminCode, setShowAdminCode] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState('');
   
@@ -25,7 +27,7 @@ export function AdminShopUpload({ onClose, onSuccess }: AdminShopUploadProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleAuthenticate = () => {
-    if (adminCode === 'aryehadminupload') {
+    if (hashDevString(adminCode.trim().toLowerCase()) === '156u6ud') {
       setIsAuthenticated(true);
       setError('');
     } else {
@@ -94,13 +96,22 @@ export function AdminShopUpload({ onClose, onSuccess }: AdminShopUploadProps) {
             <p className="text-slate-500 dark:text-slate-400 mb-8 max-w-sm mx-auto font-medium">Please enter the admin bypass code to manage the student shop content.</p>
             
             <div className="max-w-xs mx-auto space-y-4">
-              <input
-                type="password"
-                value={adminCode}
-                onChange={(e) => setAdminCode(e.target.value)}
-                placeholder="Enter admin code..."
-                className="w-full px-6 py-4 bg-slate-50 dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-2xl focus:border-red-500 outline-none transition-all font-mono"
-              />
+              <div className="relative">
+                <input
+                  type={showAdminCode ? "text" : "password"}
+                  value={adminCode}
+                  onChange={(e) => setAdminCode(e.target.value)}
+                  placeholder="Enter admin code..."
+                  className="w-full px-6 py-4 pr-12 bg-slate-50 dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-2xl focus:border-red-500 outline-none transition-all font-mono"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowAdminCode(!showAdminCode)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors"
+                >
+                  {showAdminCode ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
               {error && <p className="text-red-500 text-sm font-bold">{error}</p>}
               <button
                 onClick={handleAuthenticate}

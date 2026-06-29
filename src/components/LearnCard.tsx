@@ -109,7 +109,7 @@ export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCa
           <div className="space-y-4">
             {question.type === 'multiple-choice' ? (
               <div className="grid grid-cols-1 gap-4">
-                {question.options?.map((option, idx) => {
+                {question.options?.map((option) => {
                   const isThisCorrect = option === question.correctAnswer;
                   const isThisSelected = selectedOption === option;
 
@@ -126,7 +126,7 @@ export function LearnCard({ question, onAnswer, language = 'biblical' }: LearnCa
 
                   return (
                     <button
-                      key={`opt-${idx}`}
+                      key={option}
                       onClick={() => !isSubmitted && setSelectedOption(option)}
                       disabled={isSubmitted}
                       className={buttonClass}

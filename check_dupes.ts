@@ -1,10 +1,11 @@
 
-import { VOCABULARY as bh } from './src/data/vocabulary.ts';
-import { MODERN_HEBREW_VOCABULARY as mh } from './src/data/modern_hebrew.ts';
-import { SPANISH_EDEXCEL_VOCABULARY as es } from './src/data/spanish_edexcel.ts';
-import { FRENCH_EDEXCEL_VOCABULARY as fr } from './src/data/french_edexcel.ts';
+import { VOCAB_REGISTRY } from './src/data/vocabRegistry.ts';
 
 function check(name, list) {
+    if (!list) {
+        console.log(`${name} is empty or not found.`);
+        return;
+    }
     const ids = list.map(w => w.id);
     const seen = new Set();
     const dupes = [];
@@ -19,7 +20,6 @@ function check(name, list) {
     }
 }
 
-check('Biblical Hebrew', bh);
-check('Modern Hebrew', mh);
-check('Spanish', es);
-check('French', fr);
+for (const [lang, list] of Object.entries(VOCAB_REGISTRY)) {
+    check(lang, list);
+}
