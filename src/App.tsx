@@ -73,9 +73,17 @@ const VERSION_KEY = 'bh-app-version';
 const THEME_KEY = 'bh-app-theme';
 const PREFS_KEY = 'bh-app-preferences';
 const REVIEWS_PROMPT_KEY = 'bh-review-prompt-shown';
-const CURRENT_VERSION = '4.1.97';
+const CURRENT_VERSION = '4.1.98';
 
 const CHANGELOG = [
+  {
+    version: '4.1.98',
+    changes: [
+      { title: 'Freemium Gating Refactor', description: 'Opened the entire site for unauthenticated guest access. Placed user prompts to sign in upon accessing the exam simulator or after 50 flashcards, highlighting progress syncing.' },
+      { title: 'Stripe Lifetime Discount Visibility', description: 'Showcased Monthly (FOUNDER50MONTH) and Yearly (FOUNDER50YEAR) coupon codes clearly in the Premium plan card with quick-copy buttons.' },
+      { title: 'Tactile Fluid Buttons', description: 'Integrated fluid gradient button styles and beautiful reactive states for improved interactive aesthetic quality.' }
+    ]
+  },
   {
     version: '4.1.97',
     changes: [
@@ -1624,6 +1632,8 @@ export default function App() {
 
   const SESSION_STATE_KEY = `bh-session-state-${language}`;
 
+  const [user, setUser] = useState<User | null>(null);
+
   const [actualView, setActualView] = useState<'home' | 'learn' | 'summary' | 'flashcards' | 'dashboard' | 'test' | 'shop' | 'speakingMode' | 'readingExam' | 'pastPapers' | 'grammarMastery' | 'examSimulator' | 'verbMaster' | 'genericExam' | 'listeningExam' | 'writingExam' | 'pricing' | 'checkout' | 'setTextStudy' | 'premium-success' | 'roadmap' | 'examCountdown'>(() => {
     const saved = safeLocalStorage.getItem(SESSION_STATE_KEY);
     const params = new URLSearchParams(window.location.search);
@@ -1641,10 +1651,20 @@ export default function App() {
   });
 
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [authModalCustomTitle, setAuthModalCustomTitle] = useState<string | null>(null);
+  const [authModalCustomMessage, setAuthModalCustomMessage] = useState<string | null>(null);
 
   const setView = useCallback((nextView: any) => {
     if (isTransitioning) {
       console.warn("Transition matches lock rendering. Navigation blocked.");
+      return;
+    }
+    // Intercept guest users trying to access exam simulators
+    if (!user && !devMode && ['examSimulator', 'readingExam', 'listeningExam', 'writingExam', 'speakingMode', 'genericExam'].includes(nextView)) {
+      setAuthModalCustomTitle('Sign In Required');
+      setAuthModalCustomMessage('It will save your progress if you sign in now.');
+      setShowAuthModal(true);
       return;
     }
     setIsTransitioning(true);
@@ -1653,7 +1673,7 @@ export default function App() {
       setActualView(nextView);
       setIsTransitioning(false);
     }, 120);
-  }, [isTransitioning]);
+  }, [isTransitioning, user, devMode]);
 
   const view = actualView;
 
@@ -1745,7 +1765,6 @@ export default function App() {
   const [showChangelog, setShowChangelog] = useState(false);
   const [viewingArchive, setViewingArchive] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
   const lastPrefSync = useRef<string>('');
 
   const [preferences, setPreferences] = useState<UserPreferences>(() => {
@@ -1897,6 +1916,7 @@ export default function App() {
   }, [user, view, showProModal, userProfile?.subscriptionTier]);
 
   const isPremium = useMemo(() => {
+    if (!user) return false; // Non-signed-in guests are never premium
     if (userProfile?.subscriptionTier === 'PREMIUM') return true;
     if (user?.email && hashDevString(user.email.toLowerCase()) === '71kqwe') return true;
     
@@ -2230,7 +2250,7 @@ export default function App() {
     }
   };
 
-  const [showAuthModal, setShowAuthModal] = useState(false);
+  // Delete duplicate showAuthModal declaration as it is now defined above setView
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const saved = safeLocalStorage.getItem(THEME_KEY);
     return (saved as 'light' | 'dark') || 'light';
@@ -2324,8 +2344,10 @@ export default function App() {
   }, [user]);
 
   useEffect(() => {
-    if (isAuthReady && !user && !devMode && view !== 'home' && view !== 'flashcards') {
+    if (isAuthReady && !user && !devMode && ['examSimulator', 'readingExam', 'listeningExam', 'writingExam', 'speakingMode', 'genericExam'].includes(view)) {
       setView('home');
+      setAuthModalCustomTitle('Sign In Required');
+      setAuthModalCustomMessage('It will save your progress if you sign in now.');
       setShowAuthModal(true);
     }
   }, [user, isAuthReady, view, devMode]);
@@ -4390,10 +4412,16 @@ export default function App() {
 
       {showAuthModal && (
             <AuthModal 
-              onClose={() => setShowAuthModal(false)}
+              onClose={() => {
+                setShowAuthModal(false);
+                setAuthModalCustomTitle(null);
+                setAuthModalCustomMessage(null);
+              }}
               onVerified={() => {
                 // Verification successful
               }}
+              customTitle={authModalCustomTitle}
+              customMessage={authModalCustomMessage}
             />
           )}
         </Suspense>
@@ -4587,13 +4615,15 @@ export default function App() {
               </div>
               <h2 className="text-2xl font-black text-slate-900 dark:text-white mb-2">You're learning fast 🚀</h2>
               <p className="text-slate-500 dark:text-slate-400">
-                Sign up to save your progress and unlock smart spaced repetition.
+                It will save your progress if you sign in now.
               </p>
             </div>
             
             <button 
               onClick={() => {
                 setShowGuestLimitModal(false);
+                setAuthModalCustomTitle('Sign In Required');
+                setAuthModalCustomMessage('It will save your progress if you sign in now.');
                 setShowAuthModal(true);
               }}
               className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-black rounded-xl transition-colors shadow-lg shadow-indigo-600/20"

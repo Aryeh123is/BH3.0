@@ -46,6 +46,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
   const [verifyStatus, setVerifyStatus] = useState<string | null>(null);
   const [verifyCheckLoading, setVerifyCheckLoading] = useState(false);
   const [resendCooldown, setResendCooldown] = useState(false);
+  const [copiedCode, setCopiedCode] = useState<string | null>(null);
+
+  const handleCopyCode = (code: string) => {
+    navigator.clipboard.writeText(code);
+    setCopiedCode(code);
+    setTimeout(() => setCopiedCode(null), 2000);
+  };
 
   React.useEffect(() => {
     let unsubscribe: (() => void) | undefined;
@@ -439,6 +446,27 @@ export const PricingSection: React.FC<PricingSectionProps> = ({
             <div className="mb-8">
               <p className="text-[10px] font-black text-indigo-400 uppercase tracking-widest bg-indigo-400/10 px-2 py-0.5 rounded inline-block">
                 {billingCycle === 'mo' ? '3 Days Free Trial • Then founding member discount' : '3 Days Free Trial • Best value for long-term revision'}
+              </p>
+            </div>
+
+            {/* 50% Off Coupon Code Display */}
+            <div className="mb-8 w-full p-4 bg-indigo-500/10 border border-indigo-500/20 rounded-2xl flex flex-col gap-2 items-center text-center">
+              <span className="text-[10px] font-black uppercase tracking-widest text-indigo-400">
+                🏷️ Founding 50% Off Coupon Code
+              </span>
+              <div className="flex items-center gap-2 bg-slate-950/60 border border-indigo-500/30 px-3 py-1.5 rounded-xl font-mono text-sm text-indigo-300 font-bold w-full justify-between">
+                <span className="select-all">{billingCycle === 'mo' ? 'FOUNDER50MONTH' : 'FOUNDER50YEAR'}</span>
+                <button
+                  type="button"
+                  onClick={() => handleCopyCode(billingCycle === 'mo' ? 'FOUNDER50MONTH' : 'FOUNDER50YEAR')}
+                  className="p-1 hover:bg-white/10 rounded transition-colors text-indigo-400 hover:text-indigo-200 cursor-pointer"
+                  title="Copy coupon code"
+                >
+                  <Copy className="w-4 h-4" />
+                </button>
+              </div>
+              <p className="text-[10px] text-slate-400 italic font-semibold leading-relaxed">
+                {copiedCode ? '✓ Code copied!' : 'Copy and enter at checkout for 50% off!'}
               </p>
             </div>
 

@@ -7,9 +7,11 @@ import { updateProfile } from 'firebase/auth';
 interface AuthModalProps {
   onClose: () => void;
   onVerified?: () => void;
+  customTitle?: string | null;
+  customMessage?: string | null;
 }
 
-export function AuthModal({ onClose, onVerified }: AuthModalProps) {
+export function AuthModal({ onClose, onVerified, customTitle, customMessage }: AuthModalProps) {
   const [isLogin, setIsLogin] = useState(false);
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [name, setName] = useState('');
@@ -211,16 +213,16 @@ export function AuthModal({ onClose, onVerified }: AuthModalProps) {
           <>
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-                {isForgotPassword 
+                {customTitle || (isForgotPassword 
                   ? 'Reset Password' 
-                  : isLogin ? 'Welcome Back' : 'Create an Account'}
+                  : isLogin ? 'Welcome Back' : 'Create an Account')}
               </h2>
               <p className="text-slate-500 dark:text-slate-400 text-sm">
-                {isForgotPassword
+                {customMessage || (isForgotPassword
                   ? 'Enter your email to receive a secure password reset link.'
                   : isLogin 
                     ? 'Enter your details to sign in.' 
-                    : 'Sign up to sync your language progress across all your devices.'}
+                    : 'Sign up to sync your language progress across all your devices.')}
               </p>
             </div>
 
